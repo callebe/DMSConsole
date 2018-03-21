@@ -50,3 +50,7 @@
 #define Tail_B                    0x33 // Tail key for each command 
 #define Tail_C                    0xC3 // Tail key for each command 
 #define Tail_D                    0x3C // Tail key for each command
+//Command Response
+#define Execulted_Command         0x3A // Confirm that send command was execulted
+#define Wait_Next_Command         0x3E // Display wait your next command
+#define Erro_In_Exe_Command       0x21 // Erro in run sended command
