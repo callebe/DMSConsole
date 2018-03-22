@@ -10,13 +10,17 @@
 // -------- Defines
 #define ScreenTitleLength 30
 #define LimitTitleLength 75
-#define AdressRouteTitlePgB 0x180
-#define ButtonUpSelectRoute 1
-#define ButtonDownSelectRoute 2
+#define AdressRouteTitlePgSelectDestinations 0x180
+#define AdressNumberRoutePgMain 0x200
+#define AdressInfoRoutePgMain 0x280
+#define ButtonChangeRoute 0
+#define ButtonUpSelectRoute 0
+#define ButtonDownSelectRoute 1
 #define ButtonConfirmSelectRoute 3
-#define ButtonCancelSelectRoute 4
+#define ButtonCancelSelectRoute 2
 #define MainPage 0
-#define LoadingPage 1
+#define SelectDestinations 1
+#define LoadingPage 2
 
 // -------- Main Function
 int main (void){
@@ -26,6 +30,7 @@ int main (void){
 	unsigned char** RouteLines = NULL;
 	FILE *Routes;
 	int Counter;
+	int CurrentDestination = 0;
 	char *SucessFull_fgets = 0;
 
 	//Configure UARTS0 interface
@@ -90,18 +95,54 @@ int main (void){
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainPage);
 
-	Counter = 0;
+	//Set initial information for display
+	Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
+	Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
+
+	//Main Loop
 	while(1){
 		Bt = Get_Buttom_Event (uart0_filestream);
-		if(Bt.ButtonId == ButtonUpSelectRoute){
-			Write_String (uart0_filestream, AdressRouteTitlePgB, &RouteLines[Counter++][0], ScreenTitleLength);
-			if(Counter == NumberOfRouteLines) Counter = NumberOfRouteLines-1;
+		if((Bt.PagId == MainPage) && (Bt.ButtonId == ButtonChangeRoute)){
+			Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[CurrentDestination][0], ScreenTitleLength);
+			Counter = CurrentDestination;
 
 		}
 		else{
-			if(Bt.ButtonId == ButtonDownSelectRoute){
-				Write_String (uart0_filestream, AdressRouteTitlePgB, &RouteLines[Counter--][0], ScreenTitleLength);
-				if(Counter < 0) Counter = 0;
+			if(Bt.PagId == SelectDestinations){
+				switch (Bt.ButtonId){
+
+					case ButtonUpSelectRoute :
+						if(Counter < NumberOfRouteLines) Counter++;
+						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[Counter][0], ScreenTitleLength);
+						
+
+					break;
+
+					case ButtonDownSelectRoute:
+						if(Counter > 0) Counter--;
+						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[Counter][0], ScreenTitleLength);
+						
+
+					break;
+
+					case ButtonConfirmSelectRoute :
+						CurrentDestination = Counter;
+						Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
+						Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
+
+					break;
+
+					case ButtonCancelSelectRoute:
+						Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
+						Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
+
+					break;
+
+					default :
+						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[CurrentDestination][0], ScreenTitleLength);
+
+				}
+
 			}
 		}
 

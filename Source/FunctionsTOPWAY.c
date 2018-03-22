@@ -182,12 +182,12 @@ Button Get_Buttom_Event (int uart0_filestream){
   Rx_UARTS0 (uart0_filestream, &bufferRx[0], 9);
 
   if((bufferRx[0] == 0xAA) && (bufferRx[1] == 0x79) && (bufferRx[5] == 0xCC) && (bufferRx[6] == 0x33) && (bufferRx[7] == 0xC3)  && (bufferRx[8] == 0x3C)){
-    Bt.PagId = (bufferRx[2] << 8) + bufferRx[3];
+    Bt.PagId = bufferRx[2]*256 + bufferRx[3];
     Bt.ButtonId = bufferRx[4];
   }
   else{
-    Bt.PagId = 0;
-    Bt.ButtonId = 0;
+    Bt.PagId = -1;
+    Bt.ButtonId = -1;
   }
   
 
