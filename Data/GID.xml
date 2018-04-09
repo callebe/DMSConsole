@@ -1,0 +1,238 @@
+<GID version="1.1">
+    <Group ID="1">
+        <Line Number="200" Name="BOLHÃO-CAST. QUEIJO">
+            <Destination ID="1" Name="BOLHÃO" Return="4">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="16x9">BOLHÃO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="2" Name="CARMO" Return="2">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="16x9">CARMO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="3" Name="CASA DAS ARTES" Return="3">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">CASA DAS ARTES</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="4" Name="CASTELO DO QUEIJO" Return="4">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">CASTELO DO QUEIJO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="5" Name="CRASTO" Return="5">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="16x9">CRASTO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="6" Name="FLUVIAL (NORTE)" Return="6">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">FLUVIAL (NORTE)</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="7" Name="FUNCHAL" Return="7">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="12x7">FUNCHAL</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="8" Name="GÓLGOTA" Return="8">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="12x7">GÓLGOTA</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="9" Name="GUIL. G. FERNANDES" Return="9">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">GUIL. G. FERNANDES</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="10" Name="HOMEM DO LEME" Return="10">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">HOMEM DO LEME</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="11" Name="HOSP. ST. ANTÓNIO" Return="11">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">HOSP. ST. ANTÓNIO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="12" Name="JARDIM BOTÂNICO" Return="12">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">JARDIM BOTÂNICO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="13" Name="JUNTA MASSARELOS" Return="13">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">JUNTA MASSARELOS</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="14" Name="LORDELO" Return="14">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="12x7">LORDELO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="15" Name="MERCADO DA FOZ" Return="15">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">MERCADO DA FOZ</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="16" Name="MERCADO DO BOLHÃO" Return="16">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">MERCADO DO BOLHÃO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="17" Name="MOLHE" Return="17">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="16x9">MOLHE</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="18" Name="PADRE LUIS CABRAL" Return="18">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">PADRE LUIS CABRAL</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="19" Name="PALÁCIO" Return="19">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="12x7">PALÁCIO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="20" Name="PALMEIRAS" Return="20">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="8x6">PALMEIRAS</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="21" Name="PASTELEIRA" Return="21">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="8x6">PASTELEIRA</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="22" Name="PAULO DA GAMA" Return="22">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">PAULO DA GAMA</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="23" Name="PLANETÁRIO" Return="23">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="8x6">PLANETÁRIO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="24" Name="PR. D. JOÃO I" Return="24">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="7x5">PR. D. JOÃO I</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="25" Name="PR. DA GALIZA" Return="25">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="7x5">PR. DA GALIZA</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="26" Name="PR. DE LIÉGE" Return="26">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="7x5">PR. DE LIÉGE</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="27" Name="UNIV. CATÓLICA" Return="27">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">UNIV. CATÓLICA</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="28" Name="TIMOR" Return="28">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="19x11">TIMOR</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="29" Name="TORRES" Return="29">
+                <Panel Lines="20" Columns="100">
+                    <Page ID="1">
+                        <Number Effect="None" Align="Left" Font="5x5">200</Number>
+                        <Text Effect="None" Align="Left" Font="16x9">TORRES</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+        </Line>
+    </Group>
+</GID>

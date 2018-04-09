@@ -20,7 +20,12 @@ CC_FLAGS=-c         \
          -W         \
          -Wall      \
          -ansi      \
-         -pedantic
+         -pedantic  \
+         -pthread  
+
+# Flags for compiler Objects
+CO_FLAGS=-lpigpio   \
+         -lrt          
 
 # Command used at clean target
 RM = rm -rf
@@ -32,18 +37,18 @@ all: objFolder $(PROJ_NAME)
 
 $(PROJ_NAME): $(OBJ)
 	@ echo 'Building binary using GCC linker: $@'
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(CO_FLAGS)
 	@ echo 'Finished building binary: $@'
 	@ echo ' '
 
 ./objects/%.o: ./source/%.c ./source/%.h
 	@ echo 'Building target using GCC compiler: $<'
-	$(CC) $< $(CC_FLAGS) -o $@
+	$(CC) $< $(CC_FLAGS) -o $@ $(CO_FLAGS)
 	@ echo ' '
 
 ./objects/main.o: ./source/main.c $(H_SOURCE)
 	@ echo 'Building target using GCC compiler: $<'
-	$(CC) $< $(CC_FLAGS) -o $@
+	$(CC) $< $(CC_FLAGS) -o $@ $(CO_FLAGS)
 	@ echo ' '
 
 objFolder:

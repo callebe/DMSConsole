@@ -1,11 +1,13 @@
 // -------- Include Library
+#include <string.h> //Standard Library for strings 
 #include <stdio.h>    //Standard Library
 #include <unistd.h>   //Used for UART
 #include <fcntl.h>    //Used for UART
 #include <termios.h>  //Used for UART
- #include <fcntl.h>   //USed for UART
+#include <fcntl.h>   //USed for UART
 #include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
+#include <pigpio.h> // Library Pi
 
 // -------- Functions
 // Configuration Function
@@ -82,22 +84,22 @@ int Tx_UARTS0 (int uart0_filestream, unsigned char *Tx, int Dimension){
 int Rx_UARTS0 (int uart0_filestream, unsigned char *Rx, int Dimension){
 
   unsigned char BufferRx[Dimension];
-	int LengthOfBuffer = 0;
+  int LengthOfBuffer = 0;
   int CounterRx = 0;
   int c;
 
 	//The Receive get any input until counter reach Dimension of Rx
   if (uart0_filestream != -1){
     while(CounterRx < Dimension){
-  		LengthOfBuffer = read(uart0_filestream, (void*)BufferRx, Dimension);
-      if(LengthOfBuffer > 0){
-        for(c = 0; c<(Dimension-CounterRx); c++){
-          Rx[CounterRx+c] = BufferRx[c]; 
+		LengthOfBuffer = read(uart0_filestream, (void*)BufferRx, Dimension);
+		if(LengthOfBuffer > 0){
+			for(c = 0; c<(Dimension-CounterRx); c++){
+			Rx[CounterRx+c] = BufferRx[c]; 
 
-        }
-        CounterRx += LengthOfBuffer;
+			}
+			CounterRx += LengthOfBuffer;
 
-      }
+		}
 
   	}
   }
@@ -220,5 +222,41 @@ int Set_Page (int uart0_filestream, int Page){
   }
 
   return 0;
+
+}
+
+//Bit Bang UART Transmission Function
+int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension){
+	
+	gpioWaveClear();
+	gpioWaveAddSerial(BitBangTx, Baudrate, 8, 2, 0, Dimension, Tx);
+	int WaveSerialTx = gpioWaveCreate();
+	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT);
+	return 0;
+
+}
+
+//Bit Bang UART Receive Function
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension){
+	
+	unsigned char CounterRx;
+	int LengthOfBuffer;
+	char BufferRx[Dimension];
+	
+	CounterRx = 0;
+	while(CounterRx < Dimension){
+		
+		LengthOfBuffer = gpioSerialRead(BitBangRx, &BufferRx[0], Dimension);
+		if(LengthOfBuffer > 0){
+			for(int c = 0; c<(Dimension-CounterRx); c++){
+				Rx[CounterRx+c] = BufferRx[c]; 
+
+			}
+			CounterRx += LengthOfBuffer;
+
+		}
+
+	}
+	return 0;
 
 }

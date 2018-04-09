@@ -1,13 +1,17 @@
 // -------- Include Library
 #include <stdio.h>    //Standard Library
-#include <stdlib.h> 
+#include <stdlib.h>   //Standard Library
 #include <unistd.h>   //Used for UART
 #include <fcntl.h>    //Used for UART
 #include <termios.h>  //Used for UART
 #include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
+#include <pigpio.h> // Library Pi
 
 // -------- Defines
+#define XMLSource "Data/Routes.txt"
+#define BaudRateDisplay 9600
+#define BitBangByteLength 8
 #define ScreenTitleLength 30
 #define LimitTitleLength 75
 #define AdressRouteTitlePgSelectDestinations 0x180
@@ -21,6 +25,8 @@
 #define MainPage 0
 #define SelectDestinations 1
 #define LoadingPage 2
+#define RX 24
+#define TX 23
 
 // -------- Main Function
 int main (void){
@@ -32,6 +38,20 @@ int main (void){
 	int Counter;
 	int CurrentDestination = 0;
 	char *SucessFull_fgets = 0;
+	char TXXX[14] ="Hellow its EE!";
+
+	//Inialize GPIO
+	gpioInitialise();
+
+	//Configure GPIO
+	gpioSetMode(RX, PI_INPUT);
+	gpioSetMode(TX, PI_OUTPUT);
+
+	//Confiure Bit Bang Rx
+	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
+
+	BitBangUARTRx (RX, BaudRateDisplay, TXXX, 14);
+	BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
 
 	//Configure UARTS0 interface
 	int uart0_filestream = Config_UARTS0 ();
@@ -40,7 +60,7 @@ int main (void){
 	Buzzer_Touch_Off (uart0_filestream, 0);
 
 	//Loading Routes file
-	Routes = fopen("Routes.txt","r");
+	Routes = fopen(XMLSource,"r");
 	if(Routes == NULL){
 		printf("--> Read erro in Routes.txt - \n");
 		return 1;
@@ -99,6 +119,7 @@ int main (void){
 	Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
 	Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
 
+	
 	//Main Loop
 	while(1){
 		Bt = Get_Buttom_Event (uart0_filestream);

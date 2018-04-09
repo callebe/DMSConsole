@@ -4,12 +4,16 @@
 #include <fcntl.h>    //Used for UART
 #include <termios.h>  //Used for UART
 #include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
+#include <pigpio.h> // Library Pi
 
-//Type Define
+
+//Type Define Button
 typedef struct Button{
 	int PagId;
 	int ButtonId;
+
 }Button;
+
 
 // -------- Prototype of Functions
 // Configuration Function
@@ -26,3 +30,7 @@ int Write_String (int uart0_filestream, unsigned int  Adress , unsigned char *Te
 Button Get_Buttom_Event (int uart0_filestream);
 //Set Page Function
 int Set_Page (int uart0_filestream, int Page);
+//Bit Bang UART Transmission Function
+int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension);
+//Bit Bang UART Receive Function
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension);
