@@ -1,13 +1,6 @@
 // -------- Include Library
-#include <string.h> //Standard Library for strings 
-#include <stdio.h>    //Standard Library
-#include <unistd.h>   //Used for UART
-#include <fcntl.h>    //Used for UART
-#include <termios.h>  //Used for UART
-#include <fcntl.h>   //USed for UART
-#include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
-#include <pigpio.h> // Library Pi
+
 
 // -------- Functions
 // Configuration Function
@@ -135,7 +128,7 @@ int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval){
 }
 
 // String Write Function
-int Write_String (int uart0_filestream, unsigned int  Adress, unsigned char *Text, int Dimension){
+int Write_String (int uart0_filestream, unsigned int  Adress, unsigned char *Text){
 
   unsigned char Begin[2] = {Header, STR_Write};
   unsigned char Finish[5] = {0, Tail_A, Tail_B, Tail_C, Tail_D};
@@ -158,7 +151,11 @@ int Write_String (int uart0_filestream, unsigned int  Adress, unsigned char *Tex
   Tx_UARTS0 (uart0_filestream, &AuxAdress,1);
 
   //Text
-  Tx_UARTS0 (uart0_filestream, Text, Dimension);
+  for(int Count=0; (Count<LimitTitleLength)&&(Text[Count] != '\0'); Count++){
+    Tx_UARTS0 (uart0_filestream, &Text[Count], 1);
+      
+  }
+  
 
   //Tail
   Tx_UARTS0 (uart0_filestream, Finish, 5);

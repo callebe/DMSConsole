@@ -4,29 +4,14 @@
 #include <unistd.h>   //Used for UART
 #include <fcntl.h>    //Used for UART
 #include <termios.h>  //Used for UART
-#include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
-#include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
 #include <pigpio.h> // Library Pi
+#include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
+#include "GIDXml.h" //Headers Functions of XmlReader
+#include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
 
-// -------- Defines
-#define XMLSource "Data/Routes.txt"
-#define BaudRateDisplay 9600
-#define BitBangByteLength 8
-#define ScreenTitleLength 30
-#define LimitTitleLength 75
-#define AdressRouteTitlePgSelectDestinations 0x180
-#define AdressNumberRoutePgMain 0x200
-#define AdressInfoRoutePgMain 0x280
-#define ButtonChangeRoute 0
-#define ButtonUpSelectRoute 0
-#define ButtonDownSelectRoute 1
-#define ButtonConfirmSelectRoute 3
-#define ButtonCancelSelectRoute 2
-#define MainPage 0
-#define SelectDestinations 1
-#define LoadingPage 2
-#define RX 24
-#define TX 23
+// Handler of Main Page
+int HandlerMain (int uart0_filestream, Destination **ActualDestination);
+
 
 // -------- Main Function
 int main (void){
@@ -50,126 +35,99 @@ int main (void){
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
 
-	BitBangUARTRx (RX, BaudRateDisplay, TXXX, 14);
-	BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
+	//BitBangUARTRx (RX, BaudRateDisplay, TXXX, 14);
+	//BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
 
 	//Configure UARTS0 interface
-	int uart0_filestream = Config_UARTS0 ();
+	int uart0_filestream = Config_UARTS0();
 
 	//Buzzer Touch Off
 	Buzzer_Touch_Off (uart0_filestream, 0);
 
-	//Loading Routes file
-	Routes = fopen(XMLSource,"r");
-	if(Routes == NULL){
-		printf("--> Read erro in Routes.txt - \n");
-		return 1;
-	}
-
-	//Counting number of Lines
-	while(!feof(Routes)){
-		if(fgetc(Routes) == '\n'){
-			NumberOfRouteLines++;
-		}
-	}
-	NumberOfRouteLines++;
-	
-
-	//Close file
-	fclose(Routes);
-
-	//Allocation of Routes
-	RouteLines = (unsigned char **)malloc(NumberOfRouteLines*sizeof(unsigned char*));
-	if(RouteLines == NULL){
-		printf("Allocation of Route Lines error. \n");
-		return 1;
-	}
-
-	for(Counter = 0; Counter < NumberOfRouteLines; Counter++){
-		RouteLines[Counter] = (unsigned char*)malloc((LimitTitleLength) * sizeof(unsigned char));
-		if(RouteLines[Counter] == NULL){
-			printf("Allocation of Route Lines error. \n");
-			return 1;
-		}
-
-	}
-
-	//Reloading Routes file
-	Routes = fopen("Routes.txt","r");
-	if(Routes == NULL){
-		printf("Read erro in Routes.txt - \n");
-		return 1;
-	}
-
-	//Filling the Lines Routes
-	Counter = 0;
-	while(!feof(Routes)){
-		SucessFull_fgets = fgets(RouteLines[Counter], LimitTitleLength, Routes);
-		if(SucessFull_fgets) Counter ++;	
-
-	}
-
-	//Reclose file
-	fclose(Routes);
+	//Loading Xml file
+	GID NewGID;
+	LoadXMLSource(&NewGID, XMLSource);
+	//Loading Initial Sources
+	Group *ActualGroup = NewGID.List;
+	Line *ActualLine = ActualGroup->List;
+	Destination *ActualDestination = ActualLine->List;
 
 	//Allow main page in display
-	Set_Page (uart0_filestream, MainPage);
+	Set_Page (uart0_filestream, MainID);
 
 	//Set initial information for display
-	Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
-	Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
+	Write_String (uart0_filestream, AdressNumberLine, ActualLine->Number);
+	Write_String (uart0_filestream, AdressNameLine, ActualLine->Name);
+	Write_String (uart0_filestream, AdressNameDestination, ActualDestination->Name);
 
-	
+	unsigned char ActualPage = 0;
 	//Main Loop
 	while(1){
-		Bt = Get_Buttom_Event (uart0_filestream);
-		if((Bt.PagId == MainPage) && (Bt.ButtonId == ButtonChangeRoute)){
-			Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[CurrentDestination][0], ScreenTitleLength);
-			Counter = CurrentDestination;
+		switch(ActualPage){
+			case MainID:
+				ActualPage = HandlerMain(uart0_filestream, &ActualDestination);
+				break;
 
-		}
-		else{
-			if(Bt.PagId == SelectDestinations){
-				switch (Bt.ButtonId){
+			case SelectLinesID:
+				//ActualPage = HandlerSelectDestination(uart0_filestream, ActualDestination);
+				ActualPage = 0;
+				break;
 
-					case ButtonUpSelectRoute :
-						if(Counter < NumberOfRouteLines) Counter++;
-						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[Counter][0], ScreenTitleLength);
-						
+			default:
+				ActualPage = 0;
 
-					break;
-
-					case ButtonDownSelectRoute:
-						if(Counter > 0) Counter--;
-						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[Counter][0], ScreenTitleLength);
-						
-
-					break;
-
-					case ButtonConfirmSelectRoute :
-						CurrentDestination = Counter;
-						Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
-						Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
-
-					break;
-
-					case ButtonCancelSelectRoute:
-						Write_String (uart0_filestream, AdressNumberRoutePgMain, &RouteLines[CurrentDestination][0], 3);
-						Write_String (uart0_filestream, AdressInfoRoutePgMain, &RouteLines[CurrentDestination][5], ScreenTitleLength);
-
-					break;
-
-					default :
-						Write_String (uart0_filestream, AdressRouteTitlePgSelectDestinations, &RouteLines[CurrentDestination][0], ScreenTitleLength);
-
-				}
-
-			}
 		}
 
 	}
 
 	//Close UARTS0  
 	close(uart0_filestream);
+
+	return 0;
+
+}
+
+
+//Handler event for main Page
+int HandlerMain (int uart0_filestream, Destination **ActualDestination){
+  
+  Destination *Last = *ActualDestination;
+  Button Bt;
+  Bt = Get_Buttom_Event (uart0_filestream);
+
+  if(Bt.PagId == MainID){
+    switch (Bt.ButtonId){
+      case ButtonNextDestination:
+        if(Last != NULL){
+			if(Last->Next != NULL) Last = Last->Next;
+			*ActualDestination = Last;
+			Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+
+        } 
+        break;
+
+      case ButtonPreviousDestination:
+        if(Last != NULL){
+          if(Last->Previous != NULL) Last = Last->Previous;
+          *ActualDestination = Last;
+          Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+        } 
+        break;
+
+      case ButtonChangeLine:
+        return SelectLinesID;
+        break;
+
+      case ButtonSettings:
+        return SettingsID;
+        break;
+
+      default:
+        return 0;
+
+    }
+  }
+
+  return 0;
 
 }

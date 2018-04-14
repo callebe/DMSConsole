@@ -1,11 +1,41 @@
 // -------- Include Library
 #include <stdio.h>    //Standard Library
+#include <string.h> //Standard Library for strings 
 #include <unistd.h>   //Used for UART
 #include <fcntl.h>    //Used for UART
 #include <termios.h>  //Used for UART
 #include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
 #include <pigpio.h> // Library Pi
 
+// -------- Defines
+// Config
+#define XMLSource "Data/GID.xml"
+#define BaudRateDisplay 9600
+#define BitBangByteLength 8
+#define RX 24
+#define TX 23
+// Screen
+#define ScreenTitleLength 30
+#define LimitTitleLength 75
+// Main Page
+#define MainID 0 
+#define ButtonNextDestination 0
+#define ButtonPreviousDestination 1
+#define ButtonChangeLine 2
+#define ButtonSettings 3
+#define AdressNumberLine 0x000080
+#define AdressNameLine  0x000100
+#define AdressNameDestination 0x000180
+// Select Destination Page
+#define SelectLinesID 1
+#define ButtonCancelChangeLine 0
+#define ButtonConfirmChangeLine 1
+#define ButtonUpChangeLine 2
+#define ButtonDownChangeLine 3
+#define AdressSelectNameDestination 0x000200
+#define AdressSelectIDDestination   0x000280
+// Setting Page
+#define SettingsID 1
 
 //Type Define Button
 typedef struct Button{
@@ -25,7 +55,7 @@ int Rx_UARTS0 (int uart0_filestream, unsigned char *Rx, int Dimension);
 // Buzzer Touch Function
 int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval);
 // String Write Function
-int Write_String (int uart0_filestream, unsigned int  Adress , unsigned char *Text, int Dimension);
+int Write_String (int uart0_filestream, unsigned int  Adress , unsigned char *Text);
 //Get Buttom Event Function
 Button Get_Buttom_Event (int uart0_filestream);
 //Set Page Function
