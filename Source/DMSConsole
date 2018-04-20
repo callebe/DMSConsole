@@ -1,0 +1,67 @@
+!/bin/bash
+#
+# /etc/init.d/DMSConsole 
+ 
+### BEGIN INIT INFO
+# Provides:          DMSConsole
+# Required-Start: 
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: The DMSConsole System
+# Description:       Star a DMSConsole System
+# LSB Functions
+./lib/lsb/init-functions
+
+### END INIT INFO
+ 
+# Path to DMSConsole
+BIN=sudo /home/pi/DMSConsole/DMSConsole
+ 
+function startConsole(){
+        echo "Starting..."
+        $BIN start
+}
+ 
+function stopConsole(){
+        echo "Stopping..."
+        $BIN stop
+}
+ 
+case "$1" in
+        start )
+                startConsole
+                if [ $? -eq 0 ]
+                then
+                        echo "OK."
+                fi
+ 
+                ;;
+ 
+ 
+        stop )
+                stopConsole
+                if [ $? -eq 0 ]
+                then
+                        echo "OK."
+                fi
+ 
+                ;;
+ 
+        restart )
+                stopConsole
+                sleep 1
+                startConsole
+                if [ $? -eq 0 ]
+                then
+                        echo "OK."
+                fi
+ 
+                ;;
+ 
+ 
+        * )
+                echo "Invalid option"
+                ;;
+esac
+

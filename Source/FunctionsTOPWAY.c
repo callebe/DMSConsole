@@ -115,14 +115,13 @@ int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval){
   Data[6] = Tail_D;
 
   Tx_UARTS0 (uart0_filestream, &Data[0], 7);
-
   //Error verification
   Rx_UARTS0 (uart0_filestream, &ConfirmCommand[0], 2);
   if(ConfirmCommand[0] == Erro_In_Exe_Command){
     printf("Erro in send Beep Off Function!\n");
     return 1;
   }
-
+  printf("OK\n");
   return 0;
 
 }
@@ -219,41 +218,5 @@ int Set_Page (int uart0_filestream, int Page){
   }
 
   return 0;
-
-}
-
-//Bit Bang UART Transmission Function
-int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension){
-	
-	gpioWaveClear();
-	gpioWaveAddSerial(BitBangTx, Baudrate, 8, 2, 0, Dimension, Tx);
-	int WaveSerialTx = gpioWaveCreate();
-	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT);
-	return 0;
-
-}
-
-//Bit Bang UART Receive Function
-int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension){
-	
-	unsigned char CounterRx;
-	int LengthOfBuffer;
-	char BufferRx[Dimension];
-	
-	CounterRx = 0;
-	while(CounterRx < Dimension){
-		
-		LengthOfBuffer = gpioSerialRead(BitBangRx, &BufferRx[0], Dimension);
-		if(LengthOfBuffer > 0){
-			for(int c = 0; c<(Dimension-CounterRx); c++){
-				Rx[CounterRx+c] = BufferRx[c]; 
-
-			}
-			CounterRx += LengthOfBuffer;
-
-		}
-
-	}
-	return 0;
 
 }

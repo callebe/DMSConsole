@@ -8,6 +8,7 @@
 #include "DefinesTOPWAY.h" //Defines of TOPWAY Touch Screen
 #include "GIDXml.h" //Headers Functions of XmlReader
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
+#include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 
 // Handler of Main Page
 int HandlerMain (int uart0_filestream, Destination **ActualDestination);
@@ -35,11 +36,12 @@ int main (void){
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
 
-	//BitBangUARTRx (RX, BaudRateDisplay, TXXX, 14);
-	//BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
+	//BitBangUARTRx (RX, BaudRateDisplay, TXXX, RX);
+	BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
 
 	//Configure UARTS0 interface
 	int uart0_filestream = Config_UARTS0();
+	Tx_UARTS0 (uart0_filestream, &TXXX[0], 7);
 
 	//Buzzer Touch Off
 	Buzzer_Touch_Off (uart0_filestream, 0);
@@ -47,6 +49,7 @@ int main (void){
 	//Loading Xml file
 	GID NewGID;
 	LoadXMLSource(&NewGID, XMLSource);
+
 	//Loading Initial Sources
 	Group *ActualGroup = NewGID.List;
 	Line *ActualLine = ActualGroup->List;
