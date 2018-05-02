@@ -121,7 +121,6 @@ int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval){
     printf("Erro in send Beep Off Function!\n");
     return 1;
   }
-  printf("OK\n");
   return 0;
 
 }

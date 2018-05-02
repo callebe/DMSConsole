@@ -17,15 +17,6 @@ int HandlerMain (int uart0_filestream, Destination **ActualDestination);
 // -------- Main Function
 int main (void){
 
-	int NumberOfRouteLines = 0;
-	Button Bt;
-	unsigned char** RouteLines = NULL;
-	FILE *Routes;
-	int Counter;
-	int CurrentDestination = 0;
-	char *SucessFull_fgets = 0;
-	char TXXX[14] ="Hellow its EE!";
-
 	//Inialize GPIO
 	gpioInitialise();
 
@@ -35,13 +26,9 @@ int main (void){
 
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
-
-	//BitBangUARTRx (RX, BaudRateDisplay, TXXX, RX);
-	BitBangUARTTx (TX, BaudRateDisplay, TXXX, 14);
-
+	
 	//Configure UARTS0 interface
 	int uart0_filestream = Config_UARTS0();
-	Tx_UARTS0 (uart0_filestream, &TXXX[0], 7);
 
 	//Buzzer Touch Off
 	Buzzer_Touch_Off (uart0_filestream, 0);

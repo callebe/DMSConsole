@@ -8,11 +8,10 @@
 
 // -------- Defines
 // Config
-#define XMLSource "Data/GID.xml"
+#define XMLSource "/home/pi/DMSConsole/Data/GID.xml"
 #define BaudRateDisplay 9600
 #define BitBangByteLength 8
-#define RX 24
-#define TX 23
+
 // Screen
 #define ScreenTitleLength 30
 #define LimitTitleLength 75
