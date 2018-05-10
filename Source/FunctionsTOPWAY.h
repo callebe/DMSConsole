@@ -26,14 +26,15 @@
 #define AdressNameDestination 0x000180
 // Select Destination Page
 #define SelectLinesID 1
+#define SelectLinesIDKeybord 2
 #define ButtonCancelChangeLine 0
 #define ButtonConfirmChangeLine 1
 #define ButtonUpChangeLine 2
 #define ButtonDownChangeLine 3
-#define AdressSelectNameDestination 0x000200
-#define AdressSelectIDDestination   0x000280
+#define AdressSelectNameLine 0x000200
+#define AdressSelectIDLine   0x000280
 // Setting Page
-#define SettingsID 1
+#define SettingsID 3
 
 //Type Define Button
 typedef struct Button{

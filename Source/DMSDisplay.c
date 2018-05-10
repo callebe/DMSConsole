@@ -37,6 +37,34 @@ int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, in
 
 }
 
+int Timer_Handler_Network_Config (int signum){
+	printf("Foiii ! \n");
+
+}
+
+
+//Configure Timer by Network Config
+int Config_Timer_Network_Conifg (void){
+
+	struct sigaction Sig;
+	struct itimerval Timer;
+
+	//Configure timer, f = 1 MHz, timer limite by a display is 16*100 miliseconds
+	Timer.it_value.tv_sec = 0;
+	Timer.it_value.tv_usec = 1600000;
+	Timer.it_interval.tv_sec = 0;
+	Timer.it_interval.tv_usec = 0;
+
+	//Install timer handler like a signal for SIGVTALRM
+	memset (&Sig, 0, sizeof(Sig));
+	Sig.sa_handler = &Timer_Handler_Network_Config;
+	sigaction(SIGVTALRM, &Sig, NULL);
+
+	//Start virtual timer
+	setittimer(ITIMER_VIRTUAL, &Timer, NULL);
+
+}
+
 //Send Mensage of Reset for All displays
 int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
 
@@ -106,27 +134,32 @@ int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned in
 
 }
 
-// //Request displays info function
-// Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
+//Request displays info function
+Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
 
-// 	unsigned char ConfirmReceiver = 0;
-// 	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x22 + ETX + CHKS);
-// 	//                <Dest>      <N>  <Type>  
-// 	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x22, ETX, CHKS};
-// 	char Rx = 0;
+	unsigned char ConfirmReceiver;
+	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x22 + ETX + CHKS);
+	//                <Dest>      <N>  <Type>  
+	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x22, ETX, CHKS};
+	char Rx = 0;
 	
-// 	for(int i = 0; (i<4 || ConfirmReceiver == 0); i++){
-// 		// Transmitting
-// 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-// 		// Receiving
-// 		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-// 		if(Rx != NACK) ConfirmReceiver = 1;
+	for(int i = 0; i<4; i++){
+		for (int c = 0; (i<3 || ConfirmReceiver == 0); i++){
+			// Transmitting
+			BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
+			// Receiving
+			BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
+			if(Rx != NACK){
+				ConfirmReceiver = 1;
 
-// 	}
+			}
+		}
 
-// 	if(ConfirmReceiver == 0) return 1;
-// 	return 0;
+	}
 
-// }
+	if(ConfirmReceiver == 0) return 1;
+	return 0;
+
+}
 
 

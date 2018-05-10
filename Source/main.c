@@ -11,8 +11,9 @@
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 
 // Handler of Main Page
-int HandlerMain (int uart0_filestream, Destination **ActualDestination);
-
+int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDestination);
+//Handler event for Select Destination
+int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **ActualDestination);
 
 // -------- Main Function
 int main (void){
@@ -45,22 +46,16 @@ int main (void){
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainID);
 
-	//Set initial information for display
-	Write_String (uart0_filestream, AdressNumberLine, ActualLine->Number);
-	Write_String (uart0_filestream, AdressNameLine, ActualLine->Name);
-	Write_String (uart0_filestream, AdressNameDestination, ActualDestination->Name);
-
-	unsigned char ActualPage = 0;
 	//Main Loop
+	unsigned char ActualPage = 0;
 	while(1){
 		switch(ActualPage){
 			case MainID:
-				ActualPage = HandlerMain(uart0_filestream, &ActualDestination);
+				ActualPage = HandlerMain(uart0_filestream, &ActualLine, &ActualDestination);
 				break;
 
 			case SelectLinesID:
-				//ActualPage = HandlerSelectDestination(uart0_filestream, ActualDestination);
-				ActualPage = 0;
+				ActualPage = HandlerSelectLines(uart0_filestream, &ActualLine, &ActualDestination);
 				break;
 
 			default:
@@ -79,45 +74,105 @@ int main (void){
 
 
 //Handler event for main Page
-int HandlerMain (int uart0_filestream, Destination **ActualDestination){
+int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDestination){
   
-  Destination *Last = *ActualDestination;
-  Button Bt;
-  Bt = Get_Buttom_Event (uart0_filestream);
+	Destination *Last = *ActualDestination;
 
-  if(Bt.PagId == MainID){
-    switch (Bt.ButtonId){
-      case ButtonNextDestination:
-        if(Last != NULL){
-			if(Last->Next != NULL) Last = Last->Next;
-			*ActualDestination = Last;
-			Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+	Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
+	Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
+	Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
 
-        } 
-        break;
 
-      case ButtonPreviousDestination:
-        if(Last != NULL){
-          if(Last->Previous != NULL) Last = Last->Previous;
-          *ActualDestination = Last;
-          Write_String (uart0_filestream, AdressNameDestination, Last->Name);
-        } 
-        break;
+  	Button Bt = Get_Buttom_Event (uart0_filestream);
 
-      case ButtonChangeLine:
-        return SelectLinesID;
-        break;
+	if(Bt.PagId == MainID){
+		switch (Bt.ButtonId){
+		  	case ButtonNextDestination:
+		        if(Last != NULL){
+					if(Last->Next != NULL) Last = Last->Next;
+					*ActualDestination = Last;
+					Write_String (uart0_filestream, AdressNameDestination, Last->Name);
 
-      case ButtonSettings:
-        return SettingsID;
-        break;
+		        } 
+		        break;
 
-      default:
-        return 0;
+			case ButtonPreviousDestination:
+				if(Last != NULL){
+				  if(Last->Previous != NULL) Last = Last->Previous;
+				  *ActualDestination = Last;
+				  Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+				} 
+				break;
 
-    }
-  }
+			case ButtonChangeLine:
+		        return SelectLinesID;
+		        break;
 
-  return 0;
+			case ButtonSettings:
+				return SettingsID;
+				break;
+
+			default:
+				return MainID;
+
+		}
+
+	}
+
+	return MainID;
+
+}
+
+//Handler event for Select Destination
+int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **ActualDestination){
+  
+	Line *Last = *ActualLine;
+	int Break = -1;
+
+	Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+	Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+
+	while(Break < 0){
+		Button Bt = Get_Buttom_Event (uart0_filestream);
+		if((Bt.PagId == SelectLinesID) || (Bt.PagId == SelectLinesIDKeybord)){
+			switch (Bt.ButtonId){
+				case ButtonUpChangeLine:
+					if(Last != NULL){
+						if(Last->Next != NULL) Last = Last->Next;
+						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+
+					}
+					Break = -1;
+					break;
+
+				case ButtonDownChangeLine:
+					if(Last != NULL){
+						if(Last->Previous != NULL) Last = Last->Previous;
+						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+					}
+					Break = -1; 
+					break;
+
+				case ButtonCancelChangeLine:
+					Break = MainID;
+					break;
+
+				case ButtonConfirmChangeLine:
+					*ActualDestination = Last->List;
+					*ActualLine = Last;
+					Break = MainID;
+					break;
+
+				default:
+					Break = -1;
+
+			}
+
+		}
+	}
+
+	return Break;
 
 }

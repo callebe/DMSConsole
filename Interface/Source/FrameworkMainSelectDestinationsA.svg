@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24889914"
-     inkscape:cx="2671.8998"
-     inkscape:cy="815.21992"
+     inkscape:cx="2523.4133"
+     inkscape:cy="1228.1622"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -39596,14 +39596,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafaf0;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="504.27518"
-       y="185.24905"
+       x="496.83307"
+       y="185.24939"
        id="text57115"><tspan
          sodipodi:role="line"
          id="tspan57113"
-         x="504.27518"
-         y="185.24905"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Próximo</tspan></text>
+         x="496.83307"
+         y="185.24939"
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Concluído</tspan></text>
     <g
        id="g57446"
        transform="translate(-8.0696247)">
@@ -39614,15 +39614,15 @@
          style="fill:#961432;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
          id="text57115-4"
-         y="186.23296"
-         x="119.68027"
+         y="186.29393"
+         x="130.70396"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
          xml:space="preserve"><tspan
            style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:22.57777786px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafafa;fill-opacity:1;stroke-width:0.26458332"
-           y="186.23296"
-           x="119.68027"
+           y="186.29393"
+           x="130.70396"
            id="tspan57113-2"
-           sodipodi:role="line">Anterior</tspan></text>
+           sodipodi:role="line">Voltar</tspan></text>
     </g>
     <g
        id="g11079"

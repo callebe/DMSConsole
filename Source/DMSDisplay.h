@@ -2,10 +2,12 @@
 #include <stdio.h>    //Standard Library
 #include <string.h> //Standard Library for strings
 #include <pigpio.h> // Library Pi
+#include <signal.h> // Linux Signal Library 
+#include <sys/time.h> // Linux Timer
 
 //--------- Defines
-#define RX 24
-#define TX 23
+#define RX                  24
+#define TX                  23
 #define SOH                 0x81
 #define STX                 0x82
 #define ETX                 0x83
