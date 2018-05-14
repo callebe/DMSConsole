@@ -6,6 +6,9 @@
 #include <sys/time.h> // Linux Timer
 
 //--------- Defines
+#define BitBangByteLength 8
+#define BaudRateDisplay 9600
+#define ActiveTx        4
 #define RX                  24
 #define TX                  23
 #define SOH                 0x81
@@ -14,7 +17,7 @@
 #define ACK                 0x86 
 #define NACK                0x95
 #define TimeDalyResponse    100 //100 milliseconds
-#define LimitOfDisplays     4
+#define LimitOfDisplays     16
 
 //Type Define Panel ID
 typedef struct Panel_ID{
@@ -31,6 +34,12 @@ typedef struct Panel_ID{
 int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension);
 //Bit Bang UART Receive Function
 int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension);
+//Handler Network COnfig Timer Interrupt
+void Timer_Handler (int signum);
+//Configure Timer by Network Config
+int Config_Timer (void);
+//Reconfigure Timer Function
+int Reconfig_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
 //Send Mensage of Reset for All displays
 int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
 //Send Mensage of Clear for All displays

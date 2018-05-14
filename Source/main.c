@@ -24,9 +24,13 @@ int main (void){
 	//Configure GPIO
 	gpioSetMode(RX, PI_INPUT);
 	gpioSetMode(TX, PI_OUTPUT);
+	gpioSetMode(ActiveTx, PI_OUTPUT);
 
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
+
+	//Configure Timer
+	Config_Timer();
 	
 	//Configure UARTS0 interface
 	int uart0_filestream = Config_UARTS0();
@@ -45,6 +49,9 @@ int main (void){
 
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainID);
+
+	//Configure RealTimer
+	Config_Timer();
 
 	//Main Loop
 	unsigned char ActualPage = 0;
@@ -78,9 +85,9 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
   
 	Destination *Last = *ActualDestination;
 
-	Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
-	Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
-	Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
+	// Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
+	// Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
+	// Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
 
 
   	Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -91,7 +98,7 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
 		        if(Last != NULL){
 					if(Last->Next != NULL) Last = Last->Next;
 					*ActualDestination = Last;
-					Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+					// Write_String (uart0_filestream, AdressNameDestination, Last->Name);
 
 		        } 
 		        break;
@@ -100,7 +107,7 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
 				if(Last != NULL){
 				  if(Last->Previous != NULL) Last = Last->Previous;
 				  *ActualDestination = Last;
-				  Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+				  // Write_String (uart0_filestream, AdressNameDestination, Last->Name);
 				} 
 				break;
 
@@ -129,8 +136,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 	Line *Last = *ActualLine;
 	int Break = -1;
 
-	Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-	Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+	// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+	// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 
 	while(Break < 0){
 		Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -139,8 +146,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 				case ButtonUpChangeLine:
 					if(Last != NULL){
 						if(Last->Next != NULL) Last = Last->Next;
-						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+						// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 
 					}
 					Break = -1;
@@ -149,8 +156,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 				case ButtonDownChangeLine:
 					if(Last != NULL){
 						if(Last->Previous != NULL) Last = Last->Previous;
-						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+						// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 					}
 					Break = -1; 
 					break;
