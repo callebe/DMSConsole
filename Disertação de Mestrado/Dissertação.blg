@@ -1,6 +1,6 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/W32TeX)
+This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
-The top-level auxiliary file: Dissertação.aux
+The top-level auxiliary file: DissertaÃ§Ã£o.aux
 The style file: abnt-alf.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -12,17 +12,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
-Warning--entry type for "Wang" isn't style-file defined
---line 319 of file bibliografia.bib
-Repeated entry---line 595 of file bibliografia.bib
- : @inproceedings{triantis
- :                        ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 611 of file bibliografia.bib
- : @book{martinsen
- :                ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Volder"
 Warning--I didn't find a database entry for "SiteMoraes2010"
 Warning--I didn't find a database entry for "Grainger1994"
 Warning--I didn't find a database entry for "Anderson1977"
@@ -38,45 +27,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 32 entries,
+You've used 10 entries,
             6480 wiz_defined-function locations,
-            1352 strings with 13953 characters,
-and the built_in function-call counts, 27219 in all, are:
-= -- 2237
-> -- 958
-< -- 96
-+ -- 465
-- -- 281
-* -- 1924
-:= -- 3406
-add.period$ -- 113
-call.type$ -- 34
-change.case$ -- 342
-chr.to.int$ -- 87
-cite$ -- 26
-duplicate$ -- 1454
-empty$ -- 2037
-format.name$ -- 1414
-if$ -- 6520
+            1197 strings with 9938 characters,
+and the built_in function-call counts, 6220 in all, are:
+= -- 713
+> -- 81
+< -- 53
++ -- 125
+- -- 28
+* -- 298
+:= -- 734
+add.period$ -- 17
+call.type$ -- 12
+change.case$ -- 52
+chr.to.int$ -- 20
+cite$ -- 4
+duplicate$ -- 432
+empty$ -- 506
+format.name$ -- 116
+if$ -- 1486
 int.to.chr$ -- 5
 int.to.str$ -- 3
-missing$ -- 568
-newline$ -- 133
-num.names$ -- 130
-pop$ -- 690
+missing$ -- 130
+newline$ -- 31
+num.names$ -- 20
+pop$ -- 139
 preamble$ -- 1
-purify$ -- 129
+purify$ -- 31
 quote$ -- 0
-skip$ -- 1845
+skip$ -- 752
 stack$ -- 1
-substring$ -- 966
-swap$ -- 691
-text.length$ -- 36
+substring$ -- 222
+swap$ -- 105
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 3
+type$ -- 0
 warning$ -- 0
-while$ -- 188
+while$ -- 29
 width$ -- 0
-write$ -- 436
-(There were 2 error messages)
+write$ -- 70
+(There were 5 warnings)

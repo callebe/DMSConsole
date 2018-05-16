@@ -128,17 +128,13 @@
 		
 		\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{Capa_Automacao_Industrial.png}} % Insere a imagem de fundo
 		
+		\begin{center}
+			\vspace*{-1.85cm}
+			\autorformat\uppercase{ Instituto Superior de Engenharia do Porto \\ Departamento de Engenharia Eletrotécnica \\ Mestrado em Engenharia Eletrotécnica - Sistemas Elétricos de Energia}
+		\end{center}
+		
 		\vfill
-		\vfill
-		\ABNTifnotempty{\ABNTtitulodata}%
-		{%
-			\begin{center}
-				{\tituloformat\MakeUppercase{\ABNTtitulodata}\par}
-			\end{center}
-		}%
-				
-		\vfill
-
+		
 		\ABNTifnotempty{\ABNTautorAdata}%
 		{%
 			\begin{center}
@@ -151,22 +147,25 @@
 				\autorformat\MakeUppercase{\ABNTautorBdata}
 			\end{center}
 		}%
-
-		\begin{center}
-			\vspace*{-1.85cm}
-			\autorformat\uppercase{ Instituto Superior de Engenharia do Porto \\ Departamento de Engenharia Eletrotécnica \\ Mestrado em Engenharia Eletrotécnica - Sistemas Elétricos de Energia}
-		\end{center}
+		\vfill
+		\ABNTifnotempty{\ABNTtitulodata}%
+		{%
+			\begin{center}
+				{\tituloformat\MakeUppercase{\ABNTtitulodata}\par}
+			\end{center}
+		}%
 		
 		\vfill
 		
+		%\begin{center}
+		%	\ABNTsectionfont\uppercase{Trabalho de Conclusão de Curso}
+		%\end{center}
 		
-		% \begin{center}
-		% 	\ABNTsectionfont\uppercase{Dissertação do Mestrado em Engenharia EletrotécnicaS}
-		% \end{center}
+		\vfill 
 		
-		% \vfill 
-				
 		\begin{center}	
+			\ABNTifnotempty{\ABNTlocaldata}
+			{{\localformat \MakeUppercase{\ABNTlocaldata}}\par}
 			\ABNTifnotempty{\ABNTdatadata}
 			{{\dataformat\ABNTdatadata}}
 		\end{center}
