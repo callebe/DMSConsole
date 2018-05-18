@@ -25,6 +25,7 @@ int main (void){
 	gpioSetMode(RX, PI_INPUT);
 	gpioSetMode(TX, PI_OUTPUT);
 	gpioSetMode(ActiveTx, PI_OUTPUT);
+	gpioWrite(ActiveTx, 0);
 
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
@@ -46,6 +47,10 @@ int main (void){
 	Group *ActualGroup = NewGID.List;
 	Line *ActualLine = ActualGroup->List;
 	Destination *ActualDestination = ActualLine->List;
+
+	//Loading Painels
+	Panel_ID *VectorOfPanels = MSG_Network_Config(TX, RX, BaudRateDisplay);
+	if(VectorOfPanels == NULL) printf("Dont have any Panel in this system!\n");
 
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainID);
@@ -85,9 +90,9 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
   
 	Destination *Last = *ActualDestination;
 
-	// Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
-	// Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
-	// Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
+	Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
+	Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
+	Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
 
 
   	Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -98,7 +103,7 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
 		        if(Last != NULL){
 					if(Last->Next != NULL) Last = Last->Next;
 					*ActualDestination = Last;
-					// Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+					Write_String (uart0_filestream, AdressNameDestination, Last->Name);
 
 		        } 
 		        break;
@@ -107,7 +112,7 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
 				if(Last != NULL){
 				  if(Last->Previous != NULL) Last = Last->Previous;
 				  *ActualDestination = Last;
-				  // Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+				   Write_String (uart0_filestream, AdressNameDestination, Last->Name);
 				} 
 				break;
 
@@ -136,8 +141,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 	Line *Last = *ActualLine;
 	int Break = -1;
 
-	// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-	// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+	Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+	Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 
 	while(Break < 0){
 		Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -146,8 +151,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 				case ButtonUpChangeLine:
 					if(Last != NULL){
 						if(Last->Next != NULL) Last = Last->Next;
-						// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-						// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 
 					}
 					Break = -1;
@@ -156,8 +161,8 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 				case ButtonDownChangeLine:
 					if(Last != NULL){
 						if(Last->Previous != NULL) Last = Last->Previous;
-						// Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-						// Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+						Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+						Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
 					}
 					Break = -1; 
 					break;

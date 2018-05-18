@@ -5,6 +5,11 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{1.45.2.1 }
 
+\bibitem[Consola de Indicador de Destino - Protocolo de Comunicação]{DMSManual}
+\abntrefinfo{Consola\ldots}{CONSOLA\ldots}{}
+{CONSOLA de Indicador de Destino - Protocolo de Comunicação.
+[S.l.].}
+
 \bibitem[CP 2018]{cp}
 \abntrefinfo{CP}{CP}{2018}
 {CP. \textbf{CP, Comboios de Portugal}. 2018.
@@ -18,6 +23,13 @@ Accessed: 2018-05-15.}
   para a preserva{\c{c}}{\~a}o do interesse geral?: estudos de caso.
 2006.}
 
+\bibitem[DMS 2018]{DMS}
+\abntrefinfo{DMS}{DMS}{2018}
+{DMS. \textbf{Displays \& Mobility Solutions}. Rua de Cidres, nº1444, 4455-442
+  Perafita (Matosinhos), Portugal: [s.n.], 2018.
+\url{http://www.dmsdisplays.com/about-dms.php}.
+Accessed: 2018-05-15.}
+
 \bibitem[Orman 1989]{Levent}
 \abntrefinfo{Orman}{ORMAN}{1989}
 {ORMAN, Levent~V. Public information systems.
@@ -30,5 +42,11 @@ Dispon{\'\i}vel em:
 {STCP. \textbf{Sociedade de Transportes Colectivos do Porto}. 2018.
 \url{http://www.stcp.pt/pt/comunicados-de-imprensa/}.
 Accessed: 2018-05-15.}
+
+\bibitem[TradingView 2017]{bovespa}
+\abntrefinfo{TradingView}{TRADINGVIEW}{2017}
+{TRADINGVIEW. \textbf{Índice BM \& FBOVESPA}. 2017.
+\url{https://www.tradingview.com/symbols/BMFBOVESPA-IBOV/}.
+Acessado em 14 de Agosto de 2017.}
 
 \end{thebibliography}

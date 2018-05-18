@@ -12,6 +12,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
+You're missing a field name---line 11 of file bibliografia.bib
+ :  
+ :  %author  = "",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "SiteMoraes2010"
 Warning--I didn't find a database entry for "Grainger1994"
 Warning--I didn't find a database entry for "Anderson1977"
@@ -27,45 +32,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 10 entries,
+You've used 13 entries,
             6480 wiz_defined-function locations,
-            1197 strings with 9938 characters,
-and the built_in function-call counts, 6220 in all, are:
-= -- 713
-> -- 81
+            1211 strings with 10292 characters,
+and the built_in function-call counts, 8166 in all, are:
+= -- 910
+> -- 111
 < -- 53
-+ -- 125
-- -- 28
-* -- 298
-:= -- 734
-add.period$ -- 17
-call.type$ -- 12
-change.case$ -- 52
-chr.to.int$ -- 20
-cite$ -- 4
-duplicate$ -- 432
-empty$ -- 506
-format.name$ -- 116
-if$ -- 1486
++ -- 151
+- -- 38
+* -- 400
+:= -- 991
+add.period$ -- 29
+call.type$ -- 15
+change.case$ -- 73
+chr.to.int$ -- 23
+cite$ -- 7
+duplicate$ -- 512
+empty$ -- 681
+format.name$ -- 162
+if$ -- 1986
 int.to.chr$ -- 5
 int.to.str$ -- 3
-missing$ -- 130
-newline$ -- 31
-num.names$ -- 20
-pop$ -- 139
+missing$ -- 177
+newline$ -- 48
+num.names$ -- 30
+pop$ -- 197
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 40
 quote$ -- 0
-skip$ -- 752
+skip$ -- 934
 stack$ -- 1
-substring$ -- 222
-swap$ -- 105
+substring$ -- 286
+swap$ -- 134
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 8
 warning$ -- 0
-while$ -- 29
+while$ -- 43
 width$ -- 0
-write$ -- 70
-(There were 5 warnings)
+write$ -- 113
+(There was 1 error message)

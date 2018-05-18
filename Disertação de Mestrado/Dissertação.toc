@@ -1,24 +1,27 @@
 \select@language {brazil}
-\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{9}{chapter.1}
-\contentsline {chapter}{\numberline {2}Necessidade}{10}{chapter.2}
-\contentsline {section}{\numberline {2.1}PIS para Autocarros - DMS}{11}{section.2.1}
-\contentsline {section}{\numberline {2.2}Gestor de Indica\c c\~ao de Destinos}{11}{section.2.2}
-\contentsline {section}{\numberline {2.3}Display de Indica\c c\~ao de Destino DMS}{11}{section.2.3}
-\contentsline {chapter}{\numberline {3}Recursos Utilizados}{12}{chapter.3}
-\contentsline {section}{\numberline {3.1}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{12}{section.3.1}
-\contentsline {section}{\numberline {3.2}Raspberry Pi Zero W}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Conversor UART TTL / UART-RS232}{12}{section.3.3}
-\contentsline {section}{\numberline {3.4}Conversor UART TTL / UART-RS485}{12}{section.3.4}
-\contentsline {chapter}{\numberline {4}Desenvolvimento Aplica\c c\~ao DMSConsole}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}Montagem do Console de Indica\c c\~ao de Destinos}{14}{chapter.5}
-\contentsline {chapter}{\numberline {6}Conclus\~ao}{15}{chapter.6}
-\contentsline {subsection}{\numberline {6.0.1}Testes e exemplos de lista de siglas}{15}{subsection.6.0.1}
-\contentsline {subsection}{\numberline {6.0.2}Testes e exemplos de lista de s\IeC {\'\i }mbolos}{15}{subsection.6.0.2}
-\contentsline {subsection}{\numberline {6.0.3}Exemplos de cita\c c\~ao de refer\^encias bibliogr\'aficas}{16}{subsection.6.0.3}
-\contentsline {chapter}{\numberline {7}N\IeC {\'\i }vel 1 - Testes DE capitula\c c\~ao - Prim\'ario}{17}{chapter.7}
-\contentsline {section}{\numberline {7.1}N\IeC {\'\i }vel 2 - Secund\'ario}{17}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}N\IeC {\'\i }vel 3 - Terci\'ario}{17}{subsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.1.1}N\IeC {\'\i }vel 4 - Quatern\'ario}{17}{subsubsection.7.1.1.1}
-\contentsline {paragraph}{\numberline {7.1.1.1.1}N\IeC {\'\i }vel 5 - Quin\'ario}{17}{paragraph.7.1.1.1.1}
-\contentsline {chapter}{Anexo{} A{} -{} Stellar Mystery Solved, Einstein Safe}{19}{chapter.annex.A}
-\contentsline {section}{\numberline {A.1}Exemplo de se\c c\~ao anexo}{20}{section.annex.A.1}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{10}{chapter.1}
+\contentsline {section}{\numberline {1.1}Objetivos}{12}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Objetivos Gerais}{12}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Objetivos Espec\IeC {\'\i }ficos}{12}{subsection.1.1.2}
+\contentsline {chapter}{\numberline {2}Necessidade}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}PIS para Autocarros - DMS}{13}{section.2.1}
+\contentsline {section}{\numberline {2.2}Gestor de Indica\c c\~ao de Destinos}{13}{section.2.2}
+\contentsline {section}{\numberline {2.3}Display de Indica\c c\~ao de Destino DMS}{13}{section.2.3}
+\contentsline {chapter}{\numberline {3}Recursos Utilizados}{14}{chapter.3}
+\contentsline {section}{\numberline {3.1}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{14}{section.3.1}
+\contentsline {section}{\numberline {3.2}Raspberry Pi Zero W}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}Conversor UART TTL / UART-RS232}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Conversor UART TTL / UART-RS485}{14}{section.3.4}
+\contentsline {chapter}{\numberline {4}Desenvolvimento Aplica\c c\~ao DMSConsole}{15}{chapter.4}
+\contentsline {chapter}{\numberline {5}Montagem do Console de Indica\c c\~ao de Destinos}{16}{chapter.5}
+\contentsline {chapter}{\numberline {6}Conclus\~ao}{17}{chapter.6}
+\contentsline {subsection}{\numberline {6.0.1}Testes e exemplos de lista de siglas}{17}{subsection.6.0.1}
+\contentsline {subsection}{\numberline {6.0.2}Testes e exemplos de lista de s\IeC {\'\i }mbolos}{17}{subsection.6.0.2}
+\contentsline {subsection}{\numberline {6.0.3}Exemplos de cita\c c\~ao de refer\^encias bibliogr\'aficas}{18}{subsection.6.0.3}
+\contentsline {chapter}{\numberline {7}N\IeC {\'\i }vel 1 - Testes DE capitula\c c\~ao - Prim\'ario}{19}{chapter.7}
+\contentsline {section}{\numberline {7.1}N\IeC {\'\i }vel 2 - Secund\'ario}{19}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}N\IeC {\'\i }vel 3 - Terci\'ario}{19}{subsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.1.1}N\IeC {\'\i }vel 4 - Quatern\'ario}{19}{subsubsection.7.1.1.1}
+\contentsline {paragraph}{\numberline {7.1.1.1.1}N\IeC {\'\i }vel 5 - Quin\'ario}{19}{paragraph.7.1.1.1.1}
+\contentsline {chapter}{Anexo{} A{} -{} Stellar Mystery Solved, Einstein Safe}{21}{chapter.annex.A}
+\contentsline {section}{\numberline {A.1}Exemplo de se\c c\~ao anexo}{22}{section.annex.A.1}

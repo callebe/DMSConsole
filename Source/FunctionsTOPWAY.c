@@ -115,6 +115,7 @@ int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval){
   Data[6] = Tail_D;
 
   Tx_UARTS0 (uart0_filestream, &Data[0], 7);
+  
   //Error verification
   Rx_UARTS0 (uart0_filestream, &ConfirmCommand[0], 2);
   if(ConfirmCommand[0] == Erro_In_Exe_Command){
