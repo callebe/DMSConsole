@@ -2,35 +2,8 @@
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 
 //Interrupt Flag
-unsigned char InterruptFlagA = 0;
-unsigned char InterruptFlagB = 0;
-
-//Bit Bang UART Receive Function
-int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned char TimeOut){
-	
-	unsigned char CounterRx;
-	int LengthOfBuffer;
-	char BufferRx[Dimension];
-	
-	InterruptFlagB = 0;
-	CounterRx = 0;
-	while((CounterRx < Dimension) && (InterruptFlagB < TimeOut)){
-		LengthOfBuffer = gpioSerialRead(BitBangRx, &BufferRx[0], Dimension);
-		if(LengthOfBuffer > 0){
-			for(int c = 0; c<(Dimension-CounterRx); c++){
-				Rx[CounterRx+c] = BufferRx[c]; 
-
-			}
-			CounterRx += LengthOfBuffer;
-
-		}
-
-	}
-	
-	if (InterruptFlagB < TimeOut) return 0;
-	else return 1;
-
-}
+unsigned int InterruptFlagRealTimer = 0;
+unsigned int InterruptFlagVirtualTimer = 0;
 
 //Bit Bang UART Transmission Function
 int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension){
@@ -43,65 +16,151 @@ int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, in
 	gpioWrite(ActiveTx, 1);
 
 	//Delay for configure drive
-	InterruptFlagA = 0;
-	while(InterruptFlagA < 2);
+	Config_Real_Timer (0, 10, 0, 0);
+	while(InterruptFlagRealTimer == 0);
 
 	//Send mensage 
 	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT);
 
 	//Delay for configure drive
-	InterruptFlagA = 0;
-	while(InterruptFlagA < 2);
+	Config_Real_Timer (0, 10, 0, 0);
+	while(InterruptFlagRealTimer == 0);
 
 	//Set ActiveTx GPIO pin to '0' for Transmitting mensage
 	gpioWrite(ActiveTx, 0);
-
+	
+	//Delay for configure drive
+	Config_Real_Timer (0, 10, 0, 0);
+	while(InterruptFlagRealTimer == 0);
+	
 	return 0;
 
 }
 
-//Interrupt Timer Handler Function
-void Timer_Handler (int signum){
-	InterruptFlagA++;
-	InterruptFlagB++;
+//Bit Bang UART Receive Function
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned int TimeOut){
+	
+	unsigned char CounterRx = 0;
+	int LengthOfBuffer;
+	char BufferRx[Dimension];
+	
+	//Delay for configure drive
+	Config_Real_Timer (0, TimeOut, 0, 0);
+	
+	while((CounterRx < Dimension) && (InterruptFlagRealTimer == 0)){
+		LengthOfBuffer = gpioSerialRead(BitBangRx, &BufferRx[0], Dimension);
+		if(LengthOfBuffer > 0){
+			for(int c = 0; c<(Dimension-CounterRx); c++){
+				Rx[CounterRx+c] = BufferRx[c]; 
+
+			}
+			CounterRx += LengthOfBuffer;
+
+		}
+
+	}
+
+	if (CounterRx < Dimension) return 1;
+	else return 0;
 
 }
 
-//Configure Timer Function
-int Config_Timer (void){
+//Interrupt Real Timer Handler Function
+void Real_Timer_Handler (int signum){
+	printf("NOISSS !! %d \n", InterruptFlagRealTimer++);
+
+}
+
+//Configure Real Timer Function
+int Config_Real_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
 
 	struct sigaction Signal_Action;
 	struct itimerval Timer;
 
 	//Install timer handler like a signal for SIGVTALRM/SIGALRM
 	memset (&Signal_Action, 0, sizeof(Signal_Action));
-	Signal_Action.sa_handler = &Timer_Handler;
+	Signal_Action.sa_handler = &Real_Timer_Handler;
 	sigaction(SIGALRM, &Signal_Action, NULL);
 
 	//Configure timer, timer in 1MHz, timer limite by a display is 16*100 miliseconds
-	Timer.it_value.tv_sec = 0;
-	Timer.it_value.tv_usec = 100000;
-	Timer.it_interval.tv_sec = 0;
-	Timer.it_interval.tv_usec = 100000;
+	Timer.it_value.tv_sec = TimeValueSeconds;
+	Timer.it_value.tv_usec = TimeValueMillisecond*1000;
+	Timer.it_interval.tv_sec = TimeIntervalSeconds;
+	Timer.it_interval.tv_usec = TimeIntervalMillisecond*1000;
 
 	//Start virtual timer ITIMER_VIRTUAL/ITIMER_REAL
 	setitimer(ITIMER_REAL, &Timer, NULL);
+
+	InterruptFlagRealTimer = 0;
 
 	return 0;
 
 }
 
-//Reconfigure Timer Function
-int Reconfig_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
+//Reconfigure Real Timer Function
+int Reconfig_Real_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
 
 	struct itimerval Timer;
 
 	getitimer(ITIMER_REAL, &Timer);
-	Timer.it_value.tv_sec = TimeIntervalSeconds;
-	Timer.it_value.tv_usec = TimeIntervalMillisecond;
+	Timer.it_value.tv_sec = TimeValueSeconds;
+	Timer.it_value.tv_usec = TimeValueMillisecond*1000;
 	Timer.it_interval.tv_sec = TimeIntervalSeconds;
-	Timer.it_interval.tv_usec = TimeIntervalMillisecond;
+	Timer.it_interval.tv_usec = TimeIntervalMillisecond*1000;
 	setitimer(ITIMER_REAL, &Timer, NULL);
+
+	InterruptFlagRealTimer = 0;
+
+	return 0;
+
+}
+
+//Interrupt Virtual Timer Handler Function
+void Virtual_Timer_Handler (int signum){
+	
+	InterruptFlagVirtualTimer++;
+
+}
+
+//Configure Virtual Timer Function
+int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
+
+	struct sigaction Signal_Action;
+	struct itimerval Timer;
+
+	//Install timer handler like a signal for SIGVTALRM/SIGALRM
+	memset (&Signal_Action, 0, sizeof(Signal_Action));
+	Signal_Action.sa_handler = &Virtual_Timer_Handler;
+	sigaction(SIGVTALRM, &Signal_Action, NULL);
+
+	//Configure timer, timer in 1MHz, timer limite by a display is 16*100 miliseconds
+	Timer.it_value.tv_sec = TimeIntervalSeconds;
+	Timer.it_value.tv_usec = TimeIntervalMillisecond*1000;
+	Timer.it_interval.tv_sec = TimeIntervalSeconds;
+	Timer.it_interval.tv_usec = TimeIntervalMillisecond*1000;
+
+	//Start virtual timer ITIMER_VIRTUAL/ITIMER_REAL
+	setitimer(ITIMER_VIRTUAL, &Timer, NULL);
+
+	InterruptFlagVirtualTimer = 0;
+
+	return 0;
+
+}
+
+//Reconfigure Virtual Timer Function
+int Reconfig_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
+
+	struct itimerval Timer;
+
+	getitimer(ITIMER_VIRTUAL, &Timer);
+	Timer.it_value.tv_sec = TimeIntervalSeconds;
+	Timer.it_value.tv_usec = TimeIntervalMillisecond*1000;
+	Timer.it_interval.tv_sec = TimeIntervalSeconds;
+	Timer.it_interval.tv_usec = TimeIntervalMillisecond*1000;
+	setitimer(ITIMER_VIRTUAL, &Timer, NULL);
+
+	InterruptFlagVirtualTimer = 0;
 
 	return 0;
 
@@ -122,72 +181,75 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 	for(int counter = 0; (counter<3 && Failure == 2); counter++){
 		
 		// Transmitting in Broadcast
+		printf("VAI : \n");
 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 8);
+		getchar();
 
-		do{
-			// Receiving first byte
-			Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 1, LimitOfDisplays);
-			if(Rx[0] != NACK &&  Failure == 0){
-				// Receiving the last bytes
-				Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[1], 11, LimitOfDisplays);
-				CHKSRx = (unsigned char)(Rx[0] + Rx[1] + Rx[2] + Rx[3] + Rx[4] + Rx[5] + Rx[6] + Rx[7] + Rx[8] + Rx[9] + Rx[10] );
+		// do{
+		// 	// Receiving first byte
+		// 	Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 1, LimitOfDisplays*100);
+		// 	if(Rx[0] != NACK &&  Failure == 0){
+		// 		// Receiving the last bytes
+		// 		Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[1], 11, LimitOfDisplays*100);
+		// 		CHKSRx = (unsigned char)(Rx[0] + Rx[1] + Rx[2] + Rx[3] + Rx[4] + Rx[5] + Rx[6] + Rx[7] + Rx[8] + Rx[9] + Rx[10] );
 
-				printf("Dados %x %x %x %x %x %x %x %x %x %x %x %x \n", Rx[0], Rx[1], Rx[2], Rx[3], Rx[4], Rx[5], Rx[6], Rx[7], Rx[8], Rx[9], Rx[10], Rx[11]);
-				printf(":: Inviado %x redebido %x \n", Rx[11], CHKSRx);
+		// 		printf("Dados %x %x %x %x %x %x %x %x %x %x %x %x \n", Rx[0], Rx[1], Rx[2], Rx[3], Rx[4], Rx[5], Rx[6], Rx[7], Rx[8], Rx[9], Rx[10], Rx[11]);
+		// 		printf(":: Enviado %x recebido %x \n", Rx[11], CHKSRx);
+		// 		getchar();
 
-				if(Failure == 0 && CHKSRx == Rx[12]){
-					//Chaining
-					if(Last == NULL){
-						Last = (Panel_ID *)malloc(sizeof(Panel_ID));
-						Last->Previous = NULL;
+		// 		if(Failure == 0 && CHKSRx == Rx[12]){
+		// 			//Chaining
+		// 			if(Last == NULL){
+		// 				Last = (Panel_ID *)malloc(sizeof(Panel_ID));
+		// 				Last->Previous = NULL;
 
-					}
-					else{
-						while(Last->Next != NULL) Last = Last->Next;
-						Last->Next = (Panel_ID *)malloc(sizeof(Panel_ID));
-						Last->Next->Previous = Last;
-						Last = Last->Next;
+		// 			}
+		// 			else{
+		// 				while(Last->Next != NULL) Last = Last->Next;
+		// 				Last->Next = (Panel_ID *)malloc(sizeof(Panel_ID));
+		// 				Last->Next->Previous = Last;
+		// 				Last = Last->Next;
 
-					}
-					Last->Next = NULL;
-					Last->Adress = Rx[6];
-					Last->Lines = Rx[7];
-					Last->Columns = Rx[8];
-					Last->SuportForAlternativeDestinations = Rx[9];
-					printf("Painel %d - %d - %d - %d :: \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
+		// 			}
+		// 			Last->Next = NULL;
+		// 			Last->Adress = Rx[6];
+		// 			Last->Lines = Rx[7];
+		// 			Last->Columns = Rx[8];
+		// 			Last->SuportForAlternativeDestinations = Rx[9];
+		// 			printf("Painel %d - %d - %d - %d :: \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
 
-				}
-				else{
-					if(Failure == 0){
-						Failure = 2;
-						if(Last != NULL){
-							while(Last->Previous = NULL){
-								Last = Last->Previous;
-								free (Last->Next);
-							}
-							free(Last);
-							Last = NULL;
-						}
+		// 		}
+		// 		else{
+		// 			if(Failure == 0){
+		// 				Failure = 2;
+		// 				if(Last != NULL){
+		// 					while(Last->Previous = NULL){
+		// 						Last = Last->Previous;
+		// 						free (Last->Next);
+		// 					}
+		// 					free(Last);
+		// 					Last = NULL;
+		// 				}
 
-					}
-				}
-			}
-			else{
-				if(Failure == 0){
-					Failure = 2;
-					if(Last != NULL){
-						while(Last->Previous = NULL){
-							Last = Last->Previous;
-							free (Last->Next);
-						}
-						free(Last);
-						Last = NULL;
-					}
+		// 			}
+		// 		}
+		// 	}
+		// 	else{
+		// 		if(Failure == 0){
+		// 			Failure = 2;
+		// 			if(Last != NULL){
+		// 				while(Last->Previous = NULL){
+		// 					Last = Last->Previous;
+		// 					free (Last->Next);
+		// 				}
+		// 				free(Last);
+		// 				Last = NULL;
+		// 			}
 					
-				} 
-			}
+		// 		} 
+		// 	}
 
-		}while(Failure == 0 && Failure != 2);
+		// }while(Failure == 0 && Failure != 2);
 
 	}
 

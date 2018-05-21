@@ -18,8 +18,12 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
 // -------- Main Function
 int main (void){
 
-	//Inialize GPIO
-	gpioInitialise();
+	//Inicialize GPIO
+	if(gpioInitialise() < 0){
+		printf("Error! This application won't be able to access the gpio!!\n");
+		return 1;
+
+	}
 
 	//Configure GPIO
 	gpioSetMode(RX, PI_INPUT);
@@ -29,9 +33,6 @@ int main (void){
 
 	//Confiure Bit Bang Rx
 	gpioSerialReadOpen(RX, BaudRateDisplay, BitBangByteLength);
-
-	//Configure Timer
-	Config_Timer();
 	
 	//Configure UARTS0 interface
 	int uart0_filestream = Config_UARTS0();
@@ -54,9 +55,6 @@ int main (void){
 
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainID);
-
-	//Configure RealTimer
-	Config_Timer();
 
 	//Main Loop
 	unsigned char ActualPage = 0;

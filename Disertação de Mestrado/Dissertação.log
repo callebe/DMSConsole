@@ -1,18 +1,18 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.5.10)  18 MAY 2018 11:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.4.15)  21 MAY 2018 18:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**DissertaÃ§Ã£o.tex
-(./DissertaÃ§Ã£o.tex
-LaTeX2e <2017/01/01> patch level 3
-Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+**./Dissertação.tex
+(./Dissertação.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (./utfprtex.cls
 Document Class: utfprtex 2011/09/19 Classe Utfprtex por Miguel Moreto - UTFPR -
  Campus Pato Branco
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+(c:/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+(c:/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count79
 \calc@Bcount=\count80
@@ -25,8 +25,8 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count81
 \calc@Cskip=\skip43
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
+(c:/texlive/2017/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \c@tracingmulticols=\count82
 \mult@box=\box26
 \multicol@leftmargin=\dimen104
@@ -74,42 +74,48 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \colbreak@box=\box51
 \mc@col@check@num=\count90
 )
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2016/04/23 3.9r The Babel package
+(c:/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2018/02/14 3.18 The Babel package
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-portuges/portuges.ldf
+(c:/texlive/2017/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2018/02/14 3.18 Babel switching mechanism
+)
+(c:/texlive/2017/texmf-dist/tex/generic/babel-portuges/portuges.ldf
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2016/04/23 3.9r Babel common definitions
+(c:/texlive/2017/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2018/02/14 3.18 Babel common definitions
 \babel@savecnt=\count91
 \U@D=\dimen113
+
+(c:/texlive/2017/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@dirlevel=\count92
 )
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+(c:/texlive/2017/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+(c:/texlive/2017/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+(c:/texlive/2017/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count92
-\c@chapter=\count93
-\c@section=\count94
-\c@subsection=\count95
-\c@subsubsection=\count96
-\c@paragraph=\count97
-\c@subparagraph=\count98
-\c@figure=\count99
-\c@table=\count100
+\c@part=\count93
+\c@chapter=\count94
+\c@section=\count95
+\c@subsection=\count96
+\c@subsubsection=\count97
+\c@paragraph=\count98
+\c@subparagraph=\count99
+\c@figure=\count100
+\c@table=\count101
 \abovecaptionskip=\skip46
 \belowcaptionskip=\skip47
 \bibindent=\dimen114
 )
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+(c:/texlive/2017/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
 \ABNTanapindent=\skip48
@@ -121,22 +127,22 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 \ABNTsignthickness=\skip54
 \ABNTsignskip=\skip55
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+(c:/texlive/2017/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 ))
 (./utfprtexTCC.sty
 Package: utfprtexTCC 
- (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+ (c:/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+(c:/texlive/2017/texmf-dist/tex/latex/base/latin1.def
 File: latin1.def 2015/03/17 v1.2c Input encoding file
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
-Package: tocloft 2013/05/02 v2.3f parameterised ToC, etc., typesetting
-Package tocloft Info: The document has chapter divisions on input line 44.
+(c:/texlive/2017/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 51.
 \cftparskip=\skip56
 \cftbeforetoctitleskip=\skip57
 \cftaftertoctitleskip=\skip58
@@ -166,19 +172,19 @@ Package tocloft Info: The document has chapter divisions on input line 44.
 \cftbeforefigskip=\skip82
 \cftfigindent=\skip83
 \cftfignumwidth=\skip84
-\c@lofdepth=\count101
-\c@lotdepth=\count102
+\c@lofdepth=\count102
+\c@lotdepth=\count103
 \cftbeforelottitleskip=\skip85
 \cftafterlottitleskip=\skip86
 \cftbeforetabskip=\skip87
 \cfttabindent=\skip88
 \cfttabnumwidth=\skip89
 )
-(/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
+(c:/texlive/2017/texmf-dist/tex/latex/footmisc/footmisc.sty
 Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
 \FN@temptoken=\toks16
 \footnotemargin=\dimen115
-\c@pp@next@reset=\count103
+\c@pp@next@reset=\count104
 Package footmisc Info: Declaring symbol style bringhurst on input line 855.
 Package footmisc Info: Declaring symbol style chicago on input line 863.
 Package footmisc Info: Declaring symbol style wiley on input line 872.
@@ -190,14 +196,14 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 )
 \mylen=\skip90
 
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(c:/texlive/2017/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+(c:/texlive/2017/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
 )
@@ -209,32 +215,25 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \caption@parindent=\dimen121
 \caption@hangindent=\dimen122
 )
-\c@ContinuedFloat=\count104
+\c@ContinuedFloat=\count105
 ) (./chngcntr.sty
 Package: chngcntr 2009/09/02 v1.0a change counter resetting
-) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+)
+(c:/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count105
-)
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+(c:/texlive/2017/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+(c:/texlive/2017/texmf-dist/tex/latex/tools/array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen123
 \extrarowheight=\dimen124
@@ -256,16 +255,22 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+(c:/texlive/2017/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 ))))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+(c:/texlive/2017/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count107
 \float@exts=\toks20
@@ -273,33 +278,38 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks21
 \@floatcapt=\box53
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/11/05 v2.16a AMS math features
+(c:/texlive/2017/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count108
+\c@subtable=\count109
+)
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip94
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks22
 \ex@=\dimen125
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen126
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count108
+\inf@bad=\count110
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count109
-\leftroot@=\count110
+\uproot@=\count111
+\leftroot@=\count112
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count111
-\DOTSCASE@=\count112
+\classnum@=\count113
+\DOTSCASE@=\count114
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
@@ -308,15 +318,15 @@ LaTeX Info: Redefining \cdots on input line 596.
 \big@size=\dimen127
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count113
-\c@MaxMatrixCols=\count114
+\macc@depth=\count115
+\c@MaxMatrixCols=\count116
 \dotsspace@=\muskip10
-\c@parentequation=\count115
-\dspbrk@lvl=\count116
+\c@parentequation=\count117
+\dspbrk@lvl=\count118
 \tag@help=\toks23
-\row@=\count117
-\column@=\count118
-\maxfields@=\count119
+\row@=\count119
+\column@=\count120
+\maxfields@=\count121
 \andhelp@=\toks24
 \eqnshift@=\dimen128
 \alignsep@=\dimen129
@@ -331,14 +341,14 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -356,7 +366,7 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -378,68 +388,67 @@ Package hobsub Info: Skipping package `atbegshi' (already loaded).
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+(c:/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen134
-\Hy@linkcounter=\count120
-\Hy@pagecounter=\count121
+\Hy@linkcounter=\count122
+\Hy@pagecounter=\count123
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count122
+\Hy@SavedSpaceFactor=\count124
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+(c:/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `linktocpage' set `true' on input line 4362.
-Package hyperref Info: Hyper figures OFF on input line 4486.
-Package hyperref Info: Link nesting OFF on input line 4491.
-Package hyperref Info: Hyper index ON on input line 4494.
-Package hyperref Info: Plain pages OFF on input line 4501.
-Package hyperref Info: Backreferencing OFF on input line 4506.
+Package hyperref Info: Option `linktocpage' set `true' on input line 4383.
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4735.
-\c@Hy@tempcnt=\count123
+Package hyperref Info: Bookmarks ON on input line 4762.
+\c@Hy@tempcnt=\count125
 
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+(c:/texlive/2017/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5088.
+LaTeX Info: Redefining \url on input line 5115.
 \XeTeXLinkMargin=\dimen135
-\Fld@menulength=\count124
+\Fld@menulength=\count126
 \Field@Width=\dimen136
 \Fld@charsize=\dimen137
-Package hyperref Info: Hyper figures OFF on input line 6342.
-Package hyperref Info: Link nesting OFF on input line 6347.
-Package hyperref Info: Hyper index ON on input line 6350.
-Package hyperref Info: backreferencing OFF on input line 6357.
-Package hyperref Info: Link coloring OFF on input line 6362.
-Package hyperref Info: Link coloring with OCG OFF on input line 6367.
-Package hyperref Info: PDF/A mode OFF on input line 6372.
-LaTeX Info: Redefining \ref on input line 6412.
-LaTeX Info: Redefining \pageref on input line 6416.
-\Hy@abspage=\count125
-\c@Item=\count126
-\c@Hfootnote=\count127
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring OFF on input line 6389.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
+\Hy@abspage=\count127
+\c@Item=\count128
+\c@Hfootnote=\count129
 )
+Package hyperref Info: Driver: hpdftex.
 
-Package hyperref Message: Driver: hpdftex.
+(c:/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
+\Fld@listcount=\count130
+\c@bookmark@seq@number=\count131
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
-\Fld@listcount=\count128
-\c@bookmark@seq@number=\count129
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
@@ -463,10 +472,10 @@ File: nbr10520-2002.def 2003/10/13 v1.2 Definicoes para abntcite (NBR10520:2002
 )
 \minimumbiblabelwidth=\skip98
 \ABCIauxlen=\skip99
-\c@ABCIaux=\count130
-\c@ABCImax=\count131
+\c@ABCIaux=\count132
+\c@ABCImax=\count133
 
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+(c:/texlive/2017/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
 \biblabelsep=\skip100
@@ -474,16 +483,16 @@ LaTeX Info: Redefining \newblock on input line 562.
 LaTeX Info: Redefining \cite on input line 589.
 \ABCItoken=\toks27
 )
-(/usr/share/texlive/texmf-dist/tex/latex/nomencl/nomencl.sty
+(c:/texlive/2017/texmf-dist/tex/latex/nomencl/nomencl.sty
 Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
 \nomlabelwidth=\dimen138
 \nom@tempdim=\dimen139
 \nomitemsep=\skip101
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -491,20 +500,20 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
 \@nomenclaturefile=\write3
-\openout3 = `DissertaÃ§Ã£o.nlo'.
+\openout3 = `Dissertação.nlo'.
 
 
-Writing nomenclature file DissertaÃ§Ã£o.nlo
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+Writing nomenclature file Dissertação.nlo
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/10/09 v1.0u Standard LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+(c:/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(c:/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
@@ -512,247 +521,238 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen140
 \Gin@req@width=\dimen141
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2016/05/15 v2.6 Conversion with epstopdf on the fly (HO)
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+(c:/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 )
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(c:/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )))
-(./DissertaÃ§Ã£o.aux)
-\openout1 = `DissertaÃ§Ã£o.aux'.
+(./Dissertação.aux)
+\openout1 = `Dissertação.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 109.
-LaTeX Font Info:    ... okay on input line 109.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 109.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 110.
 
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+ (c:/texlive/2017/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 109.
+(lastpage)             ! on input line 110.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count132
+\scratchcounter=\count134
 \scratchdimen=\dimen142
 \scratchbox=\box56
-\nofMPsegments=\count133
-\nofMParguments=\count134
+\nofMPsegments=\count135
+\nofMParguments=\count136
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count135
+\MPscratchCnt=\count137
 \MPscratchDim=\dimen143
-\MPnumerator=\count136
-\makeMPintoPDFobject=\count137
+\MPnumerator=\count138
+\makeMPintoPDFobject=\count139
 \everyMPtoPDFconversion=\toks29
 )
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 109.
- (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package hyperref Info: Link coloring OFF on input line 110.
+ (c:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+(c:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count138
+\c@section@level=\count140
 )
-LaTeX Info: Redefining \ref on input line 109.
-LaTeX Info: Redefining \pageref on input line 109.
-LaTeX Info: Redefining \nameref on input line 109.
+LaTeX Info: Redefining \ref on input line 110.
+LaTeX Info: Redefining \pageref on input line 110.
+LaTeX Info: Redefining \nameref on input line 110.
 
-(./DissertaÃ§Ã£o.out) (./DissertaÃ§Ã£o.out)
+(./Dissertação.out) (./Dissertação.out)
 \@outlinefile=\write4
-\openout4 = `DissertaÃ§Ã£o.out'.
+\openout4 = `Dissertação.out'.
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 112.
-LaTeX Font Info:    Try loading font information for U+msa on input line 112.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 113.
+LaTeX Font Info:    Try loading font information for U+msa on input line 113.
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 112.
+LaTeX Font Info:    Try loading font information for U+msb on input line 113.
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+(c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Capa_Automacao_Industrial.png, id=104, 596.9502pt x 844.8363pt>
+<Capa_Automacao_Industrial.png, id=100, 596.9502pt x 844.8363pt>
 File: Capa_Automacao_Industrial.png Graphic file (type png)
-
 <use Capa_Automacao_Industrial.png>
-Package pdftex.def Info: Capa_Automacao_Industrial.png used on input line 112.
+Package pdftex.def Info: Capa_Automacao_Industrial.png  used on input line 113.
+
 (pdftex.def)             Requested size: 597.51347pt x 845.06628pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 112.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 112.
+(babel)             in language  on input line 113.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Capa_Automacao_Industria
-l.png>]
-Underfull \hbox (badness 4886) in paragraph at lines 114--114
+{c:/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Capa_Automaca
+o_Industrial.png>]
+Underfull \hbox (badness 4886) in paragraph at lines 115--115
 []\OT1/phv/m/n/12 Trabalho de Con-clus[]ao de Curso de
  []
 
 
-Underfull \hbox (badness 1107) in paragraph at lines 114--114
+Underfull \hbox (badness 1107) in paragraph at lines 115--115
 \OT1/phv/m/n/12 gradua[][]ao, apre-sen-tado []a dis-ci-plina de
  []
 
 
-Underfull \hbox (badness 6348) in paragraph at lines 114--114
+Underfull \hbox (badness 6348) in paragraph at lines 115--115
 \OT1/phv/m/n/12 Tra-ba-lho de Con-clus[]ao de Curso 2,
  []
 
 
-Underfull \hbox (badness 5189) in paragraph at lines 114--114
+Underfull \hbox (badness 5189) in paragraph at lines 115--115
 \OT1/phv/m/n/12 do Curso de En-ge-nha-ria El[]etrica da
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 114.
+(babel)             in language  on input line 115.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 114.
+(babel)             in language  on input line 115.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.114 \folhaderosto
+l.115 \folhaderosto
                     [1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 134.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 135.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
+(babel)             in language  on input line 140.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 139.
+(babel)             in language  on input line 140.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.139 \begin{Resumo}
+l.140 \begin{Resumo}
                      [2
 
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
+(babel)             in language  on input line 143.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
+(babel)             in language  on input line 143.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.142 \end{Resumo}
+l.143 \end{Resumo}
                    [3
 
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 147.
+(babel)             in language  on input line 148.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 147.
+(babel)             in language  on input line 148.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.147 \end{Abstract}
+l.148 \end{Abstract}
                      [4
 
 
-] (./DissertaÃ§Ã£o.toc
+] (./Dissertação.toc
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 11.
 )
 \tf@toc=\write5
-\openout5 = `DissertaÃ§Ã£o.toc'.
+\openout5 = `Dissertação.toc'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
+(babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
+(babel)             in language  on input line 150.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.149 \sumario
+l.150 \sumario
                [5
 
-]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.149 \sumario
-               [6] (./DissertaÃ§Ã£o.lof)
+] (./Dissertação.lof)
 \tf@lof=\write6
-\openout6 = `DissertaÃ§Ã£o.lof'.
+\openout6 = `Dissertação.lof'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 155.
+(babel)             in language  on input line 156.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.155 \listadetabelas
-                      [7
+l.156 \listadetabelas
+                      [6
 
 
-] (./DissertaÃ§Ã£o.lot)
+] (./Dissertação.lot)
 \tf@lot=\write7
-\openout7 = `DissertaÃ§Ã£o.lot'.
+\openout7 = `Dissertação.lot'.
 
 \instream=\read1
 
-No file DissertaÃ§Ã£o.nls.
+No file Dissertação.nls.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 166.
+(babel)             in language  on input line 167.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.166 \listadesimbolos
-                       [8
+l.167 \listadesimbolos
+                       [7
 
 ]
 \instream=\read2
- (./DissertaÃ§Ã£o.los
+ (./Dissertação.los
 Overfull \hbox (2.54399pt too wide) in paragraph at lines 2--2
 [][] [] 
  []
@@ -774,61 +774,56 @@ Overfull \hbox (2.54399pt too wide) in paragraph at lines 5--5
 
 )
 \tf@los=\write8
-\openout8 = `DissertaÃ§Ã£o.los'.
+\openout8 = `Dissertação.los'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--167
+Underfull \hbox (badness 10000) in paragraph at lines 1--168
 
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 171.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 171.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.170 \chapter
-              {Introdução} [9
+l.171 \chapter
+              {Introdução} [8
 
 ]
 Cap\'{\i }tulo 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 171.
 (./Source/Introducao.tex
 
 Package hyperref Warning: Suppressing empty link on input line 7.
 
-LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <12> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 9.
-LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <12> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 9.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
-[10
+[9
 
 ]
-Package epstopdf Info: Source file: <Images/Necessidade/PISOldConsole.eps>
+Package epstopdf Info: Source file: <Images/Introducao/PISOldConsole.eps>
 (epstopdf)                    date: 2018-05-16 00:43:17
 (epstopdf)                    size: 77419 bytes
-(epstopdf)             Output file: <Images/Necessidade/PISOldConsole-eps-conve
-rted-to.pdf>
+(epstopdf)             Output file: <Images/Introducao/PISOldConsole-eps-conver
+ted-to.pdf>
 (epstopdf)                    date: 2018-05-16 01:01:38
 (epstopdf)                    size: 18932 bytes
-(epstopdf)             Command: <repstopdf --outfile=Images/Necessidade/PISOldC
-onsole-eps-converted-to.pdf Images/Necessidade/PISOldConsole.eps>
+(epstopdf)             Command: <repstopdf --outfile=Images/Introducao/PISOldCo
+nsole-eps-converted-to.pdf Images/Introducao/PISOldConsole.eps>
 (epstopdf)             \includegraphics on input line 19.
 Package epstopdf Info: Output file is already uptodate.
-
-<Images/Necessidade/PISOldConsole-eps-converted-to.pdf, id=213, 527.9725pt x 15
-8.5925pt>
-File: Images/Necessidade/PISOldConsole-eps-converted-to.pdf Graphic file (type 
-pdf)
- <use Images/Necessidade/PISOldConsole-eps-converted-to.pdf>
-Package pdftex.def Info: Images/Necessidade/PISOldConsole-eps-converted-to.pdf 
+<Images/Introducao/PISOldConsole-eps-converted-to.pdf, id=207, 527.9725pt x 158
+.5925pt>
+File: Images/Introducao/PISOldConsole-eps-converted-to.pdf Graphic file (type p
+df)
+<use Images/Introducao/PISOldConsole-eps-converted-to.pdf>
+Package pdftex.def Info: Images/Introducao/PISOldConsole-eps-converted-to.pdf  
 used on input line 19.
 (pdftex.def)             Requested size: 409.71692pt x 123.07002pt.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
@@ -839,179 +834,193 @@ LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/sl' tried instead on input line 20.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 27.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 29.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 32.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 30.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
+(babel)             in language  on input line 30.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 32.
- [11 <./Images/Necessidade/PISOldConsole-eps-converted-to.pdf>]
-Overfull \hbox (2.76817pt too wide) in paragraph at lines 33--34
+(babel)             in language  on input line 30.
+ [10 <./Images/Introducao/PISOldConsole-eps-converted-to.pdf>]
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 33.
+
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 47.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 49.
+
+Overfull \hbox (2.76817pt too wide) in paragraph at lines 53--54
 []\OT1/phv/m/n/12 Por[]em este novo mo-delo deve pos-suir um \OT1/phv/m/sl/12 d
 is-play tou-chs-creen \OT1/phv/m/n/12 de $\OT1/cmr/m/n/12 7"$\OT1/phv/m/n/12 , 
 atrav[]es
  []
 
+Package epstopdf Info: Source file: <Images/Introducao/PISOldConsoleNew.eps>
+(epstopdf)                    date: 2018-05-18 13:50:54
+(epstopdf)                    size: 228318 bytes
+(epstopdf)             Output file: <Images/Introducao/PISOldConsoleNew-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2018-05-19 12:17:07
+(epstopdf)                    size: 58844 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/Introducao/PISOldCo
+nsoleNew-eps-converted-to.pdf Images/Introducao/PISOldConsoleNew.eps>
+(epstopdf)             \includegraphics on input line 59.
+Package epstopdf Info: Output file is already uptodate.
+<Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf, id=227, 481.8pt x 231
+.86626pt>
+File: Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf Graphic file (typ
+e pdf)
+<use Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf>
+Package pdftex.def Info: Images/Introducao/PISOldConsoleNew-eps-converted-to.pd
+f  used on input line 59.
+(pdftex.def)             Requested size: 409.71692pt x 197.18275pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 35.
+(babel)             in language  on input line 65.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 65.
+[11]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 66.
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 174.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
- [12]
+(babel)             in language  on input line 174.
+ [12 <./Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf>]
 Cap\'{\i }tulo 2.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
-(./Source/Necessidade.tex
+(babel)             in language  on input line 174.
+(./Source/IndicadoresDeDestinoDMS.tex
+<Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG, id=252, 929.72343pt x 672.
+26157pt>
+File: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG Graphic file (type jpg
+)
+<use Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG>
+Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG  us
+ed on input line 8.
+(pdftex.def)             Requested size: 223.06863pt x 161.29477pt.
+<Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG, id=253, 928.21782
+pt x 672.26157pt>
+File: Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG Graphic file 
+(type jpg)
+<use Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG>
+Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegr
+e.JPG  used on input line 15.
+(pdftex.def)             Requested size: 223.06863pt x 161.55122pt.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 19.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 1.
- (./Source/Necessidade/PISAutocarros.tex
-Package epstopdf Info: Source file: <Images/Necessidade/PISOldConsoleNew.eps>
-(epstopdf)                    date: 2018-05-16 01:43:56
-(epstopdf)                    size: 74974 bytes
-(epstopdf)             Output file: <Images/Necessidade/PISOldConsoleNew-eps-co
-nverted-to.pdf>
-(epstopdf)                    date: 2018-05-16 01:45:18
-(epstopdf)                    size: 17965 bytes
-(epstopdf)             Command: <repstopdf --outfile=Images/Necessidade/PISOldC
-onsoleNew-eps-converted-to.pdf Images/Necessidade/PISOldConsoleNew.eps>
-(epstopdf)             \includegraphics on input line 7.
-Package epstopdf Info: Output file is already uptodate.
-
-<Images/Necessidade/PISOldConsoleNew-eps-converted-to.pdf, id=239, 505.89pt x 1
-43.53625pt>
-File: Images/Necessidade/PISOldConsoleNew-eps-converted-to.pdf Graphic file (ty
-pe pdf)
- <use Images/Necessidade/PISOldConsoleNew-eps-converted-to.pdf>
-Package pdftex.def Info: Images/Necessidade/PISOldConsoleNew-eps-converted-to.p
-df used on input line 7.
-(pdftex.def)             Requested size: 409.71692pt x 116.25056pt.
+(babel)             in language  on input line 26.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 29.
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 4.
+(babel)             in language  on input line 177.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 6.
-)
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 177.
+ [13
 
-[13
-
- <./Images/Necessidade/PISOldConsoleNew-eps-converted-to.pdf>]
+ <./Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG> <./Images/IndicadoresDe
+DestinoDMS/202_AliadosPasseioAlegre.JPG>]
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
-(./Source/RecursosUtilizados.tex
+(babel)             in language  on input line 177.
+(./Source/DesenvolvimentoAplicacao.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 2.
+(babel)             in language  on input line 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 4.
+(babel)             in language  on input line 3.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 5.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 6.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 7.
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 180.
  [14
 
 ]
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
-(./Source/DesenvolvimentoAplicacao.tex)
+(babel)             in language  on input line 180.
+(./Source/MontagemConsoleIndicacaoDeDestinos.tex)
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 183.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 183.
  [15
 
 ]
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
-(./Source/MontagemConsoleIndicacaoDeDestinos.tex)
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
- [16
-
-]
-Cap\'{\i }tulo 6.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 183.
 (./Source/Conclusao.tex)
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 195.
 
-
-LaTeX Warning: Citation `SiteMoraes2010' on page 17 undefined on input line 210
+LaTeX Warning: Citation `SiteMoraes2010' on page 16 undefined on input line 208
 .
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 226.
+(hyperref)                than one, level fixed on input line 224.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 226.
+(babel)             in language  on input line 224.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 246.
+(babel)             in language  on input line 244.
 Package hyperref Info: bookmark level for unknown simbolo defaults to 0 on inpu
-t line 257.
+t line 255.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 265.
+(babel)             in language  on input line 263.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 265.
-[17
+(babel)             in language  on input line 263.
+[16
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 269.
+(babel)             in language  on input line 267.
 
 
-LaTeX Warning: Citation `Grainger1994' on page 18 undefined on input line 271.
+LaTeX Warning: Citation `Grainger1994' on page 17 undefined on input line 269.
 
 
-LaTeX Warning: Citation `Anderson1977' on page 18 undefined on input line 273.
+LaTeX Warning: Citation `Anderson1977' on page 17 undefined on input line 271.
 
 
-LaTeX Warning: Citation `Glover2002' on page 18 undefined on input line 273.
+LaTeX Warning: Citation `Glover2002' on page 17 undefined on input line 271.
 
 
-LaTeX Warning: Citation `abntex-doc' on page 18 undefined on input line 275.
+LaTeX Warning: Citation `abntex-doc' on page 17 undefined on input line 273.
 
 
-LaTeX Warning: Citation `SiteMoraes2010' on page 18 undefined on input line 277
+LaTeX Warning: Citation `SiteMoraes2010' on page 17 undefined on input line 275
 .
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 280.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 280.
-[18]
-Cap\'{\i }tulo 7.
+(babel)             in language  on input line 278.
+[17]
+Cap\'{\i }tulo 6.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 278.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 279.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 280.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 281.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 282.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 283.
-(./DissertaÃ§Ã£o.bbl
+(./Dissertação.bbl
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
- [19
+ [18
 
 ]
 Underfull \hbox (badness 1314) in paragraph at lines 15--18
@@ -1021,33 +1030,33 @@ Underfull \hbox (badness 1314) in paragraph at lines 15--18
 
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 295.
+(babel)             in language  on input line 293.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 295.
- [20
+(babel)             in language  on input line 293.
+ [19
 
 ]
 Anexo A.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 295.
+(babel)             in language  on input line 293.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 330.
+(babel)             in language  on input line 328.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 330.
-[21
+(babel)             in language  on input line 328.
+[20
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 352.
+(babel)             in language  on input line 350.
  
 AED: lastpage setting LastPage
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 359.
+(babel)             in language  on input line 357.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 359.
-[22]
+(babel)             in language  on input line 357.
+[21]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 359.
+(babel)             in language  on input line 357.
 
 +===================================================================+
 | Modelo de teses e dissertações da UTFPR campus Pato Branco 
@@ -1058,15 +1067,15 @@ Package babel Info: Redefining portuges shorthand "|
 | $LastChangedDate: 2009-07-17 15:33:40 -0300 (sex, 17 jul 2009)$ 
 +===================================================================+
 \outputstream=\write9
-\openout9 = `DissertaÃ§Ã£o.tmp'.
+\openout9 = `Dissertação.tmp'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 359.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 359.
-(./DissertaÃ§Ã£o.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 359.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 359.
-Package rerunfilecheck Info: File `DissertaÃ§Ã£o.out' has not changed.
-(rerunfilecheck)             Checksum: 40B015057E238F4652306C32B7364680;1931.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 357.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 357.
+(./Dissertação.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 357.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 357.
+Package rerunfilecheck Info: File `Dissertação.out' has not changed.
+(rerunfilecheck)             Checksum: 4085B9DA86D5B0B2908B2533B24E3C23;1889.
 
 
 LaTeX Warning: There were undefined references.
@@ -1074,31 +1083,31 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 359.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 357.
  ) 
 Here is how much of TeX's memory you used:
- 9897 strings out of 493013
- 144814 string characters out of 6135682
- 253353 words of memory out of 5000000
- 13124 multiletter control sequences out of 15000+600000
- 38363 words of font info for 84 fonts, out of 8000000 for 9000
+ 10027 strings out of 492982
+ 147036 string characters out of 6136225
+ 256048 words of memory out of 5000000
+ 13271 multiletter control sequences out of 15000+600000
+ 36604 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,13n,42p,916b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on DissertaÃ§Ã£o.pdf (23 pages, 2624071 bytes).
+ 48i,13n,42p,916b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2017/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2017/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
+c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texliv
+e/2017/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2017/texmf-di
+st/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1
+/urw/helvetic/uhvr8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/u
+hvro8a.pfb>
+Output written on Dissertação.pdf (22 pages, 3091578 bytes).
 PDF statistics:
  358 PDF objects out of 1000 (max. 8388607)
- 306 compressed objects within 4 object streams
+ 303 compressed objects within 4 object streams
  58 named destinations out of 1000 (max. 500000)
- 216 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 218 words of extra memory for PDF output out of 10000 (max. 10000000)
 

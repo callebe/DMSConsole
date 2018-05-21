@@ -34,13 +34,19 @@ typedef struct Panel_ID{
 //Bit Bang UART Transmission Function
 int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension);
 //Bit Bang UART Receive Function
-int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned char TimeOut);
-//Handler Network COnfig Timer Interrupt
-void Timer_Handler (int signum);
-//Configure Timer by Network Config
-int Config_Timer (void);
-//Reconfigure Timer Function
-int Reconfig_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned int TimeOut);
+//Handle Interrupt Real Timer Handler Function
+void Real_Timer_Handler (int signum);
+//Configure Real Timer Function
+int Config_Real_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+//Reconfigure Real Timer Function
+int Reconfig_Real_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+//Interrupt Virtual Timer Handler Function
+void Virtual_Timer_Handler (int signum);
+//Configure Virtual Timer Function
+int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+//Reconfigure Virtual Timer Function
+int Reconfig_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
 //Request displays info function
 Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
 //Send Mensage of Reset for All displays
