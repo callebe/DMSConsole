@@ -5,6 +5,7 @@
 #include <pigpio.h> // Library Pi
 #include <signal.h> // Linux Signal Library 
 #include <sys/time.h> // Linux Timer
+#include "GIDXml.h" //Headers Functions of XmlReader
 
 //--------- Defines
 #define BitBangByteLength   8
@@ -34,7 +35,7 @@ typedef struct Panel_ID{
 //Bit Bang UART Transmission Function
 int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension);
 //Bit Bang UART Receive Function
-int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned int TimeOut);
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension,  unsigned int TimeOutSeconds, unsigned int TimeOutMilliseconds);
 //Handle Interrupt Real Timer Handler Function
 void Real_Timer_Handler (int signum);
 //Configure Real Timer Function

@@ -44,7 +44,14 @@ Para que seja possível controlar todos os painéis de forma centralizada é estabe
 O console controla os painéis via UART-RS485, recebendo informações de estados dos painéis, e enviando as informações de configuração e dados a serem exibidos. É por meio do console que o usuário insere, através da conexão USB, os conjuntos de dados referente a textos ou pictogramas que devem ser exibidos nos painéis. 
 
 
-\section{Display de Indicação de Destino DMS}
+\section{Pinéis Eletrônicos - DMS}
+
+Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem protocolos de comunicação próprios, através interface de comunicação UART-RS485.
+
+UART RS-485, ou \textit{UART  Recommendad Standart-485}  é uma interface de comunicação especificada pela norma TIA/EUA-485, e aprovada em 1983 pela \textit{Electronics Industries Association} como uma nova interface de transmissão de dados por linhas diferenciais, capaz de se comunicar com 32 unidades de carga. Nesta interface o meio de comunicação é um par transado, por onde cada dispositivo transmite e recebe informações. O par transado nada mais é do que um meio de transmissão diferencial, ou seja quando um bit '1' é transmitido a diferença de potencial entre os cabos é simétrica, já quando o bit '0' é transmitido a diferença de potência entre os cabo é 0. Como pode ser visto na Figura (\ref{fig:ig:ComunicacaoRS485}). 
+
+
+
 
 
 \section{Gestor de Indicação de Destinos}

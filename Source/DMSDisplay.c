@@ -23,29 +23,28 @@ int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, in
 	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT);
 
 	//Delay for configure drive
-	Config_Real_Timer (0, 10, 0, 0);
+	Config_Real_Timer (0, Dimension+1, 0, 0);
 	while(InterruptFlagRealTimer == 0);
 
 	//Set ActiveTx GPIO pin to '0' for Transmitting mensage
 	gpioWrite(ActiveTx, 0);
-	
-	//Delay for configure drive
-	Config_Real_Timer (0, 10, 0, 0);
-	while(InterruptFlagRealTimer == 0);
+
+	//Reset timer
+	Reconfig_Real_Timer(0,0,0,0);
 	
 	return 0;
 
 }
 
 //Bit Bang UART Receive Function
-int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned int TimeOut){
+int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, int Dimension, unsigned int TimeOutSeconds, unsigned int TimeOutMilliseconds){
 	
 	unsigned char CounterRx = 0;
 	int LengthOfBuffer;
 	char BufferRx[Dimension];
 	
 	//Delay for configure drive
-	Config_Real_Timer (0, TimeOut, 0, 0);
+	Config_Real_Timer (TimeOutSeconds, TimeOutMilliseconds, 0, 0);
 	
 	while((CounterRx < Dimension) && (InterruptFlagRealTimer == 0)){
 		LengthOfBuffer = gpioSerialRead(BitBangRx, &BufferRx[0], Dimension);
@@ -60,6 +59,9 @@ int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, in
 
 	}
 
+	//Reset timer
+	Reconfig_Real_Timer(0,0,0,0);
+
 	if (CounterRx < Dimension) return 1;
 	else return 0;
 
@@ -67,7 +69,8 @@ int BitBangUARTRx (unsigned char BitBangRx, unsigned int  Baudrate, char *Rx, in
 
 //Interrupt Real Timer Handler Function
 void Real_Timer_Handler (int signum){
-	printf("NOISSS !! %d \n", InterruptFlagRealTimer++);
+	
+	InterruptFlagRealTimer++;
 
 }
 
@@ -181,79 +184,101 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 	for(int counter = 0; (counter<3 && Failure == 2); counter++){
 		
 		// Transmitting in Broadcast
-		printf("VAI : \n");
 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 8);
-		getchar();
+		// Clean Buffer
+		BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 1, 1, 10);
 
-		// do{
-		// 	// Receiving first byte
-		// 	Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 1, LimitOfDisplays*100);
-		// 	if(Rx[0] != NACK &&  Failure == 0){
-		// 		// Receiving the last bytes
-		// 		Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[1], 11, LimitOfDisplays*100);
-		// 		CHKSRx = (unsigned char)(Rx[0] + Rx[1] + Rx[2] + Rx[3] + Rx[4] + Rx[5] + Rx[6] + Rx[7] + Rx[8] + Rx[9] + Rx[10] );
+		do{
+			// Receiving first byte
+			// The time limit for Rx is LimitOfDisplays * 100 ms = 1,6 seconds
+			Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 1, 1, 600);
+			if(Rx[0] != NACK &&  Failure == 0){
+				// Receiving the last bytes
+				Failure = BitBangUARTRx (BitBangRx, Baudrate, &Rx[1], 11, 1, 600);
+				CHKSRx = (unsigned char)(Rx[0] + Rx[1] + Rx[2] + Rx[3] + Rx[4] + Rx[5] + Rx[6] + Rx[7] + Rx[8] + Rx[9] + Rx[10] );
 
-		// 		printf("Dados %x %x %x %x %x %x %x %x %x %x %x %x \n", Rx[0], Rx[1], Rx[2], Rx[3], Rx[4], Rx[5], Rx[6], Rx[7], Rx[8], Rx[9], Rx[10], Rx[11]);
-		// 		printf(":: Enviado %x recebido %x \n", Rx[11], CHKSRx);
-		// 		getchar();
+				if(Failure == 0 && CHKSRx == Rx[11]){
+					//Chaining
+					if(Last == NULL){
+						Last = (Panel_ID *)malloc(sizeof(Panel_ID));
+						Last->Previous = NULL;
 
-		// 		if(Failure == 0 && CHKSRx == Rx[12]){
-		// 			//Chaining
-		// 			if(Last == NULL){
-		// 				Last = (Panel_ID *)malloc(sizeof(Panel_ID));
-		// 				Last->Previous = NULL;
+					}
+					else{
+						while(Last->Next != NULL) Last = Last->Next;
+						Last->Next = (Panel_ID *)malloc(sizeof(Panel_ID));
+						Last->Next->Previous = Last;
+						Last = Last->Next;
 
-		// 			}
-		// 			else{
-		// 				while(Last->Next != NULL) Last = Last->Next;
-		// 				Last->Next = (Panel_ID *)malloc(sizeof(Panel_ID));
-		// 				Last->Next->Previous = Last;
-		// 				Last = Last->Next;
+					}
+					Last->Next = NULL;
+					Last->Adress = Rx[6];
+					Last->Lines = Rx[7];
+					Last->Columns = Rx[8];
+					Last->SuportForAlternativeDestinations = Rx[9];
 
-		// 			}
-		// 			Last->Next = NULL;
-		// 			Last->Adress = Rx[6];
-		// 			Last->Lines = Rx[7];
-		// 			Last->Columns = Rx[8];
-		// 			Last->SuportForAlternativeDestinations = Rx[9];
-		// 			printf("Painel %d - %d - %d - %d :: \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
+				}
+				else{
+					if(Failure == 0){
+						Failure = 2;
+						if(Last != NULL){
+							while(Last->Previous = NULL){
+								Last = Last->Previous;
+								free (Last->Next);
+							}
+							free(Last);
+							Last = NULL;
+						}
 
-		// 		}
-		// 		else{
-		// 			if(Failure == 0){
-		// 				Failure = 2;
-		// 				if(Last != NULL){
-		// 					while(Last->Previous = NULL){
-		// 						Last = Last->Previous;
-		// 						free (Last->Next);
-		// 					}
-		// 					free(Last);
-		// 					Last = NULL;
-		// 				}
-
-		// 			}
-		// 		}
-		// 	}
-		// 	else{
-		// 		if(Failure == 0){
-		// 			Failure = 2;
-		// 			if(Last != NULL){
-		// 				while(Last->Previous = NULL){
-		// 					Last = Last->Previous;
-		// 					free (Last->Next);
-		// 				}
-		// 				free(Last);
-		// 				Last = NULL;
-		// 			}
+					}
+				}
+			}
+			else{
+				if(Failure == 0){
+					Failure = 2;
+					if(Last != NULL){
+						while(Last->Previous = NULL){
+							Last = Last->Previous;
+							free (Last->Next);
+						}
+						free(Last);
+						Last = NULL;
+					}
 					
-		// 		} 
-		// 	}
+				} 
+			}
 
-		// }while(Failure == 0 && Failure != 2);
+		}while(Failure == 0 && Failure != 2);
 
 	}
 
 	return Last;
+
+}
+
+//Send Mensage of Information
+int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, Panel_ID *PanelList,  ){
+
+	char CHKS = (unsigned char)(SOH + 0xFF + 0x00 + STX + 0x01 + 0x22 + ETX + CHKS);
+	//                         <Dest><Orig>      <N>  <Type>  
+	unsigned char Tx[8] = {SOH, 0xFF, 0x00, STX, 0x01, 0x22, ETX, CHKS};
+	unsigned char ConfirmReceiver = 0;
+	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x21 + ETX + CHKS);
+	//                <Dest>      <N>  <Type>  
+	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x21, ETX, CHKS};
+	char Rx = 0;
+	
+	for(int i = 0; (i<3 || ConfirmReceiver == 0); i++){
+		// Transmitting
+		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
+		// Receiving
+		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
+		if(Rx == ACK) ConfirmReceiver = 1;
+
+	}
+
+	if(ConfirmReceiver == 0) return 1;
+	return 0;
 
 }
 
@@ -304,25 +329,3 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 // }
 
 
-// //Send Mensage of Information
-// int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
-
-// 	unsigned char ConfirmReceiver = 0;
-// 	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x21 + ETX + CHKS);
-// 	//                <Dest>      <N>  <Type>  
-// 	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x21, ETX, CHKS};
-// 	char Rx = 0;
-	
-// 	for(int i = 0; (i<4 || ConfirmReceiver == 0); i++){
-// 		// Transmitting
-// 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-// 		// Receiving
-// 		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-// 		if(Rx == ACK) ConfirmReceiver = 1;
-
-// 	}
-
-// 	if(ConfirmReceiver == 0) return 1;
-// 	return 0;
-
-// }
