@@ -1,31 +1,76 @@
 
+Os indicadores de destino são recursos visuais de identificação, utilizados em autocarros de diferentes tipos. O principal objetivo dos indicadores é informar ao público acerca do trajeto e/ou do destino do autocarro. Os indicadores podem ser analógicos, constituídos basicamente de um sistema mecânico ou eletromecânico, ou ainda totalmente eletrônico. A Figura (\ref{fig:IDDMS}) apresenta o indicador eletrônico de destino  \textit{SICON II} da DMS. Os dados técnicos do \textit{SICON II} foram disponibilizado pela DMS, pra a realização deste trabalho, logo este modelo será a exemplo base. 
+
 \vspace{9mm}
 \begin{figure}[H]
-\centering
-\begin{subfigure}[t]{.5\textwidth}
 	\centering
-	\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG}
-	\caption{Linha 201, Aliados - Viso de Baixo}
-	\label{fig:201_AliadosViso}
-\end{subfigure}% 
-\begin{subfigure}[t]{.5\textwidth}
-	\centering
-	\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG}
-	\caption{Linha 202, Aliados - Passeio Alegre (Via AV. Bessa)}
-	\label{fig:202_AliadosPasseioAlegre}
-\end{subfigure}
-\caption{Linhas de Autocarro da STCP}
-\vspace{-3.5mm}
-\caption*{Fonte: \citeonline{stcp}}
-\label{fig:Linhas de Autocarro}
-\end{figure}
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/Introducao/PISOldConsole.eps}
+	\caption{Indicador de Destino \textit{SICON II} - DMS}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMS}}
+	\label{fig:IDDMS}
+\end{figure} 
 \vspace{9mm}
+
+É comum haver mais de um painel eletrônico em um autocarro, de modo a tornar visível a qualquer pessoa de qualquer lado de uma via as informações dos painéis. Logo os paineis são comumente distribuindos pelo autocarro pelo para-brisa e janelas laterais, como pode ser visto na Figura (\ref{fig:ModeloAutocarro}). 
+
+\vspace{6mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/IndicadoresDeDestinoDMS/ModeloAutocarro.eps}
+	\caption{Autocarro Modelo - 2 Painéis Eletrônicos de Indicação de Destino}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:ModeloAutocarro}
+\end{figure}
+\vspace{6mm}
+
+Para que seja possível controlar todos os painéis de forma centralizada é estabelecido uma rede de comunicação entre os painéis e um console de controle. Logo o sistema de indicadores de destino é composto basicamente pela rede de painéis eletrônicos e pelo console, como mostrado na figura (\ref{fig:PISOldConsole}).
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/Introducao/PISOldConsole.eps}
+	\caption{Diagrama do Sistema de Indicadores de Destino - \textit{DMS}}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:PISOldConsole}
+\end{figure} 
+\vspace{9mm}
+
+O console controla os painéis via UART-RS485, recebendo informações de estados dos painéis, e enviando as informações de configuração e dados a serem exibidos. É por meio do console que o usuário insere, através da conexão USB, os conjuntos de dados referente a textos ou pictogramas que devem ser exibidos nos painéis. 
+
 
 \section{Display de Indicação de Destino DMS}
 
 
 \section{Gestor de Indicação de Destinos}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG}
+		\caption{Linha 201, Aliados - Viso de Baixo}
+		\label{fig:201_AliadosViso}
+	\end{subfigure}% 
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG}
+		\caption{Linha 202, Aliados - Passeio Alegre (Via AV. Bessa)}
+		\label{fig:202_AliadosPasseioAlegre}
+	\end{subfigure}
+	\caption{Linhas de Autocarro da STCP}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{stcp}}
+	\label{fig:Linhas de Autocarro}
+\end{figure}
+\vspace{9mm}
 
 
