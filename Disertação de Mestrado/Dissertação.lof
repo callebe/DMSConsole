@@ -1,6 +1,8 @@
 \babel@toc {brazil}{}
 \contentsline {figure}{\numberline {1}{\ignorespaces Diagrama do Sistema de Indicadores de Destino para o Novo Console - DMS\relax }}{11}{figure.caption.7}
 \contentsline {figure}{\numberline {2}{\ignorespaces Indicador de Destino \textit {SICON II} - DMS\relax }}{13}{figure.caption.8}
-\contentsline {figure}{\numberline {3}{\ignorespaces Diagrama do Sistema de Indicadores de Destino - \textit {DMS}\relax }}{14}{figure.caption.9}
-\contentsline {figure}{\numberline {4}{\ignorespaces Linhas de Autocarro da STCP\relax }}{14}{figure.caption.10}
-\contentsline {figure}{\numberline {5}{\ignorespaces Autocarro Modelo - 2 Pain\'eis Eletr\^onicos de Indica\c c\~ao de Destino\relax }}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {3}{\ignorespaces Autocarro Modelo - 2 Pain\'eis Eletr\^onicos de Indica\c c\~ao de Destino\relax }}{14}{figure.caption.9}
+\contentsline {figure}{\numberline {4}{\ignorespaces Diagrama do Sistema de Indicadores de Destino - \textit {DMS}\relax }}{14}{figure.caption.10}
+\contentsline {figure}{\numberline {5}{\ignorespaces Interface de Comunica\c c\~ao UART RS-485\relax }}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {6}{\ignorespaces Comprimento da Rede versus Taxa de Transfer\^encia. (1) Alta velocidade de transmiss\~ao, perdas nos condutores \'e desprez\IeC {\'\i }vel, pode operar at\'e 40 Mbps. (2) Velocidade m\'edia de transmiss\~ao, perdas nos condutores relevante, regra geral comprimento x taxa de transmiss\~ao $<~10^7$. (3) Baixa velocidade, perdas nos condutores elevada, atenua\c c\~ao de at\'e -6dB, recomenda-se condutores 22 AWG .\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {7}{\ignorespaces Linhas de Autocarro da STCP\relax }}{17}{figure.caption.13}
