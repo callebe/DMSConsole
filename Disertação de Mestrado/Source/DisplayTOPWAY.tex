@@ -1,0 +1,29 @@
+A utilização de um \textit{Display touchscreen} na interface do usuário do novo console para indicadores de destino, tem como objetivo dar uma maior versatilidade e dinamismo a essa interface. Como o  TOPWAY HKT080ATA-C, apresentado na Figura (\ref{fig:DisplayTOPWAY}) é possível instanciar e remover janelas, teclados e botões interativos de acordo com a necessidade. 
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.99\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.99\linewidth]{Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID.eps}
+	\caption{\textit{Display Touchscreen} TOPWAY HKT080ATA-C}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:DisplayTOPWAY}
+\end{figure} 
+\vspace{9mm}
+
+O  TOPWAY HKT080ATA-C é um modulo \textit{Smart display} de 7 polegadas TFT LCD (\textit{thin film transistor liquid crystal display}), possui uma interface de comunicação UART-RS232. Por ser um modulo \textit{Smart} este \textit{display} torna o desenvolvimento mais ágil e simples. O fabricante disponibiliza um programa de edição gráfica de interface, o \textit{TOPWAY TML Graphics Editor}, visto na Figura (\ref{fig:TMLGraphicsEditor}). 
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.99\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.99\linewidth]{Images/TMLGraphicsEditor.JPG}
+	\caption{Programa de Edição de Interface \textit{TOPWAY TML Graphics Editor}}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:TMLGraphicsEditor}
+\end{figure} 
+\vspace{9mm}
+
+Por meio desta aplicação é possível instanciar elementos gráficos, configurar comportamentos responsivos, alocar variáveis que armazenam eventos e configurar gatilhos para transmitir via UART-RS232 as informações sobre eventos. Ainda é possível designar áreas de texto na interface, tais áreas são preenchidas com informações que podem ser enviadas de um dispositivo mestre para o \textit{display} via UART. Assim basta criar os elementos gráficos da interface e suas ações, através do \textit{TOPWAY TML Graphics Editor}, e gerenciar a interface usando o dispositivo mestre. O dispositivo mestre utilizado neste trabalho é o Raspberry Pi - Zero W. 

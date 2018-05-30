@@ -14,6 +14,8 @@
 % O pacote utfprtexTCC está jundo com o utfprtex e contém definições específicas para trabalhos de conclusão de curso. Outros pacotes serão definidos para outros tipos de documentos, como dissertações e teses.
 \usepackage{utfprtexTCC}
 \usepackage[latin1]{inputenc}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{amsmath}
@@ -171,9 +173,15 @@ Write here the English version of your Resumo...
 \chapter{Introdução}
 	\input{Source/Introducao.tex}
 
+\chapter{Display \textit{Touchscreen} TOPWAY - HKT080ATA-C}
+	\input{Source/DisplayTOPWAY.tex}
+	
+\chapter{Raspberry Pi Zero W}
+	\input{Source/RaspberryPiZeroW.tex}
+
 \chapter{Indicadores de Destino - DMS}
 	\input{Source/IndicadoresDeDestinoDMS.tex}
-
+	
 \chapter{Desenvolvimento da Aplicação DMSConsole}
 	\input{Source/DesenvolvimentoAplicacao.tex}
 	

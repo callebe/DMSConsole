@@ -2,40 +2,48 @@
     <Group ID="1">
         <Line Number="201" Name="ALIADOS-VISO">
             <Destination ID="1" Name="PLANETÁRIO" Return="1">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="13" Columns="28">
+                    <Page ID="1" SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="16x9">201</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">PLANETÁRIO</Text>
+                    </Page>
+                    <Page ID="2" SBC="1" SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="16x9">201A</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">PLANETÁRIO</Text>
+                    </Page>
+                </Panel>
+                <Panel Lines="16" Columns="112">
+                    <Page ID="3" SBC="1" SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="16x9">201</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">PLANETÁRIO</Text>
+                    </Page>
+                    <Page ID="4" SBC="1"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="16x9">201</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PLANETÁRIO</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="16x9">201</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">PLANETÁRIO</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="5" SBC="1" SBNAndC='1' PT='15'>
                         <Number Effect="None" Align="Left" Font="16x9">201</Number>
                         <Text Effect="None" Align="Center" Font="5x5">PLANETÁRIO</Text>
                     </Page>
                 </Panel>
             </Destination>
             <Destination ID="2" Name="PR. D. JOÃO I" Return="2">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="6"   SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">201</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="7"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">201</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="8"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">201</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
@@ -44,123 +52,42 @@
         </Line>
         <Line Number="204" Name="HOSPITAL DE S.JOÃO - FOZ">
             <Destination ID="1" Name="PR. D. JOÃO I" Return="1">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="9"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="10"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="11"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. D. JOÃO I</Text>
                     </Page>
                 </Panel>
             </Destination>
             <Destination ID="2" Name="PR. DE LIÉGE" Return="2">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="12"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. DE LIÉGE</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="13"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. DE LIÉGE</Text>
                     </Page>
                 </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="14"  SBC="1" SBNAndC="2" PT="15">
                         <Number Effect="None" Align="Left" Font="12x7">204</Number>
                         <Text Effect="None" Align="Left" Font="5x5">PR. DE LIÉGE</Text>
-                    </Page>
-                </Panel>
-            </Destination>
-            <Destination ID="3" Name="TIMOR" Return="3">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="19x11">204</Number>
-                        <Text Effect="None" Align="Left" Font="19x11">TIMOR</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="19x11">204</Number>
-                        <Text Effect="None" Align="Left" Font="19x11">TIMOR</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="19x11">204</Number>
-                        <Text Effect="None" Align="Left" Font="19x11">TIMOR</Text>
-                    </Page>
-                </Panel>
-            </Destination>
-        </Line>
-        <Line Number="200" Name="BOLHÃO-CAST. QUEIJO">
-            <Destination ID="1" Name="PR. DA GALIZA" Return="1">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="12x7">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">PR. DA GALIZA</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="12x7">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">PR. DA GALIZA</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="12x7">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">PR. DA GALIZA</Text>
-                    </Page>
-                </Panel>
-            </Destination>
-            <Destination ID="2" Name="UNIV. CATÓLICA" Return="2">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="8x6">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">UNIV. CATÓLICA</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="8x6">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">UNIV. CATÓLICA</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="8x6">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">UNIV. CATÓLICA</Text>
-                    </Page>
-                </Panel>
-            </Destination>
-            <Destination ID="3" Name="HOSP. ST. ANTÓNIO" Return="3">
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="7x5">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">HOSP. ST. ANTÓNIO</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Number Effect="None" Align="Left" Font="7x5">200</Number>
-                        <Text Effect="None" Align="Left" Font="5x5">HOSP. ST. ANTÓNIO</Text>
-                    </Page>
-                </Panel>
-                <Panel Lines="20" Columns="100">
-                    <Page ID="1">
-                        <Text Effect="None" Align="Left" Font="7x5">HOSP. ST. ANTÓNIO</Text>
                     </Page>
                 </Panel>
             </Destination>

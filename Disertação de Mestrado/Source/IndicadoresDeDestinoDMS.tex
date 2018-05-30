@@ -5,7 +5,7 @@ Os indicadores de destino são recursos visuais de identificação, utilizados em a
 \begin{figure}[H]
 	\centering
 	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=0.9\linewidth]{Images/Introducao/PISOldConsole.eps}
+	\includegraphics[width=0.9\linewidth]{Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS.eps}
 	\caption{Indicador de Destino \textit{SICON II} - DMS}
 	\vspace{-3.5mm}
 	\caption*{Fonte: \citeonline{DMS}}
@@ -41,12 +41,26 @@ Para que seja possível controlar todos os painéis de forma centralizada é estabe
 \end{figure} 
 \vspace{9mm}
 
-O console controla os painéis via UART-RS485, recebendo informações de estados dos painéis, e enviando as informações de configuração e dados a serem exibidos. É por meio do console que o usuário insere, através da conexão USB, os conjuntos de dados referente a textos ou pictogramas que devem ser exibidos nos painéis. 
+O console controla os painéis via UART-RS485, recebendo informações de estados dos painéis, e enviando as informações de configuração e dados a serem exibidos. É por meio do console que o usuário insere, através da conexão USB, os conjuntos de dados referente a textos ou pictogramas que devem ser exibidos nos painéis. A Figura (\ref{fig:IDDMSConsole}) apresenta o console do Indicador de Destino \textit{SICON II} da DMS.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.65\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.65\linewidth]{Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole.eps}
+	\caption{Console do Indicador de Destino \textit{SICON II} - DMS}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMS}}
+	\label{fig:IDDMSConsole}
+\end{figure} 
+\vspace{9mm}
 
 
 \section{Interface de Comunicação UART-RS485}
 
-Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem protocolos de comunicação próprios, através interface de comunicação UART-RS485. UART RS-485, ou \textit{UART  Recommendad Standart-485}  é uma interface de comunicação especificada pela norma TIA/EIA-485, e aprovada em 1983 pela \textit{Electronics Industries Association} como uma nova interface de transmissão de dados por linhas diferenciais, capaz de se comunicar com 32 unidades de carga. Nesta interface o meio de comunicação é um par transado, por onde cada dispositivo transmite e recebe informações \ref{texas}. O par transado nada mais é do que um meio de transmissão diferencial, ou seja quando um bit '1' é transmitido a diferença de potencial entre o terminal nomeado positivo (ou A+) é maior do que o terminal negativo (ou B-), já quando o bit '0' é transmitido a diferença de potência entre o terminal positivo é menor que o terminal negativo. Como pode ser visto na Figura (\ref{fig:ComunicacaoRS485}). 
+Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem protocolos de comunicação próprios, através interface de comunicação UART-RS485. O padrão UART-485 é muito utilizado no ambiente industrial e em aplicações onde o meio de comunicação está exposto a interferências magnéticas diversas, como é o caso do Autocarros. 
+
+UART RS-485, ou \textit{UART  Recommendad Standart-485}  é uma interface de comunicação especificada pela norma TIA/EIA-485, e aprovada em 1983 pela \textit{Electronics Industries Association} como uma nova interface de transmissão de dados por linhas diferenciais, capaz de se comunicar com 32 unidades de carga. Nesta interface o meio de comunicação é um par transado, por onde cada dispositivo transmite e recebe informações. O par transado nada mais é do que um meio de transmissão diferencial, ou seja quando um bit '1' é transmitido a diferença de potencial entre o terminal nomeado positivo (ou A+) é maior do que o terminal negativo (ou B-), já quando o bit '0' é transmitido a diferença de potência entre o terminal positivo é menor que o terminal negativo \cite{texas}. Como pode ser visto na Figura (\ref{fig:ComunicacaoRS485}). 
 
 
 \vspace{9mm}
@@ -63,21 +77,64 @@ Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem prot
 
 Segundo a \citeonline{texas} a utilização do UART RS485 resulta no cancelamento de ruídos induzidos no meio da transmissão. Já que qualquer ruído induzido por campos magnéticos interfere nos 2 condutores simultaneamente, quando o amplificador diferencial, presente nos conversores, recebe os dois sinais a diferença de tensão não se altera e o ruídos induzidos nos dois condutores são eliminados.  Como esta interface de comunicação se estabelece apenas pela diferença de potencial entre os dois condutores, o condutor terra e dispensado e limite de tensão usado nesta comunicação é mais flexível. O transmissor de RS-485 deve oferecer nomínimo 1,5/-1,5 V na comunicação, já o receptor deve possuir uma sensibilidade de no minimo 200mV/-200mv. A norma TIA/EIA-485 ainda especifica que a diferença de potencial máxima entre equipamentos é 12/-7 V, para que a tensão elevado no par trançado não danifique os equipamentos.
 
-Como o padrão 485 possui uma tensão elevada, e um limite minimo de tensão de recepção  em  200mV/-200mv, o efeito da queda de tensão nos condutores é mais tolerável. Assim segundo a norma a distância máxima da rede UART-485 é de 1.219 metros. Em relação a velocidade máxima da rede, esta é definida de acordo com o comprimento dos condutores, como mostrado no gráfico da Figure (\ref{fig:GraficoTaxaTransferenciaVsComprimentoUART485}) \cite{texas}. Por tais características o padrão UART-485 é muito utilizado no ambiente industrial e em aplicações onde o meio de comunicação está exposto a interferências magnéticas diversas como é o caso do Autocarros.
+Como o padrão 485 possui uma tensão elevada, e um limite minimo de tensão de recepção  em  200mV/-200mv, o efeito da queda de tensão nos condutores é mais tolerável. Assim segundo a norma a distância máxima da rede UART-485 é de 1.219 metros. Em relação a velocidade máxima da rede, esta é definida de acordo com o comprimento dos condutores, como mostrado no gráfico da Figure (\ref{fig:GraficoTaxaTransferenciaVsComprimentoUART485}) \cite{texas}. 
 
-\vspace{9mm}
+\vspace{3mm}
 \begin{figure}[H]
 	\centering
-	\captionsetup{width=0.5\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=0.5\linewidth]{Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485.eps}
-	\caption{Comprimento da Rede versus Taxa de Transferência. \\ (1) Alta velocidade de transmissão, perdas nos condutores é desprezível, pode operar até 40 Mbps. \\(2) Velocidade média de transmissão, perdas nos condutores relevante, regra geral comprimento x taxa de transmissão $<~10^7$. \\(3) Baixa velocidade, perdas nos condutores  elevada, atenuação  de até -6dB, recomenda-se condutores 22 AWG .}
+	\captionsetup{width=0.6\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.4\linewidth]{Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485.eps}
+	\caption{Comprimento da Rede Vs Taxa de Transferência. \\ (1) Alta velocidade de transmissão: $\leq$ 12 Mbps \\(2) Velocidade média de transmissão: 1 Mbps $\leq$  $\geq$ 10 Mbps  \\(3) Baixa velocidade: $\leq$  200 kbps}
 	\vspace{-3.5mm}
 	\caption*{Fonte: Adaptado de \citeonline{texas}}
 	\label{fig:GraficoTaxaTransferenciaVsComprimentoUART485}
 \end{figure} 
+\vspace{3mm}
+
+A topologia a ser utilizada no RS-485 é a de barramento ou  \textit{Daisy Chain}, o que permite a edição ou remoção de elementos sem que isso influencie os demais dispositivos já conectados \cite{texas}, como mostrado na Figura (\ref{fig:TopologiaUART485}). A norma TIA/EIA-485 como limite de 32 unidades de cargas conectadas, porém existem dispositivos que possuem 1/4 ou até 1/8 de uma unidade de carga, o que na prática expande os limites de dispositivos conectados. 
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/TopologiaUART485A.eps}
+		\caption{Topologia Barramento}
+		\label{fig:TopologiaUART485A}
+	\end{subfigure}% 
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/TopologiaUART485B.eps}
+		\caption{Topologia \textit{Daisy Chain}}
+		\label{fig:TopologiaUART485B}
+	\end{subfigure}
+	\caption{Tipos de Topologia para UART-RS485}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \cite{texas}}
+	\label{fig:TopologiaUART485}
+\end{figure}
 \vspace{9mm}
 
 \section{Gestor de Indicação de Destinos}
+
+Os dados acerca das informações a serem exibidas nos painéis eletrônicos dos indicadores de destino do modelo SICON II  da DMS, são carregados  para a memória interna do console através de uma conexão USB. Tais dados são gerados pela  aplicação GID , Figura (\ref{fig:GIDA}), ou Gestor de Indicadores de Destinos, fornecido pela DMS. Por meio desta aplicação o cliente pode gerir os textos e pictogramas a serem usados nos indicadores de destino, podendo  configurar fontes e efeitos em cada painel independentemente.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.8\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.8\linewidth]{Images/IndicadoresDeDestinoDMS/GIDA.JPG}
+	\caption{Gestor de Indicadores de Destino - Tela Inicial}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:GIDA}
+\end{figure} 
+\vspace{9mm}
+
+As informação exibidas em um painel eletrônico de um sistema de indicadores de destino são, geralmente, relativas ao itinerário atual do autocarro. A estrutura de dados que o GID gera esta relacionado com a definição de linha e destino do autocarro. A linha é a denominação do percurso atual do autocarro, já o destino é referente a próxima paragem do autocarro ou, como acontece nos autocarros da STCP, o ultimo ponto de paragem da linha. Por exemplo, nas Figuras (\ref{fig:201_AliadosViso}) e (\ref{fig:202_AliadosPasseioAlegre})  estão marcados respectivamente os trajetos das linhas 201 e 202 da STCP. Quando um autocarro realiza um trajeto partindo da paragem Praça dos Aliados, passando por todas as paragens até a Viso de Baixo, os painéis eletrônicos devem exibir a Linha 201, e o destino Viso de Baixo. Porém no retorno a Praça dos Aliados a Linha continua sendo a 201, e o destino passa a ser a Praça dos Aliados. Já o autocarro que realiza o trajeto partindo da Praça dos aliados até Passeio Alegre, os seus painéis devem exibir a Linha 202, com o destino a Paseio Alegre, e no retorno conserva-se a Linha porém o destino passa a ser a Praça dos Aliados. 
+
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -86,14 +143,14 @@ Como o padrão 485 possui uma tensão elevada, e um limite minimo de tensão de rec
 		\centering
 		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
 		\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG}
-		\caption{Linha 201, Aliados - Viso de Baixo}
+		\caption{Linha 201, Praça dos Aliados - Viso de Baixo}
 		\label{fig:201_AliadosViso}
 	\end{subfigure}% 
 	\begin{subfigure}[t]{.5\textwidth}
 		\centering
 		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
 		\includegraphics[width=0.98\linewidth]{Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG}
-		\caption{Linha 202, Aliados - Passeio Alegre (Via AV. Bessa)}
+		\caption{Linha 202, Praça dos Aliados - Passeio Alegre (Via AV. Bessa)}
 		\label{fig:202_AliadosPasseioAlegre}
 	\end{subfigure}
 	\caption{Linhas de Autocarro da STCP}
@@ -103,4 +160,61 @@ Como o padrão 485 possui uma tensão elevada, e um limite minimo de tensão de rec
 \end{figure}
 \vspace{9mm}
 
+Dentro da estrutura de Dados utilizados no GID há 5 classes de objetos; 'Linha', 'Destino', 'Painel', 'Página' e 'Campo'. O objeto 'Linha' representa o percurso total realizado pelo autocarro através das várias paragem. Este objeto possui como atributos nome, identificador e uma lista de $n$ objetos 'Destino', que representam as possíveis paragens finais da linha. Tomando como exemplo a linha 201, o seu dado objeto tem como atributo identificador '201', nome 'Aliados-Viso', é lista de destinos constituído de dois elementos, o 'Avenida dos Aliados' e o 'Viso'. O objeto 'Destino' possui atributo nome, identificador e uma lista de até 16  elementos do tipo 'Painel'. 
 
+A lista de elementos 'Painel' presente como um atributo nos elementos 'Destino' são usados para especificar como as informações de destino e linha do autocarro devem ser exibidos nas diferentes dimensões de painéis eletrônicos, utilizados na rede de indicadores do autocarro. É possível exibir no painel frontal o número, nome da linha e destino do autocarro, mas em um painel lateral menor exibir apenas o número da linha. Assim o objeto 'Painel' ainda possui uma lista de objetos 'Pagina', com atributos de espaçamento e tempo de afixação, e cada 'Pagina' por sua vez possuem elementos 'Campos' que descrevem os textos exibidos, e suas respectivas fontes e efeitos. A Figura \ref{fig:EstruturaDeDados} apresenta esta estrutura de dados.
+
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.99\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.99\linewidth]{Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID.eps}
+	\caption{Estrutura de Dados do GID}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:EstruturaDeDados}
+\end{figure} 
+\vspace{9mm}
+
+Na aplicação GID existe uma tela nomeada 'Destinos', onde o usuário insere a lista de destinos possíveis, e atribui um conjunto de destinos a uma 'Linha' especifica, como mostrado na Figura (\ref{fig:GIDA2A}). Por meio da tela de nomeada 'Linhas', como visto na Figura (\ref{fig:GIDA2B}), o usuário insere a lista de 'Linhas' disponível e atribui um grupo de painéis para cada 'Linha'. O grupo de painéis eletrônicos disponível na rede do indicador de destino é configurado pelo usuário na tela 'Painéis'. Ao final o usuário utiliza a tela 'Saída' para ajustar as fontes utilizada nos textos e números exibidos nos painéis, e ainda adiciona ou remove páginas e campos em cada um dos painéis atribuídos aos destinos, vide Figura (\ref{fig:GIDA2D}).
+ 
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/GIDB.JPG}
+		\caption{Tela de Gestão de Destinos}
+		\label{fig:GIDA2A}
+	\end{subfigure}% 
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/GIDC.JPG}
+		\caption{Tela de Gestão de Painéis}
+		\label{fig:GIDA2B}
+	\end{subfigure}
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/GIDD.JPG}
+		\caption{Tela de Gestão de Linhas}
+		\label{fig:GIDA2C}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/IndicadoresDeDestinoDMS/GIDF.JPG}
+		\caption{Tela de Geração de Arquivos de Dados}
+		\label{fig:GIDA2D}
+	\end{subfigure}
+	\caption{Gestor de Indicadores de Destino}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:GIDA2}
+\end{figure}
+\vspace{9mm}
+
+ Se todas as configurações escolhidas na tela 'Saída' estiverem coerentes com as dimensões e capacidades dos painéis, ao escolher a opção 'Gerar Ficheiro de Dados', o GID gera um conjunto de arquivos binários, que devem ser movidos para  uma unidade de armazenamento e conectada ao console do Indicador de Destinos. Ao conectar a unidade de armazenamento a porta serial do console, os dados são movidos para a memoria interna do console, e os dados binários são enviados aos painéis. 

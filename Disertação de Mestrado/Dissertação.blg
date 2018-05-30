@@ -12,11 +12,12 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
-You're missing a field name---line 25 of file bibliografia.bib
+You're missing a field name---line 89 of file bibliografia.bib
  :  
  :  %author  = "",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "AdafruitR"
 Warning--I didn't find a database entry for "SiteMoraes2010"
 Warning--I didn't find a database entry for "Grainger1994"
 Warning--I didn't find a database entry for "Anderson1977"
@@ -32,45 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 12 entries,
+You've used 18 entries,
             6480 wiz_defined-function locations,
-            1204 strings with 10144 characters,
-and the built_in function-call counts, 7574 in all, are:
-= -- 869
-> -- 96
-< -- 53
-+ -- 146
-- -- 33
-* -- 365
-:= -- 908
-add.period$ -- 24
-call.type$ -- 14
-change.case$ -- 65
-chr.to.int$ -- 22
-cite$ -- 6
-duplicate$ -- 482
-empty$ -- 623
-format.name$ -- 139
-if$ -- 1847
+            1243 strings with 11098 characters,
+and the built_in function-call counts, 12063 in all, are:
+= -- 1173
+> -- 267
+< -- 56
++ -- 214
+- -- 84
+* -- 693
+:= -- 1526
+add.period$ -- 48
+call.type$ -- 20
+change.case$ -- 126
+chr.to.int$ -- 31
+cite$ -- 12
+duplicate$ -- 692
+empty$ -- 990
+format.name$ -- 402
+if$ -- 2903
 int.to.chr$ -- 5
 int.to.str$ -- 3
-missing$ -- 160
-newline$ -- 42
-num.names$ -- 25
-pop$ -- 176
+missing$ -- 261
+newline$ -- 70
+num.names$ -- 55
+pop$ -- 292
 preamble$ -- 1
-purify$ -- 37
+purify$ -- 59
 quote$ -- 0
-skip$ -- 898
+skip$ -- 1151
 stack$ -- 1
-substring$ -- 265
-swap$ -- 122
-text.length$ -- 4
+substring$ -- 426
+swap$ -- 222
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 10
 warning$ -- 0
-while$ -- 37
+while$ -- 77
 width$ -- 0
-write$ -- 98
+write$ -- 187
 (There was 1 error message)

@@ -5,6 +5,7 @@
 #include <pigpio.h> // Library Pi
 #include <signal.h> // Linux Signal Library 
 #include <sys/time.h> // Linux Timer
+#include "GIDXml.h" //Headers Functions of XmlReader
 
 #ifndef DEF_DMSDisplay
 	

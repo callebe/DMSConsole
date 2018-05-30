@@ -174,6 +174,8 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 
 	int Failure = 2;
 	Panel_ID *Last = NULL;
+	Panel_ID *First = NULL;
+
 	char CHKS = (unsigned char)(SOH + 0xFF + 0x00 + STX + 0x00 + 0x01 + 0x22 + ETX);
 	//                         <Dest> <Orig>         <N>    <Type>  
 	unsigned char Tx[9] = {SOH, 0xFF, 0x00, STX, 0x00, 0x01, 0x22, ETX, CHKS};
@@ -202,10 +204,10 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 					if(Last == NULL){
 						Last = (Panel_ID *)malloc(sizeof(Panel_ID));
 						Last->Previous = NULL;
+						First = Last;
 
 					}
 					else{
-						while(Last->Next != NULL) Last = Last->Next;
 						Last->Next = (Panel_ID *)malloc(sizeof(Panel_ID));
 						Last->Next->Previous = Last;
 						Last = Last->Next;
@@ -227,6 +229,7 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 							}
 							free(Last);
 							Last = NULL;
+							First = NULL;
 						}
 
 					}
@@ -242,6 +245,7 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 						}
 						free(Last);
 						Last = NULL;
+						First = NULL;
 					}
 					
 				} 
@@ -251,61 +255,84 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 
 	}
 
-	return Last;
+	return First;
 
 }
 
-// //Send Mensage of Information
-// int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Line *ActualLine, Destination *ActualDestination, Panel_ID *PanelList){
+//Send Mensage of Information
+int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *RealPanels){
 
-// 	char Rx = 0;
-// 	//Transmission info
-// 	char Tx[7];
-// 	// SOH
-// 	Tx[0] = SOH;
-// 	//Destination
-// 	Tx[1] = PanelList->Adress;
-// 	//Origin
-// 	Tx[2] = 0x00;
-// 	// Start Text
-// 	Tx[3] = STX;
-// 	// Number of Bytes
-// 	Tx[4] = N;
-// 	// Type od Data
-// 	Tx[5] = 0x21;
-// 	// Data
-// 	// -- Index
-// 	Tx[6] = Index;
-// 	// -- Page general Info
-// 	Tx[7] = ActualDestination->NumberOfPages;
+	Panel *ExpectedPanels;
+	char Rx = 0;
+	char Tx[7];
+	int cont;
 
-// 	// End of text
-// 	Tx[7] = ETX;
-// 	// CHKS 
-// 	Tx[8] = CHKS;
+	// SOH
+	Tx[0] = SOH;
+	//Destination
+	Tx[1] = RealPanels->Adress;
+	//Origin
+	Tx[2] = 0x00;
+	// Start Text
+	Tx[3] = STX;
+	// Number of Bytes
+	Tx[4] = N;
+	// Type od Data
+	Tx[5] = 0x21;
+	// Data
+	// -- Index
+	Tx[6] = Index;
+	// -- Page general Info
+	Page *Last = ExpectedPanels->List;
+	for(cont = 0 ; (cont<LimitOfPages-1 && Last != NULL); cont++){
+		Tx[7+cont] = Last->PostingTime;
+		Last = Last->Next;
+	}
+	Tx[7+cont] = (ExpectedPanels->NumberOfPages << 6) + Tx[7+cont];
+	// -- Page
+	Tx[8+cont] = ;
+	Tx[9+cont] = ;
+	Tx[10] = ;
+	// End of text
+	Tx[7] = ETX;
+	// CHKS 
+	Tx[8] = CHKS;
+
+	// Constants
+	while(RealPanels != NULL){
+		ExpectedPanels = ActualDestination->List;
+		while(ExpectedPanels != NULL){
+			if((RealPanels->Lines == RealPanels->Line) && (RealPanels->Columns == RealPanels->Columns)){
+				
+
+			}
+			ExpectedPanels = ExpectedPanels->Next;
+		}
+		RealPanels = RealPanels->Next;
+	}
 
 
-// 	char CHKS = (unsigned char)(SOH + 0xFF + 0x00 + STX + 0x01 + 0x22 + ETX);
-// 	unsigned char Tx[8] = {SOH, 0xFF, 0x00, STX, 0x01, 0x22, ETX, CHKS};
-// 	unsigned char ConfirmReceiver = 0;
-// 	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x21 + ETX + CHKS);
-// 	//                <Dest>      <N>  <Type>  
-// 	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x21, ETX, CHKS};
+	char CHKS = (unsigned char)(SOH + 0xFF + 0x00 + STX + 0x01 + 0x22 + ETX);
+	unsigned char Tx[8] = {SOH, 0xFF, 0x00, STX, 0x01, 0x22, ETX, CHKS};
+	unsigned char ConfirmReceiver = 0;
+	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x21 + ETX + CHKS);
+	//                <Dest>      <N>  <Type>  
+	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x21, ETX, CHKS};
 	
 	
-// 	for(int i = 0; (i<3 || ConfirmReceiver == 0); i++){
-// 		// Transmitting
-// 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-// 		// Receiving
-// 		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-// 		if(Rx == ACK) ConfirmReceiver = 1;
+	for(int i = 0; (i<3 || ConfirmReceiver == 0); i++){
+		// Transmitting
+		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
+		// Receiving
+		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
+		if(Rx == ACK) ConfirmReceiver = 1;
 
-// 	}
+	}
 
-// 	if(ConfirmReceiver == 0) return 1;
-// 	return 0;
+	if(ConfirmReceiver == 0) return 1;
+	return 0;
 
-// }
+}
 
 // //Send Mensage of Reset for All displays
 // int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){

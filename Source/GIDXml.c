@@ -9,30 +9,15 @@ int LoadField (FILE *Routes, Page *NewPage){
 	char BufferNum[8];
 	int Counter = 0;
 	unsigned char Break = 0;
+	
 	Buffer[BufferLimit-1] = '\0';
+	NewPage->NumberOfTextFields = 0;
 
 	while(!feof(Routes) && (Break != 1)){
 		Buffer[BufferLimit-2] = fgetc(Routes);
 		if((strncmp(&Buffer[BufferLimit-8], "Number ", 7) == 0) || (strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)){
-			if(Last == NULL){
-				NewPage->List = (Field *)malloc(sizeof(Field));
-				Last = NewPage->List;
-				Last->Previous = NULL;
-
-			}
-			else{
-				while(Last->Next != NULL) Last = Last->Next;
-				Last->Next = (Field *)malloc(sizeof(Field));
-				Last->Next->Previous = Last;
-				Last = Last->Next;
-
-			}
-			Last->Next = NULL;
-			if((strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)) Last->type = 1;
-			else Last->type = 0;
-			for(int i = 0; i<(BufferLimit-1); i++){
-				Buffer[i] = Buffer[i+1];
-			}
+			if((strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)) Last[NewPage->NumberOfTextFields].Type = 1;
+			else Last[NewPage->NumberOfTextFields].Type = 0;
 			while(!feof(Routes) && (Buffer[BufferLimit-2] = fgetc(Routes)) != '>'){
 				if(strncmp(&Buffer[BufferLimit-9], "Effect=\"", 8) == 0){
 					Counter = 0;
@@ -42,10 +27,10 @@ int LoadField (FILE *Routes, Page *NewPage){
 						return 1;
 					}
 					BufferNum[Counter-1] = '\0';
-					if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last->Effect = 1;
+					if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last[NewPage->NumberOfTextFields].Effect = 1;
 					else{
-						if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last->Effect = 2;
-						else Last->Effect = 0;
+						if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last[NewPage->NumberOfTextFields].Effect = 2;
+						else Last[NewPage->NumberOfTextFields].Effect = 0;
 							
 					}
 				}
@@ -58,10 +43,10 @@ int LoadField (FILE *Routes, Page *NewPage){
 							return 1;
 						}
 						BufferNum[Counter-1] = '\0';
-						if(strncmp(&BufferNum[0], "Center", 6) == 0) Last->Align = 1;
+						if(strncmp(&BufferNum[0], "Center", 6) == 0) Last[NewPage->NumberOfTextFields].Align = 1;
 						else{
-							if(strncmp(&BufferNum[0], "Right", 5) == 0) Last->Align = 2;
-							else Last->Align = 0;
+							if(strncmp(&BufferNum[0], "Right", 5) == 0) Last[NewPage->NumberOfTextFields].Align = 2;
+							else Last[NewPage->NumberOfTextFields].Align = 0;
 						}
 
 					}
@@ -74,7 +59,7 @@ int LoadField (FILE *Routes, Page *NewPage){
 								return 1;
 							}
 							BufferNum[Counter-1] = '\0';
-							Last->FontHeight = atoi(BufferNum);
+							Last[NewPage->NumberOfTextFields].FontHeight = atoi(BufferNum);
 							Counter = 0;
 							while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
 							if(Counter < 1){
@@ -82,7 +67,7 @@ int LoadField (FILE *Routes, Page *NewPage){
 								return 1;
 							}
 							BufferNum[Counter-1] = '\0';
-							Last->FontWidth = atoi(BufferNum);
+							Last[NewPage->NumberOfTextFields].FontWidth = atoi(BufferNum);
 
 						}
 
@@ -92,14 +77,15 @@ int LoadField (FILE *Routes, Page *NewPage){
 				for(int i = 0; i<(BufferLimit-1); i++){
 					Buffer[i] = Buffer[i+1];
 				}
-			
+				
 			}
 			if(Buffer[BufferLimit-2] == '>'){
 				Counter = 0;
-			 	while(!feof(Routes) && (Last->Info[Counter++] = fgetc(Routes)) != '<');
-			 	Last->Info[Counter-1] = '\0';
+			 	while(!feof(Routes) && (Last[NewPage->NumberOfTextFields].Info[Counter++] = fgetc(Routes)) != '<');
+			 	Last[NewPage->NumberOfTextFields].Info[Counter-1] = '\0';
 
 			}
+			NewPage->NumberOfTextFields++;
 			
 		}
 		else{
@@ -111,7 +97,7 @@ int LoadField (FILE *Routes, Page *NewPage){
 		}
 	}
 	if(Break == 0){
-		printf("Error Page without Filds!\n\n");
+		printf("Error Page without Filds!\n");
 		return 1;
 	}
 	else 
@@ -122,35 +108,19 @@ int LoadField (FILE *Routes, Page *NewPage){
 //Function by Load Page
 int LoadPage (FILE *Routes, Panel *NewPanel){
 
-	Page *Last = NewPanel->List;
+	Page *List = NewPanel->List;
 	char Buffer[BufferLimit];
 	char BufferNum[8];
 	unsigned char Break = 0;
 	int Counter = 0;
+	
 	Buffer[BufferLimit-1] = '\0';
+	NewPanel->NumberOfPages = 0;
 
 
 	while(!feof(Routes) && (Break != 1)){
 		Buffer[BufferLimit-2] = fgetc(Routes);
 		if(strncmp(&Buffer[BufferLimit-6], "Page ", 5) == 0){
-			if(Last == NULL){
-				NewPanel->List = (Page *)malloc(sizeof(Page));
-				Last = NewPanel->List;
-				Last->Previous = NULL;
-
-			}
-			else{
-				while(Last->Next != NULL) Last = Last->Next;
-				Last->Next = (Page *)malloc(sizeof(Page));
-				Last->Next->Previous = Last;
-				Last = Last->Next;
-
-			}
-			Last->List = NULL;
-			Last->Next = NULL;
-			for(int i = 0; i<(BufferLimit-1); i++){
-				Buffer[i] = Buffer[i+1];
-			}
 			while(!feof(Routes) && (Buffer[BufferLimit-2] = fgetc(Routes)) != '>'){
 				if(strncmp(&Buffer[BufferLimit-5], "ID=\"", 4) == 0){
 					Counter = 0;
@@ -160,18 +130,55 @@ int LoadPage (FILE *Routes, Panel *NewPanel){
 						return 1;
 					}
 					BufferNum[Counter-1] = '\0';
-					Last->ID = atoi(BufferNum);
+					List[NewPanel->NumberOfPages].ID = atoi(BufferNum);
 
+				}
+				else{
+					if(strncmp(&Buffer[BufferLimit-6], "SBC=\"", 5) == 0){
+						Counter = 0;
+						while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+						if(Counter < 1){
+							printf("Erro, Xml Reader found a Page without Space Between Characters!\n");
+							return 1;
+						}
+						BufferNum[Counter-1] = '\0';
+						List[NewPanel->NumberOfPages].SpaceBetweenCharacters = atoi(BufferNum);
+					}
+					else{
+						if(strncmp(&Buffer[BufferLimit-10], "SBNAndC=\"", 9) == 0){
+							Counter = 0;
+							while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+							if(Counter < 1){
+								printf("Erro, Xml Reader found a Page without Space Between Characters and Characters!\n");
+								return 1;
+							}
+							BufferNum[Counter-1] = '\0';
+							List[NewPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = atoi(BufferNum);
+						}
+						else{
+							if(strncmp(&Buffer[BufferLimit-5], "PT=\"", 4) == 0){
+								Counter = 0;
+								while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+								if(Counter < 1){
+									printf("Erro, Xml Reader found a Page without Posting Time!\n");
+									return 1;
+								}
+								BufferNum[Counter-1] = '\0';
+								List[NewPanel->NumberOfPages].PostingTime = atoi(BufferNum);
+							}
+
+						}
+					}
 				}
 				for(int i = 0; i<(BufferLimit-1); i++){
 					Buffer[i] = Buffer[i+1];
 				}
 			}
-			if(LoadField(Routes, Last)){
+			if(LoadField(Routes, &List[NewPanel->NumberOfPages])){
 			 	return 1;
 			 	
 			}
-
+			NewPanel->NumberOfPages++;
 		}
 		else{
 			if(strncmp(&Buffer[BufferLimit-9], "</Panel>", 8) == 0) Break = 1;
@@ -216,7 +223,6 @@ int LoadPanel (FILE *Routes, Destination *NewDestination){
 				Last->Next->Previous = Last;
 				Last = Last->Next;
 			}
-			Last->List = NULL;
 			Last->Next = NULL;
 			for(int i = 0; i<(BufferLimit-1); i++){
 				Buffer[i] = Buffer[i+1];

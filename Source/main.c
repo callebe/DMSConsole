@@ -7,7 +7,6 @@
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
 
-
 // -------- Main Function
 int main (void){
 
@@ -47,12 +46,37 @@ int main (void){
 	if(VectorOfPanels == NULL) printf("Dont have any Panel in this system!\n");
 	else{
 		Panel_ID *Last = VectorOfPanels;
-		while(Last->Previous = NULL){
+		while(Last->Next = NULL){
 			printf("--> %x %x %x %x \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
-			Last = Last->Previous;
+			Last = Last->Next;
 		}
-		printf("--> %x %x %x %x \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
+		printf("--> %d %d %d %d \n", Last->Adress, Last->Lines, Last->Columns, Last->SuportForAlternativeDestinations);
 
+	}
+
+	//Verification of XML
+	Line *LastLine =  ActualGroup->List;
+	while(LastLine != NULL){
+		printf("--------------------------------------------------------\n");
+		printf("Linha : %s - %s\n", LastLine->Number, LastLine->Name);
+		Destination *LastDestination = LastLine->List;
+		while(LastDestination!=NULL){
+			printf("###########################\n");
+			printf("Destino : %s \n", LastDestination->Name);
+			Panel *IP = LastDestination->List;
+			while(IP != NULL){
+				printf("--> Painel %d x %d - NP : %d  ::\n", IP->Line, IP->Columns, IP->NumberOfPages);
+				for(int counterx = 0; counterx < LimitOfPages; counterx++){
+					printf("::Pagina %d : SBC %d - SBNAndC %d - PT %d - NumberOfTextFields %d \n", IP->List[counterx].ID, IP->List[counterx].SpaceBetweenCharacters, IP->List[counterx].SpaceBetweenNumberAndCharacters, IP->List[counterx].PostingTime, IP->List[counterx].NumberOfTextFields);
+					for(int countery = 0; countery < LimitOfFields; countery++){
+						printf("... %d:%d Campos Tipo %d, Mensagem : %s, Config: Effect %d - Align %d - FontWidth : %d - FontHeight : %d \n", counterx, countery, IP->List[counterx].List[countery].Type, IP->List[counterx].List[countery].Info, IP->List[counterx].List[countery].Effect, IP->List[counterx].List[countery].Align, IP->List[counterx].List[countery].FontWidth, IP->List[counterx].List[countery].FontHeight);
+					}
+				}
+				IP = IP->Next;
+			}
+			LastDestination = LastDestination->Next;
+		}
+		LastLine = LastLine->Next;
 	}
 
 	//Allow main page in display

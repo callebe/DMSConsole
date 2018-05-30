@@ -231,18 +231,17 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
   Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
 
 
-    Button Bt = Get_Buttom_Event (uart0_filestream);
+  Button Bt = Get_Buttom_Event (uart0_filestream);
 
   if(Bt.PagId == MainID){
     switch (Bt.ButtonId){
-        case ButtonNextDestination:
-            if(Last != NULL){
+      case ButtonNextDestination:
+        if(Last != NULL){
           if(Last->Next != NULL) Last = Last->Next;
           *ActualDestination = Last;
           Write_String (uart0_filestream, AdressNameDestination, Last->Name);
-
-            } 
-            break;
+        } 
+        break;
 
       case ButtonPreviousDestination:
         if(Last != NULL){
