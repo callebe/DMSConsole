@@ -10,6 +10,12 @@
 {ADAFRUIT, Industries. \textbf{Introducing the Raspberry Pi Zero}.
 [S.l.], 2018.}
 
+\bibitem[Bray \textit{et al.} 1997]{Bray}
+\abntrefinfo{Bray \textit{et al.}}{BRAY \textit{et al.}}{1997}
+{BRAY, Tim; PAOLI, Jean; SPERBERG-MCQUEEN, C~Michael; MALER, Eve; YERGEAU,
+  Fran{\c{c}}ois. Extensible markup language (xml).
+\textbf{World Wide Web Journal}, v.~2, n.~4, p. 27--66, 1997.}
+
 \bibitem[Consola de Indicador de Destino - Protocolo de Comunicação]{DMSManual}
 \abntrefinfo{Consola\ldots}{CONSOLA\ldots}{}
 {CONSOLA de Indicador de Destino - Protocolo de Comunicação.

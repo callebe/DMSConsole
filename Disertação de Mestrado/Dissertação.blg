@@ -12,7 +12,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
-You're missing a field name---line 89 of file bibliografia.bib
+You're missing a field name---line 109 of file bibliografia.bib
  :  
  :  %author  = "",
 (Error may have been on previous line)
@@ -33,45 +33,45 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://abntex.codigolivre.org.br                        |
 +---------------------------------------------------------+
-You've used 18 entries,
+You've used 19 entries,
             6480 wiz_defined-function locations,
-            1243 strings with 11098 characters,
-and the built_in function-call counts, 12063 in all, are:
-= -- 1173
-> -- 267
-< -- 56
-+ -- 214
-- -- 84
-* -- 693
-:= -- 1526
-add.period$ -- 48
-call.type$ -- 20
-change.case$ -- 126
-chr.to.int$ -- 31
-cite$ -- 12
-duplicate$ -- 692
-empty$ -- 990
-format.name$ -- 402
-if$ -- 2903
+            1250 strings with 11271 characters,
+and the built_in function-call counts, 13137 in all, are:
+= -- 1241
+> -- 321
+< -- 60
++ -- 236
+- -- 99
+* -- 787
+:= -- 1662
+add.period$ -- 51
+call.type$ -- 21
+change.case$ -- 143
+chr.to.int$ -- 35
+cite$ -- 13
+duplicate$ -- 743
+empty$ -- 1051
+format.name$ -- 484
+if$ -- 3147
 int.to.chr$ -- 5
 int.to.str$ -- 3
-missing$ -- 261
-newline$ -- 70
-num.names$ -- 55
-pop$ -- 292
+missing$ -- 282
+newline$ -- 75
+num.names$ -- 60
+pop$ -- 317
 preamble$ -- 1
-purify$ -- 59
+purify$ -- 64
 quote$ -- 0
-skip$ -- 1151
+skip$ -- 1205
 stack$ -- 1
-substring$ -- 426
-swap$ -- 222
-text.length$ -- 6
+substring$ -- 468
+swap$ -- 253
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 10
 warning$ -- 0
-while$ -- 77
+while$ -- 86
 width$ -- 0
-write$ -- 187
+write$ -- 204
 (There was 1 error message)

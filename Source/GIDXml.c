@@ -4,88 +4,159 @@
 //Function by Load Field
 int LoadField (FILE *Routes, Page *NewPage){
 
-	Field *Last = NewPage->List;
+	Field *Last;
 	char Buffer[BufferLimit];
 	char BufferNum[8];
 	int Counter = 0;
 	unsigned char Break = 0;
 	
 	Buffer[BufferLimit-1] = '\0';
-	NewPage->NumberOfTextFields = 0;
+	NewPage->NumberOfFields = 0;
 
 	while(!feof(Routes) && (Break != 1)){
 		Buffer[BufferLimit-2] = fgetc(Routes);
 		if((strncmp(&Buffer[BufferLimit-8], "Number ", 7) == 0) || (strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)){
-			if((strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)) Last[NewPage->NumberOfTextFields].Type = 1;
-			else Last[NewPage->NumberOfTextFields].Type = 0;
-			while(!feof(Routes) && (Buffer[BufferLimit-2] = fgetc(Routes)) != '>'){
-				if(strncmp(&Buffer[BufferLimit-9], "Effect=\"", 8) == 0){
-					Counter = 0;
-					while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
-					if(Counter < 1){
-						printf("Erro, Xml Reader found a Fild without Effect!\n");
-						return 1;
-					}
-					BufferNum[Counter-1] = '\0';
-					if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last[NewPage->NumberOfTextFields].Effect = 1;
-					else{
-						if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last[NewPage->NumberOfTextFields].Effect = 2;
-						else Last[NewPage->NumberOfTextFields].Effect = 0;
-							
-					}
-				}
-				else{
-					if(strncmp(&Buffer[BufferLimit-8], "Align=\"", 7) == 0){
+			if((strncmp(&Buffer[BufferLimit-6], "Text ", 5) == 0)){
+				Last = &NewPage->TextList[0];
+				while(!feof(Routes) && (Buffer[BufferLimit-2] = fgetc(Routes)) != '>'){
+					if(strncmp(&Buffer[BufferLimit-9], "Effect=\"", 8) == 0){
 						Counter = 0;
 						while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
 						if(Counter < 1){
-							printf("Erro, Xml Reader found a Fild without Align!\n");
+							printf("Erro, Xml Reader found a Fild without Effect!\n");
 							return 1;
 						}
 						BufferNum[Counter-1] = '\0';
-						if(strncmp(&BufferNum[0], "Center", 6) == 0) Last[NewPage->NumberOfTextFields].Align = 1;
+						if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last[NewPage->NumberOfFields].Effect = 1;
 						else{
-							if(strncmp(&BufferNum[0], "Right", 5) == 0) Last[NewPage->NumberOfTextFields].Align = 2;
-							else Last[NewPage->NumberOfTextFields].Align = 0;
+							if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last[NewPage->NumberOfFields].Effect = 2;
+							else Last[NewPage->NumberOfFields].Effect = 0;
+								
 						}
-
 					}
 					else{
-						if(strncmp(&Buffer[BufferLimit-7], "Font=\"", 6) == 0){
-							Counter = 0;
-							while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != 'x' && Counter<8);
-							if(Counter < 1){
-								printf("Erro, Xml Reader found a Fild without Font!\n");
-								return 1;
-							}
-							BufferNum[Counter-1] = '\0';
-							Last[NewPage->NumberOfTextFields].FontHeight = atoi(BufferNum);
+						if(strncmp(&Buffer[BufferLimit-8], "Align=\"", 7) == 0){
 							Counter = 0;
 							while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
 							if(Counter < 1){
-								printf("Erro, Xml Reader found a Fild without Font!\n");
+								printf("Erro, Xml Reader found a Fild without Align!\n");
 								return 1;
 							}
 							BufferNum[Counter-1] = '\0';
-							Last[NewPage->NumberOfTextFields].FontWidth = atoi(BufferNum);
+							if(strncmp(&BufferNum[0], "Center", 6) == 0) Last[NewPage->NumberOfFields].Align = 1;
+							else{
+								if(strncmp(&BufferNum[0], "Right", 5) == 0) Last[NewPage->NumberOfFields].Align = 2;
+								else Last[NewPage->NumberOfFields].Align = 0;
+							}
+
+						}
+						else{
+							if(strncmp(&Buffer[BufferLimit-7], "Font=\"", 6) == 0){
+								Counter = 0;
+								while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != 'x' && Counter<8);
+								if(Counter < 1){
+									printf("Erro, Xml Reader found a Fild without Font!\n");
+									return 1;
+								}
+								BufferNum[Counter-1] = '\0';
+								Last[NewPage->NumberOfFields].FontHeight = atoi(BufferNum);
+								Counter = 0;
+								while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+								if(Counter < 1){
+									printf("Erro, Xml Reader found a Fild without Font!\n");
+									return 1;
+								}
+								BufferNum[Counter-1] = '\0';
+								Last[NewPage->NumberOfFields].FontWidth = atoi(BufferNum);
+
+							}
 
 						}
 
 					}
+					for(int i = 0; i<(BufferLimit-1); i++){
+						Buffer[i] = Buffer[i+1];
+					}
+					
+				}
+				if(Buffer[BufferLimit-2] == '>'){
+					Counter = 0;
+				 	while(!feof(Routes) && (Last[NewPage->NumberOfFields].Info[Counter++] = fgetc(Routes)) != '<');
+				 	Last[NewPage->NumberOfFields].Info[Counter-1] = '\0';
 
 				}
-				for(int i = 0; i<(BufferLimit-1); i++){
-					Buffer[i] = Buffer[i+1];
-				}
-				
+				NewPage->NumberOfFields++;
 			}
-			if(Buffer[BufferLimit-2] == '>'){
-				Counter = 0;
-			 	while(!feof(Routes) && (Last[NewPage->NumberOfTextFields].Info[Counter++] = fgetc(Routes)) != '<');
-			 	Last[NewPage->NumberOfTextFields].Info[Counter-1] = '\0';
+			else{
+				Last = &NewPage->NumberList;
+				while(!feof(Routes) && (Buffer[BufferLimit-2] = fgetc(Routes)) != '>'){
+					if(strncmp(&Buffer[BufferLimit-9], "Effect=\"", 8) == 0){
+						Counter = 0;
+						while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+						if(Counter < 1){
+							printf("Erro, Xml Reader found a Fild without Effect!\n");
+							return 1;
+						}
+						BufferNum[Counter-1] = '\0';
+						if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last->Effect = 1;
+						else{
+							if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last->Effect = 2;
+							else Last->Effect = 0;
+								
+						}
+					}
+					else{
+						if(strncmp(&Buffer[BufferLimit-8], "Align=\"", 7) == 0){
+							Counter = 0;
+							while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+							if(Counter < 1){
+								printf("Erro, Xml Reader found a Fild without Align!\n");
+								return 1;
+							}
+							BufferNum[Counter-1] = '\0';
+							if(strncmp(&BufferNum[0], "Center", 6) == 0) Last->Align = 1;
+							else{
+								if(strncmp(&BufferNum[0], "Right", 5) == 0) Last->Align = 2;
+								else Last->Align = 0;
+							}
 
+						}
+						else{
+							if(strncmp(&Buffer[BufferLimit-7], "Font=\"", 6) == 0){
+								Counter = 0;
+								while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != 'x' && Counter<8);
+								if(Counter < 1){
+									printf("Erro, Xml Reader found a Fild without Font!\n");
+									return 1;
+								}
+								BufferNum[Counter-1] = '\0';
+								Last->FontHeight = atoi(BufferNum);
+								Counter = 0;
+								while(!feof(Routes) && (BufferNum[Counter++] = fgetc(Routes)) != '\"' && Counter<8);
+								if(Counter < 1){
+									printf("Erro, Xml Reader found a Fild without Font!\n");
+									return 1;
+								}
+								BufferNum[Counter-1] = '\0';
+								Last->FontWidth = atoi(BufferNum);
+
+							}
+
+						}
+
+					}
+					for(int i = 0; i<(BufferLimit-1); i++){
+						Buffer[i] = Buffer[i+1];
+					}
+					
+				}
+				if(Buffer[BufferLimit-2] == '>'){
+					Counter = 0;
+				 	while(!feof(Routes) && (Last[NewPage->NumberOfFields].Info[Counter++] = fgetc(Routes)) != '<');
+				 	Last->Info[Counter-1] = '\0';
+
+				}
 			}
-			NewPage->NumberOfTextFields++;
 			
 		}
 		else{
@@ -236,7 +307,7 @@ int LoadPanel (FILE *Routes, Destination *NewDestination){
 						return 1;
 					}
 					BufferNum[Counter-1] = '\0';
-					Last->Line = atoi(BufferNum);
+					Last->Lines = atoi(BufferNum);
 
 				}
 				else{

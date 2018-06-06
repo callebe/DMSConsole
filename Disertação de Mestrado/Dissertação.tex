@@ -19,6 +19,50 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{amsmath}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0,0.5,0}
+% Configurando layout para mostrar codigos C++
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\usepackage{color}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+\lstdefinelanguage{XML}
+{
+	morestring=[b]",
+	morestring=[s]{>}{<},
+	morecomment=[s]{<?}{?>},
+	stringstyle=\color{black},
+	identifierstyle=\color{darkblue},
+	keywordstyle=\color{cyan},
+	morekeywords={xmlns, Type, GID, Group, Line, Panel, Destination, Page, Text, Number}% list your attributes here
+}
+
+\lstdefinestyle{mystyle}{
+	language=XML,
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
 % A linha abaixo chama o pacote hyperref, configurado para usar o programa 
 % pdftex.exe. Se você utiliza outra forma de compilacao altere a linha abaixo 
 % com a opção adequada. Veja o manual do hyperref para saber as opções disponíveis 
@@ -182,7 +226,7 @@ Write here the English version of your Resumo...
 \chapter{Indicadores de Destino - DMS}
 	\input{Source/IndicadoresDeDestinoDMS.tex}
 	
-\chapter{Desenvolvimento da Aplicação DMSConsole}
+\chapter{\textit{Software} DMSConsole}
 	\input{Source/DesenvolvimentoAplicacao.tex}
 	
 \chapter{Montagem do Console de Indicação de Destinos}

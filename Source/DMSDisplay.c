@@ -5,6 +5,139 @@
 unsigned int InterruptFlagRealTimer = 0;
 unsigned int InterruptFlagVirtualTimer = 0;
 
+//Search Fonts
+unsigned char SearchFonts (unsigned char FontWidth, unsigned char FontHeight){
+
+	switch(FontHeight){
+		case (5):
+			switch(FontWidth){
+				case(5):
+					return 0;
+					break;
+
+				default:
+					return 0;
+			}
+			break;
+
+		case (7):
+			switch(FontWidth){
+				case(5):
+					return 1;
+					break;
+
+				default:
+					return 1;
+			}
+			break;
+
+		case (8):
+			switch(FontWidth){
+				case(6):
+					return 2;
+					break;
+
+				default:
+					return 2;
+			}
+			break;
+
+		case (11):
+			switch(FontWidth){
+				case(7):
+					return 3;
+					break;
+
+				default:
+					return 3;
+			}
+			break;
+
+		case (12):
+			switch(FontWidth){
+				case(7):
+					return 4;
+					break;
+
+				default:
+					return 4;
+			}
+			break;
+
+		case (13):
+			switch(FontWidth){
+				case(9):
+					return 5;
+					break;
+
+				default:
+					return 5;
+			}
+			break;
+
+		case (14):
+			switch(FontWidth){
+				case(9):
+					return 6;
+					break;
+
+				default:
+					return 6;
+			}
+			break;
+
+		case (15):
+			switch(FontWidth){
+				case(9):
+					return 7;
+					break;
+
+				default:
+					return 7;
+			}
+			break;
+
+		case (16):
+			switch(FontWidth){
+				case(9):
+					return 8;
+					break;
+
+				default:
+					return 8;
+			}
+			break;
+
+		case (17):
+			switch(FontWidth){
+				case(11):
+					return 9;
+					break;
+
+				default:
+					return 9;
+			}
+			break;
+
+		case (19):
+			switch(FontWidth){
+				case(11):
+					return 10;
+					break;
+
+				default:
+					return 10;
+			}
+			break;
+
+		default:
+			return 0;
+			break;
+		
+	}
+
+}
+
 //Bit Bang UART Transmission Function
 int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension){
 	
@@ -16,14 +149,14 @@ int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, in
 	gpioWrite(ActiveTx, 1);
 
 	//Delay for configure drive
-	Config_Real_Timer (0, 10, 0, 0);
+	Config_Real_Timer (0, 5, 0, 0);
 	while(InterruptFlagRealTimer == 0);
 
 	//Send mensage 
-	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT);
+	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT == 1);
 
 	//Delay for configure drive
-	Config_Real_Timer (0, Dimension+1, 0, 0);
+	Config_Real_Timer (0, Dimension+5, 0, 0);
 	while(InterruptFlagRealTimer == 0);
 
 	//Set ActiveTx GPIO pin to '0' for Transmitting mensage
@@ -260,76 +393,131 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 }
 
 //Send Mensage of Information
-int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *RealPanels){
+int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *ListOfPanels){
 
-	Panel *ExpectedPanels;
-	char Rx = 0;
-	char Tx[7];
+	Panel *LastPanel;
+	unsigned char Rx = 0;
+	unsigned char Tx[100];
+	char CHKS;
 	int cont;
+	int Counter;
+	int Control;
+	unsigned char VisualInformation;
+	unsigned char NumberOfTextLines;
+	unsigned char BytesForLineRepresentation;
+	unsigned char ConfirmReceiver;
 
-	// SOH
-	Tx[0] = SOH;
-	//Destination
-	Tx[1] = RealPanels->Adress;
-	//Origin
-	Tx[2] = 0x00;
-	// Start Text
-	Tx[3] = STX;
-	// Number of Bytes
-	Tx[4] = N;
-	// Type od Data
-	Tx[5] = 0x21;
-	// Data
-	// -- Index
-	Tx[6] = Index;
-	// -- Page general Info
-	Page *Last = ExpectedPanels->List;
-	for(cont = 0 ; (cont<LimitOfPages-1 && Last != NULL); cont++){
-		Tx[7+cont] = Last->PostingTime;
-		Last = Last->Next;
-	}
-	Tx[7+cont] = (ExpectedPanels->NumberOfPages << 6) + Tx[7+cont];
-	// -- Page
-	Tx[8+cont] = ;
-	Tx[9+cont] = ;
-	Tx[10] = ;
-	// End of text
-	Tx[7] = ETX;
-	// CHKS 
-	Tx[8] = CHKS;
+	while(ListOfPanels != NULL){
+		LastPanel = ActualDestination->List;
+		while(LastPanel != NULL){
+			if((LastPanel->Lines == ListOfPanels->Lines) && (LastPanel->Columns == ListOfPanels->Columns)){
+				printf(":::>> %d\n", LastPanel->NumberOfPages);
+				// SOH
+				Tx[0] = SOH;
+				//Destination
+				Tx[1] = ListOfPanels->Adress;
+				//Origin
+				Tx[2] = 0x00;
+				// Start Text
+				Tx[3] = STX;
+				// Type of Data
+				Tx[6] = 0x21;
+				// Data
+				// -- Index
+				Tx[7] = Index;
+				// -- Page general Info
+				//    NumberOfPages(2b) + PostingTime3(6b)
+				Tx[8] = (unsigned char)(((LastPanel->NumberOfPages) << 6) + (LastPanel->List[1].PostingTime%64));
+				//    PostingTime2(1B) 
+				Tx[9] = (unsigned char)(LastPanel->List[1].PostingTime);
+				//    PostingTime1(1B)
+				Tx[10] = (unsigned char)(LastPanel->List[0].PostingTime);
+				// -- STREAM ID
+				Tx[11] = 'A';
+				Tx[12] = 'S';
+				Tx[13] = 'C';
+				Tx[14] = 'I';
+				Tx[15] = 'I';
+				Control = 16;
+				// -- Page N info
+				for (cont = 0; (cont<LastPanel->NumberOfPages && cont<LimitOfPages); cont++){
+					//    Header
+            		VisualInformation = 0;
+            		NumberOfTextLines = 0;
+            		if(LastPanel->List[cont].NumberList.FontWidth == 0){
+            			if(LastPanel->List[cont].TextList[0].FontWidth == 0) VisualInformation = 3;
+            			else VisualInformation = 1;
+            		}
+            		else{
+            			if(LastPanel->List[cont].TextList[0].FontWidth == 0) VisualInformation = 0;
+            			else VisualInformation = 2;
+            		}
+            		for(Counter = 0; (Counter<4 && LastPanel->List[cont].NumberList.Info[Counter] != '\0'); Counter++);
+            		//    --> NumberOfLines + VisualInformation + NumberAlignment + BytesForLineRepresentation
+            		Tx[Control++] = ((LastPanel->List[cont].NumberOfFields % 4) << 6) + ((VisualInformation % 4) << 4) + ((LastPanel->List[cont].NumberList.Align % 4) << 2) + (Counter % 4);
+            		//    --> FildAlign1 + FildAlign2 + FildAlign3 + SpaceBetweenCharacters
+            		Tx[Control++] = ((LastPanel->List[cont].TextList[0].Align  % 4) << 6) + ((LastPanel->List[cont].TextList[1].Align % 4) << 4) + ((LastPanel->List[cont].TextList[2].Align % 4) << 2) + (LastPanel->List[cont].SpaceBetweenCharacters % 4);
+            		//    --> SpaceBetweenNumbersAndText + FxNumber + FxFild1 
+            		Tx[Control++] = ((LastPanel->List[cont].SpaceBetweenNumberAndCharacters % 16) << 4) + ((LastPanel->List[cont].NumberList.Effect % 4) << 2) + (LastPanel->List[cont].TextList[0].Effect % 4);
+            		//    --> FxFild2 + FxFild3  
+            		Tx[Control++] = ((LastPanel->List[cont].TextList[0].Effect % 16) << 4) + (LastPanel->List[cont].TextList[2].Effect % 16);
+            		//    --> ID FontNumber
+            		Tx[Control++] = SearchFonts(LastPanel->List[cont].NumberList.FontWidth, LastPanel->List[cont].NumberList.FontHeight);
+            		//    --> ID FontFild1
+            		Tx[Control++] = SearchFonts(LastPanel->List[cont].TextList[0].FontWidth, LastPanel->List[cont].TextList[0].FontHeight);
+           			//    --> ID FontFild2
+           			Tx[Control++] = SearchFonts(LastPanel->List[cont].TextList[1].FontWidth, LastPanel->List[cont].TextList[1].FontHeight);
+           			//    --> ID FontFild3
+           			Tx[Control++] = SearchFonts(LastPanel->List[cont].TextList[2].FontWidth, LastPanel->List[cont].TextList[2].FontHeight);
+            		// BUS LINE
+            		for(Counter = 0; (Counter<4 && LastPanel->List[cont].NumberList.Info[Counter] != '\0'); Counter++){
+            			Tx[Control++] = LastPanel->List[cont].NumberList.Info[Counter];
+            		}
+            		// INFO LINE
+            		if((VisualInformation  == 1) || (VisualInformation  == 2)){
+	            		for(int FildCounter = 0; FildCounter<LastPanel->List[cont].NumberOfFields; FildCounter++){
+		            		for(Counter = 0; (Counter<LimitOfCharPerLine && LastPanel->List[cont].TextList[FildCounter].Info[Counter] != '\0'); Counter++){
+		            			Tx[Control++] = LastPanel->List[cont].TextList[FildCounter].Info[Counter];
+		            		}
+		            		if(FildCounter+1 < LastPanel->List[cont].NumberOfFields) Tx[Control++] = 13;
+	            		}
 
-	// Constants
-	while(RealPanels != NULL){
-		ExpectedPanels = ActualDestination->List;
-		while(ExpectedPanels != NULL){
-			if((RealPanels->Lines == RealPanels->Line) && (RealPanels->Columns == RealPanels->Columns)){
-				
+            		}
+            		// CR
+            		Tx[Control++] = 13;
+            		// LF
+            		Tx[Control++] = 10;
+
+            	}
+            	// -- END
+                Tx[Control++] = 0x23;
+                // End of text
+				Tx[Control++] = ETX;
+                // Number of Bytes
+				Tx[4] = (unsigned char)(Control/256);
+				Tx[5] = (unsigned char)(Control%256);
+				// CHKS
+				CHKS = 0;
+				for(Counter = 0; Counter<Control; Counter++) CHKS = (unsigned char)(CHKS + Tx[Counter]);
+				Tx[Control++] = CHKS;
+				printf("-> CHKS %d, COntrol : %d\n", CHKS, Control);
+				// Transmiting Process
+				ConfirmReceiver = 0;
+				for(int i = 0; (i<1 && ConfirmReceiver == 0); i++){
+					// Transmitting
+					BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], Control+1);
+					// Receiving
+					BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1, 0, 100);
+					if(Rx == ACK) ConfirmReceiver = 1;
+				}
+				if(ConfirmReceiver == 0) return 1;
 
 			}
-			ExpectedPanels = ExpectedPanels->Next;
+			LastPanel = LastPanel->Next;
 		}
-		RealPanels = RealPanels->Next;
+		ListOfPanels = ListOfPanels->Next;
 	}
 
-
-	char CHKS = (unsigned char)(SOH + 0xFF + 0x00 + STX + 0x01 + 0x22 + ETX);
-	unsigned char Tx[8] = {SOH, 0xFF, 0x00, STX, 0x01, 0x22, ETX, CHKS};
-	unsigned char ConfirmReceiver = 0;
-	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x21 + ETX + CHKS);
-	//                <Dest>      <N>  <Type>  
-	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x21, ETX, CHKS};
-	
-	
-	for(int i = 0; (i<3 || ConfirmReceiver == 0); i++){
-		// Transmitting
-		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-		// Receiving
-		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-		if(Rx == ACK) ConfirmReceiver = 1;
-
-	}
-
-	if(ConfirmReceiver == 0) return 1;
 	return 0;
 
 }

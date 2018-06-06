@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.4.15)  30 MAY 2018 13:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.4.15)  6 JUN 2018 11:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -348,6 +348,31 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
+(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count123
+\lst@gtempboxa=\box56
+\lst@token=\toks27
+\lst@length=\count124
+\lst@currlwidth=\dimen135
+\lst@column=\count125
+\lst@pos=\count126
+\lst@lostspace=\dimen136
+\lst@width=\dimen137
+\lst@newlines=\count127
+\lst@lineno=\count128
+\lst@maxwidth=\dimen138
+
+(c:/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count129
+\lst@skipnumbers=\count130
+\lst@framebox=\box57
+)
+(c:/texlive/2017/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
 (c:/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
@@ -404,14 +429,14 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 (c:/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen135
-\Hy@linkcounter=\count123
-\Hy@pagecounter=\count124
+\@linkdim=\dimen139
+\Hy@linkcounter=\count131
+\Hy@pagecounter=\count132
 
 (c:/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count125
+\Hy@SavedSpaceFactor=\count133
 
 (c:/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -424,17 +449,17 @@ Package hyperref Info: Plain pages OFF on input line 4524.
 Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count126
+\c@Hy@tempcnt=\count134
 
 (c:/texlive/2017/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen136
-\Fld@menulength=\count127
-\Field@Width=\dimen137
-\Fld@charsize=\dimen138
+\XeTeXLinkMargin=\dimen140
+\Fld@menulength=\count135
+\Field@Width=\dimen141
+\Fld@charsize=\dimen142
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -444,16 +469,16 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6394.
 Package hyperref Info: PDF/A mode OFF on input line 6399.
 LaTeX Info: Redefining \ref on input line 6439.
 LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count128
-\c@Item=\count129
-\c@Hfootnote=\count130
+\Hy@abspage=\count136
+\c@Item=\count137
+\c@Hfootnote=\count138
 )
 Package hyperref Info: Driver: hpdftex.
 
 (c:/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count131
-\c@bookmark@seq@number=\count132
+\Fld@listcount=\count139
+\c@bookmark@seq@number=\count140
 
 (c:/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
@@ -479,8 +504,8 @@ File: nbr10520-2002.def 2003/10/13 v1.2 Definicoes para abntcite (NBR10520:2002
 )
 \minimumbiblabelwidth=\skip100
 \ABCIauxlen=\skip101
-\c@ABCIaux=\count133
-\c@ABCImax=\count134
+\c@ABCIaux=\count141
+\c@ABCImax=\count142
 
 (c:/texlive/2017/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
@@ -488,12 +513,12 @@ Package: relsize 2013/03/29 ver 4.1
 \biblabelsep=\skip102
 LaTeX Info: Redefining \newblock on input line 562.
 LaTeX Info: Redefining \cite on input line 589.
-\ABCItoken=\toks27
+\ABCItoken=\toks28
 )
 (c:/texlive/2017/texmf-dist/tex/latex/nomencl/nomencl.sty
 Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
-\nomlabelwidth=\dimen139
-\nom@tempdim=\dimen140
+\nomlabelwidth=\dimen143
+\nom@tempdim=\dimen144
 \nomitemsep=\skip103
 )
 (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -525,8 +550,8 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen141
-\Gin@req@width=\dimen142
+\Gin@req@height=\dimen145
+\Gin@req@width=\dimen146
 )
 (c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2016/05/15 v2.6 Conversion with epstopdf on the fly (HO)
@@ -551,157 +576,159 @@ e
 (./Dissertação.aux)
 \openout1 = `Dissertação.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 112.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 156.
 
  (c:/texlive/2017/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 112.
+(lastpage)             ! on input line 156.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 (c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count135
-\scratchdimen=\dimen143
-\scratchbox=\box56
-\nofMPsegments=\count136
-\nofMParguments=\count137
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count138
-\MPscratchDim=\dimen144
-\MPnumerator=\count139
-\makeMPintoPDFobject=\count140
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count143
+\scratchdimen=\dimen147
+\scratchbox=\box58
+\nofMPsegments=\count144
+\nofMParguments=\count145
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count146
+\MPscratchDim=\dimen148
+\MPnumerator=\count147
+\makeMPintoPDFobject=\count148
+\everyMPtoPDFconversion=\toks30
 )
-\AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 112.
+\AtBeginShipoutBox=\box59
+\c@lstlisting=\count149
+Package hyperref Info: Link coloring OFF on input line 156.
  (c:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (c:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count141
+\c@section@level=\count150
 )
-LaTeX Info: Redefining \ref on input line 112.
-LaTeX Info: Redefining \pageref on input line 112.
-LaTeX Info: Redefining \nameref on input line 112.
+LaTeX Info: Redefining \ref on input line 156.
+LaTeX Info: Redefining \pageref on input line 156.
+LaTeX Info: Redefining \nameref on input line 156.
 
 (./Dissertação.out) (./Dissertação.out)
 \@outlinefile=\write4
 \openout4 = `Dissertação.out'.
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 115.
-LaTeX Font Info:    Try loading font information for U+msa on input line 115.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 159.
+LaTeX Font Info:    Try loading font information for U+msa on input line 159.
 
 (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 115.
+LaTeX Font Info:    Try loading font information for U+msb on input line 159.
 
 (c:/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Capa_Automacao_Industrial.png, id=92, 596.9502pt x 844.8363pt>
+<Capa_Automacao_Industrial.png, id=104, 596.9502pt x 844.8363pt>
 File: Capa_Automacao_Industrial.png Graphic file (type png)
 <use Capa_Automacao_Industrial.png>
-Package pdftex.def Info: Capa_Automacao_Industrial.png  used on input line 115.
+Package pdftex.def Info: Capa_Automacao_Industrial.png  used on input line 159.
 
 (pdftex.def)             Requested size: 597.51347pt x 845.06628pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 115.
+(babel)             in language  on input line 159.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 115.
+(babel)             in language  on input line 159.
  [1
 
 {c:/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Capa_Automaca
 o_Industrial.png>]
-Underfull \hbox (badness 4886) in paragraph at lines 117--117
+Underfull \hbox (badness 4886) in paragraph at lines 161--161
 []\OT1/phv/m/n/12 Trabalho de Con-clus[]ao de Curso de
  []
 
 
-Underfull \hbox (badness 1107) in paragraph at lines 117--117
+Underfull \hbox (badness 1107) in paragraph at lines 161--161
 \OT1/phv/m/n/12 gradua[][]ao, apre-sen-tado []a dis-ci-plina de
  []
 
 
-Underfull \hbox (badness 6348) in paragraph at lines 117--117
+Underfull \hbox (badness 6348) in paragraph at lines 161--161
 \OT1/phv/m/n/12 Tra-ba-lho de Con-clus[]ao de Curso 2,
  []
 
 
-Underfull \hbox (badness 5189) in paragraph at lines 117--117
+Underfull \hbox (badness 5189) in paragraph at lines 161--161
 \OT1/phv/m/n/12 do Curso de En-ge-nha-ria El[]etrica da
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 117.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 117.
+(babel)             in language  on input line 161.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.117 \folhaderosto
+l.161 \folhaderosto
                     [1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 137.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 181.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
+(babel)             in language  on input line 186.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 142.
+(babel)             in language  on input line 186.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.142 \begin{Resumo}
+l.186 \begin{Resumo}
                      [2
 
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 145.
+(babel)             in language  on input line 189.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 145.
+(babel)             in language  on input line 189.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.145 \end{Resumo}
+l.189 \end{Resumo}
                    [3
 
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 194.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 194.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.150 \end{Abstract}
+l.194 \end{Abstract}
                      [4
 
 
@@ -715,17 +742,27 @@ LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <12> not available
 \openout5 = `Dissertação.toc'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 152.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 152.
+(babel)             in language  on input line 196.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.152 \sumario
+l.196 \sumario
                [5
 
-] (./Dissertação.lof
+]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 196.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 196.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.196 \sumario
+               [6] (./Dissertação.lof
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 3.
 )
@@ -733,15 +770,15 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
 \openout6 = `Dissertação.lof'.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 202.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 202.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.158 \listadetabelas
-                      [6
+l.202 \listadetabelas
+                      [7
 
 
 ] (./Dissertação.lot)
@@ -752,15 +789,15 @@ l.158 \listadetabelas
 
 No file Dissertação.nls.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 169.
+(babel)             in language  on input line 213.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 169.
+(babel)             in language  on input line 213.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.169 \listadesimbolos
-                       [7
+l.213 \listadesimbolos
+                       [8
 
 ]
 \instream=\read2
@@ -789,25 +826,25 @@ Overfull \hbox (2.54399pt too wide) in paragraph at lines 5--5
 \openout8 = `Dissertação.los'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--170
+Underfull \hbox (badness 10000) in paragraph at lines 1--214
 
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 217.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 217.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.173 \chapter
-              {Introdução} [8
+l.217 \chapter
+              {Introdução} [9
 
 ]
 Cap\'{\i }tulo 1.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 217.
 (./Source/Introducao.tex
 
 Package hyperref Warning: Suppressing empty link on input line 7.
@@ -816,7 +853,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 10.
-[9
+[10
 
 ]
 Package babel Info: Redefining portuges shorthand "|
@@ -833,7 +870,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 32.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 32.
- [10]
+ [11]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 33.
 Package babel Info: Redefining portuges shorthand "|
@@ -856,7 +893,7 @@ verted-to.pdf>
 nsoleNew-eps-converted-to.pdf Images/Introducao/PISOldConsoleNew.eps>
 (epstopdf)             \includegraphics on input line 45.
 Package epstopdf Info: Output file is already uptodate.
-<Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf, id=228, 481.8pt x 231
+<Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf, id=248, 481.8pt x 231
 .86626pt>
 File: Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf Graphic file (typ
 e pdf)
@@ -872,42 +909,39 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 55.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 55.
-[11 <./Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf>])
+[12 <./Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf>])
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 220.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
- [12]
+(babel)             in language  on input line 220.
+ [13]
 Cap\'{\i }tulo 2.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 220.
 (./Source/DisplayTOPWAY.tex
-Package epstopdf Info: Source file: <Images/IndicadoresDeDestinoDMS/EstruturaDe
-DadosGID.eps>
-(epstopdf)                    date: 2018-05-27 00:50:15
-(epstopdf)                    size: 52847 bytes
-(epstopdf)             Output file: <Images/IndicadoresDeDestinoDMS/EstruturaDe
-DadosGID-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-05-27 00:50:33
-(epstopdf)                    size: 20266 bytes
-(epstopdf)             Command: <repstopdf --outfile=Images/IndicadoresDeDestin
-oDMS/EstruturaDeDadosGID-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Es
-truturaDeDadosGID.eps>
+Package epstopdf Info: Source file: <Images/DisplayTOPWAY.eps>
+(epstopdf)                    date: 2018-06-02 14:24:27
+(epstopdf)                    size: 17376555 bytes
+(epstopdf)             Output file: <Images/DisplayTOPWAY-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2018-06-02 14:25:06
+(epstopdf)                    size: 1273626 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/DisplayTOPWAY-eps-c
+onverted-to.pdf Images/DisplayTOPWAY.eps>
 (epstopdf)             \includegraphics on input line 7.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf, id=25
-4, 944.52875pt x 120.45pt>
-File: Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf G
-raphic file (type pdf)
-<use Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf>
-Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps
--converted-to.pdf  used on input line 7.
-(pdftex.def)             Requested size: 450.69417pt x 57.47531pt.
+<Images/DisplayTOPWAY-eps-converted-to.pdf, id=274, 2539.4875pt x 4176.60374pt>
+
+File: Images/DisplayTOPWAY-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/DisplayTOPWAY-eps-converted-to.pdf>
+Package pdftex.def Info: Images/DisplayTOPWAY-eps-converted-to.pdf  used on inp
+ut line 7.
+(pdftex.def)             Requested size: 227.62206pt x 374.3486pt.
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/it' tried instead on input line 8.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/sl' tried instead on input line 8.
-<Images/TMLGraphicsEditor.JPG, id=256, 1027.58907pt x 545.78906pt>
+<Images/TMLGraphicsEditor.JPG, id=276, 1027.58907pt x 545.78906pt>
 File: Images/TMLGraphicsEditor.JPG Graphic file (type jpg)
 <use Images/TMLGraphicsEditor.JPG>
 Package pdftex.def Info: Images/TMLGraphicsEditor.JPG  used on input line 21.
@@ -916,25 +950,25 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 28.
- [13
+ [14
 
- <./Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf>])
-Overfull \hbox (17.69772pt too wide) in paragraph at lines 29--178
+ <./Images/DisplayTOPWAY-eps-converted-to.pdf>])
+Overfull \hbox (17.69772pt too wide) in paragraph at lines 29--222
 \OT1/phv/m/n/12 poss[]^^Pvel de-sig-nar []areas de texto na in-ter-face, tais [
 ]areas s[]ao pre-en-chi-das com informa[][]oes
  []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 223.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
-[14 <./Images/TMLGraphicsEditor.JPG>]
+(babel)             in language  on input line 223.
+[15 <./Images/TMLGraphicsEditor.JPG>]
 Cap\'{\i }tulo 3.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 223.
 (./Source/RaspberryPiZeroW.tex
 
-LaTeX Warning: Citation `AdafruitR' on page 15 undefined on input line 2.
+LaTeX Warning: Citation `AdafruitR' on page 16 undefined on input line 2.
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 2.
@@ -947,44 +981,39 @@ df>
 (epstopdf)                    size: 320176 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/RaspberryPiZeroW-ep
 s-converted-to.pdf Images/RaspberryPiZeroW.eps>
-(epstopdf)             \includegraphics on input line 10.
+(epstopdf)             \includegraphics on input line 12.
 Package epstopdf Info: Output file is already uptodate.
-<Images/RaspberryPiZeroW-eps-converted-to.pdf, id=278, 150.5625pt x 296.10625pt
+<Images/RaspberryPiZeroW-eps-converted-to.pdf, id=300, 150.5625pt x 296.10625pt
 >
 File: Images/RaspberryPiZeroW-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/RaspberryPiZeroW-eps-converted-to.pdf>
 Package pdftex.def Info: Images/RaspberryPiZeroW-eps-converted-to.pdf  used on 
-input line 10.
+input line 12.
 (pdftex.def)             Requested size: 113.81102pt x 223.83672pt.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 17.
+(babel)             in language  on input line 19.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 17.
-[15
+(babel)             in language  on input line 19.
+[16
 
 ]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 21.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 21.
- [16 <./Images/RaspberryPiZeroW-eps-converted-to.pdf>]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.12502> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 51.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 54.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 54.
- [17])
+ [17 <./Images/RaspberryPiZeroW-eps-converted-to.pdf>])
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 226.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 226.
  [18]
 Cap\'{\i }tulo 4.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 182.
+(babel)             in language  on input line 226.
 (./Source/IndicadoresDeDestinoDMS.tex
 Package epstopdf Info: Source file: <Images/IndicadoresDeDestinoDMS/IndicadorDe
 DestinoDMS.eps>
@@ -1000,7 +1029,7 @@ IndicadorDeDestinoDMS.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf, id=
-317, 4176.60374pt x 3132.70375pt>
+330, 4176.60374pt x 3132.70375pt>
 File: Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf
  Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf>
@@ -1021,7 +1050,7 @@ oDMS/ModeloAutocarro-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Modelo
 Autocarro.eps>
 (epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf, id=321, 7
+<Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf, id=334, 7
 88.9475pt x 478.78876pt>
 File: Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf Graph
 ic file (type pdf)
@@ -1047,7 +1076,7 @@ ted-to.pdf>
 nsole-eps-converted-to.pdf Images/Introducao/PISOldConsole.eps>
 (epstopdf)             \includegraphics on input line 36.
 Package epstopdf Info: Output file is already uptodate.
-<Images/Introducao/PISOldConsole-eps-converted-to.pdf, id=330, 527.9725pt x 158
+<Images/Introducao/PISOldConsole-eps-converted-to.pdf, id=343, 527.9725pt x 158
 .5925pt>
 File: Images/Introducao/PISOldConsole-eps-converted-to.pdf Graphic file (type p
 df)
@@ -1069,7 +1098,7 @@ inoDMS/IndicadorDeDestinoDMSConsole.eps>
 (epstopdf)             \includegraphics on input line 50.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted-to.p
-df, id=332, 2340.745pt x 1819.79875pt>
+df, id=345, 2340.745pt x 1819.79875pt>
 File: Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted
 -to.pdf Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted-
@@ -1098,14 +1127,14 @@ oDMS/UARTRS485-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/UARTRS485.ep
 s>
 (epstopdf)             \includegraphics on input line 70.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf, id=361, 1248.66
+<Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf, id=374, 1248.66
 5pt x 217.81375pt>
 File: Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf Graphic fil
 e (type pdf)
 <use Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted
 -to.pdf  used on input line 70.
-(pdftex.def)             Requested size: 364.19667pt x 63.52663pt.
+(pdftex.def)             Requested size: 432.48051pt x 75.4383pt.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 77.
 Package babel Info: Redefining portuges shorthand "|
@@ -1126,7 +1155,7 @@ ndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485.eps>
 (epstopdf)             \includegraphics on input line 86.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485-ep
-s-converted-to.pdf, id=377, 215.80624pt x 199.74625pt>
+s-converted-to.pdf, id=390, 215.80624pt x 199.74625pt>
 File: Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART4
 85-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART48
@@ -1152,7 +1181,7 @@ oDMS/TopologiaUART485A-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Topo
 logiaUART485A.eps>
 (epstopdf)             \includegraphics on input line 102.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf, id=390,
+<Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf, id=403,
  257.96375pt x 93.34875pt>
 File: Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf Gra
 phic file (type pdf)
@@ -1173,7 +1202,7 @@ oDMS/TopologiaUART485B-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Topo
 logiaUART485B.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf, id=391,
+<Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf, id=404,
  242.9075pt x 93.34875pt>
 File: Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf Gra
 phic file (type pdf)
@@ -1184,235 +1213,273 @@ onverted-to.pdf  used on input line 109.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 120.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 123.
+(babel)             in language  on input line 124.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 123.
+(babel)             in language  on input line 124.
  [23 <./Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUAR
 T485-eps-converted-to.pdf> <./Images/IndicadoresDeDestinoDMS/TopologiaUART485A-
 eps-converted-to.pdf> <./Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-c
 onverted-to.pdf>]
-<Images/IndicadoresDeDestinoDMS/GIDA.JPG, id=414, 602.25pt x 437.38406pt>
+<Images/IndicadoresDeDestinoDMS/GIDA.JPG, id=427, 602.25pt x 437.38406pt>
 File: Images/IndicadoresDeDestinoDMS/GIDA.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDA.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDA.JPG  used on input
- line 128.
+ line 129.
 (pdftex.def)             Requested size: 364.19667pt x 264.50804pt.
 
 
-Package hyperref Warning: Suppressing empty link on input line 131.
+Package hyperref Warning: Suppressing empty link on input line 132.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 137.
+(babel)             in language  on input line 138.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 137.
+(babel)             in language  on input line 138.
 [24 <./Images/IndicadoresDeDestinoDMS/GIDA.JPG>]
-<Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG, id=423, 929.72343pt x 672.
+<Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG, id=436, 929.72343pt x 672.
 26157pt>
 File: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG Graphic file (type jpg
 )
 <use Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG  us
-ed on input line 145.
+ed on input line 146.
 (pdftex.def)             Requested size: 223.06863pt x 161.29477pt.
-<Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG, id=424, 928.21782
+<Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG, id=437, 928.21782
 pt x 672.26157pt>
 File: Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG Graphic file 
 (type jpg)
 <use Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegr
-e.JPG  used on input line 152.
+e.JPG  used on input line 153.
 (pdftex.def)             Requested size: 223.06863pt x 161.55122pt.
 Package epstopdf Info: Source file: <Images/IndicadoresDeDestinoDMS/EstruturaDe
 DadosGID.eps>
-(epstopdf)                    date: 2018-05-27 00:50:15
-(epstopdf)                    size: 52847 bytes
+(epstopdf)                    date: 2018-06-03 00:46:35
+(epstopdf)                    size: 53900 bytes
 (epstopdf)             Output file: <Images/IndicadoresDeDestinoDMS/EstruturaDe
 DadosGID-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-05-27 00:50:33
-(epstopdf)                    size: 20266 bytes
+(epstopdf)                    date: 2018-06-03 00:46:50
+(epstopdf)                    size: 20178 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/IndicadoresDeDestin
 oDMS/EstruturaDeDadosGID-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Es
 truturaDeDadosGID.eps>
-(epstopdf)             \includegraphics on input line 172.
+(epstopdf)             \includegraphics on input line 173.
 Package epstopdf Info: Output file is already uptodate.
+<Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf, id=44
+1, 500.87125pt x 603.25375pt>
 File: Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf G
 raphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps
--converted-to.pdf  used on input line 172.
-(pdftex.def)             Requested size: 450.69417pt x 57.47531pt.
+-converted-to.pdf  used on input line 173.
+(pdftex.def)             Requested size: 318.66948pt x 383.82588pt.
 
 
-Package hyperref Warning: Suppressing empty link on input line 175.
+Package hyperref Warning: Suppressing empty link on input line 176.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 180.
 [25 <./Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG> <./Images/Indicadore
 sDeDestinoDMS/202_AliadosPasseioAlegre.JPG>]
-<Images/IndicadoresDeDestinoDMS/GIDB.JPG, id=436, 602.25pt x 434.37282pt>
+<Images/IndicadoresDeDestinoDMS/GIDB.JPG, id=451, 602.25pt x 434.37282pt>
 File: Images/IndicadoresDeDestinoDMS/GIDB.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDB.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDB.JPG  used on input
- line 188.
+ line 189.
 (pdftex.def)             Requested size: 204.85846pt x 147.75108pt.
-<Images/IndicadoresDeDestinoDMS/GIDC.JPG, id=437, 596.98032pt x 435.12563pt>
+<Images/IndicadoresDeDestinoDMS/GIDC.JPG, id=452, 596.98032pt x 435.12563pt>
 File: Images/IndicadoresDeDestinoDMS/GIDC.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDC.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDC.JPG  used on input
- line 195.
+ line 196.
 (pdftex.def)             Requested size: 204.85846pt x 149.31512pt.
-<Images/IndicadoresDeDestinoDMS/GIDD.JPG, id=438, 605.26125pt x 438.8897pt>
+<Images/IndicadoresDeDestinoDMS/GIDD.JPG, id=453, 605.26125pt x 438.8897pt>
 File: Images/IndicadoresDeDestinoDMS/GIDD.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDD.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDD.JPG  used on input
- line 202.
+ line 203.
 (pdftex.def)             Requested size: 204.85846pt x 148.54413pt.
-<Images/IndicadoresDeDestinoDMS/GIDF.JPG, id=439, 602.25pt x 438.13687pt>
+<Images/IndicadoresDeDestinoDMS/GIDF.JPG, id=454, 602.25pt x 438.13687pt>
 File: Images/IndicadoresDeDestinoDMS/GIDF.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDF.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDF.JPG  used on input
- line 209.
+ line 210.
 (pdftex.def)             Requested size: 204.85846pt x 149.0314pt.
 
 
-Package hyperref Warning: Suppressing empty link on input line 215.
+Package hyperref Warning: Suppressing empty link on input line 216.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 219.
+(babel)             in language  on input line 220.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 219.
-[26])
+(babel)             in language  on input line 220.
+[26 <./Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf>
+])
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 229.
  [27 <./Images/IndicadoresDeDestinoDMS/GIDB.JPG> <./Images/IndicadoresDeDestino
 DMS/GIDC.JPG> <./Images/IndicadoresDeDestinoDMS/GIDD.JPG> <./Images/Indicadores
 DeDestinoDMS/GIDF.JPG>]
 Cap\'{\i }tulo 5.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 185.
-(./Source/DesenvolvimentoAplicacao.tex)
+(babel)             in language  on input line 229.
+(./Source/DesenvolvimentoAplicacao.tex
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 188.
+(babel)             in language  on input line 6.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 188.
+(babel)             in language  on input line 10.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 10.
  [28
 
 ]
+LaTeX Font Info:    Try loading font information for OML+phv on input line 17.
+
+(c:/texlive/2017/texmf-dist/tex/latex/psnfss/omlphv.fd
+File: omlphv.fd 
+)
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 17.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 30.
+ [29]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 55.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 59.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 62.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 62.
+ [30]
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 73.
+
+
+Package hyperref Warning: Suppressing empty link on input line 94.
+
+)
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 232.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 232.
+ [31]
 Cap\'{\i }tulo 6.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 188.
+(babel)             in language  on input line 232.
 (./Source/MontagemConsoleIndicacaoDeDestinos.tex)
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 235.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 191.
- [29
+(babel)             in language  on input line 235.
+ [32
 
 ]
 Cap\'{\i }tulo 7.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 191.
+(babel)             in language  on input line 235.
 (./Source/Conclusao.tex)
 
-LaTeX Warning: Citation `SiteMoraes2010' on page 30 undefined on input line 216
+LaTeX Warning: Citation `SiteMoraes2010' on page 33 undefined on input line 260
 .
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 232.
+(hyperref)                than one, level fixed on input line 276.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 232.
+(babel)             in language  on input line 276.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 252.
+(babel)             in language  on input line 296.
 Package hyperref Info: bookmark level for unknown simbolo defaults to 0 on inpu
-t line 263.
+t line 307.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 271.
+(babel)             in language  on input line 315.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 271.
-[30
+(babel)             in language  on input line 315.
+[33
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 275.
+(babel)             in language  on input line 319.
 
 
-LaTeX Warning: Citation `Grainger1994' on page 31 undefined on input line 277.
+LaTeX Warning: Citation `Grainger1994' on page 34 undefined on input line 321.
 
 
-LaTeX Warning: Citation `Anderson1977' on page 31 undefined on input line 279.
+LaTeX Warning: Citation `Anderson1977' on page 34 undefined on input line 323.
 
 
-LaTeX Warning: Citation `Glover2002' on page 31 undefined on input line 279.
+LaTeX Warning: Citation `Glover2002' on page 34 undefined on input line 323.
 
 
-LaTeX Warning: Citation `abntex-doc' on page 31 undefined on input line 281.
+LaTeX Warning: Citation `abntex-doc' on page 34 undefined on input line 325.
 
 
-LaTeX Warning: Citation `SiteMoraes2010' on page 31 undefined on input line 283
+LaTeX Warning: Citation `SiteMoraes2010' on page 34 undefined on input line 327
 .
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 286.
+(babel)             in language  on input line 330.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 286.
-[31]
+(babel)             in language  on input line 330.
+[34]
 Cap\'{\i }tulo 8.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 286.
+(babel)             in language  on input line 330.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 287.
+(babel)             in language  on input line 331.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 332.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 289.
+(babel)             in language  on input line 333.
 (./Dissertação.bbl
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
- [32
+ [35
 
 ]
-Underfull \hbox (badness 1314) in paragraph at lines 20--23
+Underfull \hbox (badness 1314) in paragraph at lines 26--29
 []\OT1/phv/m/n/12 CP. \OT1/phv/b/n/12 CP, Com-boios de Por-tu-gal\OT1/phv/m/n/1
 2 . 2018. []$\OT1/cmtt/m/n/12 https : / / www . cp . pt / institucional / pt /
  []
 
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 345.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 301.
- [33
+(babel)             in language  on input line 345.
+ [36
 
 ]
 Anexo A.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 345.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 336.
+(babel)             in language  on input line 380.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 336.
-[34
+(babel)             in language  on input line 380.
+[37
 
 ]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 358.
+(babel)             in language  on input line 402.
  
 AED: lastpage setting LastPage
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 365.
+(babel)             in language  on input line 409.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 365.
-[35]
+(babel)             in language  on input line 409.
+[38]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 365.
+(babel)             in language  on input line 409.
 
 +===================================================================+
 | Modelo de teses e dissertações da UTFPR campus Pato Branco 
@@ -1425,13 +1492,13 @@ Package babel Info: Redefining portuges shorthand "|
 \outputstream=\write9
 \openout9 = `Dissertação.tmp'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 365.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 365.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
 (./Dissertação.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 365.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 365.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `Dissertação.out' has not changed.
-(rerunfilecheck)             Checksum: 36BB828DF18DE944113948BA58FB63A8;1711.
+(rerunfilecheck)             Checksum: 4C0F5CC2A4D19B2652BE2E163D3C9D52;1884.
 
 
 LaTeX Warning: There were undefined references.
@@ -1439,32 +1506,32 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 365.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 10264 strings out of 492982
- 153621 string characters out of 6136225
- 268327 words of memory out of 5000000
- 13444 multiletter control sequences out of 15000+600000
- 44639 words of font info for 97 fonts, out of 8000000 for 9000
+ 11961 strings out of 492982
+ 176023 string characters out of 6136225
+ 355203 words of memory out of 5000000
+ 15087 multiletter control sequences out of 15000+600000
+ 46399 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,13n,44p,1260b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,13n,47p,1336b,1891s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2017/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2017/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2017/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2017/t
-exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2017/texmf-dist/fonts
-/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.p
-fb>
-Output written on Dissertação.pdf (36 pages, 5762583 bytes).
+onts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2017/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2017/texmf-dist
+/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/ur
+w/helvetic/uhvbo8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhv
+r8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on Dissertação.pdf (39 pages, 7055697 bytes).
 PDF statistics:
- 553 PDF objects out of 1000 (max. 8388607)
- 455 compressed objects within 5 object streams
- 88 named destinations out of 1000 (max. 500000)
- 277 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 639 PDF objects out of 1000 (max. 8388607)
+ 534 compressed objects within 6 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 306 words of extra memory for PDF output out of 10000 (max. 10000000)
 

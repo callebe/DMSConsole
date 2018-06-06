@@ -1,24 +1,27 @@
 \babel@toc {brazil}{}
-\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{9}{chapter.1}
-\contentsline {section}{\numberline {1.1}Recurso Utilizados}{10}{section.1.1}
-\contentsline {section}{\numberline {1.2}Objetivos}{11}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Objetivos Gerais}{11}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Objetivos Espec\IeC {\'\i }ficos}{12}{subsection.1.2.2}
-\contentsline {chapter}{\numberline {2}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{13}{chapter.2}
-\contentsline {chapter}{\numberline {3}Raspberry Pi Zero W}{15}{chapter.3}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{10}{chapter.1}
+\contentsline {section}{\numberline {1.1}Recurso Utilizados}{11}{section.1.1}
+\contentsline {section}{\numberline {1.2}Objetivos}{12}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Objetivos Gerais}{12}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Objetivos Espec\IeC {\'\i }ficos}{13}{subsection.1.2.2}
+\contentsline {chapter}{\numberline {2}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{14}{chapter.2}
+\contentsline {chapter}{\numberline {3}Raspberry Pi Zero W}{16}{chapter.3}
 \contentsline {chapter}{\numberline {4}Indicadores de Destino - DMS}{19}{chapter.4}
 \contentsline {section}{\numberline {4.1}Interface de Comunica\c c\~ao UART-RS485}{21}{section.4.1}
 \contentsline {section}{\numberline {4.2}Gestor de Indica\c c\~ao de Destinos}{23}{section.4.2}
-\contentsline {chapter}{\numberline {5}Desenvolvimento da Aplica\c c\~ao DMSConsole}{28}{chapter.5}
-\contentsline {chapter}{\numberline {6}Montagem do Console de Indica\c c\~ao de Destinos}{29}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclus\~ao}{30}{chapter.7}
-\contentsline {subsection}{\numberline {7.0.1}Testes e exemplos de lista de siglas}{30}{subsection.7.0.1}
-\contentsline {subsection}{\numberline {7.0.2}Testes e exemplos de lista de s\IeC {\'\i }mbolos}{30}{subsection.7.0.2}
-\contentsline {subsection}{\numberline {7.0.3}Exemplos de cita\c c\~ao de refer\^encias bibliogr\'aficas}{31}{subsection.7.0.3}
-\contentsline {chapter}{\numberline {8}N\IeC {\'\i }vel 1 - Testes DE capitula\c c\~ao - Prim\'ario}{32}{chapter.8}
-\contentsline {section}{\numberline {8.1}N\IeC {\'\i }vel 2 - Secund\'ario}{32}{section.8.1}
-\contentsline {subsection}{\numberline {8.1.1}N\IeC {\'\i }vel 3 - Terci\'ario}{32}{subsection.8.1.1}
-\contentsline {subsubsection}{\numberline {8.1.1.1}N\IeC {\'\i }vel 4 - Quatern\'ario}{32}{subsubsection.8.1.1.1}
-\contentsline {paragraph}{\numberline {8.1.1.1.1}N\IeC {\'\i }vel 5 - Quin\'ario}{32}{paragraph.8.1.1.1.1}
-\contentsline {chapter}{Anexo{} A{} -{} Stellar Mystery Solved, Einstein Safe}{34}{chapter.annex.A}
-\contentsline {section}{\numberline {A.1}Exemplo de se\c c\~ao anexo}{35}{section.annex.A.1}
+\contentsline {chapter}{\numberline {5}\textit {Software} DMSConsole}{28}{chapter.5}
+\contentsline {section}{\numberline {5.1}Gerenciador XML}{28}{section.5.1}
+\contentsline {section}{\numberline {5.2}Gerenciador Interface}{30}{section.5.2}
+\contentsline {section}{\numberline {5.3}Gerenciador Pain\'eis}{30}{section.5.3}
+\contentsline {chapter}{\numberline {6}Montagem do Console de Indica\c c\~ao de Destinos}{32}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclus\~ao}{33}{chapter.7}
+\contentsline {subsection}{\numberline {7.0.1}Testes e exemplos de lista de siglas}{33}{subsection.7.0.1}
+\contentsline {subsection}{\numberline {7.0.2}Testes e exemplos de lista de s\IeC {\'\i }mbolos}{33}{subsection.7.0.2}
+\contentsline {subsection}{\numberline {7.0.3}Exemplos de cita\c c\~ao de refer\^encias bibliogr\'aficas}{34}{subsection.7.0.3}
+\contentsline {chapter}{\numberline {8}N\IeC {\'\i }vel 1 - Testes DE capitula\c c\~ao - Prim\'ario}{35}{chapter.8}
+\contentsline {section}{\numberline {8.1}N\IeC {\'\i }vel 2 - Secund\'ario}{35}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}N\IeC {\'\i }vel 3 - Terci\'ario}{35}{subsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.1.1}N\IeC {\'\i }vel 4 - Quatern\'ario}{35}{subsubsection.8.1.1.1}
+\contentsline {paragraph}{\numberline {8.1.1.1.1}N\IeC {\'\i }vel 5 - Quin\'ario}{35}{paragraph.8.1.1.1.1}
+\contentsline {chapter}{Anexo{} A{} -{} Stellar Mystery Solved, Einstein Safe}{37}{chapter.annex.A}
+\contentsline {section}{\numberline {A.1}Exemplo de se\c c\~ao anexo}{38}{section.annex.A.1}

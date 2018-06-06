@@ -8,14 +8,13 @@
 	#define DEF_GIDXml
 
 	#define LimitOfPages        3
-	#define LimitOfFields       4
+	#define LimitOfFields       3
 	#define LimitOfCharPerLine  29
 	#define BufferLimit         20
 	#define BufferLimitDisplay  512 //bits
 
 	//Type Define Field
 	typedef struct Field{
-		unsigned char Type; //0 by number, 1 by text
 		unsigned char Info[LimitOfCharPerLine];
 		unsigned char Effect; // If effect is 0 it will be define like None
 		unsigned char Align; // 0 -> Left, 1 -> Center and 2 -> Right
@@ -30,14 +29,15 @@
 		unsigned char SpaceBetweenCharacters;
 		unsigned char SpaceBetweenNumberAndCharacters;
 		unsigned char PostingTime;
-		unsigned char NumberOfTextFields;
-		Field List[LimitOfFields];
+		unsigned char NumberOfFields;
+		Field TextList[LimitOfFields];
+		Field NumberList;
 
 	}Page;
 
 	//Type Define Panel
 	typedef struct Panel{
-		int Line;
+		int Lines;
 		int Columns;
 		int NumberOfPages;
 		struct Panel *Next;

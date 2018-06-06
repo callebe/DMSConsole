@@ -36,6 +36,8 @@
 
 	}Panel_ID;
 
+	//Search Fonts
+	unsigned char SearchFonts (unsigned char FontWidth, unsigned char FontHeight);
 	//Bit Bang UART Transmission Function
 	int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, int Dimension);
 	//Bit Bang UART Receive Function
@@ -54,6 +56,8 @@
 	int Reconfig_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
 	//Request displays info function
 	Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
+	//Send Mensage of Information function
+int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *ListOfPanels);
 	//Send Mensage of Reset for All displays
 	// int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
 	// //Send Mensage of Clear for All displays
