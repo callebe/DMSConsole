@@ -126,6 +126,50 @@ int Buzzer_Touch_Off (int uart0_filestream, unsigned char Time_Interval){
 
 }
 
+//Integer 16b write function
+int Write_Integer16b (int uart0_filestream, unsigned int  Adress, int Value){
+
+  unsigned char Begin[2] = {Header, N16_Write};
+  unsigned char Finish[4] = {Tail_A, Tail_B, Tail_C, Tail_D};
+  unsigned char AuxAdress = 0;
+  unsigned char ConfirmCommand[2];
+ 
+  //Header and Command
+  Tx_UARTS0 (uart0_filestream, Begin, 2);
+  //Adress
+  AuxAdress = (unsigned char)(Adress / (16777216));
+  Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
+  Adress = Adress - AuxAdress*(16777216);
+  AuxAdress = (unsigned char)(Adress / (65536));
+  Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
+  Adress = Adress - AuxAdress*(65536);
+  AuxAdress = (unsigned char)(Adress / (256));
+  Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
+  AuxAdress = Adress - AuxAdress*(256);
+  Tx_UARTS0 (uart0_filestream, &AuxAdress,1);
+
+  //Integer 2 Bytes
+  unsigned char ValueConv = (unsigned char)(Value/256);
+  Tx_UARTS0 (uart0_filestream, &ValueConv, 1);
+  ValueConv = (unsigned char)(Value%256);
+  Tx_UARTS0 (uart0_filestream, &ValueConv, 1);
+  
+
+  //Tail
+  Tx_UARTS0 (uart0_filestream, Finish, 4);
+
+  //Error Verification
+  Rx_UARTS0 (uart0_filestream, &ConfirmCommand[0], 2);
+  if(ConfirmCommand[0] == Erro_In_Exe_Command){
+    printf("Erro in send Integer(16 bits) Function!\n");
+    return 1;
+
+  }
+
+  return 0;
+
+}
+
 // String Write Function
 int Write_String (int uart0_filestream, unsigned int  Adress, unsigned char *Text){
 
@@ -138,13 +182,13 @@ int Write_String (int uart0_filestream, unsigned int  Adress, unsigned char *Tex
   Tx_UARTS0 (uart0_filestream, Begin, 2);
 
   //Adress
-  AuxAdress = (int)(Adress / (8388608));
+  AuxAdress = (unsigned char)(Adress / (16777216));
   Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
-  Adress = Adress - AuxAdress*(8388608);
-  AuxAdress = (int)(Adress / (32768));
+  Adress = Adress - AuxAdress*(16777216);
+  AuxAdress = (unsigned char)(Adress / (65536));
   Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
-  Adress = Adress - AuxAdress*(32768);
-  AuxAdress = (int)(Adress / (256));
+  Adress = Adress - AuxAdress*(65536);
+  AuxAdress = (unsigned char)(Adress / (256));
   Tx_UARTS0 (uart0_filestream, &AuxAdress, 1);
   AuxAdress = Adress - AuxAdress*(256);
   Tx_UARTS0 (uart0_filestream, &AuxAdress,1);
@@ -177,31 +221,111 @@ Button Get_Buttom_Event (int uart0_filestream){
   Button Bt;
   unsigned char bufferRx[9];
 
+  //Receiving data
   Rx_UARTS0 (uart0_filestream, &bufferRx[0], 9);
 
+  //if touck key is Down
   if((bufferRx[0] == 0xAA) && (bufferRx[1] == 0x79) && (bufferRx[5] == 0xCC) && (bufferRx[6] == 0x33) && (bufferRx[7] == 0xC3)  && (bufferRx[8] == 0x3C)){
     Bt.PagId = bufferRx[2]*256 + bufferRx[3];
     Bt.ButtonId = bufferRx[4];
+    Bt.Direction = 0;
   }
   else{
-    Bt.PagId = -1;
-    Bt.ButtonId = -1;
+    //if touck key is Up
+    if((bufferRx[0] == 0xAA) && (bufferRx[1] == 0x78) && (bufferRx[5] == 0xCC) && (bufferRx[6] == 0x33) && (bufferRx[7] == 0xC3)  && (bufferRx[8] == 0x3C)){
+      Bt.PagId = bufferRx[2]*256 + bufferRx[3];
+      Bt.ButtonId = bufferRx[4];
+      Bt.Direction = 1;
+    }
+    //Dont acknowledge
+    else{
+      Bt.PagId = -1;
+      Bt.ButtonId = -1;
+    }
   }
-  
-
   return Bt;
+
+}
+
+//Set RTC Function
+int Set_RTC (int uart0_filestream, unsigned char Year, unsigned char Month, unsigned char Day, unsigned char Hour, unsigned char Minute, unsigned char Second){
+
+  unsigned char Command[12];
+  unsigned char ConfirmCommand[2];
+
+  Command[0] = Header;
+  Command[1] = RTC_Set;
+  Command[2] = Year;
+  Command[3] = Month;
+  Command[4] = Day;
+  Command[5] = Hour;
+  Command[6] = Minute;
+  Command[7] = Second;
+  Command[8] = Tail_A;
+  Command[9] = Tail_B;
+  Command[10] = Tail_C;
+  Command[11] = Tail_D;
+
+  Tx_UARTS0(uart0_filestream, &Command[0], 12);
+  
+  //Error Verification
+  Rx_UARTS0 (uart0_filestream, &ConfirmCommand[0], 2);
+  if(ConfirmCommand[0] == Erro_In_Exe_Command){
+    printf("Erro in send Set RTC Function!\n");
+    return 1;
+  }
+}
+
+//Read RTC Function
+int Read_RTC (int uart0_filestream, unsigned char *Year, unsigned char *Month, unsigned char *Day, unsigned char *Hour, unsigned char *Minute, unsigned char *Second){
+
+  unsigned char Command[6];
+  unsigned char Read[12];
+
+  Command[0] = Header;
+  Command[1] = RTC_Read;
+  Command[2] = Tail_A;
+  Command[3] = Tail_B;
+  Command[4] = Tail_C;
+  Command[5] = Tail_D;
+
+  Tx_UARTS0(uart0_filestream, &Command[0], 6);
+  
+  //Reading data
+  Rx_UARTS0 (uart0_filestream, &Read[0], 12);
+  if(Read[0] == Erro_In_Exe_Command){
+    printf("Erro in send Set RTC Function!\n");
+    return 1;
+
+  }
+  else{
+    *Year = Read[2];
+    *Month = Read[3];
+    *Day = Read[4];
+    *Hour = Read[5];
+    *Minute = Read[6];
+    *Second = Read[7];
+    Rx_UARTS0 (uart0_filestream, &Read[0], 2);
+    if(Read[0] == Erro_In_Exe_Command){
+      printf("Erro in send Set RTC Function!\n");
+      return 1;
+
+    }
+    return 0;
+  }
+
 }
 
 //Set Page Function
-int Set_Page (int uart0_filestream, int Page){
+int Set_Page (int uart0_filestream, unsigned int Page){
 
   unsigned char Command[8];
   unsigned char ConfirmCommand[2];
 
   Command[0] = Header;
   Command[1] = Disp_Page;
-  Command[2] = (int)(Page/256);
-  Command[3] = Command[2]*256 - Page;
+  Command[2] = (unsigned char)(Page/256);
+  Command[3] = (unsigned char)(Page%256);
   Command[4] = Tail_A;
   Command[5] = Tail_B;
   Command[6] = Tail_C;
@@ -221,47 +345,113 @@ int Set_Page (int uart0_filestream, int Page){
 
 }
 
+// Function Search Line
+Line* SearchLine(Line *InitialLine, int CounterBuffer, unsigned char Buffer[4]){
+
+  Line *Last = InitialLine;
+  while(Last != NULL){
+    if(strncmp(&Buffer[0], Last->Number, CounterBuffer) == 0){
+      return Last;
+    }
+    Last=Last->Next;
+  }
+
+  return NULL;
+
+}
+
+//Initialize Source Function
+int InitializeFunction (GID *NewGID, Group **ActualGroup, Line **ActualLine, Destination **ActualDestination){
+   
+  int  Break = 0;
+  unsigned char Aux[100] = XMLSourceDirectory;
+  DIR *Directory = opendir(XMLSourceDirectory);
+  struct dirent *DirectoryEntry;
+
+  if (Directory == NULL){
+  printf("Erro, don't be able to open USB Directory!\n" );
+      return MainID;
+  }
+
+  //Loading Files
+  while (((DirectoryEntry = readdir(Directory)) != NULL) && Break == 0 ){
+    if(DirectoryEntry->d_type != DT_DIR){
+      unsigned int lengthAux = strlen(DirectoryEntry->d_name)-4;
+      if(strcmp(&DirectoryEntry->d_name[lengthAux],".xml") == 0){
+        strcat(Aux, DirectoryEntry->d_name);
+        if(LoadXMLSource(NewGID, Aux) == 0) Break = 1;
+
+      }
+
+    }
+
+  }
+  closedir(Directory);
+
+  if(Break == 1){
+    //Loading Initial Sources
+    *ActualGroup = NewGID->List;
+    *ActualLine = (*ActualGroup)->List;
+    *ActualDestination = (*ActualLine)->List;
+    return 0;
+
+  }
+  else{
+    NewGID = NULL;
+    *ActualGroup = NULL;
+    *ActualLine = NULL;
+    *ActualDestination = NULL;
+    return 1;
+
+  }
+  
+}
+
 //Handler event for main Page
 int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDestination){
   
   Destination *Last = *ActualDestination;
+  Button Bt;
 
-  Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
-  Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
-  Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
+  //Ploting info in display
+  if((*ActualLine) != NULL){
+    Write_String (uart0_filestream, AdressNumberLine, (*ActualLine)->Number);
+    Write_String (uart0_filestream, AdressNameLine, (*ActualLine)->Name);
+    Write_String (uart0_filestream, AdressNameDestination, (*ActualDestination)->Name);
 
+  }
 
-  Button Bt = Get_Buttom_Event (uart0_filestream);
-
+  Bt = Get_Buttom_Event (uart0_filestream);
   if(Bt.PagId == MainID){
-    switch (Bt.ButtonId){
-      case ButtonNextDestination:
-        if(Last != NULL){
-          if(Last->Next != NULL) Last = Last->Next;
-          *ActualDestination = Last;
-          Write_String (uart0_filestream, AdressNameDestination, Last->Name);
-        } 
-        break;
+    if(Bt.Direction == 0){
+      switch (Bt.ButtonId){
+        case ButtonNextDestination:
+          if(Last != NULL){
+            if(Last->Next != NULL) Last = Last->Next;
+            *ActualDestination = Last;
+            Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+          } 
+          break;
 
-      case ButtonPreviousDestination:
-        if(Last != NULL){
-          if(Last->Previous != NULL) Last = Last->Previous;
-          *ActualDestination = Last;
-           Write_String (uart0_filestream, AdressNameDestination, Last->Name);
-        } 
-        break;
+        case ButtonPreviousDestination:
+          if(Last != NULL){
+            if(Last->Previous != NULL) Last = Last->Previous;
+            *ActualDestination = Last;
+             Write_String (uart0_filestream, AdressNameDestination, Last->Name);
+          } 
+          break;
 
-      case ButtonChangeLine:
-            return SelectLinesID;
-            break;
+        case ButtonChangeLine:
+              return SelectLinesID;
+              break;
 
-      case ButtonSettings:
-        return SettingsID;
-        break;
+        case ButtonSettings:
+          return SettingsMainID;
+          break;
 
-      default:
-        return MainID;
-
+        default:
+          return MainID;
+      }
     }
 
   }
@@ -271,17 +461,22 @@ int HandlerMain (int uart0_filestream, Line **ActualLine, Destination **ActualDe
 }
 
 //Handler event for Select Destination
-int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **ActualDestination){
+int HandlerSelectLines (int uart0_filestream, Line *InitialLine, Line **ActualLine, Destination **ActualDestination){
   
   Line *Last = *ActualLine;
+  Line *FindLine = *ActualLine;
   int Break = -1;
+  unsigned char Buffer[4];
+  int CounterBuffer = 0;
 
-  Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
-  Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+  if((*ActualLine) != NULL){
+    Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+    Write_String (uart0_filestream, AdressSelectIDLine, Last->Number);
+  }
 
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
-    if((Bt.PagId == SelectLinesID) || (Bt.PagId == SelectLinesIDKeybord)){
+    if((Bt.Direction == 0) && ((Bt.PagId == SelectLinesID) || (Bt.PagId == SelectLinesIDKeybord))){
       switch (Bt.ButtonId){
         case ButtonUpChangeLine:
           if(Last != NULL){
@@ -302,17 +497,912 @@ int HandlerSelectLines (int uart0_filestream, Line **ActualLine, Destination **A
           Break = -1; 
           break;
 
+        case ButtonHomeSelectDestinations:
+          Break = MainID;
+          break;
+
+        case ButtonSettingsSelectDestinations:
+          Break = SettingsMainID;
+          break;
+
         case ButtonCancelChangeLine:
           Break = MainID;
           break;
 
         case ButtonConfirmChangeLine:
-          *ActualDestination = Last->List;
-          *ActualLine = Last;
+          if(Last != NULL){
+            *ActualDestination = Last->List;
+            *ActualLine = Last;
+          }
+          Break = MainID;
+          break;
+
+        case ButtonSettingsActiveKeyOk:
+          if(Last != NULL){
+            *ActualDestination = Last->List;
+            *ActualLine = Last;
+          }
+          Break = MainID;
+          break;
+
+        case ButtonSettingsActiveKeyDel:
+          if(CounterBuffer>0){
+            Write_String (uart0_filestream, AdressSelectNameLine, "  ");
+            Buffer[--CounterBuffer] = '\0';
+            Write_String (uart0_filestream, AdressSelectIDLine, Buffer);
+            FindLine = SearchLine(InitialLine, CounterBuffer, Buffer);
+            if(FindLine != NULL){
+              Last = FindLine;
+              Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+            }
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(Bt.ButtonId > ButtonSettingsActiveKeyOk){
+            if(CounterBuffer<3){
+              Write_String (uart0_filestream, AdressSelectNameLine, "  ");
+              Buffer[CounterBuffer++] = 39 + Bt.ButtonId;
+              Buffer[CounterBuffer] = '\0';
+              Write_String (uart0_filestream, AdressSelectIDLine, Buffer);
+              FindLine = SearchLine(InitialLine, CounterBuffer, Buffer);
+              if(FindLine != NULL){
+                Last = FindLine;
+                Write_String (uart0_filestream, AdressSelectNameLine, Last->Name);
+              }
+            }
+          }
+          Break = -1;
+
+      }
+
+    }
+  }
+
+  return Break;
+
+}
+
+//Handler event for Settings
+int HandlerWatch(int uart0_filestream){
+
+  int Break = -1;
+  unsigned char Year = 1;
+  unsigned char Month = 1;
+  unsigned char Day = 18;
+  unsigned char Hour;
+  unsigned char Minute;
+  unsigned char Second;
+  unsigned char Date[] = "sudo date +\%Y\%m\%d -s \"20AAMMDD\"";
+  unsigned char Time[] = "sudo date +\%T -s \"HH:MM:SS\"";
+
+  //Reading info about date and time
+  Read_RTC(uart0_filestream, &Year, &Month, &Day, &Hour, &Minute, &Second);
+  //Writing information on screen
+  Write_Integer16b(uart0_filestream, AdressDecHora, (int)(Hour/10));
+  Write_Integer16b(uart0_filestream, AdressHora, (int)(Hour%10));
+  Write_Integer16b(uart0_filestream, AdressDecMin, (int)(Minute/10));
+  Write_Integer16b(uart0_filestream, AdressMin, (int)(Minute%10));
+
+  //Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event(uart0_filestream);
+    if((Bt.Direction == 0) && (Bt.PagId == WatchID || Bt.PagId == WatchID2)){
+      switch (Bt.ButtonId){
+        case ButtonCancelChangeWatch:
+          Break = MainID;
+          break;
+
+        case ButtonConfirmChangeWatch:
+          //Setting date and time in Display
+          Set_RTC (uart0_filestream, Year, Month, Day, Hour, Minute, Second);
+          //Setting date and time in Linux
+          Date[24] = (unsigned int)((Year/10)+48);
+          Date[25] = (unsigned int)((Year%10)+48);
+          Date[26] = (unsigned int)((Month/10)+48);
+          Date[27] = (unsigned int)((Month%10)+48);
+          Date[28] = (unsigned int)((Day/10)+48);
+          Date[29] = (unsigned int)((Day%10)+48);
+          Time[18] = (unsigned int)((Hour/10)+48);
+          Time[19] = (unsigned int)((Hour%10)+48);
+          Time[21] = (unsigned int)((Minute/10)+48);
+          Time[22] = (unsigned int)((Minute%10)+48);
+          Time[24] = (unsigned int)((Second/10)+48);
+          Time[25] = (unsigned int)((Second%10)+48);
+          //Setting system date
+          system(Time);
+          system(Date);
+          Break = MainID; 
+          break;
+
+        case ButtonHomeWatch:
+          Break = MainID;
+          break;
+
+        case ButtonSettingsWatch:
+          Break = SettingsMainID;
+          break;
+
+        case ButtonDownHora:
+          if(Bt.PagId == WatchID){
+            if(Hour > 0){
+              Write_Integer16b(uart0_filestream, AdressDecHora, (int)(--Hour/10));
+              Write_Integer16b(uart0_filestream, AdressHora, (int)(Hour%10));
+            }
+          }
+          else{
+            if(Month > 1){
+              Write_Integer16b(uart0_filestream, AdressDecHora, (int)(--Month/10));
+              Write_Integer16b(uart0_filestream, AdressHora, (int)(Month%10));
+
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpHora:
+          if(Bt.PagId == WatchID){
+            if(Hour < 23){
+              Write_Integer16b(uart0_filestream, AdressDecHora, (int)(++Hour/10));
+              Write_Integer16b(uart0_filestream, AdressHora, (int)(Hour%10));
+            }
+          }
+          else{
+            if(Month < 12){
+              Write_Integer16b(uart0_filestream, AdressDecHora, (int)(++Month/10));
+              Write_Integer16b(uart0_filestream, AdressHora, (int)(Month%10));
+
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownMin:
+          if(Bt.PagId == WatchID){
+            if(Minute > 0){
+              Write_Integer16b(uart0_filestream, AdressDecMin, (int)(--Minute/10));
+              Write_Integer16b(uart0_filestream, AdressMin, (int)(Minute%10));
+            }
+          }
+          else{
+            if(Day > 1){
+              Write_Integer16b(uart0_filestream, AdressDecMin, (int)(--Day/10));
+              Write_Integer16b(uart0_filestream, AdressMin, (int)(Day%10));
+
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpMin:
+          if(Bt.PagId == WatchID){
+            if(Minute < 59){
+              Write_Integer16b(uart0_filestream, AdressDecMin, (int)(++Minute/10));
+              Write_Integer16b(uart0_filestream, AdressMin, (int)(Minute%10));
+            }
+          }
+          else{
+            if(Day < 31){
+              Write_Integer16b(uart0_filestream, AdressDecMin, (int)(++Day/10));
+              Write_Integer16b(uart0_filestream, AdressMin, (int)(Day%10));
+
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownYear:
+          if(Year > 0){
+            Write_Integer16b(uart0_filestream, AdressDecYear, (int)(--Year/10));
+            Write_Integer16b(uart0_filestream, AdressYear, (int)(Year%10));
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpYear:
+          if(Year < 99){
+            Write_Integer16b(uart0_filestream, AdressDecYear, (int)(++Year/10));
+            Write_Integer16b(uart0_filestream, AdressYear, (int)(Year%10));
+          }
+          Break = -1;
+          break;
+
+        case ButtonChangeDateTime:
+          if(Bt.PagId == WatchID){
+            //Setting news imagens
+            Write_Integer16b(uart0_filestream, AdressDecHora, (int)(Month/10));
+            Write_Integer16b(uart0_filestream, AdressHora, (int)(Month%10));
+            Write_Integer16b(uart0_filestream, AdressDecMin, (int)(Day/10));
+            Write_Integer16b(uart0_filestream, AdressMin, (int)(Day%10));
+            Write_Integer16b(uart0_filestream, AdressDecDec, 2);
+            Write_Integer16b(uart0_filestream, AdressDec, 0);
+            Write_Integer16b(uart0_filestream, AdressDecYear, (int)(Year/10));
+            Write_Integer16b(uart0_filestream, AdressYear, (int)(Year%10));
+            //Setting page WatchID2
+            Set_Page (uart0_filestream, WatchID2);
+            Get_Buttom_Event(uart0_filestream);
+
+          }
+          else{
+            //Setting news imagens
+            Write_Integer16b(uart0_filestream, AdressDecHora, (int)(Hour/10));
+            Write_Integer16b(uart0_filestream, AdressHora, (int)(Hour%10));
+            Write_Integer16b(uart0_filestream, AdressDecMin, (int)(Minute/10));
+            Write_Integer16b(uart0_filestream, AdressMin, (int)(Minute%10));
+            //Setting page WatchID
+            Set_Page (uart0_filestream, WatchID);
+            Get_Buttom_Event(uart0_filestream);
+
+          } 
+          Break = -1;
+          break;
+
+        default:
+          Break = -1;
+
+      }
+
+    }
+  }
+
+  return Break;
+
+}
+
+//Handler event for Settings
+int HandlerSettingsMain(int uart0_filestream){
+
+  int Break = -1;
+
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && Bt.PagId == SettingsMainID){
+      switch (Bt.ButtonId){
+        case ButtonCancelSettings:
+          Break = MainID;
+          break;
+
+        case ButtonSelectWatch:
+          Break = WatchID; 
+          break;
+
+        case ButtonSelectSource:
+          Break = SourceIDA;
+          break;
+
+        case ButtonHomeSettings:
           Break = MainID;
           break;
 
         default:
+          Break = -1;
+
+      }
+
+    }
+  }
+
+  return Break;
+
+}
+
+//Handler event for Source
+int HandlerSource (int uart0_filestream, Group **ActualGroup, Line **ActualLine, Destination **ActualDestination){
+  
+  int Break = -1;
+  int cont;
+  unsigned char Location[100];
+  Direct *InitialWindows = NULL;
+  Direct *FinalWindows = NULL;
+  Direct *Aux = NULL;
+  struct dirent *DirectoryEntry;
+  int CounterDirect = 0;
+
+  //Default Directory
+  DIR *Directory = opendir(XMLSourceDirectory);
+
+  if (Directory == NULL){
+      printf("Erro, don't be able to open this directory!\n" );
+      return MainID;
+  }
+
+  //Loading Files
+  while ((DirectoryEntry = readdir(Directory)) != NULL){
+    if(strcmp(DirectoryEntry->d_name,".") != 0 && strcmp(DirectoryEntry->d_name,"..") != 0){
+      FinalWindows = (Direct *) malloc(sizeof(Direct));
+      FinalWindows->Name = DirectoryEntry->d_name;
+      if(Aux != NULL) Aux->Next = FinalWindows;
+      else InitialWindows = FinalWindows;
+      FinalWindows->Next = NULL;
+      FinalWindows->Previous = Aux;
+      Aux = FinalWindows;
+      CounterDirect++; 
+    }
+
+  }
+  closedir(Directory);
+
+  //Allocation pointers
+  FinalWindows = InitialWindows;
+  for(cont=0; (cont<(LimitOfLinesInSource-1) && cont<(CounterDirect-1)); cont++){
+   FinalWindows = FinalWindows->Next;
+  }
+
+  //Loading Start List
+  Aux = InitialWindows;
+  int StartAdress = AdressInitialSource;
+  for(cont=0; (cont<LimitOfLinesInSource && cont<CounterDirect); cont++){
+    Write_String (uart0_filestream, StartAdress, Aux->Name);
+    StartAdress = StartAdress + 0x000080;
+    Aux = Aux->Next;
+  }
+  for(; cont<LimitOfLinesInSource; cont++){
+    Write_String (uart0_filestream, StartAdress, " ");
+    StartAdress = StartAdress + 0x000080;
+
+  }
+
+  // Enable Buttons and disable Loading screen
+  Write_Integer16b (uart0_filestream, Loading, 0);
+  Write_Integer16b (uart0_filestream, Signals, 0);
+  Write_Integer16b (uart0_filestream, Status, 1);
+
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && ((Bt.PagId == SourceIDA)||(Bt.PagId == SourceIDB)||(Bt.PagId == SourceIDC)||(Bt.PagId == SourceIDD)||(Bt.PagId == SourceIDE))){
+      switch (Bt.ButtonId){
+        case ButtonCancelChangeSource:
+          Break = MainID;
+          break;
+
+        case ButtonConfirmChangeSource:
+          // Disable Buttons and enable Loading screen
+          Write_Integer16b (uart0_filestream, Loading, 1);
+          Write_Integer16b (uart0_filestream, Signals, 0);
+          Write_Integer16b (uart0_filestream, Status, 0);
+          //Loading Default Xml file
+          Aux = InitialWindows;
+          for(cont = 0; cont<(Bt.PagId-SourceIDA); cont++) Aux = Aux->Next;
+          Location[0] = '\0';
+          strcat(Location, XMLSourceDirectory);
+          strcat(Location, Aux->Name);
+          //Loading Initial Sources
+          GID NewGID;
+          if(LoadXMLSource(&NewGID, Location) == 1){
+            printf("Error in Loading Source %s\n", Location);
+            //Error, plot icon error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(1);
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+
+          }
+          else{
+            *ActualGroup = NewGID.List;
+            *ActualLine = NewGID.List->List;
+            *ActualDestination = NewGID.List->List->List;
+            //free allocations
+            while(InitialWindows != NULL){
+              Aux = InitialWindows;
+              InitialWindows = InitialWindows->Next;
+              free(Aux);
+            } 
+            sleep(1);
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = MainID;
+          }
+           
+          break;
+
+        case ButtonNewSource:
+          //free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          }  
+          Break = MainID;
+          break;
+
+        case ButtonUSBImport:
+          //free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          } 
+          Break = ImportUSBIDA;
+          break;
+
+        case ButtonSettingsSource:
+          //free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          } 
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeSource:
+          //free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          } 
+        Break = MainID;
+          break;
+
+        case ButtonUpSource:
+          if(Bt.PagId == SourceIDA){
+            if(InitialWindows->Previous != NULL){
+              Aux = InitialWindows = InitialWindows->Previous;
+              StartAdress = AdressInitialSource;
+              for(cont=0; (cont<LimitOfLinesInSource && cont<CounterDirect); cont++){
+                Write_String (uart0_filestream, StartAdress, Aux->Name);
+                StartAdress = StartAdress + 0x000080;
+                Aux = Aux->Next;
+
+              }
+              FinalWindows = FinalWindows->Previous;  
+            }
+          }
+          else{
+            Set_Page(uart0_filestream, Bt.PagId-1);
+            Get_Buttom_Event (uart0_filestream);
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownSource:
+          if(Bt.PagId == SourceIDE){
+            if(FinalWindows->Next != NULL){
+              Aux = InitialWindows = InitialWindows->Next;
+              StartAdress = AdressInitialSource;
+              for(cont=0; (cont<LimitOfLinesInSource && cont<CounterDirect); cont++){
+                Write_String (uart0_filestream, StartAdress, Aux->Name);
+                StartAdress = StartAdress + 0x000080;
+                Aux = Aux->Next;
+
+              }
+              FinalWindows = FinalWindows->Next;
+            }
+          }
+          else{
+            if((Bt.PagId-SourceIDA) < CounterDirect-1){
+              Set_Page(uart0_filestream, Bt.PagId+1);
+              Get_Buttom_Event (uart0_filestream);
+            }
+          } 
+          Break = -1;
+          break;
+
+        default:
+          if(Bt.ButtonId > (ButtonTouchA-1) && ((Bt.ButtonId-ButtonTouchA) < CounterDirect)){
+            Set_Page(uart0_filestream, ((Bt.ButtonId-ButtonTouchA)+SourceIDA));
+            Get_Buttom_Event (uart0_filestream);
+          }
+          Break = -1;
+
+      }
+
+    }
+  }
+
+  return Break;
+
+}
+
+//Handler event for Import Xml Files 
+int HandlerImportUSB(int uart0_filestream){
+
+  int Break = -1;
+  int cont;
+  int conte;
+  Direct *InitialWindows;
+  Direct *FinalWindows;
+  Direct *Aux;
+  unsigned char AuxDirec[ScreenTitleLength];
+  unsigned char Location[100] = "/media/usb/";
+  unsigned char CommandA[100] = "sudo mount /dev/sda1 /media/usb -o uid=pi,gid=pi";
+  unsigned char ActualOp = 0; 
+  struct dirent *DirectoryEntry;
+  unsigned int lengthAux;
+  int CounterDirect;
+  int StartAdress;
+
+  printf("Loko \n");
+  // Loading Icon
+  Write_Integer16b (uart0_filestream, Loading, 1);
+  Write_Integer16b (uart0_filestream, Signals, 0);
+  Write_Integer16b (uart0_filestream, Status, 0);
+
+  //Mount USB
+  int MountedConfirm = system(CommandA);
+  //Confirm mounting
+  if(MountedConfirm != 0){
+    //Unmont usb
+    CommandA[0] = '\0';
+    strcpy(CommandA, "sudo umount /media/usb");
+    system(CommandA);
+    //Mensage Error
+    Write_Integer16b (uart0_filestream, Loading, 0);
+    Write_Integer16b (uart0_filestream, Signals, 1);
+    Write_Integer16b (uart0_filestream, Status, 0);
+    sleep(2);
+    //Return 
+    Write_Integer16b (uart0_filestream, Loading, 0);
+    Write_Integer16b (uart0_filestream, Signals, 0);
+    Write_Integer16b (uart0_filestream, Status, 1);
+    return(SourceIDA);
+
+  }
+
+  // ---- Process to Loading Directories 
+  //Default Directory
+  DIR *Directory = opendir(USBDirectory);
+  if (Directory == NULL){
+      printf("Erro, don't be able to open USB Directory!\n" );
+      return MainID;
+  }
+  //Loading Files
+  Aux = InitialWindows = FinalWindows = NULL;
+  CounterDirect = 0;
+  while ((DirectoryEntry = readdir(Directory)) != NULL){
+    if(strcmp(DirectoryEntry->d_name,".") != 0){
+      FinalWindows = (Direct *) malloc(sizeof(Direct));
+      FinalWindows->Name = DirectoryEntry->d_name;
+      if(DirectoryEntry->d_type == DT_DIR) FinalWindows->Type = 1;
+      else FinalWindows->Type = 0; 
+      if(Aux != NULL) Aux->Next = FinalWindows;
+      else InitialWindows = FinalWindows;
+      FinalWindows->Next = NULL;
+      FinalWindows->Previous = Aux;
+      Aux = FinalWindows;
+      CounterDirect++; 
+    }
+
+  }
+  closedir(Directory);
+  //Allocation pointers
+  FinalWindows = InitialWindows;
+  for(cont=0; (cont<(LimitOfLinesInImportUSB-1) && cont<(CounterDirect-1)); cont++){
+   FinalWindows = FinalWindows->Next;
+  }
+  //Loading Start List
+  Aux = InitialWindows;
+  StartAdress = AdressInitialImportUSB;
+  for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
+    strcpy(AuxDirec, Aux->Name);
+    Write_String (uart0_filestream, StartAdress, AuxDirec);
+    StartAdress = StartAdress + 0x000080;
+    Aux = Aux->Next;
+  }
+  for(; cont<LimitOfLinesInImportUSB; cont++){
+    Write_String (uart0_filestream, StartAdress, " ");
+    StartAdress = StartAdress + 0x000080;
+  }
+
+  //---- Enable Buttons and disable Loading screen
+  Write_Integer16b (uart0_filestream, Loading, 0);
+  Write_Integer16b (uart0_filestream, Signals, 0);
+  Write_Integer16b (uart0_filestream, Status, 1);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 1) && ((Bt.PagId-ImportUSBIDA) == ActualOp)){
+      //Select Buttons
+      switch (Bt.ButtonId){
+        case ButtonCancelUSB:
+          // -- Unmont usb
+          CommandA[0] = '\0';
+          strcpy(CommandA, "sudo umount /media/usb");
+          system(CommandA);
+          // -- free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          } 
+          Break = SourceIDA;
+          break;
+
+        case ButtonImportUSB:
+          // -- Find Reference Number of Touch Key Path
+          Aux = InitialWindows;
+          for(cont = 0; cont<ActualOp; cont++) Aux = Aux->Next;
+          // -- Different actions for Directory and Files
+          if(Aux->Type != 1){
+            lengthAux = strlen(Aux->Name)-4;
+            if(strcmp(&Aux->Name[lengthAux], ".xml") == 0){
+              // Copings files to default folder
+              CommandA[0] = '\0';
+              strcat(CommandA, "sudo cp ");
+              conte = 8;
+              for(cont = 0; (cont<100 && Location[cont] != '\0'); cont++){
+                if(Location[cont] == ' ')  CommandA[conte++] = 0x5C;
+                CommandA[conte++] = Location[cont];
+              }
+              CommandA[conte] = '\0';
+              strcat(CommandA, Aux->Name);
+              strcat(CommandA, " ");
+              strcat(CommandA, XMLSourceDirectory);
+              system(CommandA);
+              // Loading Icon
+              Write_Integer16b (uart0_filestream, Loading, 1);
+              Write_Integer16b (uart0_filestream, Signals, 0);
+              Write_Integer16b (uart0_filestream, Status, 0);
+              sleep(1);
+              Write_Integer16b (uart0_filestream, Loading, 0);
+              Write_Integer16b (uart0_filestream, Signals, 0);
+              Write_Integer16b (uart0_filestream, Status, 1);
+              //Unmont usb
+              CommandA[0] = '\0';
+              strcpy(CommandA, "sudo umount /media/usb");
+              system(CommandA);
+              //free allocations
+              while(InitialWindows != NULL){
+                Aux = InitialWindows;
+                InitialWindows = InitialWindows->Next;
+                free(Aux);
+              }
+              //Return 
+              Break = SourceIDA;
+
+            }
+            else{
+              // Erro Icon
+              Write_Integer16b (uart0_filestream, Loading, 0);
+              Write_Integer16b (uart0_filestream, Signals, 2);
+              Write_Integer16b (uart0_filestream, Status, 0);
+              sleep(2);
+              Write_Integer16b (uart0_filestream, Loading, 0);
+              Write_Integer16b (uart0_filestream, Signals, 0);
+              Write_Integer16b (uart0_filestream, Status, 1);
+              Break = -1;
+            }
+          }
+          else{
+            // -- Select Path
+            if(strcmp(Aux->Name,"..") == 0){
+              for(cont = strlen(Location)-2; (cont>10 && Location[cont] != '/'); cont--) Location[cont] = '\0';
+            }
+            else{
+              strcat(Location, Aux->Name);
+              strcat(Location, "/");
+            }
+            printf("New Location : %s\n", Location);
+            // -- free allocations
+            while(InitialWindows != NULL){
+              Aux = InitialWindows;
+              InitialWindows = InitialWindows->Next;
+              free(Aux);
+            }
+            // -- Process to Loading Directories 
+            // -- Reloading Directory
+            DIR *Directory = opendir(Location);
+            if (Directory == NULL){
+                printf("Erro, don't be able to open USB Directory!\n" );
+                return MainID;
+            }
+            // -- Loading Files
+            Aux = InitialWindows = FinalWindows = NULL;
+            CounterDirect = 0;
+            while ((DirectoryEntry = readdir(Directory)) != NULL){
+              if(strcmp(DirectoryEntry->d_name,".") != 0){
+                FinalWindows = (Direct *) malloc(sizeof(Direct));
+                FinalWindows->Name = DirectoryEntry->d_name;
+                if(DirectoryEntry->d_type == DT_DIR) FinalWindows->Type = 1;
+                else FinalWindows->Type = 0; 
+                if(Aux != NULL) Aux->Next = FinalWindows;
+                else InitialWindows = FinalWindows;
+                FinalWindows->Next = NULL;
+                FinalWindows->Previous = Aux;
+                Aux = FinalWindows;
+                CounterDirect++; 
+              }
+
+            }
+            closedir(Directory);
+            printf("Novo diretorio tem um tamanho de %d\n", CounterDirect);
+            // -- Allocation pointers
+            FinalWindows = InitialWindows;
+            for(cont=0; (cont<(LimitOfLinesInImportUSB-1) && cont<(CounterDirect-1)); cont++){
+             FinalWindows = FinalWindows->Next;
+            }
+            // -- Loading Start List
+            Aux = InitialWindows;
+            int StartAdress = AdressInitialImportUSB;
+            for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
+              strcpy(AuxDirec, Aux->Name);
+              Write_String (uart0_filestream, StartAdress, AuxDirec);
+              StartAdress = StartAdress + 0x000080;
+              Aux = Aux->Next;
+            }
+            for(; cont<LimitOfLinesInImportUSB; cont++){
+              Write_String (uart0_filestream, StartAdress, " ");
+              StartAdress = StartAdress + 0x000080;
+            }
+            // -- Reset Page Import USB
+            Set_Page(uart0_filestream, ImportUSBIDA);
+            // -- Sync Actual Option
+            ActualOp = 0;
+            // -- Debounce forced
+            sleep(0.5);
+            // -- Return
+            Break = -1;
+          }
+          break;
+
+        case ButtonSettingUSB:
+          // -- Unmont usb
+          CommandA[0] = '\0';
+          strcpy(CommandA, "sudo umount /media/usb");
+          system(CommandA);
+          // -- free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          }
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeUSB:
+          // -- Unmont usb
+          CommandA[0] = '\0';
+          strcpy(CommandA, "sudo umount /media/usb");
+          system(CommandA);
+          // -- free allocations
+          while(InitialWindows != NULL){
+            Aux = InitialWindows;
+            InitialWindows = InitialWindows->Next;
+            free(Aux);
+          }
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonUpUSB:
+          if(Bt.PagId == ImportUSBIDA){
+            if(InitialWindows->Previous != NULL){
+              Aux = InitialWindows = InitialWindows->Previous;
+              StartAdress = AdressInitialImportUSB;
+              for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
+                Write_String (uart0_filestream, StartAdress, Aux->Name);
+                StartAdress = StartAdress + 0x000080;
+                Aux = Aux->Next;
+
+              }
+              FinalWindows = FinalWindows->Previous;  
+            }
+          }
+          else{
+            Set_Page(uart0_filestream, Bt.PagId-1);
+            Get_Buttom_Event (uart0_filestream);
+            ActualOp = (Bt.PagId-1-ImportUSBIDA);
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownUSB:
+          if(Bt.PagId == ImportUSBIDG){
+            if(FinalWindows->Next != NULL){
+              Aux = InitialWindows = InitialWindows->Next;
+              StartAdress = AdressInitialImportUSB;
+              for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
+                Write_String (uart0_filestream, StartAdress, Aux->Name);
+                StartAdress = StartAdress + 0x000080;
+                Aux = Aux->Next;
+
+              }
+              FinalWindows = FinalWindows->Next;
+            }
+          }
+          else{
+            if((Bt.PagId-ImportUSBIDA) < CounterDirect-1){
+              Set_Page(uart0_filestream, Bt.PagId+1);
+              Get_Buttom_Event (uart0_filestream);
+              ActualOp = (Bt.PagId+1-ImportUSBIDA);
+            }
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(Bt.ButtonId > (ButtonTouchUSBA-1) && ((Bt.ButtonId-ButtonTouchUSBA) < CounterDirect)){
+            if((Bt.ButtonId-ButtonTouchUSBA) == ActualOp){
+              //Find Reference Number of Touch Key Path
+              Aux = InitialWindows;
+              for(cont = 0; cont<(ActualOp); cont++) Aux = Aux->Next;
+              //Different action about directories
+              if(Aux->Type == 1){
+                if(strcmp(Aux->Name,"..") == 0){
+                  for(cont = strlen(Location)-2; (cont>10 && Location[cont] != '/'); cont--) Location[cont] = '\0';
+                  printf("::> %s\n", Location);
+                }
+                else{
+                  strcat(Location, Aux->Name);
+                  strcat(Location, "/");
+                  printf(">> %s\n", Location);
+                }
+                //free allocations
+                while(InitialWindows != NULL){
+                  Aux = InitialWindows;
+                  InitialWindows = InitialWindows->Next;
+                  free(Aux);
+                }
+                //Reloading File List
+                DIR *Directory = opendir(Location);
+                if (Directory == NULL){
+                    printf("Erro, don't be able to open USB Directory!\n" );
+                    return MainID;
+                }
+                //Loading Files
+                Aux = InitialWindows = FinalWindows = NULL;
+                CounterDirect = 0;
+                while ((DirectoryEntry = readdir(Directory)) != NULL){
+                  if(strcmp(DirectoryEntry->d_name,".") != 0){
+                    FinalWindows = (Direct *) malloc(sizeof(Direct));
+                    FinalWindows->Name = DirectoryEntry->d_name;
+                    if(DirectoryEntry->d_type == DT_DIR) FinalWindows->Type = 1;
+                    else FinalWindows->Type = 0; 
+                    if(Aux != NULL) Aux->Next = FinalWindows;
+                    else InitialWindows = FinalWindows;
+                    FinalWindows->Next = NULL;
+                    FinalWindows->Previous = Aux;
+                    Aux = FinalWindows;
+                    CounterDirect++; 
+                  }
+
+                }
+                closedir(Directory);
+                //Allocation pointers
+                FinalWindows = InitialWindows;
+                for(cont=0; (cont<(LimitOfLinesInImportUSB-1) && cont<(CounterDirect-1)); cont++){
+                 FinalWindows = FinalWindows->Next;
+                }
+                //Loading Start List
+                Aux = InitialWindows;
+                StartAdress = AdressInitialImportUSB;
+                for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
+                  strcpy(AuxDirec, Aux->Name);
+                  Write_String (uart0_filestream, StartAdress, AuxDirec);
+                  StartAdress = StartAdress + 0x000080;
+                  Aux = Aux->Next;
+                }
+                for(; cont<LimitOfLinesInImportUSB; cont++){
+                  Write_String (uart0_filestream, StartAdress, " ");
+                  StartAdress = StartAdress + 0x000080;
+                }
+                // Reset Page Import USB
+                Set_Page(uart0_filestream, ImportUSBIDA);
+                // Sync  Actual Option
+                ActualOp = 0;
+                // -- Debounce forced
+                sleep(0.5);
+              }
+            }
+            else{
+              // Select page
+              Set_Page(uart0_filestream, ((Bt.ButtonId-ButtonTouchUSBA)+ImportUSBIDA));
+              // -- Debounce forced
+              sleep(0.5);
+              // Sync  Actual Option
+              ActualOp = (Bt.ButtonId-ButtonTouchUSBA);
+            }
+            
+          }
           Break = -1;
 
       }

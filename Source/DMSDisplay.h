@@ -51,18 +51,17 @@
 	//Interrupt Virtual Timer Handler Function
 	void Virtual_Timer_Handler (int signum);
 	//Configure Virtual Timer Function
-	int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+	int Config_Virtual_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
 	//Reconfigure Virtual Timer Function
-	int Reconfig_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
+	int Reconfig_Virtual_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond);
 	//Request displays info function
 	Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
 	//Send Mensage of Information function
-int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *ListOfPanels);
-	//Send Mensage of Reset for All displays
-	// int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
-	// //Send Mensage of Clear for All displays
-	// int Send_MSG_Clear_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
-	// //Send Mensage of Information
-	// int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate);
+	int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *ListOfPanels);
+	//Config Send MSG Info Routine
+	int Config_Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int Baudrate, Destination *ActualDestination, Panel_ID *ListOfPanels);
+	//Refresh Send MSG Info Routine
+	int Refresh_Send_MSG_Info_Routine (Destination *ActualDestination, Panel_ID *ListOfPanels);
+
 
 #endif

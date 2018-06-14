@@ -6,8 +6,34 @@
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
 
+void get_popen(){
+    FILE *pf;
+    char command[20];
+    char data[512];
+
+    // Execute a process listing
+    sprintf(command, "ps aux wwwf"); 
+
+    // Setup our pipe for reading and execute our command.
+    pf = popen(command,"r"); 
+
+    // Error handling
+
+    // Get the data from the process execution
+    fgets(data, 512 , pf);
+
+    // the data is now in 'data'
+
+    if (pclose(pf) != 0)
+        fprintf(stderr," Error: Failed to close command stream \n");
+
+    return;
+}
+
 // -------- Main Function
 int main (void){
+
+	get_popen();
 
 	//Inicialize GPIO
 	if(gpioInitialise() < 0){
@@ -31,14 +57,12 @@ int main (void){
 	//Buzzer Touch Off
 	Buzzer_Touch_Off (uart0_filestream, 0);
 
-	//Loading Xml file
+	//Loading Default Xml file
 	GID NewGID;
-	LoadXMLSource(&NewGID, XMLSource);
-
-	//Loading Initial Sources
-	Group *ActualGroup = NewGID.List;
-	Line *ActualLine = ActualGroup->List;
-	Destination *ActualDestination = ActualLine->List;
+	Group *ActualGroup;
+	Line *ActualLine;
+	Destination *ActualDestination;
+ 	InitializeFunction(&NewGID, &ActualGroup, &ActualLine, &ActualDestination);
 
 	//Loading Painels
 	Panel_ID *VectorOfPanels = MSG_Network_Config(TX, RX, BaudRateDisplay);
@@ -52,51 +76,48 @@ int main (void){
 
 	}
 
-	int Index = 0;
-	Send_MSG_Info (TX, RX, BaudRateDisplay, Index, ActualDestination, VectorOfPanels);
-	//Verification of XML
-	// Line *LastLine =  ActualGroup->List;
-	// while(LastLine != NULL){
-	// 	printf("--------------------------------------------------------\n");
-	// 	printf("Linha : %s - %s\n", LastLine->Number, LastLine->Name);
-	// 	Destination *LastDestination = LastLine->List;
-	// 	while(LastDestination!=NULL){
-	// 		printf("###########################\n");
-	// 		printf("Destino : %s \n", LastDestination->Name);
-	// 		Panel *IP = LastDestination->List;
-	// 		while(IP != NULL){
-	// 			printf("--> Painel %d x %d - NP : %d  ::\n", IP->Lines, IP->Columns, IP->NumberOfPages);
-	// 			for(int counterx = 0; counterx < LimitOfPages; counterx++){
-	// 				printf("::Pagina %d : SBC %d - SBNAndC %d - PT %d - NumberOfTextFields %d \n", IP->List[counterx].ID, IP->List[counterx].SpaceBetweenCharacters, IP->List[counterx].SpaceBetweenNumberAndCharacters, IP->List[counterx].PostingTime, IP->List[counterx].NumberOfFields);
-	// 				printf("... %d : Campos; Mensagem : %s, Config: Effect %d - Align %d - FontWidth : %d - FontHeight : %d \n", counterx, IP->List[counterx].NumberList.Info, IP->List[counterx].NumberList.Effect, IP->List[counterx].NumberList.Align, IP->List[counterx].NumberList.FontWidth, IP->List[counterx].NumberList.FontHeight);
-	// 				for(int countery = 0; countery < LimitOfFields; countery++){
-	// 					printf("... %d:%d Campos; makeMensagem : %s, Config: Effect %d - Align %d - FontWidth : %d - FontHeight : %d \n", counterx, countery, IP->List[counterx].TextList[countery].Info, IP->List[counterx].TextList[countery].Effect, IP->List[counterx].TextList[countery].Align, IP->List[counterx].TextList[countery].FontWidth, IP->List[counterx].TextList[countery].FontHeight);
-	// 				}
-	// 			}
-	// 			IP = IP->Next;
-	// 		}
-	// 		LastDestination = LastDestination->Next;
-	// 	}
-	// 	LastLine = LastLine->Next;
-	// }
+	//Config Send MSG Info Routine
+	Config_Send_MSG_Info (TX, RX, BaudRateDisplay, ActualDestination, VectorOfPanels);
 
 	//Allow main page in display
 	Set_Page (uart0_filestream, MainID);
 
 	//Main Loop
 	unsigned char ActualPage = 0;
+	unsigned char NextPage = 0;
 	while(1){
 		switch(ActualPage){
 			case MainID:
-				ActualPage = HandlerMain(uart0_filestream, &ActualLine, &ActualDestination);
+				NextPage = HandlerMain(uart0_filestream, &ActualLine, &ActualDestination);
 				break;
 
 			case SelectLinesID:
-				ActualPage = HandlerSelectLines(uart0_filestream, &ActualLine, &ActualDestination);
+				NextPage = HandlerSelectLines(uart0_filestream, ActualGroup->List, &ActualLine, &ActualDestination);
 				break;
 
+			case SettingsMainID:
+				NextPage = HandlerSettingsMain(uart0_filestream);
+				break;
+
+			case WatchID:
+				NextPage = HandlerWatch(uart0_filestream);
+				break;
+
+			case SourceIDA:
+				NextPage = HandlerSource(uart0_filestream, &ActualGroup, &ActualLine, &ActualDestination);
+				break;
+
+			case ImportUSBIDA:
+				NextPage = HandlerImportUSB(uart0_filestream);
+				break;
+				
 			default:
-				ActualPage = 0;
+				NextPage = 0;
+
+		}
+		if(ActualPage != NextPage){
+			Set_Page(uart0_filestream, NextPage);
+            ActualPage = NextPage;
 
 		}
 

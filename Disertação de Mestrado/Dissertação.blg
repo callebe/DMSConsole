@@ -12,9 +12,9 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
-You're missing a field name---line 109 of file bibliografia.bib
+You're missing a field name---line 115 of file bibliografia.bib
  :  
- :  %author  = "",
+ :  %edition = "",
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "AdafruitR"
@@ -35,43 +35,43 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 +---------------------------------------------------------+
 You've used 19 entries,
             6480 wiz_defined-function locations,
-            1250 strings with 11271 characters,
-and the built_in function-call counts, 13137 in all, are:
-= -- 1241
-> -- 321
+            1252 strings with 11367 characters,
+and the built_in function-call counts, 12872 in all, are:
+= -- 1157
+> -- 336
 < -- 60
-+ -- 236
-- -- 99
-* -- 787
-:= -- 1662
-add.period$ -- 51
++ -- 225
+- -- 104
+* -- 783
+:= -- 1649
+add.period$ -- 52
 call.type$ -- 21
-change.case$ -- 143
+change.case$ -- 144
 chr.to.int$ -- 35
 cite$ -- 13
-duplicate$ -- 743
-empty$ -- 1051
-format.name$ -- 484
-if$ -- 3147
+duplicate$ -- 747
+empty$ -- 1042
+format.name$ -- 507
+if$ -- 3043
 int.to.chr$ -- 5
 int.to.str$ -- 3
-missing$ -- 282
+missing$ -- 283
 newline$ -- 75
-num.names$ -- 60
-pop$ -- 317
+num.names$ -- 65
+pop$ -- 318
 preamble$ -- 1
 purify$ -- 64
 quote$ -- 0
-skip$ -- 1205
+skip$ -- 1127
 stack$ -- 1
-substring$ -- 468
-swap$ -- 253
+substring$ -- 451
+swap$ -- 256
 text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
+type$ -- 2
 warning$ -- 0
-while$ -- 86
+while$ -- 89
 width$ -- 0
-write$ -- 204
+write$ -- 205
 (There was 1 error message)

@@ -1,0 +1,64 @@
+<GID version="1.1">
+    <Group ID="1">
+        <Line Number="205" Name="CAMPANHÃ-CASTELO DO QUEIJO">
+            <Destination ID="1" Name="CAMPANHÃ" Return="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="3" SBC="1" SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="16x9">205</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">CAMPANHÃ</Text>
+                    </Page>
+                    <Page ID="4" SBC="1"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="16x9">205</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">CAMPANHÃ</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="2" Name="CASTELO DO QUEIJO" Return="2">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="7"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">205</Number>
+                    <Page ID="8"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">205</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">CASTELO DO QUEIJO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+        </Line>
+        <Line Number="208" Name="ALIADOS-ALDOAR">
+            <Destination ID="1" Name="PR. D. JOÃO I" Return="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="9"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">208</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">AV. ALIADOS</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="2" Name="ALDOAR JUNTA FREG." Return="2">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="12"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">208</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">ALDOAR JUNTA FREG.</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+        </Line>
+        <Line Number="300" Name="CIRCULAR HOSPITAL DE S.JOÃO-ALIADOS">
+            <Destination ID="1" Name="HOSP. S. JOÃO (URGÊNCIA)" Return="1">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="9"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">300</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">HOSP. S. JOÃO</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+            <Destination ID="2" Name="HOSP. S. JOÃO (URGÊNCIA)" Return="2">
+                <Panel Lines="16" Columns="112">
+                    <Page ID="12"  SBC="1" SBNAndC="2" PT="15">
+                        <Number Effect="None" Align="Left" Font="12x7">300</Number>
+                        <Text Effect="None" Align="Left" Font="5x5">IPOR</Text>
+                    </Page>
+                </Panel>
+            </Destination>
+        </Line>
+    </Group>
+</GID>

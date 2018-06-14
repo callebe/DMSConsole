@@ -1,6 +1,14 @@
 // -------- Include Library
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 
+//Global Variables
+unsigned char BBTx;
+unsigned char BBRx;
+unsigned int BR;
+Destination *ADestination;
+Panel_ID *LPanels;
+unsigned char IndexLocal;
+
 //Interrupt Flag
 unsigned int InterruptFlagRealTimer = 0;
 unsigned int InterruptFlagVirtualTimer = 0;
@@ -153,7 +161,7 @@ int BitBangUARTTx (unsigned char BitBangTx, unsigned int  Baudrate, char *Tx, in
 	while(InterruptFlagRealTimer == 0);
 
 	//Send mensage 
-	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT == 1);
+	gpioWaveTxSend(WaveSerialTx, PI_WAVE_MODE_ONE_SHOT_SYNC);
 
 	//Delay for configure drive
 	Config_Real_Timer (0, Dimension+5, 0, 0);
@@ -253,13 +261,13 @@ int Reconfig_Real_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMi
 
 //Interrupt Virtual Timer Handler Function
 void Virtual_Timer_Handler (int signum){
-	
-	InterruptFlagVirtualTimer++;
+
+	Send_MSG_Info (BBTx, BBRx, BR, IndexLocal, ADestination, LPanels);
 
 }
 
 //Configure Virtual Timer Function
-int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
+int Config_Virtual_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
 
 	struct sigaction Signal_Action;
 	struct itimerval Timer;
@@ -270,8 +278,8 @@ int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeInt
 	sigaction(SIGVTALRM, &Signal_Action, NULL);
 
 	//Configure timer, timer in 1MHz, timer limite by a display is 16*100 miliseconds
-	Timer.it_value.tv_sec = TimeIntervalSeconds;
-	Timer.it_value.tv_usec = TimeIntervalMillisecond*1000;
+	Timer.it_value.tv_sec = TimeValueSeconds;
+	Timer.it_value.tv_usec = TimeValueMillisecond*1000;
 	Timer.it_interval.tv_sec = TimeIntervalSeconds;
 	Timer.it_interval.tv_usec = TimeIntervalMillisecond*1000;
 
@@ -285,7 +293,7 @@ int Config_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeInt
 }
 
 //Reconfigure Virtual Timer Function
-int Reconfig_Virtual_Timer (unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
+int Reconfig_Virtual_Timer (unsigned int TimeValueSeconds, unsigned int TimeValueMillisecond, unsigned int TimeIntervalSeconds, unsigned int TimeIntervalMillisecond){
 
 	struct itimerval Timer;
 
@@ -396,7 +404,7 @@ Panel_ID* MSG_Network_Config (unsigned char BitBangTx, unsigned char BitBangRx, 
 int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate, unsigned char Index, Destination *ActualDestination, Panel_ID *ListOfPanels){
 
 	Panel *LastPanel;
-	unsigned char Rx = 0;
+	unsigned char Rx[9]; //<SOH> 0x00 Orig <STX> 0 1 0x86 <STX> <CHKS>
 	unsigned char Tx[100];
 	char CHKS;
 	int cont;
@@ -411,7 +419,7 @@ int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned in
 		LastPanel = ActualDestination->List;
 		while(LastPanel != NULL){
 			if((LastPanel->Lines == ListOfPanels->Lines) && (LastPanel->Columns == ListOfPanels->Columns)){
-				printf(":::>> %d\n", LastPanel->NumberOfPages);
+
 				// SOH
 				Tx[0] = SOH;
 				//Destination
@@ -500,15 +508,14 @@ int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned in
 				CHKS = 0;
 				for(Counter = 0; Counter<Control; Counter++) CHKS = (unsigned char)(CHKS + Tx[Counter]);
 				Tx[Control++] = CHKS;
-				printf("-> CHKS %d, COntrol : %d\n", CHKS, Control);
 				// Transmiting Process
 				ConfirmReceiver = 0;
 				for(int i = 0; (i<1 && ConfirmReceiver == 0); i++){
 					// Transmitting
-					BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], Control+1);
+					BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], Control);
 					// Receiving
-					BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1, 0, 100);
-					if(Rx == ACK) ConfirmReceiver = 1;
+					BitBangUARTRx (BitBangRx, Baudrate, &Rx[0], 9, 0, 10);
+					if(Rx[1] == 0 && Rx[6] == ACK) ConfirmReceiver = 1;
 				}
 				if(ConfirmReceiver == 0) return 1;
 
@@ -522,50 +529,27 @@ int Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned in
 
 }
 
-// //Send Mensage of Reset for All displays
-// int Send_MSG_Reset_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
-
-// 	unsigned char ConfirmReceiver = 0;
-// 	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x01 + ETX);
-// 	//                <Dest>      <N>  <Type>               
-// 	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x01, ETX, CHKS};
-// 	char Rx = 0;
+//Config Send MSG Info Routine
+int Config_Send_MSG_Info (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int Baudrate, Destination *ActualDestination, Panel_ID *ListOfPanels){
 	
-// 	for(int i = 0; (i<4 || ConfirmReceiver == 0); i++){
-// 		// Transmitting
-// 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-// 		// Receiving
-// 		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-// 		if(Rx == ACK) ConfirmReceiver = 1;
+	BBTx = BitBangTx;
+	BBRx = BitBangRx;
+	BR = Baudrate;
+	ADestination = ActualDestination;
+	LPanels = ListOfPanels;
+	IndexLocal = 0;
+	Send_MSG_Info (BBTx, BBRx, BR, IndexLocal, ADestination, LPanels);
+	Config_Virtual_Timer(10, 0, 10, 0);
+}
 
-// 	}
+//Refresh Send MSG Info Routine
+int Refresh_Send_MSG_Info_Routine (Destination *ActualDestination, Panel_ID *ListOfPanels){
 
-// 	if(ConfirmReceiver == 0) return 1;
-// 	return 0;
+	ADestination = ActualDestination;
+	LPanels = ListOfPanels;
+	IndexLocal++;
 
-// }
+}
 
-// //Send Mensage of Clear for All displays
-// int Send_MSG_Clear_All (unsigned char BitBangTx, unsigned char BitBangRx, unsigned int  Baudrate){
-
-// 	unsigned char ConfirmReceiver = 0;
-// 	char CHKS = (char)(SOH + 0xFF + STX + 0x01 + 0x20 + ETX);
-// 	//                <Dest>      <N>  <Type>  
-// 	char Tx[7] = {SOH, 0xFF, STX, 0x01, 0x20, ETX, CHKS};
-// 	char Rx = 0;
-	
-// 	for(int i = 0; (i<4 || ConfirmReceiver == 0); i++){
-// 		// Transmitting
-// 		BitBangUARTTx (BitBangTx, Baudrate, &Tx[0], 7);
-// 		// Receiving
-// 		BitBangUARTRx (BitBangRx, Baudrate, &Rx, 1);
-// 		if(Rx == ACK) ConfirmReceiver = 1;
-
-// 	}
-
-// 	if(ConfirmReceiver == 0) return 1;
-// 	return 0;
-
-// }
 
 

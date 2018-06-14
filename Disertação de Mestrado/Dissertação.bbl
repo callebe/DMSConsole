@@ -16,11 +16,6 @@
   Fran{\c{c}}ois. Extensible markup language (xml).
 \textbf{World Wide Web Journal}, v.~2, n.~4, p. 27--66, 1997.}
 
-\bibitem[Consola de Indicador de Destino - Protocolo de Comunicação]{DMSManual}
-\abntrefinfo{Consola\ldots}{CONSOLA\ldots}{}
-{CONSOLA de Indicador de Destino - Protocolo de Comunicação.
-[S.l.].}
-
 \bibitem[CP 2018]{cp}
 \abntrefinfo{CP}{CP}{2018}
 {CP. \textbf{CP, Comboios de Portugal}. 2018.
@@ -38,10 +33,15 @@ Accessed: 2018-05-15.}
 \abntrefinfo{Debian}{DEBIAN}{2005}
 {DEBIAN, GNU. \textbf{Linux}. 2005.}
 
+\bibitem[DMS]{DMSManual}
+\abntrefinfo{DMS}{DMS}{}
+{DMS. \textbf{Consola de Indicador de Destino - Protocolo de Comunicação}.
+Rua de Cidres, nº1444, 4455-442 Perafita (Matosinhos), Portugal.}
+
 \bibitem[DMS 2018]{DMS}
 \abntrefinfo{DMS}{DMS}{2018}
 {DMS. \textbf{Displays \& Mobility Solutions}. Rua de Cidres, nº1444, 4455-442
-  Perafita (Matosinhos), Portugal: [s.n.], 2018.
+  Perafita Matosinhos, Portugal: [s.n.], 2018.
 \url{http://www.dmsdisplays.com/about-dms.php}.
 Accessed: 2018-05-15.}
 

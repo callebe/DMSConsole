@@ -16,7 +16,7 @@
    id="svg7117"
    inkscape:version="0.92.1 r15371"
    sodipodi:docname="FrameworkSource.svg"
-   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\FrameworkSourceE.png"
+   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\FrameworkImportUSB.png"
    inkscape:export-xdpi="28.879999"
    inkscape:export-ydpi="28.879999">
   <defs
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.17599827"
-     inkscape:cx="1433.2075"
-     inkscape:cy="1370.159"
+     inkscape:cx="2329.2846"
+     inkscape:cy="1142.7473"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -55,7 +55,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39596,14 +39596,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafaf0;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="496.83307"
+       x="502.33145"
        y="185.24939"
        id="text57115"><tspan
          sodipodi:role="line"
          id="tspan57113"
-         x="496.83307"
+         x="502.33145"
          y="185.24939"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Concluído</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Importar</tspan></text>
     <g
        id="g57446"
        transform="translate(-8.0696247)">
@@ -39662,26 +39662,6 @@
          d="M 318.81667,197.286 190.90967,69.379 c -3.613,-3.617 -7.895,-5.424 -12.847,-5.424 -4.952,0 -9.233,1.807 -12.85,5.424 L 37.305672,197.286 c -3.617,3.614 -5.424,7.898 -5.424,12.846 0,4.948 1.807,9.233 5.424,12.847 3.621,3.617 7.902,5.428 12.85,5.428 H 305.96867 c 4.949,0 9.233,-1.811 12.848,-5.428 3.613,-3.613 5.427,-7.898 5.427,-12.847 0,-4.949 -1.814,-9.232 -5.427,-12.846 z"
          id="path2-5" />
     </g>
-    <g
-       id="g11100"
-       transform="translate(-402.08998,-78.742619)">
-      <path
-         inkscape:connector-curvature="0"
-         id="path57083-0-3"
-         d="m 481.87313,175.50875 v 26.74246 H 630.03979 V 162.13752 H 481.87313 Z"
-         style="display:inline;fill:none;fill-opacity:1;stroke:#ececec;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         id="text57115-7"
-         y="189.12039"
-         x="505.23639"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ececec;fill-opacity:1;stroke:#e6e6e6;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#ececec;fill-opacity:1;stroke:#e6e6e6;stroke-width:0.26458332"
-           y="189.12039"
-           x="505.23639"
-           id="tspan57113-3"
-           sodipodi:role="line">Nova Fonte</tspan></text>
-    </g>
     <path
        style="fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 84.666666,-179.25009 v 42.33333 H 904.87499 v -42.33333 z"
@@ -39708,9 +39688,19 @@
        id="path11104-5-7"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#cccccc;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="M 84.666666,-200.41676 H 79.374999 V 42.999906 H 910.16666 V -200.41676 H 232.83333"
+       style="fill:none;stroke:#cccccc;stroke-width:0.58045691;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 84.680793,-200.40245 H 79.389309 V 127.66658 H 910.15235 v -328.06903 h -677.31"
        id="path11148"
+       inkscape:connector-curvature="0" />
+    <path
+       style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 84.666667,32.416577 v 42.33333 H 904.875 v -42.33333 z"
+       id="path11104-5-7-2"
+       inkscape:connector-curvature="0" />
+    <path
+       style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 84.666667,74.74991 v 42.33333 H 904.87502 V 74.74991 Z"
+       id="path11104-5-7-2-3"
        inkscape:connector-curvature="0" />
   </g>
   <g

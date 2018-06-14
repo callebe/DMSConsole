@@ -60,12 +60,18 @@ As funções de leitura e criação da biblioteca GIDxml utilizam uma estrutura de d
 
 Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem um protocolo de comunicação próprio desenvolvido pela DMS, o qual é chamado de protocolo LDESIGN. Este protocolo possibilita que sejam enviados informação de controle e notificação para qualquer dispositivo que integra a rede de comunicação dos indicadores. A rede de comunicação dos indicadores de destino é normalmente composta por um console, que funciona no modo \textit{Master}, e até 16 painéis funcionando do modo \textit{Slave}. 
 
-O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Baud Rate} de 9600bps, com 8 bits de dados e 1 \textit{Stop Bit}. Neste protocolo qualquer mensagem enviada ou recebida por um dispositivo da rede segue o seguinte formato:
+O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Baud Rate} de 9600bps, com 8 bits de dados e 1 \textit{Stop Bit}. Como apresentado anteriormente no Capítulo \ref{cap:Raspberry}, o \textit{Raspberry Pi Zero W} possui apenas uma interface de comunicação UART, o qual já é utilizada neste projeto, para a comunicação em UART-RS232 com o \textit{display touchscreen}. Para solucionar este problema é utilizado um recurso de emulação de interface de comunicação por \textit{software} chamado \textit{Bit Bang}.
+
+Utilizando os recursos de leitura e escrita de dados nas portas digitais disponíveis da GPIO  e obedecendo a estrutura do protocolo de comunicação é possível emular, via \textit{software}, o comportamento de uma interface UART, adicionando mais um recurso de comunicação ao \textit{Raspberry Pi Zero W}. Porém um dos obstáculos a ser enfrentado nesta tarefa é a velocidade leitura e processamento dos dados recebidos e transmitidos por essa interface emulada, já que o menor atraso acarreta facilmente erros na transmissão e/ou recepção. Em um sistema que possui um \textit{Hardware} exclusivo para comunicação, como um modem UART, a amostragem dos sinais de entrada, a modulação dos sinais de saída, os níveis de tensão deste sinais, a sincronização e o armazenamento temporário são controladas independentemente da execução do \textit{software} pelo processador.  Já no \textit{Bit Bang} todos estes parâmetros devem ser controlados pelo \textit{software}.  
+
+Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação, \textit{Baud Rate}, ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \cite{bibid}, o qual oferece uma variedade de funções em C para comunicação serial.
+
+Neste protocolo qualquer mensagem enviada ou recebida por um dispositivo da rede segue o seguinte formato:
 
 \vspace{5mm}
 \begin{table}[H]
 	\centering
-	\captionsetup{width=\linewidth}
+	\captionsetup{width=0.8\linewidth}
 	\begin{tabular}{|c|c|l|c|}
 		\hline
 		\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Ordem} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Comando} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Descrição} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Nº bits} \\
@@ -91,14 +97,116 @@ O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Ba
     	\hline
 	\end{tabular}
 	\caption{Formato Geral - Protocolo Geral de Comunicação LDESIGN}
-	\caption*{Fonte: \cite{DMSManual}}
+	\caption*{Fonte: \citeonline{DMSManual}}
 	\label{tab:ProtocoloComunicacaoMain}
 \end{table}
 \vspace{5mm}
 
-Dentro do protocolo de comunicação LDESIGN há um conjunto de tipos de mensagem os quais possuem um alvo especifico dentro da rede de comunicação. O console dentro dessa rede é um dispositivo \textit{master} que realiza as requisições aos painéis, com mensagens console->painéis, e os painéis respondem com mensagens painel->console.
+O ID (\textit{Identificador}) de destino e de origem são dados específicos de cada dispositivo, por exemplo, normalmente o dispositivo console tem por padrão o ID 0x00 e o painel com as maiores dimensões da rede tem o ID 0x01. Os comandos 'Tipo' e 'Dados' são de acordo com o tipo de mensagem a ser enviada pelo protocolo, na seção \ref{subsection:MensageConsolePanel} especifica os valores para tais comandos.
 
-\section{Mensagens Console - Painéis}
+Quando o console faz uma requisição a um painel especifico, por exemplo ao painel ID 0x05, o comando de Destino e Origem são respectivamente 0x05 e 0x00, e o painel responde com uma mensagem com ID de Destino 0x00 e Origem 0x05. Porém quando o console deseja realizar uma requisição tipo \textit{Broadcast}, ou seja à todos os painéis da rede ao mesmo tempo, o ID de Destino deve ser 0xFF e a Origem 0x00. Cada painel irá responder a requisição do console de forma sequência, cronometrada de acordo com seu valor de ID multiplicada por 100 ms. Por exemplo, em uma rede com dois painéis de ID 0x01 e 0x03, o painel de ID 0x01 responde 100 ms depois do fim da transmissão \textit{Broadcast} do console. Já o painel de ID 0x01 responde 300 ms depois do fim da da transmissão \textit{Broadcast} do console, garantindo assim a não sobreposição de respostas dos painéis.    
+
+Dentro do protocolo de comunicação LDESIGN há um conjunto de tipos de mensagem os quais possuem um alvo especifico dentro da rede de comunicação. O console dentro dessa rede é um dispositivo \textit{master} que realiza as requisições aos painéis, com mensagens console-painéis, e os painéis respondem com mensagens painel-console. Há no total 9 tipos de mensagens console-painéis, e 4 do tipos de mensagens  painéis->console, o DMSConsole deve ser capaz de enviar e receber tais mensagens, mediante a requisição do usuário. Para cada mensagem é desenvolvido uma função em C++ para executar a transmissão ou recepção dos dados como requerido pelo protocolo. No protocolo LDESIGN o comando 'Dados' é o conjunto de Bytes da mensagem a ser enviada para o destinatário, as subseções a seguir apresentam os tipos de mensagem a serem enviados e qual valor que o comando 'Tipo' deve tomar para cada mensagem. 
+
+\subsection{Mensagens Console - Painéis}
+\label{subsection:MensageConsolePanel}
+\subsubsection{MSG INFO}
+Esta mensagem contém dados que descrevem as informações a serem afixadas em um painel especifico. O Byte 'Tipo' desta mensagem é definido como 0x21, e o Byte 'N' é variável de acordo com a mensagem o número total de Bytes presentes nessa mensagem. A estrutura geral desta mensagem segue abaixo:
+
+\vspace{5mm}
+\begin{table}[H]
+	\centering
+	\captionsetup{width=0.8\linewidth}
+	\begin{tabular}{|c|c|l|c|}
+		\hline
+		\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Ordem} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Comando} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Descrição} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Nº Bytes} \\
+		\hline
+		1º     & Index              & Contador de Referência   & 1      \\
+		\hline
+		2º     & Page General Info  & Informações gerais sobre as   & 3      \\
+		       &                    & páginas a seguir              &        \\
+		\hline
+		3º     & Stream ID          & Define se a mensagem é BITMAP & 1      \\
+		       &                    & ou ASCII                      & 1      \\
+		\hline
+		4º     & Page Info 1        & Descrição da Pagina 1  & N   \\
+		\hline
+		5º     & Page Info 2        & Descrição da Pagina 2 (Opcional) & N   \\
+		\hline
+		6º     & Page Info 3        & Descrição da Pagina 3 (Opcional) & N    \\
+		\hline
+		7º     & \textless{}END\textgreater{} & \textit{End of Message} - 23h    & 1    \\
+		\hline
+	\end{tabular}
+	\caption{Formato Geral - MSG Info}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{tab:GeralMSG_INFO}
+\end{table}
+\vspace{5mm}
+
+Cada painel possui um contador \textit{TimeOut} que cronometra o tempo decorrido desde a ultima mensagem tipo MSG INFO enviada. Quando este contador atingi o valor de 2 minutos o painel apaga as informações fixadas. Assim, no DMSConsole deve haver uma rotina que, no máximo a cada 2 minutos, reenvia automaticamente mensagens do tipo MSG INFO a todos os painéis da rede, mesmo que estas mensagens sejam iguais as ultimas mensagens enviadas. Para que o \textit{firmware} dos painéis não precise apagar e reescrever os dados fixados toda a vez em que mensagens tipo MSG INFO exatamente iguais são enviadas com o intuito de evitar que o contator \textit{TimeOut} estoure, o primeiro Byte da mensagem, o 'Index', somente é incrementado quando a mensagem a ser enviada é diferente da anterior.
+
+O comando 'Page Geral Info' é o conjunto de 3 Bytes que descrevem as informações a cerca das páginas a serem fixadas no painel de destino, a Figura (\ref{fig:PageGeneralInfoMSG_INFOHeader}) apresenta a descrição deste Bytes na ordem MSB  (\textit{Most Significant Bit}).
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=\linewidth]{Images/PageGeneralInfoMSG_INFO.eps}
+	\caption{MSG Info - Page General Info}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:PageGeneralInfoMSG_INFO}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{5mm}
+\begin{table}[H]
+	\centering
+	\captionsetup{width=0.8\linewidth}
+	\begin{tabular}{|c|c|l|c|}
+		\hline
+		\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Ordem} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Comando} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Descrição} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Nº Bytes} \\
+		\hline
+		1º     & Page Header   & Cabeçalho de definição das informações sobre a & 3   \\
+		&               & página                                         &     \\
+		\hline
+		2º     & Bus Line      & Conjunto de Bytes em ASCII que representam o   & N   \\
+		&               & número da Linha                                &     \\
+		\hline
+		3º     & Info Line 1   & Conjunto de Bytes em ASCII que representam o   & N   \\
+		&               & texto 1 a ser afixado  (Opcional)              &     \\
+		\hline
+		4º     & Info Line 2   & Conjunto de Bytes em ASCII que representam o   & N   \\
+		&               & texto 2 a ser afixado  (Opcional)              &     \\
+		\hline
+		5º     & Info Line 3   & Conjunto de Bytes em ASCII que representam o   & N   \\
+		&               & texto 3 a ser afixado  (Opcional)              &     \\
+		\hline
+	\end{tabular}
+	\caption{Formato Page Info - MSG Info}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{tab:PageInfoMSG_INFO}
+\end{table}
+\vspace{5mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=\linewidth]{Images/PageInfo_Header.eps}
+	\caption{MSG Info - Page Info Header}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:PageInfo_Header}
+\end{figure} 
+\vspace{9mm}
+
+
+
+\subsection{Mensagens Painéis - Console}
 
 
 
