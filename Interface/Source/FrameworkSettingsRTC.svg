@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12444957"
-     inkscape:cx="87.051159"
-     inkscape:cy="807.71281"
+     inkscape:zoom="0.087999135"
+     inkscape:cx="1991.9176"
+     inkscape:cy="833.5075"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -39,7 +39,7 @@
      inkscape:window-width="1366"
      inkscape:window-height="705"
      inkscape:window-x="-4"
-     inkscape:window-y="1076"
+     inkscape:window-y="1020"
      inkscape:window-maximized="1"
      inkscape:measure-start="1220,1290"
      inkscape:measure-end="1140,1290">
@@ -39590,35 +39590,35 @@
    id="tspan4669">SETTINGS</tspan></tspan></text>
     <path
        style="fill:#0f601a;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 467.78334,167.35419 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
+       d="m 467.78334,212.33325 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
        id="path57083-0"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafaf0;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="496.83307"
-       y="185.24939"
+       y="230.22844"
        id="text57115"><tspan
          sodipodi:role="line"
          id="tspan57113"
          x="496.83307"
-         y="185.24939"
+         y="230.22844"
          style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Concluído</tspan></text>
     <path
        style="fill:#961432;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 79.242707,167.35418 v 42.33333 H 227.4093 v -63.5 H 79.242707 Z"
+       d="m 79.242707,212.33324 v 42.33333 H 227.4093 v -63.5 H 79.242707 Z"
        id="path57083"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="122.63434"
-       y="186.29393"
+       y="231.27298"
        id="text57115-4"><tspan
          sodipodi:role="line"
          id="tspan57113-2"
          x="122.63434"
-         y="186.29393"
+         y="231.27298"
          style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:22.57777786px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafafa;fill-opacity:1;stroke-width:0.26458332">Voltar</tspan></text>
     <rect
        style="opacity:0.97000002;fill:none;fill-opacity:0.97254902;stroke:none;stroke-width:0.51492864;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

@@ -16,7 +16,7 @@
    id="svg7117"
    inkscape:version="0.92.1 r15371"
    sodipodi:docname="FrameworkMainSelectDestinationsB.svg"
-   inkscape:export-filename="C:\Users\Kr\Desktop\FrameworkMainSelectDestinationsB.png"
+   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\FrameworkMainSelectDestinationsB.png"
    inkscape:export-xdpi="28.879999"
    inkscape:export-ydpi="28.879999">
   <defs
@@ -28,18 +28,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.17599827"
-     inkscape:cx="1296.2197"
-     inkscape:cy="1097.3947"
+     inkscape:zoom="0.087999135"
+     inkscape:cx="2044.7909"
+     inkscape:cy="1775.1215"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      units="px"
      showguides="true"
-     inkscape:window-width="1280"
-     inkscape:window-height="1005"
-     inkscape:window-x="82"
-     inkscape:window-y="-4"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-4"
+     inkscape:window-y="1020"
      inkscape:window-maximized="1"
      inkscape:measure-start="1220,1290"
      inkscape:measure-end="1140,1290">
@@ -39590,23 +39590,23 @@
    id="tspan4669">SETTINGS</tspan></tspan></text>
     <path
        style="fill:#0f601a;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 467.78334,167.35419 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
+       d="m 467.78334,212.33325 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
        id="path57083-0"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafaf0;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="496.83307"
-       y="185.24939"
+       y="230.22844"
        id="text57115"><tspan
          sodipodi:role="line"
          id="tspan57113"
          x="496.83307"
-         y="185.24939"
+         y="230.22844"
          style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Concluído</tspan></text>
     <g
        id="g57446"
-       transform="translate(-8.0696247)">
+       transform="translate(-8.0696247,44.979057)">
       <path
          inkscape:connector-curvature="0"
          id="path57083"

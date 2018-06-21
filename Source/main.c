@@ -6,34 +6,8 @@
 #include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 #include "FunctionsTOPWAY.h" //Headers Functions of TOPWAY Touch Screen
 
-void get_popen(){
-    FILE *pf;
-    char command[20];
-    char data[512];
-
-    // Execute a process listing
-    sprintf(command, "ps aux wwwf"); 
-
-    // Setup our pipe for reading and execute our command.
-    pf = popen(command,"r"); 
-
-    // Error handling
-
-    // Get the data from the process execution
-    fgets(data, 512 , pf);
-
-    // the data is now in 'data'
-
-    if (pclose(pf) != 0)
-        fprintf(stderr," Error: Failed to close command stream \n");
-
-    return;
-}
-
 // -------- Main Function
-int main (void){
-
-	get_popen();
+int main (int argc, char *argv[]){
 
 	//Inicialize GPIO
 	if(gpioInitialise() < 0){
@@ -56,6 +30,9 @@ int main (void){
 
 	//Buzzer Touch Off
 	Buzzer_Touch_Off (uart0_filestream, 0);
+
+	//Reserv GID
+	Group *AuxGroup = NULL;
 
 	//Loading Default Xml file
 	GID NewGID;
@@ -110,7 +87,27 @@ int main (void){
 			case ImportUSBIDA:
 				NextPage = HandlerImportUSB(uart0_filestream);
 				break;
-				
+
+			case EditorArquivoID:
+				NextPage = HandlerEditor(uart0_filestream, &AuxGroup);
+				break;
+
+			case EditorLinhaID:	
+				NextPage = HandlerEditorLine(uart0_filestream, AuxGroup);
+				break;
+
+			case EditorDestinoID:
+				NextPage = HandlerEditorDestinations(uart0_filestream, AuxGroup);
+				break;
+
+			case EditorPanelID:
+				NextPage = HandlerEditorPanel(uart0_filestream, AuxGroup);
+				break;
+
+			case EditorPaginaID:
+				NextPage = HandlerEditorPage(uart0_filestream, AuxGroup);
+				break;
+
 			default:
 				NextPage = 0;
 

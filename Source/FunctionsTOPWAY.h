@@ -173,10 +173,91 @@
 	#define ButtonTouchUSBF 11
 	#define ButtonTouchUSBG 12
 	#define AdressInitialImportUSB 0x000900
-
 	// Editor
+	// -- File
+	#define EditorArquivoID 20
+	#define ButtonCancelarArquivo 0
+	#define ButtonProximoArquivo 1
+	#define ButtonSettingsArquivo 2
+	#define ButtonHomeArquivo 3
+	#define ButtonKeyboardArquivo 4
+	#define EditorArquivoIDKeyboard 21
+	#define EditorArquivoIDKeyboardCapsLock 22
+	#define EditorArquivoIDKeyboardOp 23
+	#define AdressFileName 0x000580
+	// -- Line
+	#define EditorLinhaID 24
+	#define EditorLinhaIDKeyboard 25
+	#define EditorLinhaIDKeyboardCapsLock 26
+	#define EditorLinhaIDOp 27
+	#define ButtonCancelarEditorLinha 0
+	#define ButtonProximoEditorLinha 1
+	#define ButtonSettingsEditorLinha 2
+	#define ButtonHomeEditorLinha 3
+	#define ButtonKeyboardNameEditorLinha 4
+	#define ButtonKeyboardNumberEditorLinha 5
+	#define AdressLineName 0x000600
+	#define AdressLineNumber 0x000680
+	// -- Destination
+	#define EditorDestinoID 29
+	#define EditorDestinoIDKeyboard 30
+	#define EditorDestinoIDKeyboardCapsLock 31
+	#define EditorDestinoIDOp 32
+	#define ButtonCancelarEditorDestino 0
+	#define ButtonProximoEditorDestino 1
+	#define ButtonSettingsEditorDestino 2
+	#define ButtonHomeEditorDestino 3
+	#define ButtonKeyboardNameEditorDestino 4
+	#define AdressDestinationName 0x000700
+	// -- Panel
+	#define EditorPanelID 33
+	#define ButtonCancelEditorPainel 0
+	#define ButtonConfirmEditorPainel 1
+	#define ButtonSettingsEditorPainel 2
+	#define ButtonHomeEditorPainel 3
+	#define ButtonColumnsEditorPanel 4
+	#define ButtonLinesEditorPanel 5
+	#define ButtonOKEditorPanel 6
+	#define ButtonDelEditorPanel 7
+	#define AdressLinesNumberEditorPanel 0x080020
+	#define AdressColumnsNumberEditorPanel 0x080022
+	// -- Page
+	#define EditorPaginaID 34
+	#define ButtonCancelEditorPage 0
+	#define ButtonConfirmEditorPage 1
+	#define ButtonSettingEditorPage 2
+	#define ButtonHomeEditorPage 3
+	#define ButtonDownPostingTimeEditorPage 4
+	#define ButtonUpPostingTimeEditorPage 5
+	#define ButtonDownSpaceBetweenCharactersEditorPage 6
+	#define ButtonUpSpaceBetweenCharactersEditorPage 7
+	#define ButtonUpSpaceBetweenNumberAndCharactersEditorPage 8
+	#define ButtonDownSpaceBetweenNumberAndCharactersEditorPage 9
+	#define ButtonDownVisualEditorPage 10
+	#define ButtonUpVisualEditorPage 11
+	#define ButtonAddTxEditorPage 12
+	#define ButtonAddLineEditorPage 13
+	#define ButtonAddDestinationEditorPage 14
+	#define ButtonAddPanelEditorPage 15
+	#define ButtonAddPageEditorPage 16
+	#define ButtonDownAlignNumberEditorPage 17
+	#define ButtonUpAlignNumberEditorPage 18
+	#define AdressPostingTimeEditorPage 0x080016
+	#define AdressSpaceBetweenCharactersEditorPage 0x080018
+	#define AdressSpaceBetweenNumberAndCharactersEditorPage 0x08001A
+	#define AdressVisualEditorPage 0x000C80
+	#define AdressNumberAlignEditorPage 0x000D80
+	// -- Text
+	#define EditorTextoID 35
+	#define EditorTextoIDKeyboard 36
+	#define EditorTextoIDKeyboardCapsLock 37
+	#define EditorTextoIDOp 38
+	//Keyboard
+	#define KeyboardEnter 13
+	#define KeyboardBackSpace 8
+	#define KeyboardShift 14
+	#define KeyboardOp 12
 	
-
 	//Type Define Button
 	typedef struct Button{
 		int PagId;
@@ -232,5 +313,15 @@
 	int HandlerSource (int uart0_filestream, Group **ActualGroup, Line **ActualLine, Destination **ActualDestination);
 	//Handler event for Import Xml Files 
 	int HandlerImportUSB(int uart0_filestream);
+	//Handler event for Editor
+	int HandlerEditor(int uart0_filestream, Group **NewGroup);
+	//Handler event for Editor Make Line
+	int HandlerEditorLine(int uart0_filestream, Group *NewGroup);
+	//Handler event for Editor Make Line
+	int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup);
+	//Handler event for Editor Make Panel
+	int HandlerEditorPanel(int uart0_filestream, Group *NewGroup);
+	//Handler event for Editor Make Page
+	int HandlerEditorPage(int uart0_filestream, Group *NewGroup);
 
 #endif

@@ -16,7 +16,7 @@
    id="svg7117"
    inkscape:version="0.92.1 r15371"
    sodipodi:docname="FrameworkSource.svg"
-   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\FrameworkImportUSB.png"
+   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\FrameworkSourceE.png"
    inkscape:export-xdpi="28.879999"
    inkscape:export-ydpi="28.879999">
   <defs
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.17599827"
-     inkscape:cx="2329.2846"
-     inkscape:cy="1142.7473"
+     inkscape:zoom="0.24889914"
+     inkscape:cx="822.89241"
+     inkscape:cy="1204.8195"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -39590,23 +39590,23 @@
    id="tspan4669">SETTINGS</tspan></tspan></text>
     <path
        style="fill:#0f601a;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 467.78334,167.35419 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
+       d="m 467.78334,212.33325 v 42.33333 H 615.95 v -63.5 H 467.78334 Z"
        id="path57083-0"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafaf0;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="502.33145"
-       y="185.24939"
+       x="504.13046"
+       y="230.22844"
        id="text57115"><tspan
          sodipodi:role="line"
          id="tspan57113"
-         x="502.33145"
-         y="185.24939"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Importar</tspan></text>
+         x="504.13046"
+         y="230.22844"
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:19.75555611px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafaf0;fill-opacity:1;stroke-width:0.26458332">Concluir</tspan></text>
     <g
        id="g57446"
-       transform="translate(-8.0696247)">
+       transform="translate(-8.0696247,44.979057)">
       <path
          inkscape:connector-curvature="0"
          id="path57083"
@@ -39635,12 +39635,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="89.416382"
-       y="-189.61188"
+       y="-167.91634"
        id="text4697"><tspan
          sodipodi:role="line"
          id="tspan4695"
          x="89.416382"
-         y="-189.61188"
+         y="-167.91634"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Arquivo Fonte</tspan></text>
     <g
        transform="matrix(0.33195673,0,0,0.33195673,952.5,-118.48825)"
@@ -39664,44 +39664,66 @@
     </g>
     <path
        style="fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.666666,-179.25009 v 42.33333 H 904.87499 v -42.33333 z"
+       d="m 84.666666,-157.55412 v 42.33333 H 904.87499 v -42.33333 z"
        id="path11104"
        inkscape:connector-curvature="0" />
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.666667,-136.91676 v 42.333336 H 904.87502 v -42.333336 z"
+       d="m 84.666667,-115.22079 v 42.333213 H 904.87502 v -42.333213 z"
        id="path11104-8"
        inkscape:connector-curvature="0" />
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.666667,-94.583423 v 42.33333 H 904.87501 v -42.33333 z"
+       d="m 84.666667,-72.887576 v 42.33333 H 904.87501 v -42.33333 z"
        id="path11104-9"
        inkscape:connector-curvature="0" />
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 84.666667,-52.25009 V -9.9167597 H 904.87502 V -52.25009 Z"
+       d="M 84.666667,-30.554243 V 11.779076 H 904.87502 v -42.333319 z"
        id="path11104-5"
        inkscape:connector-curvature="0" />
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 84.666667,-9.9167567 V 32.416573 H 904.87504 V -9.9167567 Z"
+       d="M 84.666667,11.779079 V 54.11242 H 904.87504 V 11.779079 Z"
        id="path11104-5-7"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#cccccc;stroke-width:0.58045691;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 84.680793,-200.40245 H 79.389309 V 127.66658 H 910.15235 v -328.06903 h -677.31"
+       style="fill:none;stroke:#cccccc;stroke-width:0.50821871;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 84.645134,-178.7426 H 79.35319 V 72.728758 H 910.18847 V -178.7426 h -677.3689"
        id="path11148"
        inkscape:connector-curvature="0" />
     <path
-       style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.666667,32.416577 v 42.33333 H 904.875 v -42.33333 z"
-       id="path11104-5-7-2"
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.73585582;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 458.61568,122.42194 v 31.87929 H 625.11765 V 106.48228 H 458.61568 Z"
+       id="path57083-1"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="472.34738"
+       y="136.23463"
+       id="text57115-4-8"><tspan
+         sodipodi:role="line"
+         id="tspan57113-2-0"
+         x="472.34738"
+         y="136.23463"
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:22.57777786px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafafa;fill-opacity:1;stroke-width:0.26458332">Importar USB</tspan></text>
     <path
-       style="display:inline;fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 84.666667,74.74991 v 42.33333 H 904.87502 V 74.74991 Z"
-       id="path11104-5-7-2-3"
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.73585582;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 81.909563,122.42194 v 31.87929 H 248.41154 V 106.48228 H 81.909563 Z"
+       id="path57083-1-3"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="108.3027"
+       y="138.68755"
+       id="text57115-4-8-1"><tspan
+         sodipodi:role="line"
+         id="tspan57113-2-0-5"
+         x="108.3027"
+         y="138.68755"
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:22.57777786px;font-family:Roboto;-inkscape-font-specification:'Roboto Heavy';fill:#fafafa;fill-opacity:1;stroke-width:0.26458332">Criar Fonte</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

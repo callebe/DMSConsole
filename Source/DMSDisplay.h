@@ -24,7 +24,7 @@
 	#define NACK                0x95
 	#define TimeDalyResponse    100 //100 milliseconds
 	#define LimitOfDisplays     16
-
+	
 	//Type Define Panel ID
 	typedef struct Panel_ID{
 		int Adress;

@@ -848,6 +848,10 @@ int HandlerSource (int uart0_filestream, Group **ActualGroup, Line **ActualLine,
   Write_Integer16b (uart0_filestream, Signals, 0);
   Write_Integer16b (uart0_filestream, Status, 1);
 
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  //--Function for buttons 
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
     if((Bt.Direction == 0) && ((Bt.PagId == SourceIDA)||(Bt.PagId == SourceIDB)||(Bt.PagId == SourceIDC)||(Bt.PagId == SourceIDD)||(Bt.PagId == SourceIDE))){
@@ -908,7 +912,7 @@ int HandlerSource (int uart0_filestream, Group **ActualGroup, Line **ActualLine,
             InitialWindows = InitialWindows->Next;
             free(Aux);
           }  
-          Break = MainID;
+          Break = EditorArquivoID;
           break;
 
         case ButtonUSBImport:
@@ -1019,7 +1023,12 @@ int HandlerImportUSB(int uart0_filestream){
   int CounterDirect;
   int StartAdress;
 
-  printf("Loko \n");
+  //Cleaning display
+  for(cont=0; cont<LimitOfLinesInImportUSB; cont++){
+    Write_String (uart0_filestream, StartAdress, " ");
+    StartAdress = StartAdress + 0x000080;
+  }
+
   // Loading Icon
   Write_Integer16b (uart0_filestream, Loading, 1);
   Write_Integer16b (uart0_filestream, Signals, 0);
@@ -1045,6 +1054,7 @@ int HandlerImportUSB(int uart0_filestream){
     return(SourceIDA);
 
   }
+  else sleep(1);
 
   // ---- Process to Loading Directories 
   //Default Directory
@@ -1099,7 +1109,7 @@ int HandlerImportUSB(int uart0_filestream){
   //---- Process to Reading Buttons
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
-    if((Bt.Direction == 1) && ((Bt.PagId-ImportUSBIDA) == ActualOp)){
+    if((Bt.Direction == 0) && ((Bt.PagId-ImportUSBIDA) == ActualOp)){
       //Select Buttons
       switch (Bt.ButtonId){
         case ButtonCancelUSB:
@@ -1124,7 +1134,7 @@ int HandlerImportUSB(int uart0_filestream){
           if(Aux->Type != 1){
             lengthAux = strlen(Aux->Name)-4;
             if(strcmp(&Aux->Name[lengthAux], ".xml") == 0){
-              // Copings files to default folder
+              //Copings files to default folder
               CommandA[0] = '\0';
               strcat(CommandA, "sudo cp ");
               conte = 8;
@@ -1137,7 +1147,7 @@ int HandlerImportUSB(int uart0_filestream){
               strcat(CommandA, " ");
               strcat(CommandA, XMLSourceDirectory);
               system(CommandA);
-              // Loading Icon
+              //Loading Icon
               Write_Integer16b (uart0_filestream, Loading, 1);
               Write_Integer16b (uart0_filestream, Signals, 0);
               Write_Integer16b (uart0_filestream, Status, 0);
@@ -1237,7 +1247,7 @@ int HandlerImportUSB(int uart0_filestream){
             // -- Sync Actual Option
             ActualOp = 0;
             // -- Debounce forced
-            sleep(0.5);
+            Get_Buttom_Event (uart0_filestream);
             // -- Return
             Break = -1;
           }
@@ -1288,7 +1298,9 @@ int HandlerImportUSB(int uart0_filestream){
             }
           }
           else{
+            // -- Select page
             Set_Page(uart0_filestream, Bt.PagId-1);
+            // -- Sync Actual Option
             Get_Buttom_Event (uart0_filestream);
             ActualOp = (Bt.PagId-1-ImportUSBIDA);
           }
@@ -1311,9 +1323,12 @@ int HandlerImportUSB(int uart0_filestream){
           }
           else{
             if((Bt.PagId-ImportUSBIDA) < CounterDirect-1){
+              // Select page
               Set_Page(uart0_filestream, Bt.PagId+1);
-              Get_Buttom_Event (uart0_filestream);
+              // -- Sync Actual Option
               ActualOp = (Bt.PagId+1-ImportUSBIDA);
+              // -- Debounce forced
+              Get_Buttom_Event (uart0_filestream);
             }
           }
           Break = -1;
@@ -1322,33 +1337,31 @@ int HandlerImportUSB(int uart0_filestream){
         default:
           if(Bt.ButtonId > (ButtonTouchUSBA-1) && ((Bt.ButtonId-ButtonTouchUSBA) < CounterDirect)){
             if((Bt.ButtonId-ButtonTouchUSBA) == ActualOp){
-              //Find Reference Number of Touch Key Path
+              // -- Find Reference Number of Touch Key Path
               Aux = InitialWindows;
               for(cont = 0; cont<(ActualOp); cont++) Aux = Aux->Next;
-              //Different action about directories
+              // -- Different action about directories
               if(Aux->Type == 1){
                 if(strcmp(Aux->Name,"..") == 0){
                   for(cont = strlen(Location)-2; (cont>10 && Location[cont] != '/'); cont--) Location[cont] = '\0';
-                  printf("::> %s\n", Location);
                 }
                 else{
                   strcat(Location, Aux->Name);
                   strcat(Location, "/");
-                  printf(">> %s\n", Location);
                 }
-                //free allocations
+                // -- free allocations
                 while(InitialWindows != NULL){
                   Aux = InitialWindows;
                   InitialWindows = InitialWindows->Next;
                   free(Aux);
                 }
-                //Reloading File List
+                // -- Reloading File List
                 DIR *Directory = opendir(Location);
                 if (Directory == NULL){
                     printf("Erro, don't be able to open USB Directory!\n" );
                     return MainID;
                 }
-                //Loading Files
+                // -- Loading Files
                 Aux = InitialWindows = FinalWindows = NULL;
                 CounterDirect = 0;
                 while ((DirectoryEntry = readdir(Directory)) != NULL){
@@ -1367,12 +1380,12 @@ int HandlerImportUSB(int uart0_filestream){
 
                 }
                 closedir(Directory);
-                //Allocation pointers
+                // -- Allocation pointers
                 FinalWindows = InitialWindows;
                 for(cont=0; (cont<(LimitOfLinesInImportUSB-1) && cont<(CounterDirect-1)); cont++){
                  FinalWindows = FinalWindows->Next;
                 }
-                //Loading Start List
+                // -- Loading Start List
                 Aux = InitialWindows;
                 StartAdress = AdressInitialImportUSB;
                 for(cont=0; (cont<LimitOfLinesInImportUSB && cont<CounterDirect); cont++){
@@ -1385,21 +1398,21 @@ int HandlerImportUSB(int uart0_filestream){
                   Write_String (uart0_filestream, StartAdress, " ");
                   StartAdress = StartAdress + 0x000080;
                 }
-                // Reset Page Import USB
+                // -- Reset Page Import USB
                 Set_Page(uart0_filestream, ImportUSBIDA);
                 // Sync  Actual Option
                 ActualOp = 0;
                 // -- Debounce forced
-                sleep(0.5);
+                Get_Buttom_Event (uart0_filestream);
               }
             }
             else{
-              // Select page
+              // -- Select page
               Set_Page(uart0_filestream, ((Bt.ButtonId-ButtonTouchUSBA)+ImportUSBIDA));
-              // -- Debounce forced
-              sleep(0.5);
               // Sync  Actual Option
               ActualOp = (Bt.ButtonId-ButtonTouchUSBA);
+              // -- Debounce forced
+              Get_Buttom_Event (uart0_filestream);
             }
             
           }
@@ -1408,6 +1421,1014 @@ int HandlerImportUSB(int uart0_filestream){
       }
 
     }
+  }
+
+  return Break;
+
+}
+
+//Handler event for Editor
+int HandlerEditor(int uart0_filestream, Group **NewGroup){
+
+  unsigned char Name[30];
+  int position = 0;
+  int Break = -1;
+
+  Name[0]= '\0';
+
+  //Cleanig display
+  Write_String (uart0_filestream, AdressFileName, " ");
+
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && ((Bt.PagId == EditorArquivoID) || (Bt.PagId == EditorArquivoIDKeyboard) || (Bt.PagId == EditorArquivoIDKeyboardCapsLock) || (Bt.PagId == EditorArquivoIDKeyboardOp))){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        case ButtonCancelarArquivo:
+          // -- Return
+          Break = SourceIDA;
+          break;
+
+        case ButtonProximoArquivo:
+          // -- Return
+          if(position > 0){
+            //Crete a new Group
+            *NewGroup = (Group *)malloc(sizeof(Group));
+            strcpy((*NewGroup)->ID, Name);
+            Break = EditorLinhaID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
+          
+          break;
+
+        case ButtonSettingsArquivo:
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeArquivo:
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonKeyboardArquivo:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorArquivoIDKeyboard);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardEnter:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorArquivoID);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardBackSpace:
+          if(position > 0) Name[--position] = '\0';
+          else Name[0] = '\0';
+          //writing in display
+          Write_String (uart0_filestream, AdressFileName, Name);
+          Break = -1;
+          break;
+
+        case KeyboardShift:
+          if(Bt.PagId != EditorArquivoIDKeyboardCapsLock){
+            // -- Set to page with Caps Lock
+            Set_Page(uart0_filestream, EditorArquivoIDKeyboardCapsLock);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page without Caps Lock
+            Set_Page(uart0_filestream, EditorArquivoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          Break = -1;
+          break;
+
+        case KeyboardOp:
+          if(Bt.PagId != EditorArquivoIDKeyboardOp){
+            // -- Set to page with Optional simbols
+            Set_Page(uart0_filestream, EditorArquivoIDKeyboardOp);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page with convencional simbols
+            Set_Page(uart0_filestream, EditorArquivoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+         
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(position < ScreenTitleLength){
+            Name[position++] = Bt.ButtonId;
+            Name[position] = '\0';
+            //writing in display
+            Write_String (uart0_filestream, AdressFileName, Name);
+
+          }
+          Break = -1;
+
+      }
+
+    }
+    
+  }
+
+  return Break;
+
+}
+
+//Handler event for Editor Make Line
+int HandlerEditorLine(int uart0_filestream, Group *NewGroup){
+
+  unsigned char NameLine[30];
+  unsigned char IDLine[5];
+  int positionName = 0;
+  int positionID = 0;
+  unsigned char Select = 0;
+  Line *LastLine =  NULL;
+  Line *ActualLine =  NULL;
+  int Break = -1;
+
+  NameLine[0]= '\0';
+  IDLine[0] = '\0'; 
+
+  //Cleanig display
+  Write_String (uart0_filestream, AdressLineName, " ");
+  Write_String (uart0_filestream, AdressLineNumber, " ");
+
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && ((Bt.PagId == EditorLinhaID) || (Bt.PagId == EditorLinhaIDKeyboard) || (Bt.PagId == EditorLinhaIDKeyboardCapsLock) || (Bt.PagId == EditorLinhaIDOp))){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        case ButtonCancelarEditorLinha:
+          // -- Return
+          Break = SourceIDA;
+          break;
+
+        case ButtonProximoEditorLinha:
+          if((positionName > 0) && (positionID > 0)){
+            //Crete a new line
+            ActualLine = (Line *)malloc(sizeof(Line));
+            strcpy(ActualLine->Number, IDLine);
+            strcpy(ActualLine->Name, NameLine);
+            LastLine = NewGroup->List;
+            if(LastLine != NULL){
+              while(LastLine->Next != NULL) LastLine = LastLine->Next;
+              LastLine->Next = ActualLine;
+            }
+            else NewGroup->List = ActualLine;
+            ActualLine->Next = NULL;
+            ActualLine->Previous = LastLine;
+            Break = EditorDestinoID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
+          break;
+
+        case ButtonSettingsEditorLinha:
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeEditorLinha:
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonKeyboardNameEditorLinha:
+          Select = 0;
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorLinhaIDKeyboard);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case ButtonKeyboardNumberEditorLinha:
+          Select = 1;
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorLinhaIDKeyboard);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardEnter:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorLinhaID);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardBackSpace:
+          if(Select == 1){
+            if(positionID > 0) IDLine[--positionID] = '\0';
+            else IDLine[0] = '\0';
+            //writing in display
+            Write_String (uart0_filestream, AdressLineNumber, IDLine);
+          }
+          else{
+            if(positionName > 0) NameLine[--positionName] = '\0';
+            else NameLine[0] = '\0';
+            //writing in display
+            Write_String (uart0_filestream, AdressLineName, NameLine);
+
+          }
+          Break = -1;
+          break;
+
+        case KeyboardShift:
+          if(Bt.PagId != EditorLinhaIDKeyboardCapsLock){
+            // -- Set to page with Caps Lock
+            Set_Page(uart0_filestream, EditorLinhaIDKeyboardCapsLock);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page without Caps Lock
+            Set_Page(uart0_filestream, EditorLinhaIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          Break = -1;
+          break;
+
+        case KeyboardOp:
+          if(Bt.PagId != EditorLinhaIDOp){
+            // -- Set to page with Optional simbols
+            Set_Page(uart0_filestream, EditorLinhaIDOp);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page with convencional simbols
+            Set_Page(uart0_filestream, EditorLinhaIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+         
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(Select == 1){
+            if(positionID < 4){
+              IDLine[positionID++] = Bt.ButtonId;
+              IDLine[positionID] = '\0';
+              //writing in display
+              Write_String (uart0_filestream, AdressLineNumber, IDLine);
+
+            }
+          }
+          else{
+            if(positionName < ScreenTitleLength){
+              NameLine[positionName++] = Bt.ButtonId;
+              NameLine[positionName] = '\0';
+              //writing in display
+              Write_String (uart0_filestream, AdressLineName, NameLine);
+
+            }
+          }
+          Break = -1;
+
+      }
+
+    }
+    
+  }
+
+  return Break;
+
+}
+
+//Handler event for Editor Make Destination
+int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup){
+
+
+  unsigned char Name[30];
+  int position = 0;
+  int Break = -1;
+  Line *LastLine =  NULL;
+  Destination *LastDestination =  NULL;
+  Destination *ActualDestination =  NULL;
+
+  Name[0]= '\0';
+
+  //Cleanig display
+  Write_String (uart0_filestream, AdressDestinationName, " ");
+
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && ((Bt.PagId == EditorDestinoID) || (Bt.PagId == EditorDestinoIDKeyboard) || (Bt.PagId == EditorDestinoIDKeyboardCapsLock) || (Bt.PagId == EditorDestinoIDOp))){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        
+        case ButtonCancelarEditorDestino:
+          Break = SourceIDA;
+          break;
+
+        case ButtonProximoEditorDestino:
+          if(position > 0){
+            //Crete a new line
+            ActualDestination = (Destination *)malloc(sizeof(Destination));
+            strcpy(ActualDestination->Name, Name);
+            // Search a last line
+            LastLine = NewGroup->List;
+            while(LastLine->Next != NULL) LastLine = LastLine->Next;
+            LastDestination = LastLine->List;
+            // Chain
+            if(LastDestination != NULL){
+              while(LastDestination->Next != NULL) LastDestination = LastDestination->Next;
+              LastDestination->Next = ActualDestination;
+            }
+            else LastLine->List = ActualDestination;
+            ActualDestination->Next = NULL;
+            ActualDestination->Previous = LastDestination;
+            Break = EditorPanelID;
+            Get_Buttom_Event(uart0_filestream);
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
+          break;
+
+        case ButtonSettingsEditorDestino:
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeEditorDestino:
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonKeyboardNameEditorDestino:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorDestinoIDKeyboard);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardEnter:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorDestinoID);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardBackSpace:
+          if(position > 0) Name[--position] = '\0';
+          else Name[0] = '\0';
+          //writing in display
+          Write_String (uart0_filestream, AdressDestinationName, Name);
+          Break = -1;
+          break;
+
+        case KeyboardShift:
+          if(Bt.PagId != EditorDestinoIDKeyboardCapsLock){
+            // -- Set to page with Caps Lock
+            Set_Page(uart0_filestream, EditorDestinoIDKeyboardCapsLock);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page without Caps Lock
+            Set_Page(uart0_filestream, EditorDestinoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          Break = -1;
+          break;
+
+        case KeyboardOp:
+          if(Bt.PagId != EditorDestinoIDOp){
+            // -- Set to page with Optional simbols
+            Set_Page(uart0_filestream, EditorDestinoIDOp);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Set to page with convencional simbols
+            Set_Page(uart0_filestream, EditorDestinoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+         
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(position < ScreenTitleLength){
+            Name[position++] = Bt.ButtonId;
+            Name[position] = '\0';
+            //writing in display
+            Write_String (uart0_filestream, AdressDestinationName, Name);
+
+          }
+          Break = -1;
+
+      }
+
+    }
+    
+  }
+
+  return Break;
+
+}
+
+//Handler event for Editor Make Panel
+int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
+
+  unsigned char BufferLines[6];
+  unsigned char BufferColumns[6];
+  unsigned char Select = 0;
+  int positionLines = 0;
+  int positionColumns = 0;
+  int Break = -1;
+  Line *LastLine =  NULL;
+  Destination *LastDestination =  NULL;
+  Panel *LastPanel =  NULL;
+  Panel *ActualPanel =  NULL;
+
+  BufferLines[0] = '\0';
+  BufferColumns[0] = '\0';
+
+  //Cleanig display
+  Write_Integer16b (uart0_filestream, AdressLinesNumberEditorPanel, 0);
+  Write_Integer16b (uart0_filestream, AdressColumnsNumberEditorPanel, 0);
+
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && (Bt.PagId == EditorPanelID)){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        case ButtonCancelEditorPainel:
+          Break = SourceIDA;
+          break;
+
+        case ButtonConfirmEditorPainel:
+          if(positionLines > 0 && positionColumns > 0){
+            //Crete a new Panel
+            ActualPanel = (Panel *)malloc(sizeof(Panel));
+            ActualPanel->Lines = atoi(BufferLines);
+            ActualPanel->Columns = atoi(BufferColumns);
+            for(int cont = 0; cont<LimitOfPages; cont++) ActualPanel->List[cont].ID = 0;
+            // Search a last Panel
+            LastLine = NewGroup->List;
+            while(LastLine->Next != NULL) LastLine = LastLine->Next;
+            LastDestination = LastLine->List;
+            while(LastDestination->Next != NULL) LastDestination = LastDestination->Next;
+            LastPanel = LastDestination->List;
+            // Chain
+            if(LastPanel != NULL){
+              while(LastPanel->Next != NULL) LastPanel = LastPanel->Next;
+              LastPanel->Next = ActualPanel;
+            }
+            else LastDestination->List = ActualPanel;
+            ActualPanel->Next = NULL;
+            ActualPanel->Previous = LastPanel;
+            Break = EditorPaginaID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
+          break;
+
+        case ButtonSettingsEditorPainel:
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeEditorPainel:
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonColumnsEditorPanel:
+          Select = 1;
+          Break = -1;
+          break;
+
+        case ButtonLinesEditorPanel:
+          Select = 0;
+          Break = -1;
+          break;
+
+        case ButtonOKEditorPanel:
+          Break = -1;
+          break;
+
+        case ButtonDelEditorPanel:
+          if(Select == 1){
+            if(positionColumns > 0){
+              BufferColumns[--positionColumns] = '\0';
+              Write_Integer16b (uart0_filestream, AdressColumnsNumberEditorPanel, atoi(BufferColumns));
+            }
+
+          }
+          else{
+            if(positionLines > 0){
+              BufferLines[--positionLines] = '\0';
+              Write_Integer16b (uart0_filestream, AdressLinesNumberEditorPanel, atoi(BufferLines));
+            }
+
+          }
+          Break = -1;
+          break;
+
+        default:
+          if(Select == 1){
+            if(positionColumns<5){
+              BufferColumns[positionColumns++] = Bt.ButtonId+40;
+              BufferColumns[positionColumns] = '\0';
+              Write_Integer16b (uart0_filestream, AdressColumnsNumberEditorPanel, atoi(BufferColumns));
+            }
+
+          }
+          else{
+            if(positionLines<5){
+              BufferLines[positionLines++] = Bt.ButtonId+40;
+              BufferLines[positionLines] = '\0';
+              Write_Integer16b (uart0_filestream, AdressLinesNumberEditorPanel, atoi(BufferLines));
+            }
+
+          }
+          Break = -1;
+
+      }
+    }   
+  }
+
+  return Break;
+
+}
+
+//Constant
+const unsigned char RefFonts[11][2] = {{5,5}, {7,5}, {8,6}, {11,7}, {12,7}, {13,9}, {14,9}, {15,9}, {16,9}, {17,11}, {19,11}};
+
+//Handler event for Editor Make Text
+int HandlerEditorText(int uart0_filestream, Page List){
+
+  int Break = -1;
+  unsigned char Text[30];
+  unsigned char position = 0;
+  int conte = 0;
+
+  Text[0] = '\0';
+
+  //Inicialize
+  Write_Integer16b (uart0_filestream, AdressRefNumberEditorText, 0);
+  Write_String (uart0_filestream, AdressInfoEditorText, " ");
+  Write_String (uart0_filestream, AdressAlignEditorText, " ");
+  Write_String (uart0_filestream, AdressEffectEditorText, " ");
+  Write_String (uart0_filestream, AdressFontEditorText, " ");
+
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && (Bt.PagId == EditorPaginaID)){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        case ButtonCancelText:
+          Break = 0;
+          break;
+
+        case ButtonConfirmText:
+          Break = 0;
+          break;
+
+        case ButtonSettingText:
+          Break = 1;
+          break;
+
+        case ButtonHomeText:
+          Break = 2;
+          break;
+
+        case ButtonKeyText:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorTextoIDKeyboard);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardEnter:
+          // -- Reset Page Import USB
+          Set_Page(uart0_filestream, EditorTextoID);
+          // -- Debounce forced
+          Get_Buttom_Event (uart0_filestream);
+          // -- Return
+          Break = -1;
+          break;
+
+        case KeyboardShift:
+          if(Bt.PagId != EditorTextoIDKeyboardCapsLock){
+            // -- Reset Page Import USB
+            Set_Page(uart0_filestream, EditorTextoIDKeyboardCapsLock);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+            // -- Return
+
+          }
+          else{
+            // -- Reset Page Import USB
+            Set_Page(uart0_filestream, EditorTextoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+            // -- Return
+
+          }
+
+        case KeyboardOp
+          if(Bt.PagId != EditorTextoIDOp){
+            // -- Reset Page Import USB
+            Set_Page(uart0_filestream, EditorTextoIDOp);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+
+          }
+          else{
+            // -- Reset Page Import USB
+            Set_Page(uart0_filestream, EditorTextoIDKeyboard);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+            
+
+          }
+          // -- Return
+          Break = -1;
+
+        case KeyboardBackSpace:
+          if(position > 0) Text[--position] = '\0';
+          Break = -1;
+          break;
+
+        case ButtonUpNumberText;
+          if(conte < 3){
+            conte++;
+
+          }
+          break;
+      
+      }
+    }
+  }
+  return Break;
+
+}
+
+//Handler event for Editor Make Page
+int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
+
+  int Break = -1;
+  int cont = 0;
+  unsigned char CounterText = 0;
+  unsigned char PostingTime = 0;
+  unsigned char SpaceBetweenCharacters = 0;
+  unsigned char SpaceBetweenNumberAndCharacters = 0;
+  unsigned char Select = 0;
+  unsigned char AlignNumber = 0;
+  Line *LastLine =  NULL;
+  Destination *LastDestination =  NULL;
+  Panel *LastPanel =  NULL;
+  unsigned char Info[LimitOfFields][LimitOfCharPerLine];
+  unsigned char Effect[LimitOfFields];
+  unsigned char Align[LimitOfFields];
+  unsigned char FontWidth[LimitOfFields];
+
+  //Cleanig display
+  Write_Integer16b (uart0_filestream, AdressPostingTimeEditorPage, 0);
+  Write_Integer16b (uart0_filestream, AdressSpaceBetweenCharactersEditorPage, 0);
+  Write_Integer16b (uart0_filestream, AdressSpaceBetweenNumberAndCharactersEditorPage, 0);
+  Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Esquerda");
+  Write_String (uart0_filestream, AdressVisualEditorPage, "Numero");
+
+  //Forced debounce
+  Get_Buttom_Event (uart0_filestream);
+
+  // Search a last line
+  LastLine = NewGroup->List;
+  while(LastLine->Next != NULL) LastLine = LastLine->Next;
+  LastDestination = LastLine->List;
+  while(LastDestination->Next != NULL) LastDestination = LastDestination->Next;
+  LastPanel = LastDestination->List;
+  while(LastPanel->Next != NULL) LastPanel = LastPanel->Next;
+  for(cont = 0; cont<LimitOfPages && LastPanel->List[cont].ID != 0; cont++);
+
+  //---- Process to Reading Buttons
+  while(Break < 0){
+    Button Bt = Get_Buttom_Event (uart0_filestream);
+    if((Bt.Direction == 0) && (Bt.PagId == EditorPaginaID)){
+      //Select Buttons
+      switch(Bt.ButtonId){
+        
+        case ButtonCancelEditorPage:
+          Break = SourceIDA;
+          break;
+
+        case ButtonConfirmEditorPage:
+          if(((Select == 1 || Select == 2) && CounterText>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[cont].ID = cont + 1;
+            LastPanel->List[cont].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[cont].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[cont].PostingTime = PostingTime;
+            LastPanel->List[cont].NumberOfFields = CounterText;
+            for(int conte = 0; conte<CounterText; conte++){
+              strcpy(LastPanel->List[cont].TextList[conte].Info, Info[conte]);
+              LastPanel->List[cont].TextList[conte].Effect = Effect[conte];
+              LastPanel->List[cont].TextList[conte].Align = Align[conte];
+              LastPanel->List[cont].TextList[conte].FontWidth = RefFonts[conte][0];
+              LastPanel->List[cont].TextList[conte].FontHeight = RefFonts[conte][1];
+
+            }
+            Break = SourceIDA;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
+          break;
+
+        case ButtonSettingEditorPage:
+          // -- Return
+          Break = SettingsMainID;
+          break;
+
+        case ButtonHomeEditorPage:
+          // -- Return
+          Break = MainID;
+          break;
+
+        case ButtonDownPostingTimeEditorPage:
+          if(PostingTime > 0){
+            PostingTime--;
+            Write_Integer16b(uart0_filestream, AdressPostingTimeEditorPage, PostingTime);
+          
+          } 
+          Break = -1;
+          break;
+
+        case ButtonUpPostingTimeEditorPage:
+          if((PostingTime<64 && cont == 0) || (PostingTime<256 && cont > 0)){
+            PostingTime++;
+            Write_Integer16b(uart0_filestream, AdressPostingTimeEditorPage, PostingTime);
+
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpSpaceBetweenCharactersEditorPage:
+          if(SpaceBetweenCharacters < 4){
+            SpaceBetweenCharacters++;
+            Write_Integer16b(uart0_filestream, AdressSpaceBetweenCharactersEditorPage, SpaceBetweenCharacters);
+
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownSpaceBetweenCharactersEditorPage:
+          if(SpaceBetweenCharacters > 0){
+            SpaceBetweenCharacters--;
+            Write_Integer16b(uart0_filestream, AdressSpaceBetweenCharactersEditorPage, SpaceBetweenCharacters);
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpSpaceBetweenNumberAndCharactersEditorPage:
+          if(SpaceBetweenNumberAndCharacters < 16){
+            SpaceBetweenNumberAndCharacters++;
+            Write_Integer16b(uart0_filestream, AdressSpaceBetweenNumberAndCharactersEditorPage, SpaceBetweenNumberAndCharacters);
+
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownSpaceBetweenNumberAndCharactersEditorPage:
+          if(SpaceBetweenNumberAndCharacters > 0){
+            SpaceBetweenNumberAndCharacters--;
+            Write_Integer16b(uart0_filestream, AdressSpaceBetweenNumberAndCharactersEditorPage, SpaceBetweenNumberAndCharacters);
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownVisualEditorPage:
+          if(Select > 0){
+            Select--;
+            switch(Select){
+              case 1:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Texto");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Numero + Texto");
+                break;
+
+              case 3:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Sem Info.");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Numero");
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpVisualEditorPage:
+          if(Select < 2){
+            Select++;
+            switch(Select){
+              case 1:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Texto");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Numero + Texto");
+                break;
+
+              case 3:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Sem Info.");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressVisualEditorPage, "Numero");
+
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownAlignNumberEditorPage:
+          if(AlignNumber > 0){
+            AlignNumber--;
+            switch(AlignNumber){
+              case 1:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Esquerda");
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpAlignNumberEditorPage:
+          if(AlignNumber < 2){
+            AlignNumber++;
+            switch(AlignNumber){
+              case 1:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Esquerda");
+            }
+          }
+          Break = -1;
+          break;
+
+        case ButtonAddTxEditorPage:
+          if(Select == 1 || Select == 2){
+            HandlerEditorText(uart0_filestream, &List[cont]);
+          }
+          Break = -1;
+          break;
+
+        case ButtonAddLineEditorPage:
+          Break = EditorLinhaID;
+          break;
+
+        case ButtonAddDestinationEditorPage:
+          Break = EditorDestinoID;
+          break;
+
+        case ButtonAddPanelEditorPage:
+          Break = EditorPanelID;
+          break;
+
+        case ButtonAddPageEditorPage:
+          Break = EditorPaginaID;
+          break;
+
+        default:
+          Break = -1;
+
+      }
+
+    }
+    
   }
 
   return Break;
