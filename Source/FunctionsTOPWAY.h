@@ -9,6 +9,7 @@
 #include <time.h> //Used by RTC functions
 #include <sys/time.h> // Used by RTC functions
 #include <errno.h> // Used by erro detection
+#include "DMSDisplay.h" //Headers Functions of DMSDIsplay
 
 #ifndef DEF_TOPWAY
 	
@@ -217,8 +218,8 @@
 	#define ButtonHomeEditorPainel 3
 	#define ButtonColumnsEditorPanel 4
 	#define ButtonLinesEditorPanel 5
-	#define ButtonOKEditorPanel 6
-	#define ButtonDelEditorPanel 7
+	#define ButtonOKEditorPanel 7
+	#define ButtonDelEditorPanel 6
 	#define AdressLinesNumberEditorPanel 0x080020
 	#define AdressColumnsNumberEditorPanel 0x080022
 	// -- Page
@@ -252,6 +253,24 @@
 	#define EditorTextoIDKeyboard 36
 	#define EditorTextoIDKeyboardCapsLock 37
 	#define EditorTextoIDOp 38
+	#define ButtonCancelText 0
+	#define ButtonConfirmText 1
+	#define ButtonSettingText 2
+	#define ButtonHomeText 3
+	#define ButtonKeyText 4
+	#define ButtonUpNumberText 5
+	#define ButtonDownNumberText 6
+	#define ButtonDownAlignText 17
+	#define ButtonUpAlignText 16
+	#define ButtonDownEffectText 9
+	#define ButtonUpEffectText 10
+	#define ButtonDownFontText 18
+	#define ButtonUpFontText 19
+	#define AdressInfoEditorText 0x000780
+	#define AdressRefNumberEditorText 0x08001E
+	#define AdressAlignEditorText 0x000D00
+	#define AdressEffectEditorText 0x000800
+	#define AdressFontEditorText 0x000880
 	//Keyboard
 	#define KeyboardEnter 13
 	#define KeyboardBackSpace 8
@@ -319,9 +338,13 @@
 	int HandlerEditorLine(int uart0_filestream, Group *NewGroup);
 	//Handler event for Editor Make Line
 	int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup);
+	//Handler event for Editor Make Text
+	int HandlerEditorText(int uart0_filestream, Page *ActualPage);
 	//Handler event for Editor Make Panel
 	int HandlerEditorPanel(int uart0_filestream, Group *NewGroup);
 	//Handler event for Editor Make Page
 	int HandlerEditorPage(int uart0_filestream, Group *NewGroup);
+	//Press XML source
+	int XMLSource (Group *NewGroup);
 
 #endif

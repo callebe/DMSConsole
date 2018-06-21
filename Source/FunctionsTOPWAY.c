@@ -1439,9 +1439,6 @@ int HandlerEditor(int uart0_filestream, Group **NewGroup){
   //Cleanig display
   Write_String (uart0_filestream, AdressFileName, " ");
 
-  //Forced debounce
-  Get_Buttom_Event (uart0_filestream);
-
   //---- Process to Reading Buttons
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -1656,7 +1653,7 @@ int HandlerEditorLine(int uart0_filestream, Group *NewGroup){
         case ButtonKeyboardNumberEditorLinha:
           Select = 1;
           // -- Reset Page Import USB
-          Set_Page(uart0_filestream, EditorLinhaIDKeyboard);
+          Set_Page(uart0_filestream, EditorLinhaIDOp);
           // -- Debounce forced
           Get_Buttom_Event (uart0_filestream);
           // -- Return
@@ -1913,6 +1910,9 @@ int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup){
 
 }
 
+//Constant
+const unsigned char RefFonts[11][2] = {{5,5}, {7,5}, {8,6}, {11,7}, {12,7}, {13,9}, {14,9}, {15,9}, {16,9}, {17,11}, {19,11}};
+
 //Handler event for Editor Make Panel
 int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
 
@@ -1934,9 +1934,6 @@ int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
   Write_Integer16b (uart0_filestream, AdressLinesNumberEditorPanel, 0);
   Write_Integer16b (uart0_filestream, AdressColumnsNumberEditorPanel, 0);
 
-  //Forced debounce
-  Get_Buttom_Event (uart0_filestream);
-
   //---- Process to Reading Buttons
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
@@ -1953,6 +1950,7 @@ int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
             ActualPanel = (Panel *)malloc(sizeof(Panel));
             ActualPanel->Lines = atoi(BufferLines);
             ActualPanel->Columns = atoi(BufferColumns);
+            ActualPanel->NumberOfPages = 0;
             for(int cont = 0; cont<LimitOfPages; cont++) ActualPanel->List[cont].ID = 0;
             // Search a last Panel
             LastLine = NewGroup->List;
@@ -2006,6 +2004,8 @@ int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonOKEditorPanel:
+          if(Select == 1) Select = 0;
+          else Select = 1;
           Break = -1;
           break;
 
@@ -2054,36 +2054,73 @@ int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
 
 }
 
-//Constant
-const unsigned char RefFonts[11][2] = {{5,5}, {7,5}, {8,6}, {11,7}, {12,7}, {13,9}, {14,9}, {15,9}, {16,9}, {17,11}, {19,11}};
-
 //Handler event for Editor Make Text
-int HandlerEditorText(int uart0_filestream, Page List){
+int HandlerEditorText(int uart0_filestream, Page *ActualPage){
 
   int Break = -1;
-  unsigned char Text[30];
-  unsigned char position = 0;
-  int conte = 0;
+  unsigned char Text[LimitOfFields][ScreenTitleLength];
+  unsigned char position[LimitOfFields];
+  int ActualText = 0;
+  unsigned char FontCounter = 0;
+  unsigned char Aux[6];
+  
+  //Inicialization
+  for(int cont = 0; cont<LimitOfFields; cont++) position[cont] = strlen(ActualPage->TextList[0].Info);
 
-  Text[0] = '\0';
+  //Inicialize Display
+  Write_Integer16b (uart0_filestream, AdressRefNumberEditorText, 1);
+  Write_String (uart0_filestream, AdressInfoEditorText, ActualPage->TextList[0].Info);
+  switch(ActualPage->TextList[0].Align){
+    case 1:
+      Write_String (uart0_filestream, AdressAlignEditorText, "Centro");
+      break;
 
-  //Inicialize
-  Write_Integer16b (uart0_filestream, AdressRefNumberEditorText, 0);
-  Write_String (uart0_filestream, AdressInfoEditorText, " ");
-  Write_String (uart0_filestream, AdressAlignEditorText, " ");
-  Write_String (uart0_filestream, AdressEffectEditorText, " ");
-  Write_String (uart0_filestream, AdressFontEditorText, " ");
+    case 2:
+      Write_String (uart0_filestream, AdressAlignEditorText, "Direita");
+      break;
 
+    default:
+      Write_String (uart0_filestream, AdressAlignEditorText, "Esquerda");
+
+  }
+  switch(ActualPage->TextList[0].Effect){
+    case 1:
+      Write_String (uart0_filestream, AdressEffectEditorText, "Piscar");
+      break;
+
+    case 2:
+      Write_String (uart0_filestream, AdressEffectEditorText, "Rodar");
+      break;
+
+    default:
+      Write_String (uart0_filestream, AdressEffectEditorText, "Sem Efeito");
+
+  }
+  sprintf(Aux, "%d x %d ", RefFonts[FontCounter][0], RefFonts[FontCounter][1]);
+  Write_String (uart0_filestream, AdressFontEditorText, Aux);
+
+  //Process to get buttons input
   while(Break < 0){
     Button Bt = Get_Buttom_Event (uart0_filestream);
-    if((Bt.Direction == 0) && (Bt.PagId == EditorPaginaID)){
+    if((Bt.Direction == 0) && (Bt.PagId == EditorTextoID || Bt.PagId == EditorTextoIDKeyboard || Bt.PagId == EditorTextoIDKeyboardCapsLock || Bt.PagId == EditorTextoIDOp)){
       //Select Buttons
       switch(Bt.ButtonId){
+        //Cancel
         case ButtonCancelText:
+          for(int cont = 0; cont<LimitOfFields; cont++){
+            ActualPage->TextList[cont].Info[0] = '\0';
+            ActualPage->TextList[cont].Effect = 0;
+            ActualPage->TextList[cont].Align = 0;
+            ActualPage->TextList[cont].FontWidth = 0;
+            ActualPage->TextList[cont].FontHeight = 0;
+            ActualPage->NumberOfFields = 0;
+          } 
           Break = 0;
           break;
-
+        //Confirm
         case ButtonConfirmText:
+          ActualPage->NumberOfFields = 0;
+          for(int cont = 0; (cont<LimitOfFields && ActualPage->TextList[cont].Info[0] != '\0'); cont++) ActualPage->NumberOfFields++; 
           Break = 0;
           break;
 
@@ -2130,8 +2167,9 @@ int HandlerEditorText(int uart0_filestream, Page List){
             // -- Return
 
           }
+          break;
 
-        case KeyboardOp
+        case KeyboardOp:
           if(Bt.PagId != EditorTextoIDOp){
             // -- Reset Page Import USB
             Set_Page(uart0_filestream, EditorTextoIDOp);
@@ -2144,23 +2182,217 @@ int HandlerEditorText(int uart0_filestream, Page List){
             Set_Page(uart0_filestream, EditorTextoIDKeyboard);
             // -- Debounce forced
             Get_Buttom_Event (uart0_filestream);
-            
 
           }
           // -- Return
           Break = -1;
+          break;
 
         case KeyboardBackSpace:
-          if(position > 0) Text[--position] = '\0';
+          if(position[ActualText] > 0){ 
+            ActualPage->TextList[ActualText].Info[--position[ActualText]] = '\0';
+            Write_String (uart0_filestream, AdressInfoEditorText, ActualPage->TextList[ActualText].Info);
+
+          }
           Break = -1;
           break;
 
-        case ButtonUpNumberText;
-          if(conte < 3){
-            conte++;
+        case ButtonUpNumberText:
+          if(ActualText < 2){
+            ActualText++;
+            //Refrash display
+            Write_Integer16b (uart0_filestream, AdressRefNumberEditorText, ActualText+1);
+            Write_String (uart0_filestream, AdressInfoEditorText, ActualPage->TextList[ActualText].Info);
+            switch(ActualPage->TextList[ActualText].Align){
+              case 1:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Esquerda");
+
+            }
+            switch(ActualPage->TextList[ActualText].Effect){
+              case 1:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Piscar");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Rodar");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Sem Efeito");
+
+            }
+            FontCounter = SearchFonts(ActualPage->TextList[ActualText].FontWidth, ActualPage->TextList[ActualText].FontHeight);
+            sprintf(Aux, "%d x %d ", ActualPage->TextList[ActualText].FontHeight, ActualPage->TextList[ActualText].FontWidth);
+            Write_String (uart0_filestream, AdressFontEditorText, Aux);
+
+          } 
+          break;
+
+        case ButtonDownNumberText:
+          if(ActualText > 0){
+            ActualText--;
+            //Refrash display
+            Write_Integer16b (uart0_filestream, AdressRefNumberEditorText, ActualText+1);
+            Write_String (uart0_filestream, AdressInfoEditorText, ActualPage->TextList[ActualText].Info);
+            switch(ActualPage->TextList[ActualText].Align){
+              case 1:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Esquerda");
+
+            }
+            switch(ActualPage->TextList[ActualText].Effect){
+              case 1:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Piscar");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Rodar");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Sem Efeito");
+
+            }
+            FontCounter = SearchFonts(ActualPage->TextList[ActualText].FontWidth, ActualPage->TextList[ActualText].FontHeight);
+            sprintf(Aux, "%d x %d ", ActualPage->TextList[ActualText].FontHeight, ActualPage->TextList[ActualText].FontWidth);
+            Write_String (uart0_filestream, AdressFontEditorText, Aux);
 
           }
+          Break = -1;
           break;
+
+        case ButtonDownAlignText:
+          if(ActualPage->TextList[ActualText].Align > 0){
+            ActualPage->TextList[ActualText].Align--;
+            switch(ActualPage->TextList[ActualText].Align){
+              case 1:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Esquerda");
+
+            }
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpAlignText:
+          if(ActualPage->TextList[ActualText].Align < 2){
+            ActualPage->TextList[ActualText].Align++;
+            switch(ActualPage->TextList[ActualText].Align){
+              case 1:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Centro");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Direita");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressAlignEditorText, "Esquerda");
+
+            }
+            
+          }
+          Break = -1;
+          break;
+          
+        case ButtonDownEffectText:
+          if(ActualPage->TextList[ActualText].Effect > 0){
+            ActualPage->TextList[ActualText].Effect--;
+            switch(ActualPage->TextList[ActualText].Effect){
+              case 1:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Piscar");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Rodar");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Sem Efeito");
+
+            }
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpEffectText:
+          if(ActualPage->TextList[ActualText].Effect < 2){
+            ActualPage->TextList[ActualText].Effect++;
+            switch(ActualPage->TextList[ActualText].Effect){
+              case 1:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Piscar");
+                break;
+
+              case 2:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Rodar");
+                break;
+
+              default:
+                Write_String (uart0_filestream, AdressEffectEditorText, "Sem Efeito");
+
+            }
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonDownFontText:
+          if(FontCounter > 0){
+            FontCounter--;
+            ActualPage->TextList[ActualText].FontHeight = RefFonts[FontCounter][0];
+            ActualPage->TextList[ActualText].FontWidth = RefFonts[FontCounter][1];
+            sprintf(Aux, "%d x %d ", RefFonts[FontCounter][0], RefFonts[FontCounter][1]);
+            Write_String (uart0_filestream, AdressFontEditorText, Aux);
+            
+          }
+          Break = -1;
+          break;
+
+        case ButtonUpFontText:
+          if(FontCounter < 10){
+            FontCounter++;
+            ActualPage->TextList[ActualText].FontHeight = RefFonts[FontCounter][0];
+            ActualPage->TextList[ActualText].FontWidth = RefFonts[FontCounter][1];
+            sprintf(Aux, "%d x %d ", RefFonts[FontCounter][0], RefFonts[FontCounter][1]);
+            Write_String (uart0_filestream, AdressFontEditorText, Aux);
+            
+          }
+          Break = -1;
+          break;
+
+        default:
+          printf(":> %d, %d\n", position[ActualText], ActualText);
+          if(position[ActualText]<ScreenTitleLength){
+            ActualPage->TextList[ActualText].Info[position[ActualText]++] = Bt.ButtonId;
+            ActualPage->TextList[ActualText].Info[position[ActualText]] = '\0';
+            Write_String (uart0_filestream, AdressInfoEditorText, ActualPage->TextList[ActualText].Info);
+
+          }
+          Break = -1;
       
       }
     }
@@ -2173,8 +2405,6 @@ int HandlerEditorText(int uart0_filestream, Page List){
 int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
 
   int Break = -1;
-  int cont = 0;
-  unsigned char CounterText = 0;
   unsigned char PostingTime = 0;
   unsigned char SpaceBetweenCharacters = 0;
   unsigned char SpaceBetweenNumberAndCharacters = 0;
@@ -2198,14 +2428,23 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
   //Forced debounce
   Get_Buttom_Event (uart0_filestream);
 
-  // Search a last line
+  // Search a last Page
   LastLine = NewGroup->List;
   while(LastLine->Next != NULL) LastLine = LastLine->Next;
   LastDestination = LastLine->List;
   while(LastDestination->Next != NULL) LastDestination = LastDestination->Next;
   LastPanel = LastDestination->List;
   while(LastPanel->Next != NULL) LastPanel = LastPanel->Next;
-  for(cont = 0; cont<LimitOfPages && LastPanel->List[cont].ID != 0; cont++);
+
+  //Inicialization
+  for(int cont = 0; cont<LimitOfFields; cont++){
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Info[0] = '\0';
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Effect = 0;
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Align = 0;
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontWidth = 0;
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontHeight = 0;
+
+  }
 
   //---- Process to Reading Buttons
   while(Break < 0){
@@ -2219,21 +2458,14 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonConfirmEditorPage:
-          if(((Select == 1 || Select == 2) && CounterText>0) || (Select == 3) || (Select == 0)){
-            LastPanel->List[cont].ID = cont + 1;
-            LastPanel->List[cont].SpaceBetweenCharacters = SpaceBetweenCharacters;
-            LastPanel->List[cont].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
-            LastPanel->List[cont].PostingTime = PostingTime;
-            LastPanel->List[cont].NumberOfFields = CounterText;
-            for(int conte = 0; conte<CounterText; conte++){
-              strcpy(LastPanel->List[cont].TextList[conte].Info, Info[conte]);
-              LastPanel->List[cont].TextList[conte].Effect = Effect[conte];
-              LastPanel->List[cont].TextList[conte].Align = Align[conte];
-              LastPanel->List[cont].TextList[conte].FontWidth = RefFonts[conte][0];
-              LastPanel->List[cont].TextList[conte].FontHeight = RefFonts[conte][1];
-
-            }
+          if(((Select == 1 || Select == 2) && LastPanel->List[LastPanel->NumberOfPages].NumberOfFields>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[LastPanel->NumberOfPages].ID = LastPanel->NumberOfPages+1;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->NumberOfPages++;
             Break = SourceIDA;
+            XMLSource (NewGroup);
               
           }
           else{
@@ -2270,7 +2502,7 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonUpPostingTimeEditorPage:
-          if((PostingTime<64 && cont == 0) || (PostingTime<256 && cont > 0)){
+          if((PostingTime<62 && LastPanel->NumberOfPages == 0) || (PostingTime<254 && LastPanel->NumberOfPages > 0)){
             PostingTime++;
             Write_Integer16b(uart0_filestream, AdressPostingTimeEditorPage, PostingTime);
 
@@ -2279,7 +2511,7 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonUpSpaceBetweenCharactersEditorPage:
-          if(SpaceBetweenCharacters < 4){
+          if(SpaceBetweenCharacters < 3){
             SpaceBetweenCharacters++;
             Write_Integer16b(uart0_filestream, AdressSpaceBetweenCharactersEditorPage, SpaceBetweenCharacters);
 
@@ -2297,7 +2529,7 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonUpSpaceBetweenNumberAndCharactersEditorPage:
-          if(SpaceBetweenNumberAndCharacters < 16){
+          if(SpaceBetweenNumberAndCharacters < 14){
             SpaceBetweenNumberAndCharacters++;
             Write_Integer16b(uart0_filestream, AdressSpaceBetweenNumberAndCharactersEditorPage, SpaceBetweenNumberAndCharacters);
 
@@ -2338,7 +2570,7 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonUpVisualEditorPage:
-          if(Select < 2){
+          if(Select < 3){
             Select++;
             switch(Select){
               case 1:
@@ -2401,25 +2633,121 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
 
         case ButtonAddTxEditorPage:
           if(Select == 1 || Select == 2){
-            HandlerEditorText(uart0_filestream, &List[cont]);
+            // -- Call page EditorTextoID
+            Set_Page(uart0_filestream, EditorTextoID);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+            // -- Return
+            LastPanel->List[LastPanel->NumberOfPages].NumberOfFields = 0;
+            int control = HandlerEditorText(uart0_filestream, &LastPanel->List[LastPanel->NumberOfPages]);
+            if(control == 1) Break = SettingsMainID;
+            else{
+              if(control == 2) Break = MainID;
+              else Break = -1;
+            }
+            // -- Call page EditorPage
+            Set_Page(uart0_filestream, EditorPaginaID);
+            // -- Debounce forced
+            Get_Buttom_Event (uart0_filestream);
+           
           }
-          Break = -1;
+          else Break = -1;
           break;
 
         case ButtonAddLineEditorPage:
-          Break = EditorLinhaID;
+          if(((Select == 1 || Select == 2) && LastPanel->List[LastPanel->NumberOfPages].NumberOfFields>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[LastPanel->NumberOfPages].ID = LastPanel->NumberOfPages+1;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->NumberOfPages++;
+            Break = EditorLinhaID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
           break;
 
         case ButtonAddDestinationEditorPage:
-          Break = EditorDestinoID;
+          if(((Select == 1 || Select == 2) && LastPanel->List[LastPanel->NumberOfPages].NumberOfFields>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[LastPanel->NumberOfPages].ID = LastPanel->NumberOfPages+1;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->NumberOfPages++;
+            Break = EditorDestinoID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
           break;
 
         case ButtonAddPanelEditorPage:
-          Break = EditorPanelID;
+          if(((Select == 1 || Select == 2) && LastPanel->List[LastPanel->NumberOfPages].NumberOfFields>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[LastPanel->NumberOfPages].ID = LastPanel->NumberOfPages+1;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->NumberOfPages++;
+            Break = EditorPanelID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
           break;
 
         case ButtonAddPageEditorPage:
-          Break = EditorPaginaID;
+          if(((Select == 1 || Select == 2) && LastPanel->List[LastPanel->NumberOfPages].NumberOfFields>0) || (Select == 3) || (Select == 0)){
+            LastPanel->List[LastPanel->NumberOfPages].ID = LastPanel->NumberOfPages+1;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
+            LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->NumberOfPages++;
+            Break = EditorPaginaID;
+              
+          }
+          else{
+            //Mensage Error
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 2);
+            Write_Integer16b (uart0_filestream, Status, 0);
+            sleep(2);
+            //Return 
+            Write_Integer16b (uart0_filestream, Loading, 0);
+            Write_Integer16b (uart0_filestream, Signals, 0);
+            Write_Integer16b (uart0_filestream, Status, 1);
+            Break = -1;
+          }
           break;
 
         default:
@@ -2432,5 +2760,58 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
   }
 
   return Break;
+
+}
+
+//Press XML source
+int XMLSource (Group *NewGroup){
+
+  //sprintf(Aux, "%d x %d ", RefFonts[FontCounter][0], RefFonts[FontCounter][1]);
+  FILE *NewXML;
+  Line *LastLine;
+  Destination *LastDestination;
+  Panel *LastPanel;
+
+  //Open File
+  NewXML = fopen(NewGroup->ID, "wb");
+
+  //Header
+  fprintf(NewXML, "<GID version=\"1.1\">\n\t<Group ID=\"1\">\n\t ");
+  
+  //Reading structure
+  // -- Line
+  LastLine =  AuxGroup->List;
+  while(LastLine != NULL){
+    fprintf(NewXML,"\t\t<Line Number=\"%s\" Name=\"%s\">", LastLine->Number, LastLine->Name);
+    // -- Destination
+    LastDestination =  LastLine->List;
+    while(LastDestination != NULL){
+      fprintf(NewXML,"\t\t\t<Destination ID=\"%d\" Name=\"%s\" Return=\"%s\">", LastDestination->ID, LastDestination->Name, LastDestination->Return);
+      // -- Panel
+      LastPanel =  LastDestination->List;
+      while(LastPanel != NULL){
+        fprintf(NewXML,"<Panel Lines=\"%d\" Columns=\"%d\">", LastPanel->Lines, LastPanel->Columns);
+        // -- Page
+        for(int counter=0; counter<(LastPanel->NumberOfPages); counter++){
+          fprintf(NewXML,"<Page ID=\"%d\" SBC=\"%d\" SBNAndC=\"%d\" PT=\"%d\">", LastPanel->List[counter].ID, LastPanel->List[counter].SpaceBetweenCharacters, LastPanel->List[counter].SpaceBetweenNumberAndCharacters, LastPanel->List[counter].PostingTime);
+        
+          printf(">> %s\n", LastPanel->List[counter].NumberList.Info);
+        }
+        fprintf(NewXML,"</Panel>");
+        LastPanel = LastPanel->Next;
+      }
+      fprintf(NewXML,"\t\t\t</Destination>");
+      LastDestination = LastDestination->Next;
+    }
+    fprintf(NewXML,"\t\t</Line>");
+    LastLine = LastLine->Next;
+
+  }
+
+  //Footer
+  fprintf(NewXML, "</Group>\n<GID>");
+
+  //Close file
+  fclose(NewXML);
 
 }
