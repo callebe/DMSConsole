@@ -84,6 +84,10 @@ int main (int argc, char *argv[]){
 				NextPage = HandlerSource(uart0_filestream, &ActualGroup, &ActualLine, &ActualDestination);
 				break;
 
+			case TerminalID:
+				NextPage = HandlerTerminal (uart0_filestream);
+				break;
+
 			case ImportUSBIDA:
 				NextPage = HandlerImportUSB(uart0_filestream);
 				break;

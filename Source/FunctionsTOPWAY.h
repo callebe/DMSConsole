@@ -75,6 +75,8 @@
 	// Screen
 	#define ScreenTitleLength 30
 	#define LimitTitleLength 75
+	#define LimitTerminalLength 54
+	#define LimitLinesTerminal 15
 	#define LimitOfLinesInSource 5
 	#define LimitOfLinesInImportUSB 7
 	// Main Page
@@ -106,7 +108,9 @@
 	#define ButtonSelectWatch 1
 	#define ButtonSelectSource 2
 	#define ButtonSettingsSettings 4
+	#define ButtonPainelSetting 5
 	#define ButtonHomeSettings 3
+	#define ButtonTerminal 7
 	// Watch Page
 	#define WatchID 4
 	#define WatchID2 12
@@ -152,6 +156,11 @@
 	#define Signals 0x080002
 	#define Loading 0x080004
 	#define AdressInitialSource 0x000300
+	// Terminal Page
+	#define TerminalID 10
+	#define ButtonHomeTerminal 0
+	#define AdressInitialTerminal 0x000E00
+	#define AdressFinalTerminal 0x001500
 	// Import USB Page
 	#define ImportUSBIDA 13
 	#define ImportUSBIDB 14
@@ -346,5 +355,7 @@
 	int HandlerEditorPage(int uart0_filestream, Group *NewGroup);
 	//Press XML source
 	int XMLSource (Group *NewGroup);
+	//Handler Terminal
+	int HandlerTerminal (int uart0_filestream);
 
 #endif

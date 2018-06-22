@@ -27,9 +27,9 @@ int LoadField (FILE *Routes, Page *NewPage){
 							return 1;
 						}
 						BufferNum[Counter-1] = '\0';
-						if(strncmp(&BufferNum[0], "Piscar", 6) == 0) Last[NewPage->NumberOfFields].Effect = 1;
+						if(strncmp(&BufferNum[0], "Blink", 6) == 0) Last[NewPage->NumberOfFields].Effect = 1;
 						else{
-							if(strncmp(&BufferNum[0], "Rodar", 5) == 0) Last[NewPage->NumberOfFields].Effect = 2;
+							if(strncmp(&BufferNum[0], "Roll", 5) == 0) Last[NewPage->NumberOfFields].Effect = 2;
 							else Last[NewPage->NumberOfFields].Effect = 0;
 								
 						}

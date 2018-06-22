@@ -30,6 +30,7 @@
 		unsigned char SpaceBetweenNumberAndCharacters;
 		unsigned char PostingTime;
 		unsigned char NumberOfFields;
+		unsigned char VisualInfo; // 0 - Number / 1 - Text / 2 - Number + Text / 3 - Without Info
 		Field TextList[LimitOfFields];
 		Field NumberList;
 
@@ -61,6 +62,7 @@
 	typedef struct Line{
 		unsigned char Number[32];
 		unsigned char Name[32];
+		int NumberOfDestinations;
 		struct Line *Next;
 		struct Line *Previous;
 		Destination  *List;

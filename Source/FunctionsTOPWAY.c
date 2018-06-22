@@ -775,6 +775,23 @@ int HandlerSettingsMain(int uart0_filestream){
           Break = MainID;
           break;
 
+        case ButtonTerminal:
+          // Enable Buttons and disable Loading screen
+          Write_Integer16b (uart0_filestream, Signals, 1);
+          sleep(2);
+          Write_Integer16b (uart0_filestream, Signals, 0);
+          //Break = TerminalID;
+          Break = -1;
+          break;
+
+        case ButtonPainelSetting:
+          // Enable Buttons and disable Loading screen
+          Write_Integer16b (uart0_filestream, Signals, 2);
+          sleep(2);
+          Write_Integer16b (uart0_filestream, Signals, 0);
+          //Break = TerminalID;
+          Break = -1;
+
         default:
           Break = -1;
 
@@ -1605,6 +1622,8 @@ int HandlerEditorLine(int uart0_filestream, Group *NewGroup){
             ActualLine = (Line *)malloc(sizeof(Line));
             strcpy(ActualLine->Number, IDLine);
             strcpy(ActualLine->Name, NameLine);
+            ActualLine->NumberOfDestinations = 0;
+            //Found las line
             LastLine = NewGroup->List;
             if(LastLine != NULL){
               while(LastLine->Next != NULL) LastLine = LastLine->Next;
@@ -1787,7 +1806,6 @@ int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup){
           if(position > 0){
             //Crete a new line
             ActualDestination = (Destination *)malloc(sizeof(Destination));
-            strcpy(ActualDestination->Name, Name);
             // Search a last line
             LastLine = NewGroup->List;
             while(LastLine->Next != NULL) LastLine = LastLine->Next;
@@ -1800,7 +1818,12 @@ int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup){
             else LastLine->List = ActualDestination;
             ActualDestination->Next = NULL;
             ActualDestination->Previous = LastDestination;
+            //Assign Actual Destination
+            strcpy(ActualDestination->Name, Name);
+            ActualDestination->ID = ActualDestination->Return = ++LastLine->NumberOfDestinations;
+            //Return
             Break = EditorPanelID;
+            //Forced debounce
             Get_Buttom_Event(uart0_filestream);
               
           }
@@ -1912,7 +1935,8 @@ int HandlerEditorDestinations(int uart0_filestream, Group *NewGroup){
 
 //Constant
 const unsigned char RefFonts[11][2] = {{5,5}, {7,5}, {8,6}, {11,7}, {12,7}, {13,9}, {14,9}, {15,9}, {16,9}, {17,11}, {19,11}};
-
+const unsigned char RefEffects[3][6] = {"None","Blink","Roll"};
+const unsigned char RefAlign[3][7] = {"Left","Center","Right"};
 //Handler event for Editor Make Panel
 int HandlerEditorPanel(int uart0_filestream, Group *NewGroup){
 
@@ -2385,7 +2409,6 @@ int HandlerEditorText(int uart0_filestream, Page *ActualPage){
           break;
 
         default:
-          printf(":> %d, %d\n", position[ActualText], ActualText);
           if(position[ActualText]<ScreenTitleLength){
             ActualPage->TextList[ActualText].Info[position[ActualText]++] = Bt.ButtonId;
             ActualPage->TextList[ActualText].Info[position[ActualText]] = '\0';
@@ -2409,14 +2432,10 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
   unsigned char SpaceBetweenCharacters = 0;
   unsigned char SpaceBetweenNumberAndCharacters = 0;
   unsigned char Select = 0;
-  unsigned char AlignNumber = 0;
   Line *LastLine =  NULL;
   Destination *LastDestination =  NULL;
   Panel *LastPanel =  NULL;
-  unsigned char Info[LimitOfFields][LimitOfCharPerLine];
-  unsigned char Effect[LimitOfFields];
-  unsigned char Align[LimitOfFields];
-  unsigned char FontWidth[LimitOfFields];
+  
 
   //Cleanig display
   Write_Integer16b (uart0_filestream, AdressPostingTimeEditorPage, 0);
@@ -2441,8 +2460,8 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
     LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Info[0] = '\0';
     LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Effect = 0;
     LastPanel->List[LastPanel->NumberOfPages].TextList[cont].Align = 0;
-    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontWidth = 0;
-    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontHeight = 0;
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontWidth = RefFonts[0][1];
+    LastPanel->List[LastPanel->NumberOfPages].TextList[cont].FontHeight = RefFonts[0][0];
 
   }
 
@@ -2463,6 +2482,11 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
             LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenCharacters = SpaceBetweenCharacters;
             LastPanel->List[LastPanel->NumberOfPages].SpaceBetweenNumberAndCharacters = SpaceBetweenNumberAndCharacters;
             LastPanel->List[LastPanel->NumberOfPages].PostingTime = PostingTime;
+            LastPanel->List[LastPanel->NumberOfPages].VisualInfo = Select;
+            LastPanel->List[LastPanel->NumberOfPages].NumberList.Effect = 0;
+            LastPanel->List[LastPanel->NumberOfPages].NumberList.FontWidth = 5;
+            LastPanel->List[LastPanel->NumberOfPages].NumberList.FontHeight = 5;
+            strcpy(LastPanel->List[LastPanel->NumberOfPages].NumberList.Info, LastLine->Number);
             LastPanel->NumberOfPages++;
             Break = SourceIDA;
             XMLSource (NewGroup);
@@ -2594,9 +2618,9 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonDownAlignNumberEditorPage:
-          if(AlignNumber > 0){
-            AlignNumber--;
-            switch(AlignNumber){
+          if(LastPanel->List[LastPanel->NumberOfPages].NumberList.Align > 0){
+            LastPanel->List[LastPanel->NumberOfPages].NumberList.Align--;
+            switch(LastPanel->List[LastPanel->NumberOfPages].NumberList.Align){
               case 1:
                 Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Centro");
                 break;
@@ -2613,9 +2637,9 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
           break;
 
         case ButtonUpAlignNumberEditorPage:
-          if(AlignNumber < 2){
-            AlignNumber++;
-            switch(AlignNumber){
+          if(LastPanel->List[LastPanel->NumberOfPages].NumberList.Align < 2){
+            LastPanel->List[LastPanel->NumberOfPages].NumberList.Align++;
+            switch(LastPanel->List[LastPanel->NumberOfPages].NumberList.Align){
               case 1:
                 Write_String (uart0_filestream, AdressNumberAlignEditorPage, "Centro");
                 break;
@@ -2766,52 +2790,129 @@ int HandlerEditorPage(int uart0_filestream, Group *NewGroup){
 //Press XML source
 int XMLSource (Group *NewGroup){
 
-  //sprintf(Aux, "%d x %d ", RefFonts[FontCounter][0], RefFonts[FontCounter][1]);
   FILE *NewXML;
   Line *LastLine;
   Destination *LastDestination;
   Panel *LastPanel;
+  unsigned char Directory[50];
 
   //Open File
-  NewXML = fopen(NewGroup->ID, "wb");
+  Directory[0] = '\0';
+  strcat(Directory, XMLSourceDirectory);
+  strcat(Directory, NewGroup->ID);
+  strcat(Directory, ".xml");
+  NewXML = fopen(Directory, "wb");
 
   //Header
-  fprintf(NewXML, "<GID version=\"1.1\">\n\t<Group ID=\"1\">\n\t ");
+  fprintf(NewXML, "<GID version=\"1.1\">\n\t<Group ID=\"1\">\n");
   
   //Reading structure
   // -- Line
-  LastLine =  AuxGroup->List;
+  LastLine =  NewGroup->List;
   while(LastLine != NULL){
-    fprintf(NewXML,"\t\t<Line Number=\"%s\" Name=\"%s\">", LastLine->Number, LastLine->Name);
+    fprintf(NewXML,"\t\t<Line Number=\"%s\" Name=\"%s\">\n", LastLine->Number, LastLine->Name);
     // -- Destination
     LastDestination =  LastLine->List;
     while(LastDestination != NULL){
-      fprintf(NewXML,"\t\t\t<Destination ID=\"%d\" Name=\"%s\" Return=\"%s\">", LastDestination->ID, LastDestination->Name, LastDestination->Return);
+      fprintf(NewXML,"\t\t\t<Destination ID=\"%d\" Name=\"%s\" Return=\"%d\">\n", LastDestination->ID, LastDestination->Name, LastDestination->Return);
       // -- Panel
       LastPanel =  LastDestination->List;
       while(LastPanel != NULL){
-        fprintf(NewXML,"<Panel Lines=\"%d\" Columns=\"%d\">", LastPanel->Lines, LastPanel->Columns);
+        fprintf(NewXML,"\t\t\t\t<Panel Lines=\"%d\" Columns=\"%d\"> \n", LastPanel->Lines, LastPanel->Columns);
         // -- Page
         for(int counter=0; counter<(LastPanel->NumberOfPages); counter++){
-          fprintf(NewXML,"<Page ID=\"%d\" SBC=\"%d\" SBNAndC=\"%d\" PT=\"%d\">", LastPanel->List[counter].ID, LastPanel->List[counter].SpaceBetweenCharacters, LastPanel->List[counter].SpaceBetweenNumberAndCharacters, LastPanel->List[counter].PostingTime);
-        
-          printf(">> %s\n", LastPanel->List[counter].NumberList.Info);
+          fprintf(NewXML,"\t\t\t\t\t<Page ID=\"%d\" SBC=\"%d\" SBNAndC=\"%d\" PT=\"%d\"> \n", LastPanel->List[counter].ID, LastPanel->List[counter].SpaceBetweenCharacters, LastPanel->List[counter].SpaceBetweenNumberAndCharacters, LastPanel->List[counter].PostingTime);
+          switch (LastPanel->List[counter].VisualInfo){
+              case 1:
+                for(int counterAux = 0; counterAux<LastPanel->List[counter].NumberOfFields; counterAux++){
+                  fprintf(NewXML,"\t\t\t\t\t\t<Text Effect=\"%s\" Align=\"%s\" Font=\"%dx%d\">%s</Text>\n", RefEffects[LastPanel->List[counter].TextList[counterAux].Effect], RefAlign[LastPanel->List[counter].TextList[counterAux].Align], LastPanel->List[counter].TextList[counterAux].FontHeight, LastPanel->List[counter].TextList[counterAux].FontWidth, LastPanel->List[counter].TextList[counterAux].Info);
+                }
+                break;
+
+              case 2:
+                fprintf(NewXML,"\t\t\t\t\t\t<Number Effect=\"%s\" Align=\"%s\" Font=\"%dx%d\">%s</Number>\n", RefEffects[LastPanel->List[counter].NumberList.Effect], RefAlign[LastPanel->List[counter].NumberList.Align], LastPanel->List[counter].NumberList.FontHeight, LastPanel->List[counter].NumberList.FontWidth, LastPanel->List[counter].NumberList.Info);
+                for(int counterAux = 0; counterAux<LastPanel->List[counter].NumberOfFields; counterAux++){
+                  fprintf(NewXML,"\t\t\t\t\t\t<Text Effect=\"%s\" Align=\"%s\" Font=\"%dx%d\">%s</Text>\n", RefEffects[LastPanel->List[counter].TextList[counterAux].Effect], RefAlign[LastPanel->List[counter].TextList[counterAux].Align], LastPanel->List[counter].TextList[counterAux].FontHeight, LastPanel->List[counter].TextList[counterAux].FontWidth, LastPanel->List[counter].TextList[counterAux].Info);
+                }
+                break;
+
+              case 0:
+                fprintf(NewXML,"\t\t\t\t\t\t<Number Effect=\"%s\" Align=\"%s\" Font=\"%dx%d\">%s</Number>\n", RefEffects[LastPanel->List[counter].NumberList.Effect], RefAlign[LastPanel->List[counter].NumberList.Align], LastPanel->List[counter].NumberList.FontHeight, LastPanel->List[counter].NumberList.FontWidth, LastPanel->List[counter].NumberList.Info);
+                break;
+
+              default:
+                fprintf(NewXML,"\n");
+          }
+          fprintf(NewXML,"\t\t\t\t\t</Page>\n");
         }
-        fprintf(NewXML,"</Panel>");
+        fprintf(NewXML,"\t\t\t\t</Panel>\n");
         LastPanel = LastPanel->Next;
       }
-      fprintf(NewXML,"\t\t\t</Destination>");
+      fprintf(NewXML,"\t\t\t</Destination>\n");
       LastDestination = LastDestination->Next;
     }
-    fprintf(NewXML,"\t\t</Line>");
+    fprintf(NewXML,"\t\t</Line>\n");
     LastLine = LastLine->Next;
 
   }
 
   //Footer
-  fprintf(NewXML, "</Group>\n<GID>");
+  fprintf(NewXML, "\t</Group>\n</GID>");
 
   //Close file
   fclose(NewXML);
+
+}
+
+//Handler Terminal
+int HandlerTerminal (int uart0_filestream){
+
+  int Break = -1;
+  unsigned char Buffer[LimitLinesTerminal][LimitTerminalLength];
+  unsigned int Line = 0;
+  unsigned int Colum = 0;
+  int contBuffer = 0;
+  int contpath = 0;
+  int ContinueReading = 1;
+  FILE *fp;
+  char path[1035];
+
+  Write_String (uart0_filestream, AdressInitialTerminal, "Agora");
+
+  /* Open the command for reading. */
+  fp = popen("/bin/ls /etc/", "r");
+  if (fp == NULL) {
+    printf("Failed to run command\n" );
+    exit(1);
+  }
+
+  //Button Detected
+  while(Break < 0){
+    // Button Bt = Get_Buttom_Event (uart0_filestream);
+    // if((Bt.Direction == 0) && (Bt.PagId == TerminalID)){
+    //   if(Bt.ButtonId == ButtonHomeTerminal) Break = MainID;
+    // }
+    system("sudo apt-get update");
+    /* Read the output a line at a time - output it. */
+    while (fgets(path, sizeof(path)-1, fp) != NULL) {
+      Buffer[Line][0] = '$';
+      Buffer[Line][1] = ':';
+      Buffer[Line][2] = ' ';
+      Buffer[Line][3] = '\0';
+      strcat(Buffer[Line], path);
+      if(Line < LimitLinesTerminal-1) Line++;
+      else Line = 0;
+      for(int cont = 0; cont<LimitLinesTerminal+1; cont++){
+        Write_String (uart0_filestream, AdressInitialTerminal+cont*0x80, Buffer[cont]);
+      } 
+    }
+    getchar();
+  }
+
+  /* close */
+  pclose(fp);
+
+  //return
+  return Break;
 
 }
