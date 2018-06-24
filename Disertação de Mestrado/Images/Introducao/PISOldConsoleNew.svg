@@ -35,17 +35,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="303.37391"
-     inkscape:cy="789.38384"
+     inkscape:zoom="2"
+     inkscape:cx="31.853501"
+     inkscape:cy="723.35097"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      showguides="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="988"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-4"
+     inkscape:window-y="1020"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -6632,7 +6632,8 @@
          x="21.43125" />
     </g>
     <g
-       id="g7590">
+       id="g7590"
+       transform="translate(0.52916633,3.3333334e-6)">
       <rect
          transform="matrix(0,-1,-1,0,0,0)"
          y="-29.633331"
@@ -6656,7 +6657,8 @@
          style="fill:none;stroke:#800000;stroke-width:0.25713024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
     <g
-       id="g7585">
+       id="g7585"
+       transform="translate(0.79374433,-6.6666666e-6)">
       <rect
          transform="matrix(0,-1,-1,0,0,0)"
          y="-27.78125"
@@ -6680,7 +6682,8 @@
          style="fill:#000080;stroke:#000080;stroke-width:0.25896037px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
     <g
-       id="g7580">
+       id="g7580"
+       transform="translate(0.52916718)">
       <rect
          transform="matrix(0,-1,-1,0,0,0)"
          y="-31.220833"
@@ -6957,5 +6960,31 @@
          x="98.366615"
          y="132.83723"
          style="stroke-width:0.26458332">TOPWAY - HKT080ATA-C</tspan></text>
+    <g
+       transform="translate(-0.79375567,-6.6666666e-6)"
+       id="g7585-2"
+       style="stroke:#d4aa00;fill:#d4aa00">
+      <rect
+         transform="matrix(0,-1,-1,0,0,0)"
+         y="-27.78125"
+         x="-97.504166"
+         height="1.0583333"
+         width="2.6458321"
+         id="rect4760-0-0-3"
+         style="fill:#d4aa00;fill-opacity:1;stroke:#d4aa00;stroke-width:0.37417722" />
+      <rect
+         transform="matrix(0,-1,-1,0,0,0)"
+         y="-27.78125"
+         x="-113.1146"
+         height="1.0583333"
+         width="2.6458375"
+         id="rect4760-0-0-6-1"
+         style="fill:#d4aa00;fill-opacity:1;stroke:#d4aa00;stroke-width:0.3741776" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7476-7"
+         d="M 27.252089,94.858345 V 113.11459"
+         style="fill:#d4aa00;stroke:#d4aa00;stroke-width:0.25896037px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

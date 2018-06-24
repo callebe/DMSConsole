@@ -50,7 +50,7 @@ A estrutura de dados do GID, apresentada na Figura (\ref{fig:EstruturaDeDados}),
 
 O \textit{software} DMSConsole deve ser capaz de ler um arquivo XML com as informações da estrutura de dado GID, como apresentado em (\ref{code:XML}), e ainda quando necessário criar um arquivo XML semelhante. O DMSConsole deve possibilitar ao usuário criar, através da interface de usuário, um arquivo XML com a estrutura de dados GID, para servir de fonte para os dados apresentados nos painéis. Existem varias bibliotecas prontas, em C++, para leitura e criação de arquivos XML, porém para tornam as funções de leitura e criação mais eficientes, e reduzir a complexabilidade do código, fora desenvolvido uma biblioteca própria nomeada GIDxml.
 
-As funções de leitura e criação da biblioteca GIDxml utilizam uma estrutura de dados semelhante a GID, porém com um sistema de alocação dinâmica de memória. A alocação dinâmica permite uma melhor gestão e maior capacidade de uso da memória da aplicação, tornando possível a aplicação ler arquivos XML de maior volume.    
+As funções de leitura e criação da biblioteca GIDxml utilizam uma estrutura de dados semelhante a GID, porém com um sistema de alocação dinâmica de memória. A alocação dinâmica permite uma melhor gestão e maior capacidade de uso da memória da aplicação, tornando possível a aplicação ler arquivos XML de maior volume.  
 
 \section{Gerenciador Interface}
 
@@ -64,9 +64,23 @@ O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Ba
 
 Utilizando os recursos de leitura e escrita de dados nas portas digitais disponíveis da GPIO  e obedecendo a estrutura do protocolo de comunicação é possível emular, via \textit{software}, o comportamento de uma interface UART, adicionando mais um recurso de comunicação ao \textit{Raspberry Pi Zero W}. Porém um dos obstáculos a ser enfrentado nesta tarefa é a velocidade leitura e processamento dos dados recebidos e transmitidos por essa interface emulada, já que o menor atraso acarreta facilmente erros na transmissão e/ou recepção. Em um sistema que possui um \textit{Hardware} exclusivo para comunicação, como um modem UART, a amostragem dos sinais de entrada, a modulação dos sinais de saída, os níveis de tensão deste sinais, a sincronização e o armazenamento temporário são controladas independentemente da execução do \textit{software} pelo processador.  Já no \textit{Bit Bang} todos estes parâmetros devem ser controlados pelo \textit{software}.  
 
-Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação, \textit{Baud Rate}, ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \cite{bibid}, o qual oferece uma variedade de funções em C para comunicação serial.
+Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação, \textit{Baud Rate}, ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \citeonline{abyz}, o qual oferece uma variedade de funções em C para comunicação serial via \textit{bit bang}.
 
-Neste protocolo qualquer mensagem enviada ou recebida por um dispositivo da rede segue o seguinte formato:
+Os pinos da GPIO do \textit{Raspberry Pi Zero W} possuem um nível de tensão de 0V á 3,3V, e consequentemente qualquer interface de comunicação estabelecido estará neste limite de tensão. Já que o UART-485 opera como tensões diferenciais em uma faixa além da oferecida pelo \textit{Raspberry}, se faz necessário utilizar um conversor UART TLL / UART-485. Neste projeto o conversor utilizado é o CI SP3481 - Sipex, o qual apresenta no lado TLL 4 pinos, sendo eles; porta de envio, recepção, habilitação de envio e aterramento, no lado 485 há apenas duas portas diferencias A B. A Figura \ref{fig:ConversorUARTTTL485} apresenta o esquemático da conexão entre este conversor e o \textit{Raspberry}.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/ConversorUARTTTL485.eps}
+	\caption{Conversor UART TTL - UART 485}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:ConversorUARTTTL485}
+\end{figure} 
+\vspace{9mm}
+
+Assim através da interface de comunicação emulada via \textit{bit bang}, utilizando os pinos 20 23 e 24 da GPIO, a comunicação entre console e painéis é feita no padrão LDESIGN. Neste protocolo de comunicação qualquer mensagem enviada ou recebida por um dispositivo da rede segue o seguinte formato:
 
 \vspace{5mm}
 \begin{table}[H]
@@ -147,7 +161,7 @@ Esta mensagem contém dados que descrevem as informações a serem afixadas em um p
 
 Cada painel possui um contador \textit{TimeOut} que cronometra o tempo decorrido desde a ultima mensagem tipo MSG INFO enviada. Quando este contador atingi o valor de 2 minutos o painel apaga as informações fixadas. Assim, no DMSConsole deve haver uma rotina que, no máximo a cada 2 minutos, reenvia automaticamente mensagens do tipo MSG INFO a todos os painéis da rede, mesmo que estas mensagens sejam iguais as ultimas mensagens enviadas. Para que o \textit{firmware} dos painéis não precise apagar e reescrever os dados fixados toda a vez em que mensagens tipo MSG INFO exatamente iguais são enviadas com o intuito de evitar que o contator \textit{TimeOut} estoure, o primeiro Byte da mensagem, o 'Index', somente é incrementado quando a mensagem a ser enviada é diferente da anterior.
 
-O comando 'Page Geral Info' é o conjunto de 3 Bytes que descrevem as informações a cerca das páginas a serem fixadas no painel de destino, a Figura (\ref{fig:PageGeneralInfoMSG_INFOHeader}) apresenta a descrição deste Bytes na ordem MSB  (\textit{Most Significant Bit}).
+O comando 'Page Geral Info' é o conjunto de 3 Bytes que descrevem as informações a cerca das páginas a serem fixadas no painel de destino, a Figura (\ref{fig:PageGeneralInfoMSG_INFO}) apresenta a descrição deste Bytes na ordem MSB  (\textit{Most Significant Bit}).
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -160,6 +174,8 @@ O comando 'Page Geral Info' é o conjunto de 3 Bytes que descrevem as informações
 	\label{fig:PageGeneralInfoMSG_INFO}
 \end{figure} 
 \vspace{9mm}
+
+O comando 'STREAM ID' tem dois formato diferentes, quando a mensagem é no sentido painel-console 'STREAM ID' é composto com 1 byte ASCII com o caractere 'A' quando a informação é no formato ASCII, ou 'B' quando é no formato BITMAP. Já quando a mensagem é no sentido console-painel o comando 'STREAM ID' é composto por 5 bytes com a mensagem 'ASCII' quando a mensagem esta no formato ASCII, e caso contrario a mensagem devera ser no formato BITMAP. 
 
 \vspace{5mm}
 \begin{table}[H]

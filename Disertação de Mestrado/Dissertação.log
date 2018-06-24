@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.4.15)  12 JUN 2018 01:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.4.15)  23 JUN 2018 16:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -745,7 +745,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 ... Quatern\'ario}{38}{subsubsection.8.1.1.1}
+l.27 ... Quatern\'ario}{39}{subsubsection.8.1.1.1}
                                                    [5
 
 ])
@@ -882,17 +882,17 @@ atrav[]es
  []
 
 Package epstopdf Info: Source file: <Images/Introducao/PISOldConsoleNew.eps>
-(epstopdf)                    date: 2018-05-18 13:50:54
-(epstopdf)                    size: 228318 bytes
+(epstopdf)                    date: 2018-06-23 12:01:55
+(epstopdf)                    size: 240947 bytes
 (epstopdf)             Output file: <Images/Introducao/PISOldConsoleNew-eps-con
 verted-to.pdf>
-(epstopdf)                    date: 2018-05-19 12:17:07
-(epstopdf)                    size: 58844 bytes
+(epstopdf)                    date: 2018-06-23 14:45:17
+(epstopdf)                    size: 61805 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/Introducao/PISOldCo
 nsoleNew-eps-converted-to.pdf Images/Introducao/PISOldConsoleNew.eps>
 (epstopdf)             \includegraphics on input line 45.
 Package epstopdf Info: Output file is already uptodate.
-<Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf, id=271, 481.8pt x 231
+<Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf, id=273, 481.8pt x 231
 .86626pt>
 File: Images/Introducao/PISOldConsoleNew-eps-converted-to.pdf Graphic file (typ
 e pdf)
@@ -929,7 +929,7 @@ Package epstopdf Info: Source file: <Images/DisplayTOPWAY.eps>
 onverted-to.pdf Images/DisplayTOPWAY.eps>
 (epstopdf)             \includegraphics on input line 7.
 Package epstopdf Info: Output file is already uptodate.
-<Images/DisplayTOPWAY-eps-converted-to.pdf, id=297, 2539.4875pt x 4176.60374pt>
+<Images/DisplayTOPWAY-eps-converted-to.pdf, id=299, 2539.4875pt x 4176.60374pt>
 
 File: Images/DisplayTOPWAY-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/DisplayTOPWAY-eps-converted-to.pdf>
@@ -940,7 +940,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/it' tried instead on input line 8.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <10> not available
 (Font)              Font shape `OT1/phv/b/sl' tried instead on input line 8.
-<Images/TMLGraphicsEditor.JPG, id=299, 1027.58907pt x 545.78906pt>
+<Images/TMLGraphicsEditor.JPG, id=301, 1027.58907pt x 545.78906pt>
 File: Images/TMLGraphicsEditor.JPG Graphic file (type jpg)
 <use Images/TMLGraphicsEditor.JPG>
 Package pdftex.def Info: Images/TMLGraphicsEditor.JPG  used on input line 21.
@@ -982,7 +982,7 @@ df>
 s-converted-to.pdf Images/RaspberryPiZeroW.eps>
 (epstopdf)             \includegraphics on input line 12.
 Package epstopdf Info: Output file is already uptodate.
-<Images/RaspberryPiZeroW-eps-converted-to.pdf, id=323, 150.5625pt x 296.10625pt
+<Images/RaspberryPiZeroW-eps-converted-to.pdf, id=325, 150.5625pt x 296.10625pt
 >
 File: Images/RaspberryPiZeroW-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/RaspberryPiZeroW-eps-converted-to.pdf>
@@ -1028,7 +1028,7 @@ IndicadorDeDestinoDMS.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf, id=
-353, 4176.60374pt x 3132.70375pt>
+355, 4176.60374pt x 3132.70375pt>
 File: Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf
  Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMS-eps-converted-to.pdf>
@@ -1049,7 +1049,7 @@ oDMS/ModeloAutocarro-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Modelo
 Autocarro.eps>
 (epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf, id=357, 7
+<Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf, id=359, 7
 88.9475pt x 478.78876pt>
 File: Images/IndicadoresDeDestinoDMS/ModeloAutocarro-eps-converted-to.pdf Graph
 ic file (type pdf)
@@ -1075,7 +1075,7 @@ ted-to.pdf>
 nsole-eps-converted-to.pdf Images/Introducao/PISOldConsole.eps>
 (epstopdf)             \includegraphics on input line 36.
 Package epstopdf Info: Output file is already uptodate.
-<Images/Introducao/PISOldConsole-eps-converted-to.pdf, id=366, 527.9725pt x 158
+<Images/Introducao/PISOldConsole-eps-converted-to.pdf, id=368, 527.9725pt x 158
 .5925pt>
 File: Images/Introducao/PISOldConsole-eps-converted-to.pdf Graphic file (type p
 df)
@@ -1097,7 +1097,7 @@ inoDMS/IndicadorDeDestinoDMSConsole.eps>
 (epstopdf)             \includegraphics on input line 50.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted-to.p
-df, id=368, 2340.745pt x 1819.79875pt>
+df, id=370, 2340.745pt x 1819.79875pt>
 File: Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted
 -to.pdf Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/IndicadorDeDestinoDMSConsole-eps-converted-
@@ -1126,7 +1126,7 @@ oDMS/UARTRS485-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/UARTRS485.ep
 s>
 (epstopdf)             \includegraphics on input line 70.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf, id=397, 1248.66
+<Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf, id=399, 1248.66
 5pt x 217.81375pt>
 File: Images/IndicadoresDeDestinoDMS/UARTRS485-eps-converted-to.pdf Graphic fil
 e (type pdf)
@@ -1154,7 +1154,7 @@ ndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485.eps>
 (epstopdf)             \includegraphics on input line 86.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART485-ep
-s-converted-to.pdf, id=413, 215.80624pt x 199.74625pt>
+s-converted-to.pdf, id=415, 215.80624pt x 199.74625pt>
 File: Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART4
 85-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/GraficoTaxaTransferenciaVsComprimentoUART48
@@ -1180,7 +1180,7 @@ oDMS/TopologiaUART485A-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Topo
 logiaUART485A.eps>
 (epstopdf)             \includegraphics on input line 102.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf, id=426,
+<Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf, id=428,
  257.96375pt x 93.34875pt>
 File: Images/IndicadoresDeDestinoDMS/TopologiaUART485A-eps-converted-to.pdf Gra
 phic file (type pdf)
@@ -1201,7 +1201,7 @@ oDMS/TopologiaUART485B-eps-converted-to.pdf Images/IndicadoresDeDestinoDMS/Topo
 logiaUART485B.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
-<Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf, id=427,
+<Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf, id=429,
  242.9075pt x 93.34875pt>
 File: Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-converted-to.pdf Gra
 phic file (type pdf)
@@ -1219,7 +1219,7 @@ Package babel Info: Redefining portuges shorthand "|
 T485-eps-converted-to.pdf> <./Images/IndicadoresDeDestinoDMS/TopologiaUART485A-
 eps-converted-to.pdf> <./Images/IndicadoresDeDestinoDMS/TopologiaUART485B-eps-c
 onverted-to.pdf>]
-<Images/IndicadoresDeDestinoDMS/GIDA.JPG, id=451, 602.25pt x 437.38406pt>
+<Images/IndicadoresDeDestinoDMS/GIDA.JPG, id=453, 602.25pt x 437.38406pt>
 File: Images/IndicadoresDeDestinoDMS/GIDA.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDA.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDA.JPG  used on input
@@ -1234,7 +1234,7 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 138.
 [24 <./Images/IndicadoresDeDestinoDMS/GIDA.JPG>]
-<Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG, id=460, 929.72343pt x 672.
+<Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG, id=462, 929.72343pt x 672.
 26157pt>
 File: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG Graphic file (type jpg
 )
@@ -1242,7 +1242,7 @@ File: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG Graphic file (type jpg
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG  us
 ed on input line 146.
 (pdftex.def)             Requested size: 223.06863pt x 161.29477pt.
-<Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG, id=461, 928.21782
+<Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG, id=463, 928.21782
 pt x 672.26157pt>
 File: Images/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG Graphic file 
 (type jpg)
@@ -1264,7 +1264,7 @@ truturaDeDadosGID.eps>
 (epstopdf)             \includegraphics on input line 173.
 Package epstopdf Info: Output file is already uptodate.
 <Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf, id=46
-5, 500.87125pt x 603.25375pt>
+7, 500.87125pt x 603.25375pt>
 File: Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf G
 raphic file (type pdf)
 <use Images/IndicadoresDeDestinoDMS/EstruturaDeDadosGID-eps-converted-to.pdf>
@@ -1281,25 +1281,25 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 180.
 [25 <./Images/IndicadoresDeDestinoDMS/201_AliadosViso.JPG> <./Images/Indicadore
 sDeDestinoDMS/202_AliadosPasseioAlegre.JPG>]
-<Images/IndicadoresDeDestinoDMS/GIDB.JPG, id=474, 602.25pt x 434.37282pt>
+<Images/IndicadoresDeDestinoDMS/GIDB.JPG, id=476, 602.25pt x 434.37282pt>
 File: Images/IndicadoresDeDestinoDMS/GIDB.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDB.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDB.JPG  used on input
  line 189.
 (pdftex.def)             Requested size: 204.85846pt x 147.75108pt.
-<Images/IndicadoresDeDestinoDMS/GIDC.JPG, id=475, 596.98032pt x 435.12563pt>
+<Images/IndicadoresDeDestinoDMS/GIDC.JPG, id=477, 596.98032pt x 435.12563pt>
 File: Images/IndicadoresDeDestinoDMS/GIDC.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDC.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDC.JPG  used on input
  line 196.
 (pdftex.def)             Requested size: 204.85846pt x 149.31512pt.
-<Images/IndicadoresDeDestinoDMS/GIDD.JPG, id=476, 605.26125pt x 438.8897pt>
+<Images/IndicadoresDeDestinoDMS/GIDD.JPG, id=478, 605.26125pt x 438.8897pt>
 File: Images/IndicadoresDeDestinoDMS/GIDD.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDD.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDD.JPG  used on input
  line 203.
 (pdftex.def)             Requested size: 204.85846pt x 148.54413pt.
-<Images/IndicadoresDeDestinoDMS/GIDF.JPG, id=477, 602.25pt x 438.13687pt>
+<Images/IndicadoresDeDestinoDMS/GIDF.JPG, id=479, 602.25pt x 438.13687pt>
 File: Images/IndicadoresDeDestinoDMS/GIDF.JPG Graphic file (type jpg)
 <use Images/IndicadoresDeDestinoDMS/GIDF.JPG>
 Package pdftex.def Info: Images/IndicadoresDeDestinoDMS/GIDF.JPG  used on input
@@ -1356,33 +1356,67 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 62.
  [30]
-LaTeX Font Info:    Font shape `OML/phv/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 73.
-
-
-Package hyperref Warning: Suppressing empty link on input line 94.
+Overfull \hbox (5.13393pt too wide) in paragraph at lines 67--68
+\OT1/phv/m/n/12 com-pu-ta-ci-o-nal bas-tante re-du-zido, mesmo as-sim o li-mite
+ da ve-lo-ci-dade de comunica[][]ao,
+ []
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 102.
+(babel)             in language  on input line 70.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 102.
+(babel)             in language  on input line 70.
 [31]
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 105.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
+Package epstopdf Info: Source file: <Images/SoftwareDMSConsole/ConversorUARTTTL
+485.eps>
+(epstopdf)                    date: 2018-06-23 13:53:38
+(epstopdf)                    size: 156350 bytes
+(epstopdf)             Output file: <Images/SoftwareDMSConsole/ConversorUARTTTL
+485-eps-converted-to.pdf>
+(epstopdf)                    date: 2018-06-23 14:49:51
+(epstopdf)                    size: 49541 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/SoftwareDMSConsole/
+ConversorUARTTTL485-eps-converted-to.pdf Images/SoftwareDMSConsole/ConversorUAR
+TTTL485.eps>
+(epstopdf)             \includegraphics on input line 75.
+Package epstopdf Info: Output file is already uptodate.
+<Images/SoftwareDMSConsole/ConversorUARTTTL485-eps-converted-to.pdf, id=556, 36
+3.3575pt x 87.32625pt>
+File: Images/SoftwareDMSConsole/ConversorUARTTTL485-eps-converted-to.pdf Graphi
+c file (type pdf)
+<use Images/SoftwareDMSConsole/ConversorUARTTTL485-eps-converted-to.pdf>
+Package pdftex.def Info: Images/SoftwareDMSConsole/ConversorUARTTTL485-eps-conv
+erted-to.pdf  used on input line 75.
+(pdftex.def)             Requested size: 409.71692pt x 98.47096pt.
 
 
-Package hyperref Warning: Suppressing empty link on input line 137.
+Package hyperref Warning: Suppressing empty link on input line 78.
+
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 93.
+
+Package hyperref Warning: Suppressing empty link on input line 114.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 141.
+(babel)             in language  on input line 120.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 141.
-[32]
+(babel)             in language  on input line 120.
+[32 <./Images/SoftwareDMSConsole/ConversorUARTTTL485-eps-converted-to.pdf>]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 125.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 127.
 
-LaTeX Warning: Reference `fig:PageGeneralInfoMSG_INFOHeader' on page 33 undefin
-ed on input line 144.
+
+Package hyperref Warning: Suppressing empty link on input line 157.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 161.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 161.
+[33]
+
+LaTeX Warning: Reference `fig:PageGeneralInfoMSG_INFOHeader' on page 34 undefin
+ed on input line 164.
 
 Package epstopdf Info: Source file: <Images/PageGeneralInfoMSG_INFO.eps>
 (epstopdf)                    date: 2018-06-07 23:47:35
@@ -1393,32 +1427,32 @@ ed-to.pdf>
 (epstopdf)                    size: 16647 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/PageGeneralInfoMSG_
 INFO-eps-converted-to.pdf Images/PageGeneralInfoMSG_INFO.eps>
-(epstopdf)             \includegraphics on input line 150.
+(epstopdf)             \includegraphics on input line 170.
 Package epstopdf Info: Output file is already uptodate.
-<Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf, id=556, 775.89874pt x 80.
+<Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf, id=584, 775.89874pt x 80.
 3pt>
 File: Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf Graphic file (type pd
 f)
 <use Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf>
 Package pdftex.def Info: Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf  u
-sed on input line 150.
+sed on input line 170.
 (pdftex.def)             Requested size: 455.24411pt x 47.11559pt.
 
-Package hyperref Warning: Suppressing empty link on input line 153.
+Package hyperref Warning: Suppressing empty link on input line 173.
 
 
-Overfull \hbox (8.67122pt too wide) in paragraph at lines 162--182
+Overfull \hbox (8.67122pt too wide) in paragraph at lines 182--202
  [][] 
  []
 
 
-Package hyperref Warning: Suppressing empty link on input line 184.
+Package hyperref Warning: Suppressing empty link on input line 204.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 188.
+(babel)             in language  on input line 208.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 188.
-[33 <./Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf>]
+(babel)             in language  on input line 208.
+[34 <./Images/PageGeneralInfoMSG_INFO-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <Images/PageInfo_Header.eps>
 (epstopdf)                    date: 2018-06-08 12:55:15
 (epstopdf)                    size: 53156 bytes
@@ -1428,26 +1462,26 @@ f>
 (epstopdf)                    size: 32465 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/PageInfo_Header-eps
 -converted-to.pdf Images/PageInfo_Header.eps>
-(epstopdf)             \includegraphics on input line 193.
+(epstopdf)             \includegraphics on input line 213.
 Package epstopdf Info: Output file is already uptodate.
-<Images/PageInfo_Header-eps-converted-to.pdf, id=570, 758.835pt x 272.01625pt>
+<Images/PageInfo_Header-eps-converted-to.pdf, id=597, 758.835pt x 272.01625pt>
 File: Images/PageInfo_Header-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/PageInfo_Header-eps-converted-to.pdf>
 Package pdftex.def Info: Images/PageInfo_Header-eps-converted-to.pdf  used on i
-nput line 193.
+nput line 213.
 (pdftex.def)             Requested size: 455.24411pt x 163.19025pt.
 
 
-Package hyperref Warning: Suppressing empty link on input line 196.
+Package hyperref Warning: Suppressing empty link on input line 216.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 203.
+(babel)             in language  on input line 223.
 )
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 232.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 232.
- [34 <./Images/PageInfo_Header-eps-converted-to.pdf>]
+ [35 <./Images/PageInfo_Header-eps-converted-to.pdf>]
 Cap\'{\i }tulo 6.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 232.
@@ -1456,7 +1490,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 235.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 235.
- [35
+ [36
 
 ]
 Cap\'{\i }tulo 7.
@@ -1464,7 +1498,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 235.
 (./Source/Conclusao.tex)
 
-LaTeX Warning: Citation `SiteMoraes2010' on page 36 undefined on input line 260
+LaTeX Warning: Citation `SiteMoraes2010' on page 37 undefined on input line 260
 .
 
 
@@ -1481,33 +1515,33 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 315.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 315.
-[36
+[37
 
 ]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 319.
 
 
-LaTeX Warning: Citation `Grainger1994' on page 37 undefined on input line 321.
+LaTeX Warning: Citation `Grainger1994' on page 38 undefined on input line 321.
 
 
-LaTeX Warning: Citation `Anderson1977' on page 37 undefined on input line 323.
+LaTeX Warning: Citation `Anderson1977' on page 38 undefined on input line 323.
 
 
-LaTeX Warning: Citation `Glover2002' on page 37 undefined on input line 323.
+LaTeX Warning: Citation `Glover2002' on page 38 undefined on input line 323.
 
 
-LaTeX Warning: Citation `abntex-doc' on page 37 undefined on input line 325.
+LaTeX Warning: Citation `abntex-doc' on page 38 undefined on input line 325.
 
 
-LaTeX Warning: Citation `SiteMoraes2010' on page 37 undefined on input line 327
+LaTeX Warning: Citation `SiteMoraes2010' on page 38 undefined on input line 327
 .
 
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 330.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 330.
-[37]
+[38]
 Cap\'{\i }tulo 8.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 330.
@@ -1522,7 +1556,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 3.
- [38
+ [39
 
 ]
 Underfull \hbox (badness 1314) in paragraph at lines 21--24
@@ -1535,7 +1569,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 345.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 345.
- [39
+ [40
 
 ]
 Anexo A.
@@ -1545,7 +1579,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 380.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 380.
-[40
+[41
 
 ]
 Package babel Info: Redefining portuges shorthand "|
@@ -1556,7 +1590,7 @@ Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 409.
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 409.
-[41]
+[42]
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 409.
 
@@ -1588,10 +1622,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 11989 strings out of 492982
- 176872 string characters out of 6136225
- 355432 words of memory out of 5000000
- 15103 multiletter control sequences out of 15000+600000
+ 12005 strings out of 492982
+ 177358 string characters out of 6136225
+ 355661 words of memory out of 5000000
+ 15114 multiletter control sequences out of 15000+600000
  46399 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,13n,47p,1336b,1891s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1607,10 +1641,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2017/texmf-dist
 /fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/ur
 w/helvetic/uhvbo8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhv
 r8a.pfb><c:/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Dissertação.pdf (42 pages, 7108631 bytes).
+Output written on Dissertação.pdf (43 pages, 7159887 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 583 compressed objects within 6 object streams
- 136 named destinations out of 1000 (max. 500000)
- 340 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 729 PDF objects out of 1000 (max. 8388607)
+ 604 compressed objects within 7 object streams
+ 139 named destinations out of 1000 (max. 500000)
+ 345 words of extra memory for PDF output out of 10000 (max. 10000000)
 
