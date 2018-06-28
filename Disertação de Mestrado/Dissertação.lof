@@ -1,19 +1,26 @@
 \babel@toc {brazil}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama do Sistema de Indicadores de Destino para o Novo Console - DMS\relax }}{12}{figure.caption.7}
-\contentsline {figure}{\numberline {2}{\ignorespaces \textit {Display Touchscreen} TOPWAY HKT080ATA-C\relax }}{14}{figure.caption.8}
-\contentsline {figure}{\numberline {3}{\ignorespaces Programa de Edi\c c\~ao de Interface \textit {TOPWAY TML Graphics Editor}\relax }}{15}{figure.caption.9}
-\contentsline {figure}{\numberline {4}{\ignorespaces Raspberry Pi Zero W (65mm de comprimento x 30 mm de largura x 5mm de espessura)\relax }}{17}{figure.caption.10}
-\contentsline {figure}{\numberline {5}{\ignorespaces Indicador de Destino \textit {SICON II} - DMS\relax }}{19}{figure.caption.12}
-\contentsline {figure}{\numberline {6}{\ignorespaces Autocarro Modelo - 2 Pain\'eis Eletr\^onicos de Indica\c c\~ao de Destino\relax }}{20}{figure.caption.13}
-\contentsline {figure}{\numberline {7}{\ignorespaces Diagrama do Sistema de Indicadores de Destino - \textit {DMS}\relax }}{20}{figure.caption.14}
-\contentsline {figure}{\numberline {8}{\ignorespaces Console do Indicador de Destino \textit {SICON II} - DMS\relax }}{21}{figure.caption.15}
-\contentsline {figure}{\numberline {9}{\ignorespaces Interface de Comunica\c c\~ao UART RS-485\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {10}{\ignorespaces Comprimento da Rede Vs Taxa de Transfer\^encia. (1) Alta velocidade de transmiss\~ao: $\leq $ 12 Mbps (2) Velocidade m\'edia de transmiss\~ao: 1 Mbps $\leq $ $\geq $ 10 Mbps (3) Baixa velocidade: $\leq $ 200 kbps\relax }}{23}{figure.caption.17}
-\contentsline {figure}{\numberline {11}{\ignorespaces Tipos de Topologia para UART-RS485\relax }}{23}{figure.caption.18}
-\contentsline {figure}{\numberline {12}{\ignorespaces Gestor de Indicadores de Destino - Tela Inicial\relax }}{24}{figure.caption.19}
-\contentsline {figure}{\numberline {13}{\ignorespaces Linhas de Autocarro da STCP\relax }}{25}{figure.caption.20}
-\contentsline {figure}{\numberline {14}{\ignorespaces Estrutura de Dados do GID\relax }}{26}{figure.caption.21}
-\contentsline {figure}{\numberline {15}{\ignorespaces Gestor de Indicadores de Destino\relax }}{27}{figure.caption.22}
-\contentsline {figure}{\numberline {16}{\ignorespaces Conversor UART TTL - UART 485\relax }}{32}{figure.caption.23}
-\contentsline {figure}{\numberline {17}{\ignorespaces MSG Info - Page General Info\relax }}{34}{figure.caption.26}
-\contentsline {figure}{\numberline {18}{\ignorespaces MSG Info - Page Info Header\relax }}{35}{figure.caption.28}
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama do Sistema de Indicadores de Destino para o Novo Console - DMS\relax }}{13}{figure.caption.7}
+\contentsline {figure}{\numberline {2}{\ignorespaces \textit {Display Touchscreen} TOPWAY HKT080ATA-C\relax }}{15}{figure.caption.8}
+\contentsline {figure}{\numberline {3}{\ignorespaces Programa de Edi\c c\~ao de Interface \textit {TOPWAY TML Graphics Editor}\relax }}{16}{figure.caption.9}
+\contentsline {figure}{\numberline {4}{\ignorespaces Raspberry Pi Zero W (65mm de comprimento x 30 mm de largura x 5mm de espessura)\relax }}{18}{figure.caption.10}
+\contentsline {figure}{\numberline {5}{\ignorespaces Indicador de Destino \textit {SICON II} - DMS\relax }}{20}{figure.caption.12}
+\contentsline {figure}{\numberline {6}{\ignorespaces Autocarro Modelo - 2 Pain\'eis Eletr\^onicos de Indica\c c\~ao de Destino\relax }}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {7}{\ignorespaces Diagrama do Sistema de Indicadores de Destino - \textit {DMS}\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {8}{\ignorespaces Console do Indicador de Destino \textit {SICON II} - DMS\relax }}{22}{figure.caption.15}
+\contentsline {figure}{\numberline {9}{\ignorespaces Interface de Comunica\c c\~ao UART RS-485\relax }}{23}{figure.caption.16}
+\contentsline {figure}{\numberline {10}{\ignorespaces Comprimento da Rede Vs Taxa de Transfer\^encia. (1) Alta velocidade de transmiss\~ao: $\leq $ 12 Mbps (2) Velocidade m\'edia de transmiss\~ao: 1 Mbps $\leq $ $\geq $ 10 Mbps (3) Baixa velocidade: $\leq $ 200 kbps\relax }}{24}{figure.caption.17}
+\contentsline {figure}{\numberline {11}{\ignorespaces Tipos de Topologia para UART-RS485\relax }}{24}{figure.caption.18}
+\contentsline {figure}{\numberline {12}{\ignorespaces Gestor de Indicadores de Destino - Tela Inicial\relax }}{25}{figure.caption.19}
+\contentsline {figure}{\numberline {13}{\ignorespaces Linhas de Autocarro da STCP\relax }}{26}{figure.caption.20}
+\contentsline {figure}{\numberline {14}{\ignorespaces Estrutura de Dados do GID\relax }}{27}{figure.caption.21}
+\contentsline {figure}{\numberline {15}{\ignorespaces Gestor de Indicadores de Destino\relax }}{28}{figure.caption.22}
+\contentsline {figure}{\numberline {16}{\ignorespaces Conversor UART TTL - UART 485\relax }}{33}{figure.caption.23}
+\contentsline {figure}{\numberline {17}{\ignorespaces MSG Info - Page General Info\relax }}{37}{figure.caption.26}
+\contentsline {figure}{\numberline {18}{\ignorespaces MSG Info - Page Info Header\relax }}{38}{figure.caption.28}
+\contentsline {figure}{\numberline {19}{\ignorespaces Fonte de Dados - SICON II\relax }}{42}{figure.caption.30}
+\contentsline {figure}{\numberline {20}{\ignorespaces Fonte de Dados - Novo Console\relax }}{42}{figure.caption.31}
+\contentsline {figure}{\numberline {21}{\ignorespaces P\'agina de Sele\c c\~ao de Destinos - DMSConsole\relax }}{43}{figure.caption.32}
+\contentsline {figure}{\numberline {22}{\ignorespaces P\'agina de Sele\c c\~ao de Linha - DMSConsole\relax }}{43}{figure.caption.33}
+\contentsline {figure}{\numberline {23}{\ignorespaces P\'agina do Menu de Configura\c c\~oes - DMSConsole\relax }}{44}{figure.caption.34}
+\contentsline {figure}{\numberline {24}{\ignorespaces P\'agina de Sele\c c\~ao de Fonte - DMSConsole\relax }}{45}{figure.caption.35}
+\contentsline {figure}{\numberline {25}{\ignorespaces Editor de Fontes DMSConsole\relax }}{46}{figure.caption.36}
