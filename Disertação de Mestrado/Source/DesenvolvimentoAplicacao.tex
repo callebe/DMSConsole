@@ -3,8 +3,9 @@ Nesta etapa do trabalho é desenvolvido o \textit{software} implementado no Raspb
 
 O desempenho do DMSConsole é um elemento crucial nesta aplicação, pois o tempo de execução de tarefas do \textit{software} pode interferir na execução das rotinas de comunicação dos painéis, comprometendo o correto funcionamento dos mesmo. O tempo de resposta á requisições feitas pelo usuário através do \textit{Display Touchscreen} e o tempo de inicialização do console são parâmetros que podem comprometer a experiência do usuário, e de mesmo modo dependem do desempenho da aplicação nas diferentes tarefas executadas. Assim utilizando os recursos que a linguagem C++ oferece, o desenvolvimento de cada função da aplicação DMSConsole é feita visando a otimização de recursos computacionais.
 
-   
-
+Para que o aplicação DMSConsole inicie automaticamente com o sistema Linux presente no Raspberry Pi, o script de instalação desta aplicação cria um script de inicialização dentro do diretório '/etc/init.d/' do Linux, no padrão LSB \textit{(Linux Standard Base)}. Assim o DMSConsole inicia juntamente com o sistema, ficando em \textit{background}, respondendo aos comandos de \textit{start}, \textit{stop} e \textit{restart} padrão de serviços Linux.
+	
+	
 \section{Gerenciador XML}
 
 Como foi visto na Seção (\ref{sec:GestorDeIndicacaoDeDestinos}) a aplicação GID a partir das informações inseridas pelo usuário, gera um conjunto de arquivos binários com as informações a serem inseridas no console, e consequentemente enviadas aos painéis eletrônicos. Este conjunto de dados gerados possui uma sintaxe própria, que somente a aplicação GID gera e somente o console do Indicador de Destino da DMS consegue ler e identificar a estrutura dos dados. Com a intenção de tornar o arquivo fonte de dados para Indicadores de Destino mais padronizado e portável para diferentes versões de console, será utilizado o XML como padrão de descrição de dados. Assim será possível gerar fonte de dados, para os Indicadores de Destino, através de qualquer aplicação de criação de arquivos XML, utilizando apenas a estrutura de dados apresentada na Figura (\ref{fig:EstruturaDeDados}).  
@@ -17,34 +18,34 @@ A estrutura de dados do GID, apresentada na Figura (\ref{fig:EstruturaDeDados}),
 \lstset{style=mystyle}
 \begin{lstlisting}
 <GID version="1.1">
-  <Group ID="1">
-    <Line ID="201" Name="ALIADOS-VISO">
-      <Destination ID="1" Name="PLANETÁRIO" Return="1">
-        <Panel Lines="16" Columns="112">
-          <Page ID="1" SBC="1" SBNAndC="2" PT="15">
-            <Number Effect="None" Align="Left" Font="16x9">
-              201
-            </Number>
-            <Text Effect="None" Align="Left" Font="5x5">
-              PLANETÁRIO
-            </Text>
-          </Page>
-        </Panel>
-      </Destination>
-      <Destination ID="2" Name="PR. D. JOÃO I" Return="2">
-        <Panel Lines="16" Columns="112">
-          <Page ID="6" SBC="1" SBNAndC="2" PT="15">
-            <Number Effect="None" Align="Left" Font="12x7">
-              201
-            </Number>
-            <Text Effect="None" Align="Left" Font="5x5">
-              PR. D. JOÃO I
-            </Text>
-          </Page>
-        </Panel>
-      </Destination>
-    </Line>
-  </Group>
+<Group ID="1">
+<Line ID="201" Name="ALIADOS-VISO">
+<Destination ID="1" Name="PLANETÁRIO" Return="1">
+<Panel Lines="16" Columns="112">
+<Page ID="1" SBC="1" SBNAndC="2" PT="15">
+<Number Effect="None" Align="Left" Font="16x9">
+201
+</Number>
+<Text Effect="None" Align="Left" Font="5x5">
+PLANETÁRIO
+</Text>
+</Page>
+</Panel>
+</Destination>
+<Destination ID="2" Name="PR. D. JOÃO I" Return="2">
+<Panel Lines="16" Columns="112">
+<Page ID="6" SBC="1" SBNAndC="2" PT="15">
+<Number Effect="None" Align="Left" Font="12x7">
+201
+</Number>
+<Text Effect="None" Align="Left" Font="5x5">
+PR. D. JOÃO I
+</Text>
+</Page>
+</Panel>
+</Destination>
+</Line>
+</Group>
 </GID>
 \end{lstlisting}
 \label{code:XML}
@@ -142,10 +143,10 @@ Através desta mensagem é possível configurar o nível de brilho de cada painel. E
 \end{itemize}
 
 Em resposta a esta mensagem o painel deve enviar uma mensagem 'ACK' em caso reconhecer e validar a mensagem, ou caso contrário deve ser enviado  uma mensagem 'NACK'.
-	
+
 \subsubsection{MSG Reset}
 Esta mensagem destina-se a realização de limpeza na memória dos painéis eletrônicos, colocando estes no estado de arranque. O byte tipo desta mensagem é definido como 0x1A, o byte 'N' é 1, não existe bytes a serem enviados no comando 'Dados'. Esta mensagem é enviada pelo console e pode ser destinada a um  painel, ou transmitida a todos pelo endereço 0xFF. Após o envio desta mensagem o painel deve responder com um comando 'ACK' se este reconhecer a mensagem, caso contrário ele deve mandar uma comando 'NACK'.
-	
+
 \subsubsection{MSG INFO}
 Esta mensagem é enviada pelo console e contém dados que descrevem as informações a serem afixadas em um painel especifico. Esta mensagem é enviada individualmente para cada painel, o byte 'Tipo' desta mensagem é definido como 0x21, e o Byte 'N' é variável de acordo com a mensagem o número total de Bytes presentes nessa mensagem. O comando 'Dados' segue uma estrutura geral descrita abaixo:
 
@@ -304,7 +305,7 @@ Esta mensagem é enviada por um painel em resposta a requisição realizada pelo co
 \subsubsection{Panel ID}
 \label{sec:PainelID}
 Esta mensagem é enviada por uma painel em resposta a uma mensagem MSG Network Config \ref{subsection:MensageConsolePanel}. Através desta mensagem o console indentificar as configurações fisicas dos paineis conectados a rede. O comando 'Tipo' desta mensagem é definido como 0x61 e 'N' é igual a 5. O comando 'Dados' desta mensagem é constituída da seguinte forma:
- 
+
 \vspace{5mm}
 \begin{table}[H]
 	\centering
@@ -331,6 +332,18 @@ Esta mensagem é enviada por uma painel em resposta a uma mensagem MSG Network Co
 \section{Gerenciador Interface}
 
 A interface do usuário é um dos elementos principais deste trabalho. Diferente do modelo SICON II, usado como base, o novo modelo de console desenvolvido possui um recurso de interface mais versátil; o \textit{display touchscreen}. Utilizando o \textit{display touchscreen} é possível criar um ambiente gráfico mais amigável e simples, que explore as funcionalidades do novo console. 
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/SoftwareDMSConsole/TouchDisplayInterface.pdf}
+	\caption{Interface no \textit{Display Touchscreen} DMS}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:TouchDisplayInterface}
+\end{figure} 
+\vspace{3mm}
 
 O console de indicadores de destino deve possuir uma interface que facilite ao motorista configurar os painéis e manipular as informações a serem exibidas de forma mais prática o possível. Deve se ter em mente que a usabilidade do console esta intimamente ligada ao tipo de rotina que o autocarro possui. Se o autocarro realiza sempre o mesmo trajeto, em um ambiente urbano pro exemplo, provavelmente as configurações e personalizações das informações  fixadas nos painéis raramente mudem. Sendo assim é mais prático utilizar a aplicação GID em um computador, e apenas exportar o arquivo fonte para um dispositivo USB e carrega-lo no console. Porém quando o trajeto do autocarro varia frequentemente, ou ainda há uma necessidade periódica de alterar informações dos painéis, se torna mais interessante existir uma ferramenta no próprio console que possibilite criar um arquivo fonte.
 
@@ -415,6 +428,7 @@ Na página de Seleção de Fonte o usuário tem acesso a uma lista de arquivos fonte
 \end{figure} 
 \vspace{3mm}
 
+
 Ao escolher a opção 'Criar Fonte' o usuário é direcionado para editor de fontes do DMSConsole, onde ele define os parâmetro da Linha e do Destino do autocarro, os parâmetros de dimensões dos painéis, o layout das páginas e o alinhamento  das informações visuais nos painéis. E então o DMSConsole gera um arquivo Xml baseados nestas informações, para ser utilizado como fonte. Para facilitar a entrada de dados pelo usuário as páginas do editor de fontes possui um teclado virtual adaptado do padrão \textit{QWERTY}. 
 
 Após inserir o nome do arquivo, o nome e numero da linha e o nome do destino, o DMSConsole detecta as configurações dos painéis da rede, e oferece ao usuário a criação 'Paginas' de acordo com a dimensão de cada painel. Porém se não for detectado nenhum painel da rede, o usuário pode inserir manualmente as dimensões dos painéis. No processo de criação da página o usuário tem a opção de escolher quais informações serão exibidas nos painéis; texto, apenas o número da linha, o texto e o número da linha ou  sem nenhuma informação. É possível também definir manualmente a fonte o alinhamento e o conteúdo do texto exibido. O quadro de Figuras \ref{fig:SourceEditorDMSConsole} apresenta as etapas do editor de fontes.
@@ -486,7 +500,29 @@ Após inserir o nome do arquivo, o nome e numero da linha e o nome do destino, o 
 \vspace{9mm}
 
 
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkPanelSettings.eps}
+	\caption{Página de Configuração dos  Painéis - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:PanelSettings}
+\end{figure} 
+\vspace{3mm}
 
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkDisplaySettings.eps}
+	\caption{Página de Configuração do Console - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:DisplaySettings}
+\end{figure} 
+\vspace{3mm}
 
 
 

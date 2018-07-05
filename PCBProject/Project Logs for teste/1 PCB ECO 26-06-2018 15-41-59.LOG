@@ -1,0 +1,16 @@
+Added Component: Designator=C?(C1206)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "VALOR"; Value = "1nF/50V"; VariantName = "[No Variations]"
+Added Component: Designator=IC?(DIP-14)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "VALOR"; Value = "74HC07"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Net: Name=GND
+Added Pin To Net: NetName=NetC?_1 Pin=C?-1
+Added Pin To Net: NetName=NetC?_1 Pin=IC?-7
+Added Net: Name=NetC?_1
+Added Pin To Net: NetName=VCC Pin=IC?-14
+Added Net: Name=VCC
+Added Member To Class: ClassName=Sheet1 Member=Component C? B217503
+Added Member To Class: ClassName=Sheet1 Member=Component IC? A256005
+Added Room: Name=Sheet1
