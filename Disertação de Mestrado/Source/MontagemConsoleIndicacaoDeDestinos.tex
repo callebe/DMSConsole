@@ -1,0 +1,139 @@
+O novo console de indicadores de destino da DMS tem a necessidade de ser alocado dentro do painel dos autocarros, em uma disposição muito parecida com a que o modelo SICON II ocupava. Nesta disposição o novo console deve estar montado dentro de um suporte de plastico com dimensões precisas, e com os conectores de comunicação e alimentação alinhados, da mesma forma que o modelo antigo. Como o projeto do suporte não esta dentro do escopo deste trabalho, o departamento de desenvolvimento da DMS disponibilizou um suporte de plastico para o módulo \textit{Display Touchscreen} que atende a todas os requisitos de dimensões e de localização dos conectores. 
+
+Para montar o novo console dentro do suporte em um produto final é necessário projetar uma placa de circuito impresso que faça a integração entre o Raspberry Pi Zero W, os conversores UART (TTL/ RS232) e UART (TTL/ RS485) e uma fonte de tensão de 5V. Um autocarro tipicamente possui tomadas de tensão na faixa dos 12V, na região do painel do motorista. Porém deve se ter cuidado com o fato de que esta tensão é provida pela bateria do autocarro, que por sua vez é alimentada pelo alternador do autocarro. Segundo \citeonline{DMSManual}, devido a dinâmica de carga e descarga da bateria alimentada pelo alternador do autocarro, é comum as tomadas de 12V apresentarem variações de tensão de até $\mp 10 V$. Os conversores UART e o Raspberry devem ser alimentados a uma Tensão de 5V, sendo estes dispositivos sensíveis a grandes variações de tensão. Logo a fonte de tensão empregada deve ser um conversor de tensão de preferência chaveado, para obter um alto rendimento.
+
+A DMS utiliza o circuito integrado OKI-78SR5, que é um regulador de tensão CC-CC chaveado não isolado, em seus projetos de fontes de alimentação para sistemas embarcados. Este CI pode operar com 7 á 36 V de entrada, mantendo a tensão de saída em 5V com uma oscilação de $\mp$1V, logo atendendo a necessidade deste projeto \cite{oki}. A Figura (\ref{fig:EsquematicoConversorCC-CC}) apresenta o esquemático  do regulador de tensão a ser usado na placa de integração. Este esquemático foi feito no \textit{software Altium$\textregistered$}, cedido pela DMS para a realização deste trabalho.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/MontagemConsole/EsquematicoConversorCC_CC.eps}
+	\caption{Esquemático do Conversor CC-CC}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:EsquematicoConversorCC-CC}
+\end{figure} 
+\vspace{9mm}       
+
+No esquemático da Figura (\ref{fig:EsquematicoConversorCC-CC}) há um conector de 8 pinos para a tensão de entrada do regulador de tensão, mesmo havendo a necessidade de apenas dois conectores. Isso acontece por uma questão de padronização e disponibilidade de conectores da DMS, pois assim como os demais componentes do projeto, esta placa de circuito impresso será montada pelo departamento de produção da DMS, e portanto esta sujeita a limitação de disponibilidade de componentes.
+
+Na mesma folha de projeto do regulador de tensão é feito o esquemático do conversor UART-RS232 e do conversor UART-RS485. Tais esquemáticos obedecem aos requisitos de projeto apresentados nas folhas de informações técnicas dos respectivos componentes; \citeonline{232} e \citeonline{485}. As Figuras (\ref{fig:EsquematicoConversorTTL-RS232}), (\ref{fig:EsquematicoConversorTTL-RS485}) e (\ref{fig:EsquematicoRaspberry}) apresentam respectivamente os esquemáticos do conversor UART RS232, conversor UART 485 e do conector para Raspberry Pi. O conector presente no esquemático da Figura (\ref{fig:EsquematicoRaspberry}) é um conector fêmea 20x2 pinos, adequado para o encaixe sobre os pinos da GPIO do Raspberry Pi Zero W com pinos macho.
+
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/MontagemConsole/EsquematicoConversorTTL-RS232.eps}
+	\caption{Esquemático do Conversor UART TTL / UART RS232}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:EsquematicoConversorTTL-RS232}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/MontagemConsole/EsquematicoConversorTTL-RS485.eps}
+	\caption{Esquemático do Conversor UART TTL / UART RS485}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:EsquematicoConversorTTL-RS485}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.5\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.5\linewidth]{Images/MontagemConsole/EsquematicoRaspberry.eps}
+	\caption{Esquemático Raspbery Pi Zero W}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:EsquematicoRaspberry}
+\end{figure} 
+\vspace{9mm}
+
+Após montar montar o esquemático elétrico da placa de integração, é feito o roteamento e o \textit{Layout} de montagem da placa. Os componentes utilizados são nesta placa são em sua maioria SMD (\textit{Surface Mount Device}), o que reduziu o espaço de placa utilizado e possibilitou a utilização de conectores maiores e mais resistentes. As Figuras (\ref{fig:LayoutPCB_DP0507_0A0}) e (\ref{fig:LayoutPCB_DP0507_0A0B}) apresentam os \textit{Layouts} de montagem da placa de integração, mostrando os roteamentos, a serigrafia e os componentes. 
+
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/LayoutPCB_DP0507_0A0.eps}
+	\caption{Layout de Montagem DP0507-0A0 - Superior}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:LayoutPCB_DP0507_0A0}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/LayoutPCB_DP0507_0A0B.eps}
+	\caption{Layout de Montagem DP0507-0A0 - Inferior}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:LayoutPCB_DP0507_0A0B}
+\end{figure} 
+\vspace{9mm}
+
+
+Para facilitar a visualização final as Figuras (\ref{fig:3D_DP0507-0A0}) e (\ref{fig:3D_DP0507-0A0B}) apresentam o modelo 3D da placa de integração.  
+
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/3D_DP0507-0A0.JPG}
+	\caption{Modelo 3D DP0507-0A0 - Inferior}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:3D_DP0507-0A0}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/3D_DP0507-0A0B.JPG}
+	\caption{Modelo 3D DP0507-0A0 - Inferior}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:3D_DP0507-0A0B}
+\end{figure} 
+\vspace{9mm}
+
+Para efeito de visualização  final do novo console, é feito  também um modelo 3D do suporte de plastico com o módulo do \textit{display} instalado. As Figuras (\ref{fig:Modelo3DConsoleSiconIIIA}) e (\ref{fig:Modelo3DConsoleSiconIIIb}) apresentam este modelo 3D.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/Modelo3DConsoleSiconIIIA.png}
+	\caption{Modelo 3D Console Sicon III - Vista A}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:Modelo3DConsoleSiconIIIA}
+\end{figure} 
+\vspace{9mm}
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.7\linewidth]{Images/MontagemConsole/Modelo3DConsoleSiconIIIB.png}
+	\caption{Modelo 3D Console Sicon III - Vista B}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:Modelo3DConsoleSiconIIIB}
+\end{figure} 
+\vspace{9mm}

@@ -35,15 +35,20 @@ Accessed: 2018-05-15.}
 
 \bibitem[DMS]{DMSManual}
 \abntrefinfo{DMS}{DMS}{}
-{DMS. \textbf{Consola de Indicador de Destino - Protocolo de Comunicação}.
+{DMS. Consola de indicador de destino - protocolo de comunicação.
 Rua de Cidres, nº1444, 4455-442 Perafita (Matosinhos), Portugal.}
 
 \bibitem[DMS 2018]{DMS}
 \abntrefinfo{DMS}{DMS}{2018}
-{DMS. \textbf{Displays \& Mobility Solutions}. Rua de Cidres, nº1444, 4455-442
-  Perafita Matosinhos, Portugal: [s.n.], 2018.
-\url{http://www.dmsdisplays.com/about-dms.php}.
+{DMS. Displays \& mobility solutions.
+Rua de Cidres, nº1444, 4455-442 Perafita Matosinhos, Portugal, 2018.
 Accessed: 2018-05-15.}
+
+\bibitem[Murata 2010]{oki}
+\abntrefinfo{Murata}{MURATA}{2010}
+{MURATA, Power~Solutions. Oki-78sr series, non-isolated switching regulator
+  dc-dc.
+\textbf{JP: Data Sheet}, 2010.}
 
 \bibitem[Orman 1989]{Levent}
 \abntrefinfo{Orman}{ORMAN}{1989}
@@ -79,6 +84,16 @@ Accessed: 2018-05-15.}
 \abntrefinfo{Texas}{TEXAS}{2008}
 {TEXAS, Instruments. The rs-485 design guide.
 \textbf{USA: Texas Instruments}, 2008.}
+
+\bibitem[Texas 2012]{485}
+\abntrefinfo{Texas}{TEXAS}{2012a}
+{TEXAS, Instruments. Low-power rs-485 transceiver.
+\textbf{USA: Texas}, 2012.}
+
+\bibitem[Texas 2012]{232}
+\abntrefinfo{Texas}{TEXAS}{2012b}
+{TEXAS, Instruments. Max3232 3-v to 5.5-v multichannel rs-232.
+\textbf{USA: Texas}, 2012.}
 
 \bibitem[Tso \textit{et al.} 2013]{Tso}
 \abntrefinfo{Tso \textit{et al.}}{TSO \textit{et al.}}{2013}

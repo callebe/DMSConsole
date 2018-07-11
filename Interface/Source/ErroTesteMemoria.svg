@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="827.95312"
+   height="800.41547"
+   viewBox="0 0 827.95312 800.41547"
+   sodipodi:docname="ErroTesteMemoria.svg"
+   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\ErroTesteMemoria.png"
+   inkscape:export-xdpi="28"
+   inkscape:export-ydpi="28"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1005"
+     id="namedview4"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.26743141"
+     inkscape:cx="-164.74776"
+     inkscape:cy="351.18471"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4501"
+       originx="44.887912"
+       originy="-14.384562" />
+  </sodipodi:namedview>
+  <g
+     id="g4526"
+     transform="matrix(1.4593986,0,0,1.4593986,63.720898,18.352498)">
+    <polygon
+       id="polygon2"
+       points="139.2,0 340.8,0 480,139.2 480,340.8 340.8,480 139.2,480 0,340.8 0,139.2 "
+       style="fill:#c42014" />
+    <polyline
+       id="polyline4"
+       points="144,0 340.8,0 480,139.2 480,336 "
+       style="fill:#a50804" />
+    <polygon
+       id="polygon6"
+       points="313.6,240 372.8,180.8 299.2,107.2 240,166.4 180.8,107.2 107.2,180.8 166.4,240 107.2,299.2 180.8,372.8 240,313.6 299.2,372.8 372.8,299.2 "
+       style="fill:#f2f2e4" />
+    <polyline
+       id="polyline8"
+       points="240,313.6 299.2,372.8 372.8,299.2 313.6,240 372.8,180.8 299.2,107.2 240,166.4 "
+       style="fill:#d1cfb0" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.33333588px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#cccccc;fill-opacity:1;stroke:#800000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     x="415.61719"
+     y="798.47797"
+     id="text4505"><tspan
+       sodipodi:role="line"
+       id="tspan4503"
+       x="415.61719"
+       y="798.47797"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:96px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';text-align:center;text-anchor:middle;fill:#cccccc;stroke:#800000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none">Erro Teste Memória</tspan></text>
+</svg>

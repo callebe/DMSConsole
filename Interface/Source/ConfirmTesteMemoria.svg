@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="827.95312"
+   height="800.41547"
+   viewBox="0 0 827.95312 800.41547"
+   sodipodi:docname="ConfirmTesteMemoria.svg"
+   inkscape:export-filename="D:\Priority\Warning\Documentos\ISEP\Mestrado Engenharia Elétrica - Geração Renovável\Estágio Callebe\DMSConsole\Interface\Source\ConfirmTesteMemoria.png"
+   inkscape:export-xdpi="28"
+   inkscape:export-ydpi="28"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="1005"
+     id="namedview4"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.18910257"
+     inkscape:cx="1272.6556"
+     inkscape:cy="365.51869"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4501"
+       originx="44.887912"
+       originy="-14.384562" />
+  </sodipodi:namedview>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.33333588px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#cccccc;fill-opacity:1;stroke:#800000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+     x="415.61719"
+     y="798.47797"
+     id="text4505"><tspan
+       sodipodi:role="line"
+       id="tspan4503"
+       x="415.61719"
+       y="798.47797"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:96px;font-family:Roboto;-inkscape-font-specification:'Roboto Bold';text-align:center;text-anchor:middle;fill:#cccccc;stroke:#000080;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none">Teste Memória</tspan></text>
+  <g
+     id="g4515"
+     transform="matrix(1.8714091,0,0,1.8714091,-1966.6631,-854.79804)">
+    <circle
+       id="circle2"
+       r="176"
+       cy="648.41547"
+       cx="1272"
+       style="fill:#4dd0e1" />
+    <g
+       transform="translate(1083.2542,459.66971)"
+       id="g8">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4"
+         d="M 252.688,140.688 184,209.368 155.312,180.688 c -6.24,-6.248 -16.384,-6.248 -22.624,0 -6.248,6.248 -6.248,16.376 0,22.624 l 40,40 c 3.12,3.128 7.216,4.688 11.312,4.688 4.096,0 8.192,-1.56 11.312,-4.688 l 80,-80 c 6.248,-6.248 6.248,-16.376 0,-22.624 -6.24,-6.248 -16.384,-6.248 -22.624,0 z"
+         style="fill:#012e52" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path6"
+         d="m 368,176 c -8.832,0 -16,7.168 -16,16 0,88.224 -71.776,160 -160,160 C 103.776,352 32,280.224 32,192 32,103.776 103.776,32 192,32 c 42.952,0 83.264,16.792 113.52,47.272 6.224,6.28 16.352,6.312 22.632,0.088 6.272,-6.224 6.312,-16.352 0.08,-22.624 C 291.928,20.152 243.544,0 192,0 86.128,0 0,86.128 0,192 c 0,105.872 86.128,192 192,192 105.872,0 192,-86.128 192,-192 0,-8.832 -7.168,-16 -16,-16 z"
+         style="fill:#012e52" />
+    </g>
+  </g>
+</svg>
