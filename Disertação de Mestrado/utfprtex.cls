@@ -1902,9 +1902,9 @@ Para mais informacoes, leia o manual da classe.\MessageBreak%
    \if@openright\cleardoublepage\else\clearpage\fi%
    \pretextualchapter{Agradecimentos}%
   }%
-  {%
+  {\pagenumbering{roman}
   }
-
+	
 % Dedicatória simples com título
 \newenvironment{Dedicatoria}%
   {%

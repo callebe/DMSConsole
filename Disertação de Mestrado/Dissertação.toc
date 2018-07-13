@@ -1,43 +1,37 @@
 \babel@toc {brazil}{}
-\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{11}{chapter.1}
-\contentsline {section}{\numberline {1.1}Recurso Utilizados}{12}{section.1.1}
-\contentsline {section}{\numberline {1.2}Objetivos}{13}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Objetivos Gerais}{13}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Objetivos Espec\IeC {\'\i }ficos}{14}{subsection.1.2.2}
-\contentsline {chapter}{\numberline {2}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{15}{chapter.2}
-\contentsline {chapter}{\numberline {3}Raspberry Pi Zero W}{17}{chapter.3}
-\contentsline {chapter}{\numberline {4}Indicadores de Destino - DMS}{20}{chapter.4}
-\contentsline {section}{\numberline {4.1}Interface de Comunica\c c\~ao UART-RS485}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}Gestor de Indica\c c\~ao de Destinos}{24}{section.4.2}
-\contentsline {chapter}{\numberline {5}\textit {Software} DMSConsole}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Gerenciador XML}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Gerenciador Pain\'eis}{32}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Bit Bang para UART - RS485}{32}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Protocolo LDESIGN}{33}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}MSG Network Config}{35}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}MSG Define Brightness}{35}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}MSG Reset}{36}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}MSG INFO}{36}{subsubsection.5.2.2.4}
-\contentsline {subsubsection}{\numberline {5.2.2.5}MSG Panel Test}{40}{subsubsection.5.2.2.5}
-\contentsline {subsubsection}{\numberline {5.2.2.6}ACK e NACK}{41}{subsubsection.5.2.2.6}
-\contentsline {subsubsection}{\numberline {5.2.2.7}Panel ID}{41}{subsubsection.5.2.2.7}
-\contentsline {section}{\numberline {5.3}Gerenciador Interface}{41}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}P\'agina de Sele\c c\~ao de Destino}{44}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}P\'agina de Sele\c c\~ao de Linha}{45}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}P\'agina do Menu de Configura\c c\~oes}{45}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}P\'agina de Sele\c c\~ao de Fontes}{46}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}P\'agina de Edi\c c\~ao de Fontes}{47}{subsection.5.3.5}
-\contentsline {subsection}{\numberline {5.3.6}P\'agina de Configura\c c\~ao dos Pain\'eis}{49}{subsection.5.3.6}
-\contentsline {subsection}{\numberline {5.3.7}P\'agina de Configura\c c\~ao do \textit {Display}}{50}{subsection.5.3.7}
-\contentsline {chapter}{\numberline {6}Montagem do Console de Indica\c c\~ao de Destinos}{51}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclus\~ao}{57}{chapter.7}
-\contentsline {subsection}{\numberline {7.0.1}Testes e exemplos de lista de siglas}{57}{subsection.7.0.1}
-\contentsline {subsection}{\numberline {7.0.2}Testes e exemplos de lista de s\IeC {\'\i }mbolos}{57}{subsection.7.0.2}
-\contentsline {subsection}{\numberline {7.0.3}Exemplos de cita\c c\~ao de refer\^encias bibliogr\'aficas}{58}{subsection.7.0.3}
-\contentsline {chapter}{\numberline {8}N\IeC {\'\i }vel 1 - Testes DE capitula\c c\~ao - Prim\'ario}{59}{chapter.8}
-\contentsline {section}{\numberline {8.1}N\IeC {\'\i }vel 2 - Secund\'ario}{59}{section.8.1}
-\contentsline {subsection}{\numberline {8.1.1}N\IeC {\'\i }vel 3 - Terci\'ario}{59}{subsection.8.1.1}
-\contentsline {subsubsection}{\numberline {8.1.1.1}N\IeC {\'\i }vel 4 - Quatern\'ario}{59}{subsubsection.8.1.1.1}
-\contentsline {paragraph}{\numberline {8.1.1.1.1}N\IeC {\'\i }vel 5 - Quin\'ario}{59}{paragraph.8.1.1.1.1}
-\contentsline {chapter}{Anexo{} A{} -{} Stellar Mystery Solved, Einstein Safe}{62}{chapter.annex.A}
-\contentsline {section}{\numberline {A.1}Exemplo de se\c c\~ao anexo}{63}{section.annex.A.1}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Estrutura do Trabalho}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Recurso Utilizados}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Objetivos}{3}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Objetivos Gerais}{3}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Objetivos Espec\IeC {\'\i }ficos}{4}{subsection.1.3.2}
+\contentsline {chapter}{\numberline {2}Revis\~ao de Literatura}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Display \textit {Touchscreen} TOPWAY - HKT080ATA-C}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Raspberry Pi Zero W}{8}{section.2.2}
+\contentsline {section}{\numberline {2.3}Indicadores de Destino - DMS}{11}{section.2.3}
+\contentsline {section}{\numberline {2.4}Interface de Comunica\c c\~ao UART-RS485}{13}{section.2.4}
+\contentsline {section}{\numberline {2.5}Gestor de Indica\c c\~ao de Destinos}{15}{section.2.5}
+\contentsline {chapter}{\numberline {3}Desenvolvimento da Aplica\c c\~ao DMSConsole}{20}{chapter.3}
+\contentsline {section}{\numberline {3.1}Gerenciador XML}{20}{section.3.1}
+\contentsline {section}{\numberline {3.2}Gerenciador Pain\'eis}{23}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Bit Bang para UART - RS485}{23}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Protocolo LDESIGN}{25}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}MSG Network Config}{27}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}MSG Define Brightness}{27}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3}MSG Reset}{28}{subsubsection.3.2.2.3}
+\contentsline {subsubsection}{\numberline {3.2.2.4}MSG INFO}{28}{subsubsection.3.2.2.4}
+\contentsline {subsubsection}{\numberline {3.2.2.5}MSG Panel Test}{32}{subsubsection.3.2.2.5}
+\contentsline {subsubsection}{\numberline {3.2.2.6}ACK e NACK}{33}{subsubsection.3.2.2.6}
+\contentsline {subsubsection}{\numberline {3.2.2.7}Panel ID}{33}{subsubsection.3.2.2.7}
+\contentsline {section}{\numberline {3.3}Gerenciador Interface}{34}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}P\'agina de Sele\c c\~ao de Destino}{36}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}P\'agina de Sele\c c\~ao de Linha}{37}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}P\'agina do Menu de Configura\c c\~oes}{38}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}P\'agina de Sele\c c\~ao de Fontes}{39}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}P\'agina de Edi\c c\~ao de Fontes}{40}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}P\'agina de Configura\c c\~ao dos Pain\'eis}{42}{subsection.3.3.6}
+\contentsline {subsection}{\numberline {3.3.7}P\'agina de Configura\c c\~ao do \textit {Display}}{43}{subsection.3.3.7}
+\contentsline {chapter}{\numberline {4}Montagem e Teste do Prot\'otipo}{44}{chapter.4}
+\contentsline {section}{\numberline {4.1}Desenvolvimento da Placa de Integra\c c\~ao}{44}{section.4.1}
+\contentsline {section}{\numberline {4.2}Realiza\c c\~ao dos Testes}{51}{section.4.2}
+\contentsline {chapter}{\numberline {5}Conclus\~ao}{55}{chapter.5}

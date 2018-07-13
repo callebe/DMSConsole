@@ -1,4 +1,4 @@
-
+\label{cap:DesenvolvimentoAplicacao}
 Nesta etapa do trabalho é desenvolvido o \textit{software} implementado no Raspberry Pi Zero W, para o novo modelo de console de indicadores de destino da DMS.  Este \textit{software} será aqui denominado DMSConsole versão 1.0, e será basicamente desenvolvido na linguagem de programação C++, utilizando algumas bibliotecas nativas de sistemas operacionais que utilizam o Kernel Linux e outras que são especificas para \textit{hardware} Raspberry Pi. Portanto o \textit{software} desenvolvido aqui pode ser compilado em diferentes modelos de \textit{hardware} Raspberry Pi, apenas necessitando de pequenos ajustes nas portas utilizadas. 
 
 O desempenho do DMSConsole é um elemento crucial nesta aplicação, pois o tempo de execução de tarefas do \textit{software} pode interferir na execução das rotinas de comunicação dos painéis, comprometendo o correto funcionamento dos mesmo. O tempo de resposta á requisições feitas pelo usuário através do \textit{Display Touchscreen} e o tempo de inicialização do console são parâmetros que podem comprometer a experiência do usuário, e de mesmo modo dependem do desempenho da aplicação nas diferentes tarefas executadas. Assim utilizando os recursos que a linguagem C++ oferece, o desenvolvimento de cada função da aplicação DMSConsole é feita visando a otimização de recursos computacionais.
@@ -10,62 +10,80 @@ Para que o aplicação DMSConsole inicie automaticamente com o sistema Linux prese
 
 Como foi visto na Seção (\ref{sec:GestorDeIndicacaoDeDestinos}) a aplicação GID a partir das informações inseridas pelo usuário, gera um conjunto de arquivos binários com as informações a serem inseridas no console, e consequentemente enviadas aos painéis eletrônicos. Este conjunto de dados gerados possui uma sintaxe própria, que somente a aplicação GID gera e somente o console do Indicador de Destino da DMS consegue ler e identificar a estrutura dos dados. Com a intenção de tornar o arquivo fonte de dados para Indicadores de Destino mais padronizado e portável para diferentes versões de console, será utilizado o XML como padrão de descrição de dados. Assim será possível gerar fonte de dados, para os Indicadores de Destino, através de qualquer aplicação de criação de arquivos XML, utilizando apenas a estrutura de dados apresentada na Figura (\ref{fig:EstruturaDeDados}).  
 
-O XML, ou Linguagem de Marcação Extensível (\textit{Extensible Markup Language}), é um formato para criação de dados organizados de forma hierárquica, recomendado pelo W3C (\textit{World Wide Web Consortium}). O XML é uma combinação entre o flexibilidade que SGML, ou \textit{Standard Generalized Markup Language} e a simplicidade visual que o HTML, ou \textit{HyperText Markup Language} oferecem. Assim o XML oferece:  simplicidade e legibilidade dos dados, tanto para usuários quanto para \textit{softwares}; Flexibilidade, possibilitando a criação de \textit{tags} ilimitadas; interligação facilitada entre banco de dados e uma boa estruturação \cite{Bray}.
+O XML, ou Linguagem de Marcação Extensível (\textit{Extensible Markup Language}), é um formato para criação de dados organizados de forma hierárquica, recomendado pelo W3C (\textit{World Wide Web Consortium}). O XML é uma combinação entre o flexibilidade que SGML, ou \textit{Standard Generalized Markup Language} e a simplicidade visual que o HTML, ou \textit{HyperText Markup Language}, oferecem. Assim o XML oferece:  simplicidade e legibilidade dos dados, tanto para usuários quanto para \textit{softwares}; Flexibilidade, possibilitando a criação de \textit{tags} ilimitadas; interligação facilitada entre banco de dados e uma boa estruturação \cite{Bray}.
 
-A estrutura de dados do GID, apresentada na Figura (\ref{fig:EstruturaDeDados}), é constituída por $n$ elementos 'Linha', que serão designados no padrão XML como 'Line', que estão contidos dentro de um conjunto de dados fontes para os indicadores de destino. Como padrão da DMS, todos conjuntos de dados de uma 'Linha' deve estar associada a um conjunto de painéis, e este conjunto associado ao elemento raiz GID. Assim é criado um elemento 'GID' (Gestor de Indicadores de Destino), o qual pode possuir $n$ elementos 'Group', os quais representam grupos de painéis eletrônicos que estão a ser geridos. Estes grupos são elementos que contem os elementos 'Line', com seus atributos e seus elementos relacionados. Logo como exemplo, considerando um arquivo XML que contém informação a cerca de uma linha de autocarros denominada 'Aliados-Viso' de número 201, o qual possuí como destinos possíveis o 'Planetário' ou a rua 'PR. D. JOÃO I'. E que exista apenas um painel de dimensões 16x112 pixeis, onde as informações devam ser mostradas em uma página de configuração número da linha + nome do destino, com espaço de 2 pixeis entre o número e nome, e com 1 pixel entre caracteres do nome. O arquivo XML para este GID especifico é dado da seguinte forma: 
+A estrutura de dados do GID, apresentada na Figura (\ref{fig:EstruturaDeDados}), é constituída por $n$ elementos 'Linha', que serão designados no padrão XML como 'Line', que estão contidos dentro de um conjunto de dados fontes para os indicadores de destino. Como padrão da DMS, todos conjuntos de dados de uma 'Linha' deve estar associada a um conjunto de painéis, e este conjunto associado ao elemento raiz 'GID'. Assim é criado um elemento 'GID' (Gestor de Indicadores de Destino), o qual pode possuir $n$ elementos 'Group', os quais representam grupos de painéis eletrônicos que estão a ser geridos. Estes grupos contem os elementos 'Line', com seus atributos e seus elementos relacionados.
+
+Logo como exemplo, considerando um arquivo XML que contém informação a cerca de uma linha de autocarros denominada 'Aliados-Viso' de número 201, o qual possuí como destinos possíveis o 'Planetário' ou a rua 'PR. D. JOÃO I'. E que exista apenas um painel de dimensões 16x112 pixeis, onde as informações devam ser mostradas em uma página de configuração número da linha + nome do destino, com espaço de 2 pixeis entre o número e nome, e com 1 pixel entre caracteres do nome. O arquivo XML para este GID especifico é dado da seguinte forma: 
 
 \vspace{3mm}
 \lstset{style=mystyle}
 \begin{lstlisting}
 <GID version="1.1">
-<Group ID="1">
-<Line ID="201" Name="ALIADOS-VISO">
-<Destination ID="1" Name="PLANETÁRIO" Return="1">
-<Panel Lines="16" Columns="112">
-<Page ID="1" SBC="1" SBNAndC="2" PT="15">
-<Number Effect="None" Align="Left" Font="16x9">
-201
-</Number>
-<Text Effect="None" Align="Left" Font="5x5">
-PLANETÁRIO
-</Text>
-</Page>
-</Panel>
-</Destination>
-<Destination ID="2" Name="PR. D. JOÃO I" Return="2">
-<Panel Lines="16" Columns="112">
-<Page ID="6" SBC="1" SBNAndC="2" PT="15">
-<Number Effect="None" Align="Left" Font="12x7">
-201
-</Number>
-<Text Effect="None" Align="Left" Font="5x5">
-PR. D. JOÃO I
-</Text>
-</Page>
-</Panel>
-</Destination>
-</Line>
-</Group>
+	<Group ID="1">
+		<Line ID="201" Name="ALIADOS-VISO">
+			<Destination ID="1" Name="PLANETÁRIO">
+				<Panel Lines="16" Columns="112">
+					<Page ID="1" SBC="1" SBNAndC="2" PT="15">
+						<Number Effect="None" Align="Left" Font="16x9">
+						201
+						</Number>
+						<Text Effect="None" Align="Left" Font="5x5">
+						PLANETÁRIO
+						</Text>
+					</Page>
+				</Panel>
+			</Destination>
+			<Destination ID="2" Name="PR. D. JOÃO I">
+				<Panel Lines="16" Columns="112">
+					<Page ID="6" SBC="1" SBNAndC="2" PT="15">
+						<Number Effect="None" Align="Left" Font="12x7">
+						201
+						</Number>
+						<Text Effect="None" Align="Left" Font="5x5">
+						PR. D. JOÃO I
+						</Text>
+					</Page>
+				</Panel>
+			</Destination>
+		</Line>
+	</Group>
 </GID>
 \end{lstlisting}
 \label{code:XML}
 \vspace{3mm}
 
-O \textit{software} DMSConsole deve ser capaz de ler um arquivo XML com as informações da estrutura de dado GID, como apresentado em (\ref{code:XML}), e ainda quando necessário criar um arquivo XML semelhante. O DMSConsole deve possibilitar ao usuário criar, através da interface de usuário, um arquivo XML com a estrutura de dados GID, para servir de fonte para os dados apresentados nos painéis. Existem varias bibliotecas prontas, em C++, para leitura e criação de arquivos XML, porém para tornam as funções de leitura e criação mais eficientes, e reduzir a complexabilidade do código, fora desenvolvido uma biblioteca própria nomeada GIDxml.
+Onde as tags presentes no código Xml (\ref{code:XML}) significam:
+
+\begin{itemize}
+	\item ID - Identificador de referência do GID, Grupo, Linha ou Destino
+	\item Name - Titulo da Linha ou Destino
+	\item Lines - Número de Linhas de LED presente no painel
+	\item Columns - Número de colunas de Led presente no painel
+	\item SBC - Espaço entre Caracteres da página 
+	\item SBNAndC - Espaço entre o Número da Linha e os campos de texto da Página
+	\item PT - Tempo de fixação da Página
+	\item Effect - Efeito aplicado no campo
+	\item Align - Alinhamento do texto no campo
+	\item Font - Tamanho da fonte aplicada ao campo
+\end{itemize}
+
+O \textit{software} DMSConsole deve ser capaz de ler um arquivo XML com as informações da estrutura de dado GID, como apresentado em (\ref{code:XML}), e ainda quando necessário criar um arquivo XML semelhante. O DMSConsole deve possibilitar ao usuário criar, através da interface de usuário, um arquivo XML com a estrutura de dados GID, para servir de fonte de dados. Existem varias bibliotecas prontas em C++  para leitura e criação de arquivos XML, porém para tornam as funções de leitura e criação mais eficientes e reduzir a complexabilidade do código, fora desenvolvido uma biblioteca própria nomeada GIDxml.
 
 As funções de leitura e criação da biblioteca GIDxml utilizam uma estrutura de dados semelhante a GID, porém com um sistema de alocação dinâmica de memória. A alocação dinâmica permite uma melhor gestão e maior capacidade de uso da memória da aplicação, tornando possível a aplicação ler arquivos XML de maior volume.  
+
 \section{Gerenciador Painéis}
 
-Para que a aplicação DMSConsole seja capaz te gerenciar a rede de painéis eletrônicos conectada ao console e atender as requisições feitas através da interface de usuário, é desenvolvida a biblioteca DMSDisplay.  Esta biblioteca contem as funções capazes de efetuar o reconhecimento e configurações dos dispositivos da rede de indicadores de destino, para tal é esta biblioteca se utiliza de uma interface de comunicação serial emulada, e dois \textit{timers} do sistema Linux. Estes \textit{timers}  são uteis para realizar algumas rotinas de configurações e manter o procedimento cíclico de atualização dos painéis. 
+Para que a aplicação DMSConsole seja capaz te gerenciar a rede de painéis eletrônicos conectada ao console e atender as requisições feitas através da interface de usuário, é desenvolvida a biblioteca DMSDisplay.  Esta biblioteca contem as funções capazes de efetuar o reconhecimento e configurações dos dispositivos da rede de indicadores de destino. Para tal esta biblioteca se utiliza de uma interface de comunicação serial emulada e dois \textit{timers} do sistema Linux. Estes \textit{timers}  são uteis para realizar algumas rotinas de configurações e manter o procedimento cíclico de atualização dos painéis. 
 
 \subsection{Bit Bang para UART - RS485}
-O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Baud Rate} de 9600bps, com 8 bits de dados e 1 \textit{Stop Bit}. Como apresentado anteriormente no Capítulo \ref{cap:Raspberry}, o \textit{Raspberry Pi Zero W} possui apenas uma interface de comunicação UART, o qual já é utilizada neste projeto, para a comunicação em UART-RS232 com o \textit{display touchscreen}. Para solucionar este problema é utilizado um recurso de emulação de interface de comunicação por \textit{software} chamado \textit{Bit Bang}.
+O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Baud Rate} de 9600bps, com 8 bits de dados e 1 \textit{Stop Bit}. Como apresentado anteriormente, o \textit{Raspberry Pi Zero W} possui apenas uma interface de comunicação UART, o qual já é utilizada neste projeto para a comunicação em UART-RS232 com o \textit{display touchscreen}. Para solucionar este problema é utilizado um recurso de emulação de interface de comunicação por \textit{software} chamado \textit{Bit Bang}.
 
-Utilizando os recursos de leitura e escrita de dados nas portas digitais disponíveis da GPIO  e obedecendo a estrutura do protocolo de comunicação é possível emular, via \textit{software}, o comportamento de uma interface UART, adicionando mais um recurso de comunicação ao \textit{Raspberry Pi Zero W}. Porém um dos obstáculos a ser enfrentado nesta tarefa é a velocidade leitura e processamento dos dados recebidos e transmitidos por essa interface emulada, já que o menor atraso acarreta facilmente erros na transmissão e/ou recepção. Em um sistema que possui um \textit{Hardware} exclusivo para comunicação, como um modem UART, a amostragem dos sinais de entrada, a modulação dos sinais de saída, os níveis de tensão deste sinais, a sincronização e o armazenamento temporário são controladas independentemente da execução do \textit{software} pelo processador.  Já no \textit{Bit Bang} todos estes parâmetros devem ser controlados pelo \textit{software}.  
+Utilizando os recursos de leitura e escrita de dados nas portas digitais disponíveis da GPIO, e obedecendo a estrutura do protocolo de comunicação é possível emular, via \textit{software}, o comportamento de uma interface UART, adicionando mais um recurso de comunicação ao \textit{Raspberry Pi Zero W}. Porém um dos obstáculos a ser enfrentado nesta tarefa é a velocidade leitura e processamento dos dados recebidos e transmitidos por essa interface emulada, já que o menor atraso acarreta facilmente erros na transmissão e/ou recepção. Em um sistema que possui um \textit{Hardware} exclusivo para comunicação, como um modem UART, a amostragem dos sinais de entrada, a modulação dos sinais de saída, os níveis de tensão deste sinais, a sincronização e o armazenamento temporário são controladas independentemente da execução do \textit{software} pelo processador.  Já no \textit{Bit Bang} todos estes parâmetros devem ser controlados pelo \textit{software}.  
 
-Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação, \textit{Baud Rate}, ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \citeonline{abyz}, o qual oferece uma variedade de funções em C para comunicação serial via \textit{bit bang}.
+Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação  (\textit{Baud Rate}) ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \citeonline{abyz}, o qual oferece uma variedade de funções em C para comunicação serial via \textit{bit bang}.
 
-Os pinos da GPIO do \textit{Raspberry Pi Zero W} possuem um nível de tensão de 0V á 3,3V, e consequentemente qualquer interface de comunicação estabelecido estará neste limite de tensão. Já que o UART-485 opera como tensões diferenciais em uma faixa além da oferecida pelo \textit{Raspberry}, se faz necessário utilizar um conversor UART TLL / UART-485. Neste projeto o conversor utilizado é o CI SP3481 - Sipex, o qual apresenta no lado TLL 4 pinos, sendo eles; porta de envio, recepção, habilitação de envio e aterramento, no lado 485 há apenas duas portas diferencias A B. A Figura \ref{fig:ConversorUARTTTL485} apresenta o esquemático da conexão entre este conversor e o \textit{Raspberry}.
+Os pinos da GPIO do \textit{Raspberry Pi Zero W} possuem um nível de tensão de 0V á 3,3V, e consequentemente qualquer interface de comunicação estabelecido estará neste limite de tensão. Já que o UART-485 opera como tensões diferenciais em uma faixa além da oferecida pelo \textit{Raspberry}, se faz necessário utilizar um conversor UART TLL / UART-485. Neste projeto o conversor utilizado é o CI SN65HVD308 - TI (\cite{485}), o qual apresenta no lado TLL 4 pinos; porta de envio, recepção, habilitação de envio e aterramento. No lado 485 há apenas duas portas diferencias A e B. A Figura \ref{fig:ConversorUARTTTL485} apresenta o esquemático da conexão entre este conversor e o \textit{Raspberry}.
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -79,7 +97,7 @@ Os pinos da GPIO do \textit{Raspberry Pi Zero W} possuem um nível de tensão de 0
 \end{figure} 
 \vspace{9mm}
 
-Assim através da interface de comunicação emulada via \textit{bit bang}, utilizando a porta 20 da GPIO para a habilitação de envio, a porta 23 para envio da mensagem e 24 para a recepção,  a comunicação entre console e painéis é feita no padrão LDESIGN.
+Assim através da interface de comunicação emulada via \textit{bit bang}, utilizando a porta 20 da GPIO para a habilitação de envio, a porta 23 para envio da mensagem e 24 para a recepção, a comunicação entre console e painéis é feita no padrão LDESIGN.
 
 \subsection{Protocolo LDESIGN}
 
@@ -119,15 +137,17 @@ Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem um p
 \end{table}
 \vspace{5mm}
 
-O ID (\textit{Identificador}) de destino e de origem são dados específicos de cada dispositivo, por exemplo, normalmente o dispositivo console tem por padrão o ID 0x00 e o painel com as maiores dimensões da rede tem o ID 0x01. Os comandos 'Tipo' e 'Dados' são de acordo com o tipo de mensagem a ser enviada pelo protocolo, na seção \ref{subsection:MensageConsolePanel} especifica os valores para tais comandos.
+O ID (\textit{Identificador}) de destino e de origem são dados específicos de cada dispositivo, normalmente o  console tem por padrão o ID 0x00 e o painel com as maiores dimensões da rede tem o ID 0x01. Os comandos 'Tipo' e 'Dados' são de acordo com o tipo de mensagem a ser enviada pelo protocolo, na seção \ref{subsection:MensageConsolePanel} é especificado os valores para tais comandos.
 
-Quando o console faz uma requisição a um painel especifico, por exemplo ao painel ID 0x05, o comando de Destino e Origem são respectivamente 0x05 e 0x00, e o painel responde com uma mensagem com ID de Destino 0x00 e Origem 0x05. Porém quando o console deseja realizar uma requisição tipo \textit{Broadcast}, ou seja à todos os painéis da rede ao mesmo tempo, o ID de Destino deve ser 0xFF e a Origem 0x00. Cada painel irá responder a requisição do console de forma sequência, cronometrada de acordo com seu valor de ID multiplicada por 100 ms. Por exemplo, em uma rede com dois painéis de ID 0x01 e 0x03, o painel de ID 0x01 responde 100 ms depois do fim da transmissão \textit{Broadcast} do console. Já o painel de ID 0x01 responde 300 ms depois do fim da da transmissão \textit{Broadcast} do console, garantindo assim a não sobreposição de respostas dos painéis.    
+Quando o console faz uma requisição a um painel especifico, por exemplo ao painel ID 0x05, o comando de Destino e Origem são respectivamente 0x05 e 0x00, e o painel responde com uma mensagem com ID de Destino 0x00 e Origem 0x05. Porém quando o console deseja realizar uma requisição tipo \textit{Broadcast}, ou seja à todos os painéis da rede ao mesmo tempo, o ID de Destino deve ser 0xFF e a Origem 0x00. Cada painel irá responder a requisição do console de forma sequência, cronometrada de acordo com seu valor de ID multiplicada por 100 ms. Por exemplo, em uma rede com dois painéis de ID 0x01 e 0x03, o painel de ID 0x01 responde 100 ms depois do fim da transmissão \textit{Broadcast} do console. Já o painel de ID 0x03 responde 300 ms depois do fim da da transmissão \textit{Broadcast} do console, garantindo assim a não sobreposição de respostas dos painéis.    
 
-Dentro do protocolo de comunicação LDESIGN há um conjunto de tipos de mensagem os quais possuem um alvo especifico dentro da rede de comunicação. O console dentro dessa rede é um dispositivo \textit{master} que realiza as requisições aos painéis, com mensagens console-painéis, e os painéis respondem com mensagens painel-console. Há no total 9 tipos de mensagens console-painéis, e 4 do tipos de mensagens  painéis-console, o DMSConsole deve ser capaz de enviar e receber tais mensagens, mediante a requisição do usuário. Para cada mensagem é desenvolvido uma função em C++ para executar a transmissão ou recepção dos dados como requerido pelo protocolo. No protocolo LDESIGN o comando 'Dados' é o conjunto de Bytes da mensagem a ser enviada para o destinatário, as subseções a seguir apresentam os tipos de mensagem a serem enviados e qual valor que o comando 'Tipo' deve tomar para cada mensagem. 
+Dentro do protocolo de comunicação LDESIGN há um conjunto de tipos de mensagem os quais possuem um alvo especifico dentro da rede de comunicação. O console dentro dessa rede é um dispositivo \textit{Master} que realiza as requisições aos painéis, com mensagens console-painéis, e os painéis respondem com mensagens painel-console. Há no total 9 tipos de mensagens console-painéis, e 4 do tipos de mensagens  painéis-console, o DMSConsole deve ser capaz de enviar e receber tais mensagens, mediante a requisição do usuário. Para cada mensagem é desenvolvido uma função em C++ para executar a transmissão ou recepção dos dados como requerido pelo protocolo. No protocolo LDESIGN o comando 'Dados' é o conjunto de \textit{bytes} da mensagem a ser enviada para o destinatário, as subseções a seguir apresentam os tipos de mensagem a serem enviados e qual valor que o comando 'Tipo' deve tomar para cada mensagem. 
 
 \subsubsection{MSG Network Config}
 \label{subsection:MensageConsolePanel}
 Esta mensagem realiza o reconhecimento dos dispositivos conectados a rede de painéis eletrônicos. Esta mensagem é transmitida pelo console em \textit{broadcast} usando o endereço 0xFF á todos os painéis, os quais respondem a requisição com uma mensagem 'Painel ID'\ref{sec:PainelID}, em sequência de acordo com o seu ID. O byte 'Tipo' desta mensagem é definido como 0x22, 'N' é igual a 2, e não existem bytes a serem enviados no comando 'Dados'. Ao final de cada Painel ID ainda é enviado um byte 'ACK' ou 'NACK' de reconhecimento.
+
+Quando o DMSConsole é inciado ele realiza uma rotina que envia uma mensagem \textit{MSG Network Config} a todos os painéis via \textit{broadcast}, de modo a detectar o número e as configurações dos painéis ligados a rede de indicadores de destino. Se nenhum painel for detectado se faz necessário informar ao usuário tal informação, caso contrário o usuário só será informado do número ou configurações dos painéis quando for necessário criar um arquivo de fonte de dados pelo editor do DMSConsole.
 
 \subsubsection{MSG Define Brightness}
 Através desta mensagem é possível configurar o nível de brilho de cada painel. Esta mensagem é enviada pelo console e pode ser endereçada para um painel especifico, ou enviada por \textit{broadcast} via endereço 0xFF. O byte 'Tipo' desta mensagem é 0x26, e 'N' é igual 2. O comando 'Dados' é definido como 1 byte em ASCII que representam a intensidade do brilho a ser utilizado no painel, sendo definido:
@@ -142,10 +162,10 @@ Através desta mensagem é possível configurar o nível de brilho de cada painel. E
 	\item 'A' Nível Automático 
 \end{itemize}
 
-Em resposta a esta mensagem o painel deve enviar uma mensagem 'ACK' em caso reconhecer e validar a mensagem, ou caso contrário deve ser enviado  uma mensagem 'NACK'.
+Em resposta a esta mensagem o painel deve enviar uma mensagem 'ACK' em caso reconhecer e validar a mensagem, ou caso contrário deve ser enviado  uma mensagem 'NACK'. O DMSConsole deve enviar está mensagem apenas quando o usuário acender a Página de Configuração dos Painéis e selecionar um nível de brilho diferente do atual. 
 
 \subsubsection{MSG Reset}
-Esta mensagem destina-se a realização de limpeza na memória dos painéis eletrônicos, colocando estes no estado de arranque. O byte tipo desta mensagem é definido como 0x1A, o byte 'N' é 1, não existe bytes a serem enviados no comando 'Dados'. Esta mensagem é enviada pelo console e pode ser destinada a um  painel, ou transmitida a todos pelo endereço 0xFF. Após o envio desta mensagem o painel deve responder com um comando 'ACK' se este reconhecer a mensagem, caso contrário ele deve mandar uma comando 'NACK'.
+Esta mensagem destina-se a realização de limpeza na memória dos painéis eletrônicos, colocando estes no estado de arranque. O byte tipo desta mensagem é definido como 0x1A, o byte 'N' é 1, não existe bytes a serem enviados no comando 'Dados'. Esta mensagem é enviada pelo console e pode ser destinada a um  painel, ou transmitida a todos pelo endereço 0xFF. Após o envio desta mensagem o painel deve responder com um comando 'ACK' se este reconhecer a mensagem, caso contrário ele deve mandar uma comando 'NACK'. Este comando só é enviado pelo DMSConsole quando o usuário ascende a Página de Configuração dos Painéis é seleciona a opção 'Reset'.
 
 \subsubsection{MSG INFO}
 Esta mensagem é enviada pelo console e contém dados que descrevem as informações a serem afixadas em um painel especifico. Esta mensagem é enviada individualmente para cada painel, o byte 'Tipo' desta mensagem é definido como 0x21, e o Byte 'N' é variável de acordo com a mensagem o número total de Bytes presentes nessa mensagem. O comando 'Dados' segue uma estrutura geral descrita abaixo:
@@ -190,7 +210,7 @@ O comando 'Page Geral Info' é o conjunto de 3 Bytes que descrevem as informações
 \begin{figure}[H]
 	\centering
 	\captionsetup{width=\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=\linewidth]{Images/PageGeneralInfoMSG_INFO.eps}
+	\includegraphics[width=\linewidth]{Images/SoftwareDMSConsole/PageGeneralInfoMSG_INFO.eps}
 	\caption{MSG Info - Page General Info}
 	\vspace{-3.5mm}
 	\caption*{Fonte: \citeonline{DMSManual}}
@@ -245,7 +265,7 @@ O 'Page Header' é o cabeçalho que descreve cada página a ser transmitida, sendo 
 \begin{figure}[H]
 	\centering
 	\captionsetup{width=\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=\linewidth]{Images/PageInfo_Header.eps}
+	\includegraphics[width=\linewidth]{Images/SoftwareDMSConsole/PageInfo_Header.eps}
 	\caption{MSG Info - Page Info Header}
 	\vspace{-3.5mm}
 	\caption*{Fonte: \citeonline{DMSManual}}
@@ -298,7 +318,7 @@ Esta mensagem destina-se a realização de testes básicos nos painéis. Esta mensag
 	\item 0x03 - Teste de varrimento horizontal de LEDS
 \end{itemize}
 
-Se o teste escolhido for o teste de varrimento horizontal ou vertical de LEDs, todos os painéis da rede ao receberem esta mensagem executam a rotina de apagar todos os LEDs e acender apenas uma linha, no caso horizontal, ou uma coluna, no caso vertical, por vez varrendo todos os LEDs. Ao final todos os painéis devem manter todos os seus LEDs acesos com brilho nível 2 até receberem novas mensagens. 
+O DMSConsole envia este tipo de mensagem quando o usuário acessa a Página de Configuração dos Painéis e seleciona uma opção de teste. Se o teste escolhido for o teste de varrimento horizontal ou vertical de LEDs, todos os painéis da rede ao receberem esta mensagem executam a rotina de apagar todos os LEDs e acender apenas uma linha, no caso horizontal, ou uma coluna, no caso vertical, por vez varrendo todos os LEDs. Ao final todos os painéis devem manter todos os seus LEDs acesos com brilho nível 2 até receberem novas mensagens. 
 
 Já no caso de um teste de memória RAM e Flash, todos os painéis da rede ao receberem esta mensagem passam a checar suas memorias, e cada uma envia sequencialmente uma mensagem ACK caso o teste ocorra com sucesso, ou NACK caso tenham encontrado algum problema durante o teste. 
 
@@ -353,11 +373,11 @@ A camada \textit{touch} representa a superfície do \textit{display} sensível ao 
 \end{figure} 
 \vspace{3mm}
 
-Para cada página da interface há uma camada \textit{touch} e a camada \textit{frame} associadas. Quanto maior for o número de páginas necessárias para oferecer as funcionalidade da interface ao usuário, mais extenso será o  trabalho de desenvolver os dois tipos de camadas para cada página. Para tornar a tarefa de desenvolvimento menos penosa, a interface foi pensada de modo a reduzir o número de páginas, e reunir o máximo de ferramentas para o usuário em uma mesma página, sem afetar a visibilidade e o uso das mesmas. 
+Para cada página da interface há uma camada \textit{touch} e a camada \textit{frame} associadas. Quanto maior for o número de páginas necessárias para oferecer as funcionalidade da interface ao usuário, mais extenso será o  trabalho de desenvolver a interface. Para tornar a tarefa de desenvolvimento menos penosa, a interface foi pensada de modo a reduzir o número de páginas, e reunir o máximo de ferramentas para o usuário em uma mesma página, sem afetar a visibilidade e o uso das mesmas. 
  
 O console de indicadores de destino deve possuir uma interface que facilite ao motorista configurar os painéis e manipular as informações a serem exibidas de forma mais prática o possível. Deve se ter em mente que a usabilidade do console esta intimamente ligada ao tipo de rotina que o autocarro possui. Se o autocarro realiza sempre o mesmo trajeto, em um ambiente urbano pro exemplo, provavelmente as configurações e personalizações das informações  fixadas nos painéis raramente mudem. Sendo assim é mais prático utilizar a aplicação GID em um computador, e apenas exportar o arquivo fonte para um dispositivo USB e carrega-lo no console. Porém quando o trajeto do autocarro varia frequentemente, ou ainda há uma necessidade periódica de alterar informações dos painéis, se torna mais interessante existir uma ferramenta no próprio console que possibilite criar um arquivo fonte.
 
-No antigo modelo de console SICON II não há Fontes editor de fontes no console, e consequentemente a interface do usuário era mais simples. Já que os dados fonte eram passados via conexão USB, em formato hexadecimal, para dentro do console, bastando apenas o utilizador selecionar a fonte. No novo modelo de console haverá 3 opções de origem das fontes de dados; transferência via USB, transferência via SSH e a criação da fonte direto no console todos em formato XML(Figura \ref{fig:InputNovoConsole}). Assim a interface do novo console deve agregar novas funcionalidade, porém sem se tornar demasiadamente complexa.
+No antigo modelo de console SICON II não há Fontes editor de fontes no console, e consequentemente a interface do usuário era mais simples. Já que os dados fonte eram passados via conexão USB, em formato binário, para dentro do console. No novo modelo de console haverá 3 opções de origem das fontes de dados; transferência via USB, transferência via SSH e a criação da fonte direto no console, todos em formato XML(Figura \ref{fig:InputNovoConsole}). Assim a interface do novo console deve agregar novas funcionalidade, porém sem se tornar demasiadamente complexa.
 
 \vspace{3mm}
 \begin{figure}[H]
@@ -448,9 +468,9 @@ Na página de Seleção de Fonte o usuário tem acesso a uma lista de arquivos fonte
 
 \subsection{Página de Edição de Fontes}
 
-Ao escolher a opção 'Criar Fonte' o usuário é direcionado para editor de fontes do DMSConsole, onde ele define os parâmetro da Linha e do Destino do autocarro, os parâmetros de dimensões dos painéis, o layout das páginas e o alinhamento  das informações visuais nos painéis. E então o DMSConsole gera um arquivo Xml baseados nestas informações, para ser utilizado como fonte. Para facilitar a entrada de dados pelo usuário as páginas do editor de fontes possui um teclado virtual adaptado do padrão \textit{QWERTY}. 
+Ao escolher a opção 'Criar Fonte', dentro da  Página de Seleção de Fontes, o usuário é direcionado para editor de fontes do DMSConsole. Onde ele define os parâmetro da Linha e do Destino do autocarro, os parâmetros de dimensões dos painéis, o layout das páginas e o alinhamento  das informações visuais nos painéis. E então o DMSConsole gera um arquivo Xml baseados nestas informações, para ser utilizado como fonte. Para facilitar a entrada de dados pelo usuário as páginas do editor de fontes possui um teclado virtual adaptado do padrão \textit{QWERTY}. 
 
-Após inserir o nome do arquivo, o nome e numero da linha e o nome do destino, o DMSConsole detecta as configurações dos painéis da rede, e oferece ao usuário a criação 'Paginas' de acordo com a dimensão de cada painel. Porém se não for detectado nenhum painel da rede, o usuário pode inserir manualmente as dimensões dos painéis. No processo de criação da página o usuário tem a opção de escolher quais informações serão exibidas nos painéis; texto, apenas o número da linha, o texto e o número da linha ou  sem nenhuma informação. É possível também definir manualmente a fonte o alinhamento e o conteúdo do texto exibido. O quadro de Figuras \ref{fig:SourceEditorDMSConsole} apresenta as etapas do editor de fontes.
+Após inserir o nome do arquivo, o nome e numero da linha e o nome do destino, o DMSConsole detecta as configurações dos painéis da rede, e oferece ao usuário a criação 'Paginas' de acordo com a dimensão de cada painel. Porém se não for detectado nenhum painel da rede, o usuário pode inserir manualmente as dimensões dos painéis. No processo de criação da página o usuário tem a opção de escolher quais informações serão exibidas nos painéis; texto, apenas o número da linha, o texto e o número da linha ou  sem nenhuma informação. É possível também definir manualmente a fonte, o alinhamento e o conteúdo do texto exibido. O quadro de Figuras \ref{fig:SourceEditorDMSConsole} apresenta as etapas do editor de fontes.
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -523,7 +543,7 @@ Após inserir o nome do arquivo, o nome e numero da linha e o nome do destino, o 
 Na Página de Configuração dos Painéis o usuário tem acesso a configuração de 
 nível de brilho dos Painéis na rede, a execução de testes de funcionamento dos LEDs e da Memória Flash do equipamento e ainda a realização do \textit{reset} de todos os painéis na rede, Figura (\ref{fig:PanelSettings}). O brilho dos painéis é definido em 6 níveis mais o nível automático, onde o brilho do painéis é regulado pelo sensor de luminosidade do equipamento. 
 
-A 3 teste de painéis disponíveis na página de Configuração dos Painéis; o teste de varrimento vertical, varrimento horizontal e teste de memoria RAM e FLASH. Caso o teste escolhido seja o teste de memória RAM e Flash o console envia o comando MSG Panel Test para todos os painéis da rede. Se todos os painéis realizarem o teste com sucesso, um ícone aparece na tela informando o sucesso da operação, caso contrário é informado a ocorrência de um erro.  
+A 3 teste de painéis disponíveis na página de Configuração dos Painéis; o teste de varrimento vertical, varrimento horizontal e teste de memoria RAM e FLASH. Caso o teste escolhido seja o teste de memória RAM e Flash o console envia o comando 'MSG Panel Test' para todos os painéis da rede. Se todos os painéis realizarem o teste com sucesso, um ícone aparece na tela informando o sucesso da operação, caso contrário é informado a ocorrência de um erro.  
  
 
 \vspace{9mm}
@@ -563,12 +583,11 @@ A 3 teste de painéis disponíveis na página de Configuração dos Painéis; o teste 
 
 \subsection{Página de Configuração do \textit{Display}}
 
-Na página de Configiguração de \textit{Display} o usuário tem  acesso às configurações de \textit{Blacklight}, \textit{Screen Saver} e \textit{Buzzer Tocu Sound}. O \textit{Blacklight}, ou retroiluminação, é intensidade da fonte de iluminação de fundo do \textit{Display}. Uma intensidade alta de torna de \textit{Blacklight} torna o conteúdo mostrado no \textit{Display} mais visível ao usuário em um ambiente bastante iluminado. Porém em um ambiente mais escuro um nível alto de  \textit{Blacklight} pode incomodar o usuário é causar mais rapidamente um cansaço visual. Na página de configuração do \textit{Display} é possível selecionar o nível do  \textit{Blacklight} do \textit{Display},e ainda definir para dois períodos do dia a intensidade de  \textit{Blacklight} desejado.
+Na página de Configiguração de \textit{Display} o usuário tem  acesso às configurações de \textit{Blacklight}, \textit{Screen Saver} e \textit{Buzzer Tocu Sound}. O \textit{Blacklight}, ou retro-iluminação, é intensidade da fonte de iluminação de fundo do \textit{Display}. Uma intensidade alta de torna de \textit{Blacklight} torna o conteúdo mostrado no \textit{Display} mais visível ao usuário em um ambiente bastante iluminado. Porém em um ambiente mais escuro um nível alto de  \textit{Blacklight} pode incomodar o usuário é causar mais rapidamente um cansaço visual. Na página de configuração do \textit{Display} é possível selecionar o nível do  \textit{Blacklight} do \textit{Display},e ainda definir para dois períodos do dia a intensidade de  \textit{Blacklight} desejado.
 
 O \textit{Screen Saver} é o recurso que reduz o \textit{Blacklight} para zero quando o \textit{Display} esta ocioso. Na  página de configuração do \textit{Display} é possível definir um valor de até 900 segundos para que o tempo máximo de ociosidade para que o \textit{Display} não entre em \textit{Screen Saver}, porém se este valor for 0 o \textit{Screen Saver} é desativado.
 
 Por ultimo existe o recurso de \textit{Buzzer Tocu Sound} que é um recurso sonoro que informa ao usuário quando uma tecla \textit{touch} foi pressionada. O tempo de emissão sonora pode ser configurado nesta página, sendo a unidade definida em 10 milésimos de segundos. 
-
 
 \vspace{3mm}
 \begin{figure}[H]

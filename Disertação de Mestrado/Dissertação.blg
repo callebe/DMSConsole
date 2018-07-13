@@ -12,17 +12,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: abnt-options.bib
 Database file #2: bibliografia.bib
-You're missing a field name---line 179 of file bibliografia.bib
- :  
- :  %edition = "",
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "AdafruitR"
-Warning--I didn't find a database entry for "SiteMoraes2010"
-Warning--I didn't find a database entry for "Grainger1994"
-Warning--I didn't find a database entry for "Anderson1977"
-Warning--I didn't find a database entry for "Glover2002"
-Warning--I didn't find a database entry for "abntex-doc"
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
@@ -35,43 +25,43 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 +---------------------------------------------------------+
 You've used 23 entries,
             6480 wiz_defined-function locations,
-            1270 strings with 11820 characters,
-and the built_in function-call counts, 14823 in all, are:
-= -- 1249
+            1263 strings with 11735 characters,
+and the built_in function-call counts, 14893 in all, are:
+= -- 1258
 > -- 396
 < -- 60
 + -- 247
 - -- 124
-* -- 910
-:= -- 1961
-add.period$ -- 63
+* -- 919
+:= -- 1969
+add.period$ -- 64
 call.type$ -- 25
-change.case$ -- 172
+change.case$ -- 173
 chr.to.int$ -- 38
 cite$ -- 17
-duplicate$ -- 866
-empty$ -- 1205
+duplicate$ -- 869
+empty$ -- 1211
 format.name$ -- 599
-if$ -- 3458
+if$ -- 3473
 int.to.chr$ -- 6
 int.to.str$ -- 3
-missing$ -- 346
-newline$ -- 95
+missing$ -- 347
+newline$ -- 96
 num.names$ -- 85
-pop$ -- 395
+pop$ -- 393
 preamble$ -- 1
 purify$ -- 76
 quote$ -- 0
-skip$ -- 1238
+skip$ -- 1237
 stack$ -- 1
-substring$ -- 518
-swap$ -- 285
+substring$ -- 532
+swap$ -- 287
 text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 2
 warning$ -- 0
-while$ -- 113
+while$ -- 114
 width$ -- 0
-write$ -- 260
-(There was 1 error message)
+write$ -- 262
+(There was 1 warning)

@@ -1,41 +1,36 @@
 \BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Recurso Utilizados}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{Objetivos}{chapter.1}% 3
-\BOOKMARK [2][-]{subsection.1.2.1}{Objetivos Gerais}{section.1.2}% 4
-\BOOKMARK [2][-]{subsection.1.2.2}{Objetivos Espec\355ficos}{section.1.2}% 5
-\BOOKMARK [0][-]{chapter.2}{Display Touchscreen TOPWAY - HKT080ATA-C}{}% 6
-\BOOKMARK [0][-]{chapter.3}{Raspberry Pi Zero W}{}% 7
-\BOOKMARK [0][-]{chapter.4}{Indicadores de Destino - DMS}{}% 8
-\BOOKMARK [1][-]{section.4.1}{Interface de Comunica\347\343o UART-RS485}{chapter.4}% 9
-\BOOKMARK [1][-]{section.4.2}{Gestor de Indica\347\343o de Destinos}{chapter.4}% 10
-\BOOKMARK [0][-]{chapter.5}{Software DMSConsole}{}% 11
-\BOOKMARK [1][-]{section.5.1}{Gerenciador XML}{chapter.5}% 12
-\BOOKMARK [1][-]{section.5.2}{Gerenciador Pain\351is}{chapter.5}% 13
-\BOOKMARK [2][-]{subsection.5.2.1}{Bit Bang para UART - RS485}{section.5.2}% 14
-\BOOKMARK [2][-]{subsection.5.2.2}{Protocolo LDESIGN}{section.5.2}% 15
-\BOOKMARK [3][-]{subsubsection.5.2.2.1}{MSG Network Config}{subsection.5.2.2}% 16
-\BOOKMARK [3][-]{subsubsection.5.2.2.2}{MSG Define Brightness}{subsection.5.2.2}% 17
-\BOOKMARK [3][-]{subsubsection.5.2.2.3}{MSG Reset}{subsection.5.2.2}% 18
-\BOOKMARK [3][-]{subsubsection.5.2.2.4}{MSG INFO}{subsection.5.2.2}% 19
-\BOOKMARK [3][-]{subsubsection.5.2.2.5}{MSG Panel Test}{subsection.5.2.2}% 20
-\BOOKMARK [3][-]{subsubsection.5.2.2.6}{ACK e NACK}{subsection.5.2.2}% 21
-\BOOKMARK [3][-]{subsubsection.5.2.2.7}{Panel ID}{subsection.5.2.2}% 22
-\BOOKMARK [1][-]{section.5.3}{Gerenciador Interface}{chapter.5}% 23
-\BOOKMARK [2][-]{subsection.5.3.1}{P\341gina de Sele\347\343o de Destino}{section.5.3}% 24
-\BOOKMARK [2][-]{subsection.5.3.2}{P\341gina de Sele\347\343o de Linha}{section.5.3}% 25
-\BOOKMARK [2][-]{subsection.5.3.3}{P\341gina do Menu de Configura\347\365es}{section.5.3}% 26
-\BOOKMARK [2][-]{subsection.5.3.4}{P\341gina de Sele\347\343o de Fontes}{section.5.3}% 27
-\BOOKMARK [2][-]{subsection.5.3.5}{P\341gina de Edi\347\343o de Fontes}{section.5.3}% 28
-\BOOKMARK [2][-]{subsection.5.3.6}{P\341gina de Configura\347\343o dos Pain\351is}{section.5.3}% 29
-\BOOKMARK [2][-]{subsection.5.3.7}{P\341gina de Configura\347\343o do Display}{section.5.3}% 30
-\BOOKMARK [0][-]{chapter.6}{Montagem do Console de Indica\347\343o de Destinos}{}% 31
-\BOOKMARK [0][-]{chapter.7}{Conclus\343o}{}% 32
-\BOOKMARK [1][-]{subsection.7.0.1}{Testes e exemplos de lista de siglas}{chapter.7}% 33
-\BOOKMARK [2][-]{subsection.7.0.2}{Testes e exemplos de lista de s\355mbolos}{subsection.7.0.1}% 34
-\BOOKMARK [2][-]{subsection.7.0.3}{Exemplos de cita\347\343o de refer\352ncias bibliogr\341ficas}{subsection.7.0.1}% 35
-\BOOKMARK [0][-]{chapter.8}{N\355vel 1 - Testes DE capitula\347\343o - Prim\341rio}{}% 36
-\BOOKMARK [1][-]{section.8.1}{N\355vel 2 - Secund\341rio}{chapter.8}% 37
-\BOOKMARK [2][-]{subsection.8.1.1}{N\355vel 3 - Terci\341rio}{section.8.1}% 38
-\BOOKMARK [3][-]{subsubsection.8.1.1.1}{N\355vel 4 - Quatern\341rio}{subsection.8.1.1}% 39
-\BOOKMARK [0][-]{chapter.annex.A}{Anexo A - Stellar Mystery Solved, Einstein Safe}{}% 40
-\BOOKMARK [1][-]{section.annex.A.1}{Exemplo de se\347\343o anexo}{chapter.annex.A}% 41
+\BOOKMARK [1][-]{section.1.1}{Estrutura do Trabalho}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Recurso Utilizados}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Objetivos}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.3.1}{Objetivos Gerais}{section.1.3}% 5
+\BOOKMARK [2][-]{subsection.1.3.2}{Objetivos Espec\355ficos}{section.1.3}% 6
+\BOOKMARK [0][-]{chapter.2}{Revis\343o de Literatura}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Display Touchscreen TOPWAY - HKT080ATA-C}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Raspberry Pi Zero W}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{Indicadores de Destino - DMS}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{Interface de Comunica\347\343o UART-RS485}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.5}{Gestor de Indica\347\343o de Destinos}{chapter.2}% 12
+\BOOKMARK [0][-]{chapter.3}{Desenvolvimento da Aplica\347\343o DMSConsole}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Gerenciador XML}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.2}{Gerenciador Pain\351is}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.2.1}{Bit Bang para UART - RS485}{section.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.2.2}{Protocolo LDESIGN}{section.3.2}% 17
+\BOOKMARK [3][-]{subsubsection.3.2.2.1}{MSG Network Config}{subsection.3.2.2}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.2.2}{MSG Define Brightness}{subsection.3.2.2}% 19
+\BOOKMARK [3][-]{subsubsection.3.2.2.3}{MSG Reset}{subsection.3.2.2}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.2.4}{MSG INFO}{subsection.3.2.2}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.2.5}{MSG Panel Test}{subsection.3.2.2}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.2.6}{ACK e NACK}{subsection.3.2.2}% 23
+\BOOKMARK [3][-]{subsubsection.3.2.2.7}{Panel ID}{subsection.3.2.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Gerenciador Interface}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{P\341gina de Sele\347\343o de Destino}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{P\341gina de Sele\347\343o de Linha}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.3}{P\341gina do Menu de Configura\347\365es}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.4}{P\341gina de Sele\347\343o de Fontes}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.5}{P\341gina de Edi\347\343o de Fontes}{section.3.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.6}{P\341gina de Configura\347\343o dos Pain\351is}{section.3.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.7}{P\341gina de Configura\347\343o do Display}{section.3.3}% 32
+\BOOKMARK [0][-]{chapter.4}{Montagem e Teste do Prot\363tipo}{}% 33
+\BOOKMARK [1][-]{section.4.1}{Desenvolvimento da Placa de Integra\347\343o}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.2}{Realiza\347\343o dos Testes}{chapter.4}% 35
+\BOOKMARK [0][-]{chapter.5}{Conclus\343o}{}% 36

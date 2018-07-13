@@ -103,7 +103,7 @@
 \renewcommand\footnotelayout{\bfseries}
 
 % DIFINICOES DE TEXTOS:
-\renewcommand{\ABNTtextoaprovacaodata}{Trabalho de Conclusão de Curso de graduação, apresentado à disciplina de Trabalho de Conclusão de Curso 2, do Curso de Engenharia Elétrica da Coordenação de Engenharia Elétrica - {COELT} - da Universidade Tecnológica Federal do Paraná - UTFPR, Câmpus Pato Branco, como requisito parcial para obtenção do título de Engenheiro Eletricista.}
+\renewcommand{\ABNTtextoaprovacaodata}{Relatório elaborado para satisfação parcial dos requisitos da Unidade Curricular de DSEE - Dissertação do Mestrado em Engenharia Eletrotécnica - Sistemas Elétricos de Energia.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
@@ -126,11 +126,11 @@
 {%
 	\begin{titlepage}
 		
-		\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{Capa_Automacao_Industrial.png}} % Insere a imagem de fundo
+		\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{Capa_Automacao_Industrial.eps}} % Insere a imagem de fundo
 		
 		\begin{center}
 			\vspace*{-1.85cm}
-			\autorformat\uppercase{ Instituto Superior de Engenharia do Porto \\ Departamento de Engenharia Eletrotécnica \\ Mestrado em Engenharia Eletrotécnica - Sistemas Elétricos de Energia}
+			\autorformat\uppercase{ Instituto Superior de Engenharia do Porto \\ Departamento de Engenharia Eletrotécnica \\ Mestrado em Engenharia Eletrotécnica \\ Sistemas Elétricos de Energia}
 		\end{center}
 		
 		\vfill
@@ -212,13 +212,13 @@
 			\ABNTifnotempty{\ABNTorientadordata}%
 			{%
 				\vspace{1em}%
-				{\orientadornameformat\ABNTorientadorname}%
+				{\textbf{\orientadornameformat\ABNTorientadorname}}%
 				{\orientadorformat\ABNTorientadordata}\par%
 			}%
 			\ABNTifnotempty{\ABNTcoorientadordata}%
 			{%
 				\vspace{1em}%
-				{\coorientadornameformat\ABNTcoorientadorname}
+				{\textbf{\coorientadornameformat\ABNTcoorientadorname}}
 				{\coorientadorformat\ABNTcoorientadordata}
 			}%
      \end{espacosimples}

@@ -13,7 +13,7 @@
 \bibitem[Bray \textit{et al.} 1997]{Bray}
 \abntrefinfo{Bray \textit{et al.}}{BRAY \textit{et al.}}{1997}
 {BRAY, Tim; PAOLI, Jean; SPERBERG-MCQUEEN, C~Michael; MALER, Eve; YERGEAU,
-  Fran{\c{c}}ois. Extensible markup language (xml).
+  Fran{\c{c}}ois. Extensible markup language.
 \textbf{World Wide Web Journal}, v.~2, n.~4, p. 27--66, 1997.}
 
 \bibitem[CP 2018]{cp}
@@ -33,10 +33,11 @@ Accessed: 2018-05-15.}
 \abntrefinfo{Debian}{DEBIAN}{2005}
 {DEBIAN, GNU. \textbf{Linux}. 2005.}
 
-\bibitem[DMS]{DMSManual}
-\abntrefinfo{DMS}{DMS}{}
+\bibitem[DMS 2004]{DMSManual}
+\abntrefinfo{DMS}{DMS}{2004}
 {DMS. Consola de indicador de destino - protocolo de comunicação.
-Rua de Cidres, nº1444, 4455-442 Perafita (Matosinhos), Portugal.}
+Rua de Cidres, nº1444, 4455-442 Perafita (Matosinhos), Portugal, 2004.
+SICON II - DOCIE05004-00.}
 
 \bibitem[DMS 2018]{DMS}
 \abntrefinfo{DMS}{DMS}{2018}

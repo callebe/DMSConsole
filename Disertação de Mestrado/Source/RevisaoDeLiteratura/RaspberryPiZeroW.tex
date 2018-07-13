@@ -1,0 +1,66 @@
+\label{cap:Raspberry}
+Raspberry Pi é uma serie de computadores de tamanho reduzido construídos em uma única placa de circuito impresso (\textit{single-board computers}). Desenvolvido pela Raspberry Pi Foundation, os modelos da série Raspberry Pi possuem um Broadcom SoC (\textit{system on a chip} integrado com um processador ARM e uma unidade de processamento gráfico (GPU) on-board \cite{AdafruitR}. Mesmo sendo criado com o intuito de promover ensino de ciências da computação em escolas de ensino básico, o Raspberry Pi tem sido encontrado em diversas aplicações na bibliografia por conta de sua versatilidade, preço baixo e tamanho reduzido \cite{Tso},\cite{Priyanka}.
+
+Em fevereiro de 2017, a Raspberry Pi Foundation lançou um novo modelo de Raspberry Pi no mercado, o Raspberry Pi Zero W, visto na Figura (\ref{fig:RaspberryPiZeroW}). Este novo modelo possui a metade do tamanho do modelo Raspberry Pi 3 A+, porém com o dobro de recursos e conectividade Wi-Fi. O Pi Zero W possui um processador ARM de 1GHz, memoria RAM de 512 MB, porta USB OTG (\textit{On-The-Go}), porta Minie HDMI, conector para camera CSI e 40 pinos de GPIO (\textit{General Purpose Input/Output}) \cite{Adafruit}. 
+
+O Raspberry Pi Zero W, assim como todos os modelos Raspberry Pi, suportam sistemas operacionais baseados no kernel Linux, dispondo de toda as bibliotecas básicas destes tipos de sistemas. Em especial a Raspberry Pi Foundation disponibiliza uma versão de Linux, baseada na distribuição Debian (\cite{debian}), chamada Raspbian. Raspbian foi desenvolvido com o intuito de otimizar os recursos computacionais disponíveis no hardware, permitindo rodar uma interface gráfica amigável e ainda manter um bom desempenho. Em sua versão inicial, em 2012, o Raspbian possuía mais de 35000 pacotes de aplicações otimizadas para os modelos Raspberry Pi. Porém como este é um sistema Linux, é possível instalar pacotes de outras distribuições apenas incluindo e instalando as devidas dependências \cite{debian}. O Raspbian também possui compilador para as linguagens como Java, C/C++ e especialmente Python \citeauthoronline{Adafruit}.
+	  
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.40\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.25\linewidth]{Images/RevisaoDeLiteratura/RaspberryPiZeroW.eps}
+	\caption{Raspberry Pi Zero W}
+	\vspace{-3.5mm}
+	\caption*{65mm de comprimento x 30 mm de largura x 5mm de espessura}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{sparkfun}}
+	\label{fig:RaspberryPiZeroW}
+\end{figure} 
+\vspace{9mm}
+
+
+
+O Raspberry  além de oferecer um dispositivo poderoso com um sistema operacional Linux, ainda agrega as funcionalidades dos microcontroladores mais comuns em sistemas embarcados. Entre estas funcionalidades está o conjunto de pinos da GPIO (\textit{General Propose Input and Output}), o qual é uma das grandes responsáveis pela facilidade com que o Raspberry Pi Zero W se encaixe nas mais diversas aplicações.  O sistema operacional, no  Raspberry Pi Zero W, tem acesso a 28 portas digitais de entrada/saída da GPIO, por ondem é possível realizar nos pinos da GPIO processos de leitura e escrita de sinais digitais, PWM (\textit{Pulse-Width Modulation}) e estabelecer comunicação pelos protocolos UART, I2C e SPI. 
+
+\begin{table}[H]
+ 	\centering
+	\captionsetup{width=\linewidth}
+	\begin{tabular}{ccc|c|c|ccc}
+		\cline{4-5}
+		&                                                        & \cellcolor[HTML]{CB0000}{\color[HTML]{FFFFFF} \textbf{3.3V}} & 1  & 2  & \cellcolor[HTML]{CB0000}{\color[HTML]{FFFFFF} \textbf{5V}} &                                                     &                                                                       \\ \cline{4-5}
+		\cellcolor[HTML]{6665CD}{\color[HTML]{FFFFFF} }                      & \cellcolor[HTML]{6665CD}{\color[HTML]{FFFFFF} SDA}     & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO2}         & 3  & 4  & \cellcolor[HTML]{CB0000}{\color[HTML]{FFFFFF} \textbf{5V}} &                                                     &                                                                       \\ \cline{4-5}
+		\multirow{-2}{*}{\cellcolor[HTML]{6665CD}{\color[HTML]{FFFFFF} I2C}} & \cellcolor[HTML]{6665CD}{\color[HTML]{FFFFFF} SCL}     & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO3}         & 5  & 6  & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}         &                                                     &                                                                       \\ \cline{4-5}
+		& \cellcolor[HTML]{C0C0C0}{\color[HTML]{FFFFFF} GPCLK0} & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO4}         & 7  & 8  & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO14}      & \cellcolor[HTML]{F8A102}{\color[HTML]{FFFFFF} Tx}   & \cellcolor[HTML]{F8A102}{\color[HTML]{FFFFFF} }                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}           & 9  & 10 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO15}      & \cellcolor[HTML]{F8A102}{\color[HTML]{FFFFFF} Rx}   & \multirow{-2}{*}{\cellcolor[HTML]{F8A102}{\color[HTML]{FFFFFF} UART}} \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO17}        & 11 & 12 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO18}      & \cellcolor[HTML]{036400}{\color[HTML]{FFFFFF} PWM0} &                                                                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO27}        & 13 & 14 & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}         &                                                     &                                                                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO22}        & 15 & 16 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO23}      &                                                     &                                                                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{CB0000}{\color[HTML]{FFFFFF} \textbf{3.3V}} & 17 & 18 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO24}      &                                                     &                                                                       \\ \cline{4-5}
+		\cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} }                      & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} MOSI}    & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO10}        & 19 & 20 & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}         &                                                     &                                                                       \\ \cline{4-5}
+		\cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} }                      & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} MISO}    & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO9}         & 21 & 22 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO25}      &                                                     &                                                                       \\ \cline{4-5}
+		\multirow{-3}{*}{\cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} SPI}} & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} SCLK}    & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO11}        & 23 & 24 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO8}       & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} CS0}  & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} }                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}           & 25 & 26 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO7}       & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} CS1}  & \multirow{-2}{*}{\cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} SPI}}  \\ \cline{3-6}
+		& \multicolumn{1}{c|}{}                                  & DNC                                                          & 27 & 28 & \multicolumn{1}{c|}{DNC}                                   &                                                     &                                                                       \\ \cline{3-6}
+		& \cellcolor[HTML]{C0C0C0}{\color[HTML]{FFFFFF} GPCLK1}  & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO5}         & 29 & 30 & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}         &                                                     &                                                                       \\ \cline{4-5}
+		& \cellcolor[HTML]{C0C0C0}{\color[HTML]{FFFFFF} GPCLK2}  & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO6}         & 31 & 32 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO12}      &                                                     &                                                                       \\ \cline{4-5}
+		& \cellcolor[HTML]{036400}{\color[HTML]{FFFFFF} PWM1}    & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO13}        & 33 & 34 & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}         &                                                     &                                                                       \\ \cline{4-5}
+		& \cellcolor[HTML]{036400}{\color[HTML]{FFFFFF} PWM1}    & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO19}        & 35 & 36 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO16}      &                                                     &                                                                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO26}        & 37 & 38 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO20}      &                                                     &                                                                       \\ \cline{4-5}
+		&                                                        & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND}           & 39 & 40 & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} GPIO21}      &                                                     & \multicolumn{1}{l}{}                                                  \\ \cline{4-5}
+	\end{tabular}
+	\caption{Configuração GPIO - Raspberry Pi Zero}
+	\caption*{Fonte: \cite{Adafruit}}
+	\label{tab:PinOutRaspberryPiZero}
+\end{table}
+
+A Tabela (\ref{tab:PinOutRaspberryPiZero}) apresenta um resumo dos recursos presentes na GPIO do Raspberry Pi Zero W. Nesta tabela as portas que possuem o identificador GPIOx representam um pino da GPIO que pode ser usada para a leitura ou escrita de dados digitais. Já as portas marcados com SPI, UART ou I2C são aquelas que suportam leitura e escrita de dados digitais, mas que podem ser configuradas exclusivamente como interfaces de comunicação. Existe ainda os pinos de PWM, os quais podem ser usados para a modulação, os pinos de alimentação 3.3v/5V e GND (Terra), e ainda os pinos reservados DNC (\textit{Do Not Connect}). É importante notar que no Raspberry Pi Zero W existe apenas 1 interface de comunicação UART disponível, porém no projeto alvo deste trabalho existe a necessidade de 2 interfaces UART. Para solver este problema será utilizado um recurso de software para tornar alguns das portas da GPIO hábeis para a comunicação UART.
+
+
+
+
+
+
+
+
+
