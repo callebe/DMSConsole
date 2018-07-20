@@ -124,7 +124,8 @@
 % Nos 2 comandos abaixo o parâmetro opcional entre [] pode ser preenchido para o caso de
 % alguma dessas pessoas ser mulher. Se não especificado, vale o valor default.
 %  Valores default: Orientador:  e Co-orientador: .
-\orientador{Miguel Leitão}
+\coorientador[Candidato:]{Callebe Soares Barbosa, Nº 1170132}
+\orientador{João Miguel Queirós Magno Leitão}
 \coorientador[Empresa:]{DMS - Display \& Mobility Solutions}
 
 \palavraschave{Console, Touchscreen, Raspberry Pi, Sistema de Informação ao Público} % Palavras chave
@@ -138,17 +139,17 @@
 %   -> Deixando os parametros dos comandos dos membros da banca vazios (exemplo \bancaA{}), fará
 %      com que as respectivas linhas não apareçam.
 %
-\bancaA{Prof. Dr. Stephen Hawking}
-\bancaB{Dr. Brian Greene}
-\bancaC{Prof. Dr. Michio Kaku}
-\bancaD{Prof. Richard Feynman}
+%\bancaA{Prof. Dr. Stephen Hawking}
+%\bancaB{Dr. Brian Greene}
+%\bancaC{Prof. Dr. Michio Kaku}
+%\bancaD{Prof. Richard Feynman}
 
 
 \local{Porto}
 
 \data{2018} % Mes de publicação
 
-\atanumero{123} % Número da ata de defesa.
+%\atanumero{123} % Número da ata de defesa.
 
 
 %%%%%%%%% Fim das definições iniciais %%%%%%%%%
@@ -162,70 +163,70 @@
 % Monta a folha de aprovação:
 %\termodeaprovacao
 
-\pagenumbering{roman}
 % DEDICATÓRIA
 %
 % Estão disponíveis dois tipos de dedicatória:
 \begin{Dedicatoria}
-Aqui vai o texto da dedicatória. Aqui vai o texto da dedicatória. Aqui vai o texto da dedicatória.
+Dedico ao Deus Altíssimo, o qual concede-me diariamente a dadiva da vida, para através dela lhe render louvor.  
 \end{Dedicatoria}
 
-
+\pagenumbering{roman}
 %% AGRADECIMENTOS
 \begin{Agradecimentos}
-Aqui são os agradecimentos.
+Agradeço primeiramente a Deus, por prover a mim os meios pelos quais fui, e sou, sustentado todos os dias. Por me dar a oportunidade e a capacitação para realização deste trabalho.
+Em seguida agradeço a estrutura que formou meu carácter e me deu suporte em todas as minhas empreitas; a minha querida família. Ao meu pai José Geral, a minha mãe Maria Rosa Barbosa e ao meu irmão Victor E. Soares Barbosa. Sem esta família sei que jamais teria chegado até aqui.
+  
+Agradeço também ao meu professor orientador Dr. João Miguel Queirós Magno Leitão, pela paciência, dedicação e respeito com que me direcionou e ensinou ao longo da realização deste trabalho. Agradeço também a banca pelos conselhos, críticas e correções, que contribuem em muito no meu aperfeiçoamento profissional.
+
+Agradeço aos meus colegas da DMS (\textit{Displays} \& Mobility Solutions), os quais ao longo de meu estágio acadêmico me receberam com paciência, compreensão e companheirismo. Em especial ao meu supervisor de estágio o Eng. José Semanas, o qual me propôs este tema de dissertação, e me apresentou ao departamento de desenvolvimento da DMS. Aos colegas  Msc. Márcio Marques Correia, ao Eng. Carlos Silva e aos Projetistas Bruno Maia e Bruno Monteiro, que me auxiliaram diretamente no desenvolvimento deste trabalho, fica aqui registrado minha eterna gratidão.
+
+Deixo também aqui registrado minha gratidão e reconhecimento a toda a Universidade Tecnológica Federal do Paraná (UTFPR). A esta instituição que me recebeu como aluno, e me deu a oportunidade de estudar junto a um grupo docente de excelência, e que me preparou para o nobre exercício da engenharia.
+
+Por fim, agradeço aos meus queridos amigos, que surgiram ao longo de toda a minha jornada e que de maneira extraordinária comburiram para meu crescimento, celebrando com minhas vitórias e me sustentando em minha dificuldades. Em especial aos meu queridos amigos da UTFPR; o Eng. Erivelto Sauzen Müller, Eng. Leandro Fabian e o Eng. Matheus Toccolini.
 \end{Agradecimentos}
-
-
-% EPIGRAFE (opcional).
-\begin{Epigrafe}{Bruce Calvert} % Parametro obrigatorio entre {} é o autor da epigrafe.
-%Acreditar é mais fácil do que pensar. Daí existem muito mais crentes do que pensadores.
-\end{Epigrafe}
 
 % RESUMO:
 \begin{Resumo}
-SOARES BARBOSA, Callebe. Console Touchscreen Para Indicadores de Destino. 2018. 69f. Dissertação de Mestrado - Curso de Mestrado em Engenharia Eletrotécnica, Instituto Superior de Engenharia do Porto. Porto, 2018.
+SOARES BARBOSA, Callebe. Console Touchscreen Para Indicadores de Destino. 2018. 69p. Dissertação de Mestrado - Curso de Mestrado em Engenharia Eletrotécnica, Instituto Superior de Engenharia do Porto. Porto, 2018.
 
-Os Indicadores de Destino são Sistemas de Informação ao Público mais comuns no dia-a-dia, sendo utilizados principalmente em autocarros, metros e trens. Um sistema de indicadores de destino é tipicamente constituído de um console e um conjunto de painéis eletrônicos onde as informações ao publico são exibidas. Com o avanço de novas tecnologias na áreas de sistemas embarcados, novas soluções baratas tem surgido para tornar estes sistemas mais inteligentes e eficiente. Dentre elas esta a utilização de \textit{displays touchscreen} em interfaces mais amigáveis e práticas ao usuário. O console é o dispositivo responsável pela interface do usuário, e também pelo controle dos painéis eletrônicos do sistema. Neste trabalho é desenvolvido, com base em um modelo atual, um novo console dotado de uma interface \textit{touch screen} intuitiva, editor de informações visuais dos painéis, conectividade com Wifi e um sistema embarcado Linux, que possibilita que novas funcionalidade sejam adicionadas futuramente.  
+Os Indicadores de Destino são Sistemas de Informação ao Público mais comuns no dia-a-dia, sendo utilizados principalmente em autocarros, metros e trens. Um sistema de indicadores de destino é tipicamente constituído de um console e um conjunto de painéis eletrônicos onde as informações ao público são exibidas. Com o avanço de novas tecnologias na áreas de sistemas embarcados, novas soluções baratas tem surgido para tornar estes sistemas mais inteligentes e eficiente. Dentre elas esta a utilização de \textit{displays touchscreen} em interfaces mais amigáveis e práticas ao usuário. O console é o dispositivo responsável pela interface do usuário, e também pelo controle dos painéis eletrônicos do sistema. Neste trabalho é desenvolvido, com base em um modelo atual, um novo console dotado de uma interface \textit{touch screen} intuitiva, editor de informações visuais dos painéis, conectividade com Wifi e um sistema embarcado Linux, que possibilita que novas funcionalidade sejam adicionadas futuramente.  
 \end{Resumo}
 
  
 \begin{Abstract}
+SOARES BARBOSA, Callebe. Touch Screen Console for Destination Indicators. 2018. 69p. Master's Dissertation - Master's Degree in Electrotechnical Engineering, Instituto Superior de Engenharia do Porto. Porto, 2018.
 
+Destination Indicators are the most  common Public Information Systems, being mainly used in buses, subways and trains. An Destination Indicators system usually consists of a console and a set of electronic panels where information for the public is displayed. With the advancement of new technologies in the embedded systems areas, new cheap solutions have create to make these systems more smart and efficient. The use of touch screen displays in a new friendly and practical interface is one of them. The console is the device responsible for the user interface and control of the system's electronic panels. Based on a current model, a new console is developed with an intuitive touch screen interface, panel information editor, Wifi connectivity and a Linux kernel, that allows new functionality to be added in future.
 \end{Abstract}
 
+\sumario
 \listadefiguras
 \listadetabelas
-\sumario
-%\listofquadros
-% Para gerar a lista de siglas é necessário rodar o executável makeindex.exe
-% No TeXnicCenter vá em Build -> Define Output Profiles. Escolha o profile que estiver usando
-% por exemplo LaTeX => DVI e na área do Makeindex prencha o campo ``Command line arguments...'' com: 
-%
-% "%tm".nlo -s nomencl.ist -o "%tm".nls
-%
-% Certifique-se de que nas propriedades do projeto (Project -> properties) o caixa ``Uses Makeindex'' esteja selecionada.
-%\listadesiglas
+\listadesiglas
 
-%\listadesimbolos
 
-\pagenumbering{arabic}
-\setcounter{page}{1}
 % Capitulos
+\pagenumbering{arabic}
+\setcounter{page}{0}
 \chapter{Introdução}
 	\input{Source/Introducao.tex}
-	
-\chapter{Revisão de Literatura}
+\newpage\newpage\ 
+
+\chapter{Tecnologias Envolvidas}
 	\input{Source/RevisaoDeLiteratura.tex}
 	
 \chapter{Desenvolvimento da Aplicação DMSConsole}
 	\input{Source/DesenvolvimentoAplicacao.tex}
-	
+
+\newpage\newpage\ 
 \chapter{Montagem e Teste do Protótipo}
 	\input{Source/MontagemConsoleIndicacaoDeDestinos.tex}		
+\clearpage
 
+\newpage\newpage\ 
 \chapter{Conclusão}
 	\input{Source/Conclusao.tex}
+\newpage\newpage\ 
 
 %Bibliografia
 \bibliographystyle{abnt-alf} % Estilo autor-data

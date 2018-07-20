@@ -1,0 +1,63 @@
+Como foi visto na Seção (\ref{sec:GestorDeIndicacaoDeDestinos}) a aplicação GID a partir das informações inseridas pelo usuário, gera um conjunto de arquivos binários com as informações a serem inseridas no console, e consequentemente enviadas aos painéis eletrônicos. Este conjunto de dados gerados possui uma sintaxe própria, que somente a aplicação GID gera e somente o console do Indicador de Destino da DMS consegue ler e identificar a estrutura dos dados. Com a intenção de tornar o arquivo fonte de dados para Indicadores de Destino mais padronizado e portável para diferentes versões de console, será utilizado o XML como padrão de descrição de dados. Assim será possível gerar fonte de dados, para os Indicadores de Destino, através de qualquer aplicação de criação de arquivos XML, utilizando apenas a estrutura de dados apresentada na Figura (\ref{fig:EstruturaDeDados}).  
+
+O XML, ou Linguagem de Marcação Extensível (\textit{Extensible Markup Language}), é um formato para criação de dados organizados de forma hierárquica, recomendado pelo W3C (\textit{World Wide Web Consortium}). O XML é uma combinação entre o flexibilidade que SGML, ou \textit{Standard Generalized Markup Language} e a simplicidade visual que o HTML, ou \textit{HyperText Markup Language}, oferecem. Assim o XML oferece:  simplicidade e legibilidade dos dados, tanto para usuários quanto para \textit{softwares}; Flexibilidade, possibilitando a criação de \textit{tags} ilimitadas; interligação facilitada entre banco de dados e uma boa estruturação \cite{Bray}.
+
+A estrutura de dados do GID, apresentada na Figura (\ref{fig:EstruturaDeDados}), é constituída por n elementos 'Linha', que serão designados no padrão XML como 'Line', que estão contidos dentro de um conjunto de dados fontes para os indicadores de destino. Como padrão da DMS, todos conjuntos de dados de uma 'Linha' deve estar associada a um conjunto de painéis, e este conjunto associado ao elemento raiz 'GID'. Assim é criado um elemento 'GID' (Gestor de Indicadores de Destino), o qual pode possuir n elementos 'Group', os quais representam grupos de painéis eletrônicos que estão a ser geridos. Estes grupos contém os elementos 'Line', com seus atributos e seus elementos relacionados.
+
+Logo como exemplo, considerando um arquivo XML que contém informação a cerca de uma linha de autocarros denominada 'Aliados-Viso' de número 201, o qual possuí como destinos possíveis o 'Planetário' ou a rua 'PR. D. JOÃO I'. E que exista apenas um painel de dimensões 16x112 pixeis, onde as informações devam ser mostradas em uma página de configuração número da linha + nome do destino, com espaço de 2 pixeis entre o número e nome, e com 1 pixel entre caracteres do nome. O arquivo XML para este GID específico é dado da seguinte forma: 
+
+\vspace{3mm}
+\lstset{style=mystyle}
+\begin{lstlisting}
+<GID version="1.1">
+	<Group ID="1">
+		<Line ID="201" Name="ALIADOS-VISO">
+			<Destination ID="1" Name="PLANETÁRIO">
+				<Panel Lines="16" Columns="112">
+					<Page ID="1" SBC="1" SBNAndC="2" PT="15">
+						<Number Effect="None" Align="Left" Font="16x9">
+						201
+						</Number>
+						<Text Effect="None" Align="Left" Font="5x5">
+						PLANETÁRIO
+						</Text>
+					</Page>
+				</Panel>
+			</Destination>
+			<Destination ID="2" Name="PR. D. JOÃO I">
+				<Panel Lines="16" Columns="112">
+					<Page ID="6" SBC="1" SBNAndC="2" PT="15">
+						<Number Effect="None" Align="Left" Font="12x7">
+						201
+						</Number>
+						<Text Effect="None" Align="Left" Font="5x5">
+						PR. D. JOÃO I
+						</Text>
+					</Page>
+				</Panel>
+			</Destination>
+		</Line>
+	</Group>
+</GID>
+\end{lstlisting}
+\label{code:XML}
+\vspace{3mm}
+
+Onde as tags presentes no código Xml (\ref{code:XML}) significam:
+
+\begin{itemize}
+	\item ID - Identificador de referência do GID, Grupo, Linha ou Destino
+	\item Name - Titulo da Linha ou Destino
+	\item Lines - Número de Linhas de LED presente no painel
+	\item Columns - Número de colunas de Led presente no painel
+	\item SBC - Espaço entre Caracteres da página 
+	\item SBNAndC - Espaço entre o Número da Linha e os campos de texto da Página
+	\item PT - Tempo de fixação da Página
+	\item Effect - Efeito aplicado no campo
+	\item Align - Alinhamento do texto no campo
+	\item Font - Tamanho da fonte aplicada ao campo
+\end{itemize}
+
+O \textit{software} DMSConsole deve ser capaz de ler um arquivo XML com as informações da estrutura de dado GID, como apresentado em (\ref{code:XML}), e ainda quando necessário criar um arquivo XML semelhante. O DMSConsole deve possibilitar ao usuário criar, através da interface de usuário, um arquivo XML com a estrutura de dados GID, para servir de fonte de dados. Existem varias bibliotecas prontas em C++  para leitura e criação de arquivos XML, porém para tornam as funções de leitura e criação mais eficientes e reduzir a complexabilidade do código, fora desenvolvido uma biblioteca própria nomeada GIDXml.
+
+As funções de leitura e criação da biblioteca GIDXml utilizam uma estrutura de dados semelhante a GID, porém com um sistema de alocação dinâmica de memória. A alocação dinâmica permite uma melhor gestão e maior capacidade de uso da memória da aplicação, tornando possível a aplicação ler arquivos XML de maior volume.  

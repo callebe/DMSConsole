@@ -1,0 +1,21 @@
+O protocolo LDESIGN é estabelecido em uma interface UART-RS485 com um \textit{Baud Rate} de 9600bps, com 8 bits de dados e 1 \textit{Stop Bit}. Como apresentado anteriormente, o \textit{Raspberry Pi Zero W} possui apenas uma interface de comunicação UART, o qual já é utilizada neste projeto para a comunicação em UART-RS232 com o \textit{display touchscreen}. Para solucionar este problema é utilizado um recurso de emulação de interface de comunicação por \textit{software} chamado \textit{Bit Bang}.
+
+Utilizando os recursos de leitura e escrita de dados nas portas digitais disponíveis da GPIO, e obedecendo a estrutura do protocolo de comunicação é possível emular, via \textit{software}, o comportamento de uma interface UART, adicionando mais um recurso de comunicação ao \textit{Raspberry Pi Zero W}. Porém um dos obstáculos a ser enfrentado nesta tarefa é a velocidade leitura e processamento dos dados recebidos e transmitidos por essa interface emulada, já que o menor atraso acarreta facilmente erros na transmissão e/ou recepção. Em um sistema que possui um \textit{Hardware} exclusivo para comunicação, como um modem UART, a amostragem dos sinais de entrada, a modulação dos sinais de saída, os níveis de tensão deste sinais, a sincronização e o armazenamento temporário são controladas independentemente da execução do \textit{software} pelo processador.  Já no \textit{Bit Bang} todos estes parâmetros devem ser controlados pelo \textit{software}.  
+
+Já exitem bibliotecas em C++ que implementam o \textit{Bit Bang} com um custo computacional bastante reduzido, mesmo assim o limite da velocidade de comunicação  (\textit{Baud Rate}) ainda é limitado e depende da velocidade de processamento do dispositivo embarcado. O \textit{Raspberry Pi Zero W} possui um processador de 1GHz \textit{single core} que prove uma boa velocidade de processamento, e consequentemente torna possível emular interfaces de comunicação com um \textit{baud rate} considerável. Nesta aplicação é utilizado a biblioteca \textit{PiGPIO}, disponível em \citeonline{abyz}, o qual oferece uma variedade de funções em C para comunicação serial via \textit{bit bang}.
+
+Os pinos da GPIO do \textit{Raspberry Pi Zero W} possuem um nível de tensão de 0 a 3,3V. Consequentemente qualquer interface de comunicação estabelecido estará neste limite de tensão. Já que o UART-485 opera como tensões diferenciais em uma faixa além da oferecida pelo \textit{Raspberry}, fazendo necessário utilizar um conversor UART TLL / UART-485. Neste projeto o conversor utilizado é o CI SN65HVD308 - TI \cite{485}, o qual apresenta no lado TLL 4 pinos; porta de envio, recepção, habilitação de envio e aterramento. No lado 485 há apenas duas portas diferenciais A e B. A Figura \ref{fig:ConversorUARTTTL485} apresenta o esquemático da conexão entre este conversor e o \textit{Raspberry}.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/ConversorUARTTTL485.eps}
+	\caption{Conversor UART TTL - UART 485}
+	\vspace{-3.5mm}
+	\caption*{Fonte: \citeonline{DMSManual}}
+	\label{fig:ConversorUARTTTL485}
+\end{figure} 
+\vspace{9mm}
+
+Assim através da interface de comunicação emulada via \textit{bit bang}, utilizando a porta 20 da GPIO para a habilitação de envio, a porta 23 para envio da mensagem e 24 para a recepção, a comunicação entre console e painéis é feita no padrão LDESIGN.

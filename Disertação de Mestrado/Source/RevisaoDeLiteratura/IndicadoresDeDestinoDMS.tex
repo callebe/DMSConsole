@@ -1,5 +1,4 @@
-
-Os indicadores de destino são recursos visuais de identificação, utilizados em autocarros de diferentes tipos. O principal objetivo dos indicadores é informar ao público acerca do trajeto e/ou do destino do autocarro. Os indicadores podem ser analógicos, constituídos basicamente de um sistema mecânico ou eletromecânico, ou ainda totalmente eletrônico. A Figura (\ref{fig:IDDMS}) apresenta o indicador eletrônico de destino  \textit{SICON II} da DMS. Os dados técnicos do \textit{SICON II} foram disponibilizado pela DMS, pra a realização deste trabalho. 
+Os indicadores de destino são recursos visuais de identificação, utilizados em autocarros de diferentes tipos. O principal objetivo dos indicadores é informar ao público acerca do trajeto e/ou do destino do autocarro. Os indicadores podem ser analógicos, constituídos basicamente de um sistema mecânico, eletromecânico ou ainda totalmente eletrônico. A Figura (\ref{fig:IDDMS}) apresenta o indicador eletrônico de destino  \textit{SICON II} da DMS. Os dados técnicos do \textit{SICON II} foram disponibilizado pela DMS, pra a realização deste trabalho. 
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -13,7 +12,7 @@ Os indicadores de destino são recursos visuais de identificação, utilizados em a
 \end{figure} 
 \vspace{9mm}
 
-É comum haver mais de um painel eletrônico em um autocarro, de modo a tornar visível de qualquer lado de uma via as informações dos painéis. Os painéis são comumente distribuídos no autocarro pelo para-brisa e as janelas laterais, como pode ser visto na Figura (\ref{fig:ModeloAutocarro}). 
+É comum haver mais de um painel eletrônico em um autocarro, de modo a tornar visível de qualquer lado de uma via as informações dos painéis. Os painéis são comumente distribuídos no autocarro pelo para-brisa e pelas janelas laterais, como pode ser visto na Figura (\ref{fig:ModeloAutocarro}). 
 
 \vspace{6mm}
 \begin{figure}[H]
@@ -27,7 +26,7 @@ Os indicadores de destino são recursos visuais de identificação, utilizados em a
 \end{figure}
 \vspace{6mm}
 
-Para que seja possível controlar todos os painéis de forma centralizada é estabelecido uma rede de comunicação entre os painéis e um console de controle. Logo o sistema de indicadores de destino é composto basicamente pela rede de painéis eletrônicos e pelo console, como mostrado na figura (\ref{fig:PISOldConsole}).
+Para que seja possível controlar todos os painéis de forma centralizada é estabelecido uma rede de comunicação entre os painéis e um console de controle. O sistema de indicadores de destino é composto basicamente pela rede de painéis eletrônicos e pelo console, como mostrado na figura (\ref{fig:PISOldConsole}).
 
 \vspace{9mm}
 \begin{figure}[H]
@@ -75,7 +74,7 @@ UART RS-485, ou \textit{UART  Recommendad Standart-485}  é uma interface de comu
 \end{figure} 
 \vspace{9mm}
 
-Segundo a \citeonline{texas} a utilização do UART RS485 resulta no cancelamento de ruídos induzidos no meio da transmissão. Já que qualquer ruído induzido por campos magnéticos interfere nos 2 condutores simultaneamente, quando o amplificador diferencial, presente nos conversores, recebe os dois sinais a diferença de tensão não se altera e o ruídos induzidos nos dois condutores são eliminados.  Como esta interface de comunicação se estabelece apenas pela diferença de potencial entre os dois condutores, o condutor terra é dispensado e o limite de tensão usado nesta comunicação é mais flexível. O transmissor de RS-485 deve oferecer no mínimo 1,5/-1,5 V na comunicação, já o receptor deve possuir uma sensibilidade de no minimo 200mV/-200mv. A norma TIA/EIA-485 ainda especifica que a diferença de potencial máxima entre equipamentos é 12/-7 V, para que a tensão elevado no par trançado não danifique os equipamentos.
+Segundo a \citeonline{texas} a utilização do UART RS485 resulta no cancelamento de ruídos induzidos no meio da transmissão. Já que qualquer ruído induzido por campos magnéticos interfere nos 2 condutores simultaneamente. Quando o amplificador diferencial, presente nos conversores, recebe os dois sinais a diferença de tensão não se altera e o ruídos induzidos nos dois condutores são eliminados.  Como esta interface de comunicação se estabelece apenas pela diferença de potencial entre os dois condutores, o condutor terra é dispensado e o nível de tensão usado nesta comunicação é mais flexível. O transmissor de RS-485 deve oferecer no mínimo 1,5/-1,5 V na comunicação, já o receptor deve possuir uma sensibilidade de no minimo 200mV/-200mv. A norma TIA/EIA-485 ainda específica que a diferença de potencial máxima entre equipamentos é 12/-7 V, para que a tensão elevado no par trançado não danifique os equipamentos.
 
 Como o padrão 485 possui uma tensão elevada, e um limite minimo de tensão de recepção  em  200mV/-200mv, o efeito da queda de tensão nos condutores é mais tolerável. Assim segundo a norma a distância máxima da rede UART-485 é de 1.219 metros. Em relação a velocidade máxima da rede, esta é definida de acordo com o comprimento dos condutores, como mostrado no gráfico da Figure (\ref{fig:GraficoTaxaTransferenciaVsComprimentoUART485}) \cite{texas}. 
 
@@ -136,7 +135,7 @@ Os dados acerca das informações a serem exibidas nos painéis eletrônicos dos ind
 \end{figure} 
 \vspace{9mm}
 
-As informação exibidas em um painel eletrônico de um sistema de indicadores de destino são, geralmente, relativas ao itinerário atual do autocarro. A estrutura de dados que o GID gera esta relacionado com a definição de linha e destino do autocarro. A linha é a denominação do percurso atual do autocarro, já o destino é referente a próxima paragem do autocarro ou, como acontece nos autocarros da STCP, o ultimo ponto de paragem da linha. Por exemplo, nas Figuras (\ref{fig:201_AliadosViso}) e (\ref{fig:202_AliadosPasseioAlegre})  estão marcados respectivamente os trajetos das linhas 201 e 202 da STCP. Quando um autocarro realiza um trajeto partindo da paragem Praça dos Aliados, passando por todas as paragens até a Viso de Baixo, os painéis eletrônicos devem exibir a Linha '201', e o destino 'Viso de Baixo'. Porém no retorno a 'Praça dos Aliados' a Linha continua sendo a '201', e o destino passa a ser a 'Praça dos Aliados'. Já o autocarro que realiza o trajeto partindo da 'Praça dos Aliados' até 'Passeio Alegre', os seus painéis devem exibir a Linha 202, com o destino a 'Passeio Alegre', e no retorno conserva-se a Linha porém o destino passa a ser a 'Praça dos Aliados'. 
+As informações exibidas em um painel eletrônico de um sistema de indicadores de destino são, geralmente, relativas ao itinerário atual do autocarro. A estrutura de dados que o GID gera esta relacionado com a definição de linha e destino do autocarro. A linha é a denominação do percurso atual do autocarro, já o destino é referente a próxima paragem do autocarro ou, como acontece nos autocarros da STCP, o último ponto de paragem da linha. Por exemplo, nas Figuras (\ref{fig:201_AliadosViso}) e (\ref{fig:202_AliadosPasseioAlegre})  estão marcados respectivamente os trajetos das linhas 201 e 202 da STCP. Quando um autocarro realiza um trajeto partindo da paragem 'Avenida dos Aliados', passando por todas as paragens até a 'Viso de Baixo', os painéis eletrônicos devem exibir a Linha '201', e o destino 'Viso de Baixo'. Porém no retorno a 'Avenida dos Aliados' a Linha continua sendo a '201', e o destino passa a ser a 'Avenida dos Aliados'. Já o autocarro que realiza o trajeto partindo da 'Avenida dos Aliados' até 'Passeio Alegre', os seus painéis devem exibir a Linha 202, com o destino a 'Passeio Alegre', e no retorno conserva-se a Linha porém o destino passa a ser a 'Avenida dos Aliados'. 
 
 
 \vspace{9mm}
@@ -146,14 +145,14 @@ As informação exibidas em um painel eletrônico de um sistema de indicadores de d
 		\centering
 		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
 		\includegraphics[width=0.98\linewidth]{Images/RevisaoDeLiteratura/IndicadoresDeDestinoDMS/201_AliadosViso.JPG}
-		\caption{Linha 201, Praça dos Aliados - Viso de Baixo}
+		\caption{Linha 201, Avenida dos Aliados - Viso de Baixo}
 		\label{fig:201_AliadosViso}
 	\end{subfigure}% 
 	\begin{subfigure}[t]{.5\textwidth}
 		\centering
 		\captionsetup{width=0.98\textwidth, font=footnotesize, textfont=bf}	
 		\includegraphics[width=0.98\linewidth]{Images/RevisaoDeLiteratura/IndicadoresDeDestinoDMS/202_AliadosPasseioAlegre.JPG}
-		\caption{Linha 202, Praça dos Aliados - Passeio Alegre (Via AV. Bessa)}
+		\caption{Linha 202, Avenida dos Aliados - Passeio Alegre (Via AV. Bessa)}
 		\label{fig:202_AliadosPasseioAlegre}
 	\end{subfigure}
 	\caption{Linhas de Autocarro da STCP}
@@ -165,14 +164,14 @@ As informação exibidas em um painel eletrônico de um sistema de indicadores de d
 
 Dentro da estrutura de Dados utilizados no GID há 5 classes de objetos; 'Linha', 'Destino', 'Painel', 'Página' e 'Campo'. O objeto 'Linha' representa o percurso total realizado pelo autocarro através das várias paragem. Este objeto possui como atributos o nome e identificador da Linha, e uma lista de $n$ objetos 'Destino', que representam as possíveis paragens finais da linha. Tomando como exemplo a linha 201, o seu dado objeto tem como atributo identificador '201', nome 'Aliados-Viso', e a lista de destinos constituído de dois elementos; 'Avenida dos Aliados' e 'Viso'. O objeto 'Destino' possui atributo nome e identificador do destino, e uma lista de até 16  elementos do tipo 'Painel'. 
 
-A lista de elementos 'Painel' presente como um atributo nos elementos 'Destino' são usados para especificar como as informações de destino e linha do autocarro devem ser exibidos nas diferentes dimensões de painéis eletrônicos. Assim é possível exibir no painel frontal o número, nome da linha e destino do autocarro. Mas em um painel lateral menor exibir apenas o número da linha. O objeto 'Painel' ainda possui uma lista de objetos 'Pagina', com atributos de espaçamento e tempo de afixação. Cada 'Pagina' por sua vez possuem elementos 'Campos' que descrevem os textos exibidos, e suas respectivas fontes e efeitos. A Figura \ref{fig:EstruturaDeDados} apresenta esta estrutura de dados.
+Um elemento do tipo 'Painel' agrega um conjunto de 'Páginas', que descrevem a informação visual de um 'Destino' num formato adequado para um dado painel eletrônico. Para além dos textos a exibir, cada 'Pagina' define também parâmetros de espaçamento, tempo de afixação, fontes e outros efeitos visuais. Esta estrutura permite que o mesmo destino seja apresentado de forma textual num painel frontal de grandes dimensões, enquanto num painel lateral reduzido o mesmo destino é apresentado apenas com o número da linha. A Figura \ref{fig:EstruturaDeDados} apresenta esta estrutura de dados.
 
 
 \vspace{9mm}
 \begin{figure}[H]
 	\centering
-	\captionsetup{width=0.7\textwidth, font=footnotesize, textfont=bf}	
-	\includegraphics[width=0.7\linewidth]{Images/RevisaoDeLiteratura/IndicadoresDeDestinoDMS/EstruturaDeDadosGID.eps}
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/RevisaoDeLiteratura/IndicadoresDeDestinoDMS/EstruturaDeDadosGID.eps}
 	\caption{Estrutura de Dados do GID}
 	\vspace{-3.5mm}
 	\caption*{Fonte: \citeonline{DMSManual}}
@@ -180,7 +179,7 @@ A lista de elementos 'Painel' presente como um atributo nos elementos 'Destino' 
 \end{figure} 
 \vspace{9mm}
 
-Na aplicação GID existe uma tela nomeada 'Destinos', onde o usuário insere a lista de destinos possíveis, e atribui um conjunto de destinos a uma 'Linha' especifica, como mostrado na Figura (\ref{fig:GIDA2A}). Por meio da tela nomeada 'Linhas', como visto na Figura (\ref{fig:GIDA2B}), o usuário insere a lista de 'Linhas' disponíveis e atribui um grupo de painéis para cada 'Linha'. O grupo de painéis eletrônicos disponível na rede do indicador de destino é configurado pelo usuário na tela 'Painéis'. Ao final o usuário utiliza a tela 'Saída' para ajustar as fontes utilizada nos textos e números exibidos nos painéis, e ainda adiciona ou remove páginas e campos em cada um dos painéis atribuídos aos destinos, vide Figura (\ref{fig:GIDA2D}).
+Na aplicação GID existe uma tela nomeada 'Destinos', onde o usuário insere a lista de destinos possíveis, e atribui um conjunto de destinos a uma 'Linha' específica, como mostrado na Figura (\ref{fig:GIDA2A}). Por meio da tela nomeada 'Linhas', como visto na Figura (\ref{fig:GIDA2B}), o usuário insere a lista de 'Linhas' disponíveis e atribui um grupo de painéis para cada 'Linha'. O grupo de painéis eletrônicos disponível na rede do indicador de destino é configurado pelo usuário na tela 'Painéis'. Ao final o usuário utiliza a tela 'Saída' para ajustar as fontes utilizada nos textos e números exibidos nos painéis, e ainda adiciona ou remove páginas e campos em cada um dos painéis atribuídos aos destinos, vide Figura (\ref{fig:GIDA2D}).
  
 \vspace{9mm}
 \begin{figure}[H]
@@ -220,4 +219,46 @@ Na aplicação GID existe uma tela nomeada 'Destinos', onde o usuário insere a lis
 \end{figure}
 \vspace{9mm}
 
- Se todas as configurações escolhidas na tela 'Saída' estiverem coerentes com as dimensões e capacidades dos painéis, ao escolher a opção 'Gerar Ficheiro de Dados', o GID gera um conjunto de arquivos binários, que devem ser movidos para  uma unidade de armazenamento e conectada ao console do Indicador de Destinos. Ao conectar a unidade de armazenamento a porta serial do console, os dados são movidos para a memoria interna do console, e os dados binários são enviados aos painéis. 
+ Se todas as configurações escolhidas na tela 'Saída' estiverem coerentes com as dimensões e capacidades dos painéis, ao escolher a opção 'Gerar Ficheiro de Dados', o GID gera um conjunto de arquivos binários, que devem ser movidos para  uma unidade de armazenamento e conectada ao console do Indicador de Destinos. Ao conectar a unidade de armazenamento a porta serial do console, os dados são movidos para a memória interna do console, e os dados binários são enviados aos painéis. 
+ 
+ \subsection{Protocolo LDESIGN}
+ 
+ Os painéis eletrônicos utilizados nos indicadores de destino da DMS possuem um protocolo de comunicação próprio desenvolvido pela DMS, o qual é chamado de protocolo LDESIGN. Este protocolo possibilita que seja enviada informação de controle e notificação para qualquer dispositivo que integra a rede de comunicação dos indicadores. A rede de comunicação dos indicadores de destino é normalmente composta por um console, que funciona no modo \textit{Master}, e até 16 painéis funcionando do modo \textit{Slave}. No protocolo de comunicação LDESIGN qualquer mensagem enviada ou recebida por um dispositivo da rede segue o seguinte formato:
+ 
+ \vspace{5mm}
+ \begin{table}[H]
+ 	\centering
+ 	\captionsetup{width=0.8\linewidth}
+ 	\begin{tabular}{|c|c|l|c|}
+ 		\hline
+ 		\cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Ordem} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Comando} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Descrição} & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF}Nº bits} \\
+ 		\hline
+ 		1º     & \textless{}SOH\textgreater{}  & \textit{Start of heading} - 81h      & 8           \\
+ 		\hline
+ 		2º     & Destino                       & ID do dispositivo destino            & 8           \\
+ 		\hline
+ 		3º     & Origem                        & ID do dispositivo origem             & 8           \\
+ 		\hline
+ 		4º     & \textless{}STX\textgreater{}  & \textit{Start of text}    - 82h      & 16          \\
+ 		\hline
+ 		5º     & N                             & Tamanho em Bytes dos Dados + 1       & 8           \\
+ 		\hline
+ 		6º     & Tipo                          & Tipo de dado enviado                 & 8           \\
+ 		\hline
+ 		7º     & Dados                         & Dados a serem enviados               & N           \\
+ 		\hline
+ 		8º     & \textless{}ETX\textgreater{}  & \textit{End of Text}      - 83h      & 8           \\
+ 		\hline
+ 		9º     & \textless{}CHKS\textgreater{} & \textit{checksum}-soma de todos os Bytes   & 8           \\
+ 		&                               & da mensagem, SOH até ETX       &             \\
+ 		\hline
+ 	\end{tabular}
+ 	\caption{Formato Geral - Protocolo Geral de Comunicação LDESIGN}
+ 	\caption*{Fonte: \citeonline{DMSManual}}
+ 	\label{tab:ProtocoloComunicacaoMain}
+ \end{table}
+ \vspace{5mm}
+ 
+ O ID (\textit{Identificador}) de destino e de origem são dados específicos de cada dispositivo. Normalmente o  console tem por padrão o ID 0x00 e o painel com as maiores dimensões da rede tem o ID 0x01. Quando o console faz uma requisição a um painel específico, por exemplo ao painel ID 0x05, o campo de 'Destino' e 'Origem' são respectivamente 0x05 e 0x00, e o painel responde com uma mensagem com ID de Destino 0x00 e Origem 0x05. Porém quando o console deseja realizar uma requisição tipo \textit{Broadcast}, ou seja a todos os painéis da rede ao mesmo tempo, o ID de Destino deve ser 0xFF e a Origem 0x00. Cada painel irá responder a requisição do console de forma sequencial, cronometrada de acordo com seu valor de ID multiplicada por 100 ms. Por exemplo, em uma rede com dois painéis de ID 0x01 e 0x03, o painel de ID 0x01 responde 100 ms depois do fim da transmissão \textit{Broadcast} do console. Já o painel de ID 0x03 responde 300 ms depois do fim da da transmissão \textit{Broadcast} do console, garantindo assim a não sobreposição de respostas dos painéis. 
+ 
+ O campo 'Tipo' identifica o tipo de mensagem a ser enviada, enquanto o campos 'Dados' a descreve. Existem 7 tipos diferentes de mensagens dentro do protocolo de comunicação LDESIGN, cada uma com funções e sintaxe de 'Dados' diferentes. Para evitar a redundância de informações neste trabalho, será na seção (\ref{section:ControladorDosPaineis}) apresentado os tipos de mensagem dentro do LDESIGN, e consequentemente definido os valores utilizados nos campos 'Tipo' e 'Dados'.   

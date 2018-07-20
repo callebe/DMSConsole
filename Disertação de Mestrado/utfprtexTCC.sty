@@ -185,13 +185,13 @@
 \ABNTifnotempty{\ABNTautorAdata}%
   {%
   \begin{center}
-    \autorformat\MakeUppercase{\ABNTautorAdata}
+    \autorformat\MakeUppercase{ }
   \end{center}
   }
 \ABNTifnotempty{\ABNTautorBdata}%
   {%
   \begin{center}
-    \autorformat\MakeUppercase{\ABNTautorBdata}
+    \autorformat\MakeUppercase{ }
   \end{center}
   }%
 \vfill
@@ -208,6 +208,12 @@
 			\ABNTifnotempty{\ABNTtextoaprovacaodata}%
 			{%
 				{\comentarioformat\ABNTtextoaprovacaodata}\par%
+			}%
+			\ABNTifnotempty{\ABNTcoorientadordata}%
+			{%
+				\vspace{1em}%
+				{\textbf{Candidato:}}
+				{Callebe Soares Barbosa \\ Nº 1170132}\par%
 			}%
 			\ABNTifnotempty{\ABNTorientadordata}%
 			{%

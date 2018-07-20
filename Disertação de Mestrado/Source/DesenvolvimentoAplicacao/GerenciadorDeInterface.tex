@@ -1,0 +1,244 @@
+A interface do usuário é um dos elementos principais deste trabalho, e o principal diferencial deste novo console, em comparação ao modelo SICON II. Esta nova interface faz uso do \textit{touchscreen} como recurso visual e de interação entre console e motorista, de modo a deixar as informações visuais mais legíveis e a navegação pela interface mais simplificada.
+
+O desenvolvimento da interface de usuário utilizando o módulo TOPWAY HKT080ATA-C é baseado em páginas e camadas. Uma página é o conjunto de elementos visuais e recursos de interação com o usuário que se apresentam na tela do \textit{display} de acordo com a navegação pelos recursos da interface. Cada página possui duas camadas; a camada \textit{touch} e a camada \textit{frame}. A dinâmica da interface é feita ao combinar as camadas \textit{frame} e \textit{touch} em diferentes páginas.
+
+A camada \textit{touch} representa a superfície do \textit{display} sensível ao toque. Nesta camada a tela é preenchida com uma página, a qual é dividida em regiões com IDs distintos. Quanto tocadas estas regiões ativam no módulo o envio de mensagens para o dispositivo mestre, afim de informar o ID da região tocada e o ID da página exibida. A camada \textit{frame} representa o ambiente onde são montadas as imagens exibidas na página atual, de modo a tornar visível ao usuário as regiões sensíveis ao toque, como mostrado na Figura (\ref{fig:TouchDisplayInterface}).
+ 
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.85\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.85\linewidth]{Images/SoftwareDMSConsole/TouchDisplayInterface.png}
+	\caption{Interface no \textit{Display Touchscreen} DMS}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:TouchDisplayInterface}
+\end{figure} 
+\vspace{3mm}
+
+Para cada página da interface há uma camada \textit{touch} e a uma camada \textit{frame} associadas. Quanto maior for o número de páginas necessárias para oferecer as funcionalidade da interface ao usuário, mais extenso será o  trabalho de desenvolver a interface. Para tornar a tarefa de desenvolvimento menos penosa, a interface foi pensada de modo a reduzir o número de páginas, e reunir o máximo de ferramentas para o usuário em uma mesma página, sem afetar a visibilidade e o uso das mesmas. 
+ 
+O console de indicadores de destino deve possuir uma interface que facilite ao motorista configurar os painéis e manipular as informações a serem exibidas de forma mais prática o possível. Deve se ter em mente que a usabilidade do console esta intimamente ligada ao tipo de rotina que o autocarro possui. Se o autocarro realiza sempre o mesmo trajeto, em um ambiente urbano pro exemplo, provavelmente as configurações e personalizações das informações  fixadas nos painéis raramente mudem. Sendo assim é mais prático utilizar a aplicação GID em um computador, e apenas exportar o arquivo fonte para um dispositivo USB e carrega-lo no console. Porém quando o trajeto do autocarro varia frequentemente, ou ainda há uma necessidade periódica de alterar informações dos painéis, se torna mais interessante existir uma ferramenta no próprio console que possibilite criar um arquivo fonte.
+
+No antigo modelo de console SICON II não há editor de fontes no console, e consequentemente a interface do usuário era mais simples. Já que os dados fonte eram passados via conexão USB, em formato binário, para dentro do console. No novo modelo de console haverá 3 opções de origem das fontes de dados; transferência via USB, transferência via SSH e a criação da fonte direto no console, todos em formato XML (Figura \ref{fig:InputNovoConsole}). Assim a interface do novo console deve agregar novas funcionalidade, porém sem se tornar demasiadamente complexa.
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/InputOldConsole.eps}
+	\caption{Fonte de Dados - SICON II}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:InputSICONII}
+\end{figure} 
+\vspace{3mm}
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/InputNewConsole.eps}
+	\caption{Fonte de Dados - Novo Console}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:InputNovoConsole}
+\end{figure} 
+\vspace{3mm}
+
+\subsection{Página de Seleção de Destino}
+
+A primeira pagina da interface a ser construída é a página de Seleção de Destino, Figura \ref{fig:FrameworkMain}. Nesta página,  dado um aquivo de fonte previamente carregado e uma linha selecionada, o motorista pode selecionar qual é o destino final desta linha. Assim que o motorista seleciona o destino final, o console busca dentro da estrutura de dados do destino o conjunto de painéis que possuem as dimensões compatíveis com os painéis disponíveis da rede no momento, e envia os dados para os painéis compatíveis.   
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkMain.png}
+	\caption{Página de Seleção de Destino - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:FrameworkMain}
+\end{figure} 
+\vspace{3mm}
+
+\subsection{Página de Seleção de Linha}
+
+Através do botão de mudança de linha (botão vermelho a direita da tela), presente na página Seleção de Destinos, o motorista tem acesso a página de Seleção de Linha, Figura (\ref{fig:FrameworkMainSelectDestinationsB}). Nesta página o motorista pode selecionar uma linha para o autocarro dentre as linha presentes no arquivo fonte previamente carregado. O motorista pode utilizar o teclado virtual desta página para buscar a linha de interesse pelo seu número.
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkMainSelectDestinationsB.png}
+	\caption{Página de Seleção de Linha - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:FrameworkMainSelectDestinationsB}
+\end{figure} 
+\vspace{3mm}
+
+\subsection{Página do Menu de Configurações}
+
+Para acessar as configurações do DMSConsole, o usuário através do botão 'Settings', no topo de qualquer página da interface, pode acessar o Menu de Configurações, Figura \ref{fig:SettingsDMSConsole}. Nesta página o usuário tem acesso a página de Seleção de Fonte e as páginas de configuração do RTC (\textit{Real Clock Time}), \textit{Display Touchscreen} e do painéis eletrônicos da rede.
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkSettingsMain.png}
+	\caption{Página do Menu de Configurações - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:SettingsDMSConsole}
+\end{figure} 
+\vspace{3mm}
+
+\subsection{Página de Seleção de Fontes}
+
+Na página de Seleção de Fonte o usuário tem acesso a uma lista de arquivos fonte em formato Xml que já foram previamente carregados no diretório padrão e que podem ser escolhidos como nova fonte de dados, Figura \ref{fig:SourceDMSConsole}. Para carregar um novo arquivo fonte para este diretório o usuário pode escolher se conectar ao Raspberry Pi via SSH e copiar o arquivo fonte para dentro do diretório 'Data' no diretório de instalação do DMSConsole. Também há a opção de importar diretamente de um dispositivo de armazenamento USB uma nova fonte. Porém ao selecionar um arquivo o DMSConsole verifica a estrutura Xml do arquivo antes de importa-lo, notificando ao usuário se a estrutura é válida ou não. Ainda há a terceira opção, a de criar um arquivo fonte Xml.
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkSource.png}
+	\caption{Página de Seleção de Fonte - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:SourceDMSConsole}
+\end{figure} 
+\vspace{3mm}
+
+\subsection{Página de Edição de Fontes}
+
+Ao escolher a opção 'Criar Fonte', dentro da  Página de Seleção de Fontes, o usuário é direcionado para editor de fontes do DMSConsole. Onde ele define os parâmetro da Linha e do Destino do autocarro, os parâmetros de dimensões dos painéis, o layout das páginas e o alinhamento  das informações visuais nos painéis. E então o DMSConsole gera um arquivo Xml baseados nestas informações, para ser utilizado como fonte. Para facilitar a entrada de dados pelo usuário as páginas do editor de fontes possui um teclado virtual adaptado do padrão \textit{QWERTY}. 
+
+Após inserir o nome do arquivo, o nome e número da linha e o nome do destino, o DMSConsole detecta as configurações dos painéis da rede, e oferece ao usuário a criação de 'Paginas' de acordo com a dimensão de cada painel. Porém se não for detectado nenhum painel da rede, o usuário pode inserir manualmente as dimensões dos painéis. No processo de criação da página o usuário tem a opção de escolher quais informações serão exibidas nos painéis; texto, apenas o número da linha, o texto e o número da linha ou  sem nenhuma informação. É possível também definir manualmente a fonte, o alinhamento e o conteúdo do texto exibido. O quadro de Figuras \ref{fig:SourceEditorDMSConsole} apresenta as etapas do editor de fontes.
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorNomearArquivoKeyBoard.png}
+		\caption{Tela de Nomeação do Arquivo Fonte}
+		\label{fig:SourceEditorDMSConsoleA}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorLinhaAKeyboard.png}
+		\caption{Tela de Criação de Uma Linha de Autocarro}
+		\label{fig:SourceEditorDMSConsoleB}
+	\end{subfigure}
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorDestinoKeyBoard.png}
+		\caption{Tela de Criação de Destino}
+		\label{fig:SourceEditorDMSConsoleC}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorPainel.png}
+		\caption{Tela de Criação de Painel (Painéis Não Detectados)}
+		\label{fig:SourceEditorDMSConsoleD}
+	\end{subfigure}
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorPainelB.png}
+		\caption{Tela de Criação de Painel}
+		\label{fig:SourceEditorDMSConsoleE}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorPagina.png}
+		\caption{Tela Criação de Página}
+		\label{fig:SourceEditorDMSConsoleF}
+	\end{subfigure}
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorTexto.png}
+		\caption{Tela de Criação de Campo de Texto - Configuração}
+		\label{fig:SourceEditorDMSConsoleG}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.90\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.90\linewidth]{Images/SoftwareDMSConsole/FrameworkEditorTextoKeyboard.png}
+		\caption{Tela de Criação de Campo de Texto}
+		\label{fig:SourceEditorDMSConsoleH}
+	\end{subfigure}
+	\caption{Editor de Fontes DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:SourceEditorDMSConsole}
+\end{figure}
+\vspace{9mm}
+
+\subsection{Página de Configuração dos Painéis}
+
+Na Página de Configuração dos Painéis o usuário tem acesso a configuração de nível de brilho dos painéis na rede, a execução de testes de funcionamento dos LEDs e da Memória Flash do equipamento e ainda a realização do \textit{reset} de todos os painéis na rede, Figura (\ref{fig:PanelSettings}). O brilho dos painéis é definido em 6 níveis mais o nível automático, onde o brilho do painéis é regulado pelo sensor de luminosidade do equipamento. 
+
+A 3 teste de painéis disponíveis na página de Configuração dos Painéis; o teste de varrimento vertical, varrimento horizontal e teste de memória RAM e FLASH. Caso o teste escolhido seja o teste de memória RAM e Flash o console envia o comando 'MSG Panel Test' para todos os painéis da rede. Se todos os painéis realizarem o teste com sucesso, um ícone aparece na tela informando o sucesso da operação, caso contrário é informado a ocorrência de um erro.  
+ 
+
+\vspace{9mm}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkPanelSettings.png}
+		\caption{Página de Configuração dos  Painéis}
+		\vspace{-3.5mm}
+		\caption*{Fonte: Autoria Própria}
+		\label{fig:PanelSettingsA}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkPanelSettingsError.png}
+		\caption{Erro no Teste de RAM e Flash}
+		\vspace{-3.5mm}
+		\caption*{Fonte: Autoria Própria}
+		\label{fig:PanelSettingsB} 
+	\end{subfigure}
+	\begin{subfigure}[t]{.5\textwidth}
+		\centering
+		\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+		\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkPanelSettingsConfirm.png}
+		\caption{Sucesso no Teste de RAM e Flash}
+		\vspace{-3.5mm}
+		\caption*{Fonte: Autoria Própria}
+	\end{subfigure}%
+	\caption{Página de Configuração dos  Painéis - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:PanelSettings}
+\end{figure}
+
+\subsection{Página de Configuração do \textit{Display}}
+
+Na página de Configurações de \textit{Display} o usuário tem  acesso ao \textit{Backlight}, \textit{Screen Saver} e \textit{Buzzer Touch Sound}. O \textit{Backlight}, ou retro-iluminação, é a intensidade da fonte de luminosa de fundo do \textit{Display}. Uma intensidade elevada de \textit{Backlight} torna o conteúdo mostrado no \textit{Display} mais visível ao usuário em um ambiente bastante iluminado. Porém em um ambiente mais escuro um nível alto de  \textit{Backlight} pode incomodar o usuário é causar mais rapidamente cansaço visual. Na página de configuração do \textit{Display} é possível selecionar o nível do  \textit{Backlight}, e ainda definir para dois períodos do dia a intensidade de desejada.
+
+O \textit{Screen Saver} é o recurso que reduz o \textit{Backlight} para zero quando o \textit{Display} esta ocioso. Na  página de configuração do \textit{Display} é possível definir um valor de até 900 segundos para que o tempo máximo de ociosidade para que o \textit{Display} não entre em \textit{Screen Saver}. Quando o \textit{Screen Saver} é definido como 0, o \textit{Backlight} nunca é reduzido .
+
+Por último existe o \textit{Buzzer Touch Sound}, este é um recurso sonoro que informa ao usuário quando uma tecla \textit{touch} foi pressionada. O tempo de emissão sonora pode ser configurado nesta página, sendo a unidade definida em 10 milésimos de segundos. 
+
+\vspace{3mm}
+\begin{figure}[H]
+	\centering
+	\captionsetup{width=0.9\textwidth, font=footnotesize, textfont=bf}	
+	\includegraphics[width=0.9\linewidth]{Images/SoftwareDMSConsole/FrameworkDisplaySettings.png}
+	\caption{Página de Configuração do Console - DMSConsole}
+	\vspace{-3.5mm}
+	\caption*{Fonte: Autoria Própria}
+	\label{fig:DisplaySettings}
+\end{figure} 
+\vspace{3mm}
